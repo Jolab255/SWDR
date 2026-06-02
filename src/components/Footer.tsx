@@ -36,7 +36,6 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
     { id: 'about', label: 'About Us' },
     { id: 'why-we-started', label: 'Why We Started' },
     { id: 'contact', label: 'Contact Us' },
-    { id: 'cms', label: 'CMS Dashboard' },
   ];
 
   const socials = [
@@ -101,7 +100,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
             <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, mb: 4, maxWidth: 320 }}>
               Smile with Doctor Rome Dental Clinic (SWDR) is a professional pediatric dental center and
               charity movement in Tanzania — providing free reconstructive dental surgeries and hygiene
-              outreaches to children in hard environments.
+              charities to children in hard environments.
             </Typography>
 
             {/* Social icons — neo-brutalism squares */}
@@ -208,7 +207,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
               fontWeight="900"
               sx={{ color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
             >
-              Clinic &amp; Outreach HQ
+              Clinic &amp; Charity HQ
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {[
@@ -252,7 +251,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
               Join the Movement
             </Typography>
             <Typography variant="body2" sx={{ color: '#475569', mb: 3, lineHeight: 1.7 }}>
-              Subscribe for updates on our upcoming rural outreach dates, calendar events, and smile
+              Subscribe for updates on our upcoming rural charity dates, calendar events, and smile
               success stories.
             </Typography>
             <form onSubmit={handleSubscribe}>
@@ -321,9 +320,11 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
             gap: 2,
           }}
         >
-          <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 600 }}>
-            © {new Date().getFullYear()} Smile with Doctor Rome Dental Clinic. All Rights Reserved. Reg. NGO No. NGO/R/12984 — Tanzania.
-          </Typography>
+          <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+            <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 700 }}>
+              © {new Date().getFullYear()} SWDR. Developed by <Box component="span" sx={{ color: '#0284c7' }}>Jolab</Box> | <Box component="a" href="mailto:yonahmatete@gmail.com" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#0284c7' } }}>yonahmatete@gmail.com</Box> | <Box component="a" href="https://wa.me/255765929374" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#0284c7' } }}>+255 765 929 374</Box>
+            </Typography>
+          </Box>
           <Typography
             variant="caption"
             sx={{ color: '#64748b', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 0.5 }}
@@ -351,7 +352,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
             fontWeight: 700,
           }}
         >
-          🎉 Subscribed! You'll receive monthly outreach &amp; calendar updates.
+          🎉 Subscribed! You'll receive monthly charity &amp; calendar updates.
         </Alert>
       </Snackbar>
     </Box>

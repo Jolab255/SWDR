@@ -377,12 +377,12 @@ Smile with Doctor Rome Dental Clinic.
                           ? `This funds surgical materials for a child's facial or dental surgery!` 
                           : parseInt(amount) >= 50000 
                           ? `This covers the clinical treatment fees for 2 children.` 
-                          : `This buys ${Math.floor(parseInt(amount)/10000)} pediatric dental hygiene outreach kits.`)
+                          : `This buys ${Math.floor(parseInt(amount)/10000)} pediatric dental hygiene charity kits.`)
                         : (parseInt(amount) >= 50 
                           ? `This funds surgical materials for a child's dental surgery!` 
                           : parseInt(amount) >= 20 
                           ? `This covers clinical treatment fees for 2 children.` 
-                          : `This buys ${Math.floor(parseInt(amount)/5)} pediatric dental hygiene outreach kits.`)
+                          : `This buys ${Math.floor(parseInt(amount)/5)} pediatric dental hygiene charity kits.`)
                       }
                     </span>
                   </Typography>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Container,
@@ -6,12 +6,9 @@ import {
   Grid,
   TextField,
   Button,
-  Paper,
-  Divider,
   MenuItem,
   Snackbar,
   Alert,
-  IconButton
 } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -27,6 +24,9 @@ export default function ContactUs() {
   const [message, setMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const BORDER = '3px solid #1e293b';
+  const SHADOW = '8px 8px 0px #1e293b';
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
@@ -40,138 +40,164 @@ export default function ContactUs() {
   };
 
   return (
-    <Box sx={{ py: 6, bgcolor: '#f8fafc' }}>
-      <Container maxWidth="lg" sx={{ mt: 2, mb: 6 }}>
-        
-        {/* HEADER */}
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography 
-            variant="caption" 
-            sx={{ 
-              fontWeight: 'bold', 
-              color: 'primary.main', 
-              textTransform: 'uppercase', 
-              letterSpacing: '1.5px',
-              fontSize: '0.8rem' 
-            }}
-          >
-            GET IN TOUCH
-          </Typography>
-          <Typography variant="h3" fontWeight="900" sx={{ color: '#1e293b', mt: 1, letterSpacing: '-1px' }}>
-            Contact Us
-          </Typography>
-          <Divider sx={{ width: 80, mx: 'auto', mt: 2, height: 4, bgcolor: 'primary.main', borderRadius: 0 }} />
-        </Box>
+    <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
+      
+      {/* HEADER SECTION */}
+      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '4px solid #1e293b' }}>
+        <Container maxWidth="lg">
+          <Box sx={{ textAlign: 'center', mb: 4 }}>
+            <Box 
+              sx={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: 1.5, 
+                mb: 3, 
+                bgcolor: '#ffffff',
+                color: '#1e293b',
+                px: 2.5,
+                py: 1,
+                borderRadius: 0,
+                border: BORDER,
+                boxShadow: '4px 4px 0px #1e293b',
+                fontWeight: '900',
+                textTransform: 'uppercase',
+                fontSize: '0.85rem',
+                letterSpacing: '1px'
+              }}
+            >
+              Get in Touch
+            </Box>
+            <Typography 
+              variant="h1" 
+              sx={{ 
+                fontWeight: '900',
+                color: '#1e293b', 
+                fontSize: { xs: '2.5rem', md: '4rem' },
+                textTransform: 'uppercase',
+                letterSpacing: '-2px',
+                lineHeight: 1.1
+              }}
+            >
+              Contact <Box component="span" sx={{ color: '#0284c7' }}>Us</Box>
+            </Typography>
+            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', border: '2px solid #1e293b', mx: 'auto', mt: 3 }} />
+          </Box>
+        </Container>
+      </Box>
 
-        <Grid container spacing={5}>
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
+        <Grid container spacing={6}>
           {/* LEFT COLUMN: CONTACT DETAILS */}
-          <Grid item xs={12} md={5}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3.5 }}>
-              <Typography variant="h5" fontWeight="bold" sx={{ color: '#1e293b' }}>
-                Clinic Headquarters
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                Have questions regarding direct wire bank donations, corporate partnerships, clinical volunteer options, or tax-deductible receipts? Our administrative team in Dar es Salaam is ready to assist.
-              </Typography>
-              
-              <Divider />
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <Box 
+                sx={{ 
+                  p: { xs: 4, md: 5 }, 
+                  border: BORDER, 
+                  boxShadow: SHADOW,
+                  bgcolor: 'white',
+                }}
+              >
+                <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 2 }}>
+                  Clinic Headquarters
+                </Typography>
+                <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.8, fontWeight: 500, textAlign: 'justify', mb: 4 }}>
+                  Have questions regarding direct wire bank donations, corporate partnerships, clinical volunteer options, or tax-deductible receipts? Our administrative team in Dar es Salaam is ready to assist.
+                </Typography>
 
-              {/* Contacts */}
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <Box sx={{ p: 1.5, bgcolor: '#f0f9ff', color: 'primary.main', borderRadius: 0, display: 'flex' }}>
-                  <LocationOnIcon />
-                </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight="bold">Physical Clinic HQ</Typography>
-                  <Typography variant="body2" fontWeight="medium">
-                    Mikocheni B, Plot 23, Mwai Kibaki Road, Dar es Salaam, Tanzania
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <Box sx={{ p: 1.5, bgcolor: '#f0f9ff', color: 'primary.main', borderRadius: 0, display: 'flex' }}>
-                  <PhoneIcon />
-                </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight="bold">Office Call Lines</Typography>
-                  <Typography variant="body2" fontWeight="medium">
-                    +255 22 270 0981 / +255 784 766 373
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <Box sx={{ p: 1.5, bgcolor: '#f0fdf4', color: 'success.main', borderRadius: 0, display: 'flex' }}>
-                  <WhatsAppIcon />
-                </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight="bold">Outreach Coordinator WhatsApp</Typography>
-                  <Typography variant="body2" fontWeight="medium" color="success.dark">
-                    +255 784 766 373
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <Box sx={{ p: 1.5, bgcolor: '#f0f9ff', color: 'primary.main', borderRadius: 0, display: 'flex' }}>
-                  <EmailIcon />
-                </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight="bold">Charity Email Coordinates</Typography>
-                  <Typography variant="body2" fontWeight="medium">
-                    donations@smiledrrome.org / info@swdrclinic.org
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <Box sx={{ p: 1.5, bgcolor: '#f8fafc', color: 'text.secondary', borderRadius: 0, display: 'flex' }}>
-                  <AccessTimeIcon />
-                </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight="bold">HQ Operating Hours</Typography>
-                  <Typography variant="body2" fontWeight="medium">
-                    Monday - Friday: 08:00 AM - 05:00 PM<br />
-                    Saturday: 09:00 AM - 01:00 PM (Emergency & Outreaches Only)
-                  </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  {[
+                    { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Mikocheni B, Plot 23, Mwai Kibaki Road, Dar es Salaam, Tanzania' },
+                    { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 22 270 0981 / +255 784 766 373', link: 'tel:+255222700981' },
+                    { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 784 766 373', color: 'success.dark', link: 'https://wa.me/255784766373' },
+                    { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smiledrrome.org / info@swdrclinic.org', link: 'mailto:donations@smiledrrome.org' },
+                    { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
+                  ].map((item, idx) => (
+                    <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
+                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#0284c7', border: BORDER, boxShadow: '2px 2px 0px #1e293b', display: 'flex', flexShrink: 0 }}>
+                        {item.icon}
+                      </Box>
+                      <Box>
+                        <Typography variant="caption" sx={{ color: '#0284c7', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                          {item.label}
+                        </Typography>
+                        {item.link ? (
+                          <Box 
+                            component="a" 
+                            href={item.link} 
+                            sx={{ 
+                              display: 'block',
+                              color: item.color || '#1e293b', 
+                              fontWeight: 600, 
+                              lineHeight: 1.5,
+                              textDecoration: 'none',
+                              fontSize: '0.875rem',
+                              '&:hover': { color: '#0284c7' }
+                            }}
+                          >
+                            {item.value}
+                          </Box>
+                        ) : (
+                          <Typography variant="body2" sx={{ color: item.color || '#1e293b', fontWeight: 600, lineHeight: 1.5 }}>
+                            {item.value}
+                          </Typography>
+                        )}
+                      </Box>
+                    </Box>
+                  ))}
                 </Box>
               </Box>
             </Box>
           </Grid>
 
           {/* RIGHT COLUMN: CONTACT FORM */}
-          <Grid item xs={12} md={7}>
-            <Paper 
-              elevation={0}
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Box 
               sx={{
-                p: { xs: 4, md: 5 },
-                borderRadius: 0,
-                border: '1px solid',
-                borderColor: 'grey.200',
+                p: { xs: 4, md: 6 },
+                border: BORDER,
+                boxShadow: SHADOW,
                 bgcolor: 'white',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.01)'
               }}
             >
-              <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ color: '#1e293b' }}>
+              <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 2 }}>
                 Send SWDR a Message
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+              <Typography variant="body1" sx={{ color: '#475569', fontWeight: 500, lineHeight: 1.7, mb: 5, textAlign: 'justify' }}>
                 Fill out the secure form below. Your request will be filtered and dispatched straight to Dr. Rome's pediatric support desks.
               </Typography>
 
               <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
                       label="Full Name"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      variant="outlined"
+                      slotProps={{ 
+                        input: { 
+                          sx: { 
+                            borderRadius: 0, 
+                            fontWeight: 600,
+                            '& .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                              borderRadius: 0,
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                          } 
+                        } 
+                      }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
                       label="Email Address"
@@ -179,15 +205,51 @@ export default function ContactUs() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      slotProps={{ 
+                        input: { 
+                          sx: { 
+                            borderRadius: 0, 
+                            fontWeight: 600,
+                            '& .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                              borderRadius: 0,
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                          } 
+                        } 
+                      }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={{ xs: 12 }}>
                     <TextField
                       fullWidth
                       select
                       label="Subject Inquiry"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
+                      slotProps={{ 
+                        input: { 
+                          sx: { 
+                            borderRadius: 0, 
+                            fontWeight: 600,
+                            '& .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                              borderRadius: 0,
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                          } 
+                        } 
+                      }}
                     >
                       <MenuItem value="general">General NGO Inquiry</MenuItem>
                       <MenuItem value="volunteer">Volunteer Practitioner Registration</MenuItem>
@@ -195,7 +257,7 @@ export default function ContactUs() {
                       <MenuItem value="donation">Donation Receipt / Selcom Issue</MenuItem>
                     </TextField>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={{ xs: 12 }}>
                     <TextField
                       fullWidth
                       multiline
@@ -205,29 +267,79 @@ export default function ContactUs() {
                       value={message}
                       placeholder="Write details of your question or support proposition here..."
                       onChange={(e) => setMessage(e.target.value)}
+                      slotProps={{ 
+                        input: { 
+                          sx: { 
+                            borderRadius: 0, 
+                            fontWeight: 600,
+                            '& .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                              borderRadius: 0,
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                              border: BORDER,
+                            },
+                          } 
+                        } 
+                      }}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={{ xs: 12 }}>
                     <Button
                       type="submit"
                       variant="contained"
                       endIcon={<SendIcon />}
-                      size="large"
-                      sx={{ px: 4, py: 1.5, borderRadius: 0, fontWeight: 'bold', textTransform: 'none' }}
+                      fullWidth
+                      sx={{ 
+                        px: 4, py: 2, 
+                        borderRadius: 0, 
+                        fontWeight: '900', 
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        fontSize: '1rem',
+                        bgcolor: '#0284c7',
+                        color: 'white',
+                        border: BORDER,
+                        boxShadow: '4px 4px 0px #1e293b',
+                        transition: 'all 0.15s ease',
+                        '&:hover': {
+                          bgcolor: '#0369a1',
+                          transform: 'translate(-2px, -2px)',
+                          boxShadow: '6px 6px 0px #1e293b',
+                        },
+                        '&:active': {
+                          transform: 'translate(1px, 1px)',
+                          boxShadow: '2px 2px 0px #1e293b',
+                        }
+                      }}
                     >
                       Send Message
                     </Button>
                   </Grid>
                 </Grid>
               </form>
-            </Paper>
+            </Box>
           </Grid>
         </Grid>
       </Container>
 
       {/* Success submit message popup */}
       <Snackbar open={showSuccess} autoHideDuration={5000} onClose={() => setShowSuccess(false)}>
-        <Alert onClose={() => setShowSuccess(false)} severity="success" sx={{ borderRadius: 0 }}>
+        <Alert 
+          onClose={() => setShowSuccess(false)} 
+          severity="success" 
+          sx={{ 
+            borderRadius: 0, 
+            border: BORDER, 
+            boxShadow: '8px 8px 0px #1e293b',
+            fontWeight: 'bold',
+            bgcolor: 'white',
+            color: '#1e293b'
+          }}
+        >
           🎉 Message successfully sent! Dr. Rome's support office will reach out to you within 24 hours.
         </Alert>
       </Snackbar>

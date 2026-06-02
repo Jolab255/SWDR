@@ -34,7 +34,6 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
     { id: 'about', label: 'About Us' },
     { id: 'why-we-started', label: 'Why We Started' },
     { id: 'contact', label: 'Contact Us' },
-    { id: 'cms', label: 'CMS Admin' }
   ];
 
   const handleDrawerToggle = () => {

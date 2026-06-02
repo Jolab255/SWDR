@@ -95,7 +95,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
     },
     {
       url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop',
-      title: 'Community Outreach Program',
+      title: 'Community Charity Program',
       location: 'Mwananyamala Clinic',
       date: 'April 20, 2026',
     },
@@ -133,7 +133,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
       description: 'Distributed 300+ dental kits to school children and conducted live brushing demonstrations in four classrooms.',
       image: '/images/swdr_hero.png',
       extraImages: ['/images/swdr_hero.png', '/images/swdr_hero.png', '/images/swdr_hero.png'],
-      fullDescription: 'The Mwananyamala Hygiene Campaign was a landmark preventative outreach event. Our team visited four classrooms across two primary schools, distributing high-fluoride toothpaste and quality toothbrushes to over 300 children. Interactive demonstrations on correct brushing technique were delivered by Dr. Jerome Rome himself. The campaign was warmly received by teachers and parents who noted visible improvements in children\'s dental hygiene habits within weeks.',
+      fullDescription: 'The Mwananyamala Hygiene Campaign was a landmark preventative charity event. Our team visited four classrooms across two primary schools, distributing high-fluoride toothpaste and quality toothbrushes to over 300 children. Interactive demonstrations on correct brushing technique were delivered by Dr. Jerome Rome himself. The campaign was warmly received by teachers and parents who noted visible improvements in children\'s dental hygiene habits within weeks.',
     },
     {
       title: 'Cleft Lip Surgical Camp — Muhimbili',
@@ -552,7 +552,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
         >
           <form onSubmit={handleRegisterSubmit}>
             <DialogTitle sx={{ fontWeight: "900", pt: 3.5, px: 3, fontSize: "1.4rem", borderBottom: "3px solid #1e293b", mb: 2 }}> 
-              Volunteer for Outreach 
+              Volunteer for Charity 
             </DialogTitle>
             <DialogContent sx={{ px: 3 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
@@ -883,7 +883,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
               </Box>
             </Grid>
  
-            {/* Right Column: Framed Photorealistic Outreach Image */}
+            {/* Right Column: Framed Photorealistic Charity Image */}
             <Grid item xs={12} md={5}>
               <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}>
                 {/* Visual Image container with nice drop shadow and white borders */}
@@ -902,7 +902,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
                   <Box 
                     component="img"
                     src="/images/swdr_hero.png"
-                    alt="Smile with Doctor Rome outreach"
+                    alt="Smile with Doctor Rome charity"
                     onClick={() => setLightboxImage('/images/swdr_hero.png')}
                     sx={{
                       width: '100%',
@@ -1181,7 +1181,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
                 mb: 5,
               }}
             >
-              Every donation goes directly to clinical supplies, surgical materials, and outreach — no overhead, no middlemen.
+              Every donation goes directly to clinical supplies, surgical materials, and charity — no overhead, no middlemen.
             </Typography>
 
             {/* CTA Button */}
@@ -1262,7 +1262,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
                 mb: 2
               }}
             >
-              Our Scheduled Outreaches & Charities
+              Our Scheduled Charities & Charities
             </Typography>
 
           </Box>
@@ -1283,7 +1283,7 @@ export default function Home({ onDonateClick, setCurrentPage }: HomeProps) {
                 No scheduled events found
               </Typography>
               <Typography variant="body1" color="text.secondary" fontWeight="700">
-                Stay tuned! Or use the CMS panel to add new outreach activities.
+                Stay tuned! Or use the CMS panel to add new charity activities.
               </Typography>
             </Paper>
           ) : (

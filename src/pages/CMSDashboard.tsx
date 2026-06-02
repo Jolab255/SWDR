@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Container, Paper } from '@mui/material';
 import NewsCMS from '../components/NewsCMS';
 

@@ -60,7 +60,7 @@ export default function NewsCMS() {
   const [customImage, setCustomImage] = useState('');
   
   // Categories
-  const [eventCategory, setEventCategory] = useState<'Outreach' | 'Surgery' | 'Fundraiser' | 'Workshop'>('Outreach');
+  const [eventCategory, setEventCategory] = useState<'Charity' | 'Surgery' | 'Fundraiser' | 'Workshop'>('Charity');
   const [newsCategory, setNewsCategory] = useState<'Success Story' | 'Health Advice' | 'Clinic News'>('Clinic News');
   
   // Slots
@@ -94,7 +94,7 @@ export default function NewsCMS() {
     setAuthor('Dr. Jerome Rome');
     setImagePreset('/images/swdr_hero.png');
     setCustomImage('');
-    setEventCategory('Outreach');
+    setEventCategory('Charity');
     setNewsCategory('Clinic News');
     setSlotsTotal(100);
     setSlotsRegistered(0);
@@ -418,7 +418,7 @@ export default function NewsCMS() {
                     label="Event Category"
                     onChange={(e) => setEventCategory(e.target.value as any)}
                   >
-                    <MenuItem value="Outreach">Outreach Program</MenuItem>
+                    <MenuItem value="Charity">Charity Program</MenuItem>
                     <MenuItem value="Surgery">Surgery Camp</MenuItem>
                     <MenuItem value="Fundraiser">Charity Fundraiser</MenuItem>
                     <MenuItem value="Workshop">Hygiene Workshop</MenuItem>
@@ -459,7 +459,7 @@ export default function NewsCMS() {
                 <Grid item xs={6}>
                   <TextField
                     fullWidth
-                    label="Outreach Timing"
+                    label="Charity Timing"
                     placeholder="e.g. 08:00 AM - 05:00 PM"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
@@ -468,7 +468,7 @@ export default function NewsCMS() {
                 <Grid item xs={6}>
                   <TextField
                     fullWidth
-                    label="Outreach Location"
+                    label="Charity Location"
                     placeholder="e.g. Kisarawe Clinic, Pwani"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
@@ -555,7 +555,7 @@ export default function NewsCMS() {
                   label="Image Preset Asset"
                   onChange={(e) => setImagePreset(e.target.value)}
                 >
-                  <MenuItem value="/images/swdr_hero.png">🌅 Outreach Camp (swdr_hero.png)</MenuItem>
+                  <MenuItem value="/images/swdr_hero.png">🌅 Charity Camp (swdr_hero.png)</MenuItem>
                   <MenuItem value="/images/swdr_doctor_rome.png">👨‍⚕️ Dr. Rome Portrait (swdr_doctor_rome.png)</MenuItem>
                   <MenuItem value="/images/swdr_happy_children.png">🧒 Joyful Schoolchildren (swdr_happy_children.png)</MenuItem>
                   <MenuItem value="custom">🌐 Custom Web Image URL</MenuItem>

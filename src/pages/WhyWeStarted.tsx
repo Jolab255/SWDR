@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Container,
@@ -6,15 +5,14 @@ import {
   Grid,
   Paper,
   Button,
-  Card,
-  CardContent,
 } from '@mui/material';
 import FlagIcon from '@mui/icons-material/Flag';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
-import StarIcon from '@mui/icons-material/Star';
+import GroupsIcon from '@mui/icons-material/Groups';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 interface WhyWeStartedProps {
   onDonateClick: () => void;
@@ -31,7 +29,7 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
     {
       year: '2022',
       title: 'Genesis of SWDR Charity',
-      desc: 'Dr. Rome dedicates a portion of his private city clinic profits to start Smile with Doctor Rome Dental Clinic - Charity Branch. We conduct our first outreach in Kisarawe, Pwani, screening and treating 85 kids inside a school classroom.'
+      desc: 'Dr. Rome dedicates a portion of his private city clinic profits to start Smile with Doctor Rome Dental Clinic - Charity Branch. We conduct our first charity in Kisarawe, Pwani, screening and treating 85 kids inside a school classroom.'
     },
     {
       year: '2023',
@@ -109,13 +107,12 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
                 letterSpacing: '1px'
               }}
             >
-              <StarIcon sx={{ fontSize: '1.2rem', color: '#0284c7' }} />
               OUR HISTORY & COMMITMENT
             </Box>
             <Typography 
               variant="h1" 
-              fontWeight="900" 
               sx={{ 
+                fontWeight: '900',
                 color: '#1e293b', 
                 fontSize: { xs: '2.5rem', md: '4rem' },
                 textTransform: 'uppercase',
@@ -130,58 +127,42 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 10 }}>
-        {/* COMMITMENT SECTION */}
-        <Grid container spacing={6} alignItems="center" sx={{ mb: 12 }}>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ position: 'relative' }}>
-              <Box 
-                sx={{
-                  position: 'absolute',
-                  top: 20,
-                  left: 20,
-                  width: '100%',
-                  height: '100%',
-                  bgcolor: '#0284c7',
-                  zIndex: 0
-                }}
-              />
-              <Box 
-                component="img"
-                src="/images/swdr_happy_children.png"
-                alt="Happy children"
-                sx={{
-                  width: '100%',
-                  height: { xs: 300, md: 450 },
-                  objectFit: 'cover',
-                  borderRadius: 0,
-                  border: '4px solid #1e293b',
-                  position: 'relative',
-                  zIndex: 1,
-                  display: 'block'
-                }}
-              />
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Box 
-              sx={{ 
-                p: { xs: 4, md: 5 }, 
-                border: '4px solid #1e293b', 
-                boxShadow: '12px 12px 0px #1e293b',
-                bgcolor: 'white'
-              }}
-            >
-              <Typography variant="h3" fontWeight="900" sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, textTransform: 'uppercase', fontSize: '2rem', letterSpacing: '-1px' }}>
-                <FlagIcon sx={{ fontSize: '2.5rem', color: '#0284c7' }} /> Our Commitment
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#1e293b', mb: 3, lineHeight: 1.7, fontWeight: 700, fontSize: '1.1rem' }}>
-                "A child suffering from untreated cavities and chronic facial infection cannot eat properly, cannot sleep, and cannot concentrate in school."
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#475569', mb: 4, lineHeight: 1.8, fontWeight: 500 }}>
-                Dental health is a neglected crisis in East African healthcare. Our absolute commitment is to ensure that no child in Tanzania is denied fundamental healthcare or forced to leave school due to dental infections.
-              </Typography>
-              
+        {/* THE WHY / TURNING POINT SECTION */}
+        <Box 
+          sx={{ 
+            mb: 12,
+            border: '4px solid #1e293b', 
+            boxShadow: '12px 12px 0px #1e293b',
+            bgcolor: 'white',
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            overflow: 'hidden'
+          }}
+        >
+          {/* Info Section (70%) */}
+          <Box 
+            sx={{ 
+              width: { xs: '100%', md: '70%' }, 
+              p: { xs: 5, md: 8 },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="h3" sx={{ fontWeight: '900', mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, textTransform: 'uppercase', fontSize: '2.2rem', letterSpacing: '-1px' }}>
+              <FlagIcon sx={{ fontSize: '2.8rem', color: '#0284c7' }} /> The Turning Point
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#1e293b', mb: 3, lineHeight: 1.7, fontWeight: 700, fontSize: '1.2rem' }}>
+              "It started with a single volunteer trip to Morogoro that changed everything."
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#475569', mb: 4, lineHeight: 1.8, fontWeight: 500, textAlign: 'justify' }}>
+              While running a successful private practice in Dar es Salaam, Dr. Jerome Rome took a weekend to volunteer in rural Morogoro. What he found wasn't just "bad teeth"—it was a humanitarian crisis. He saw children with massive facial abscesses who hadn't slept in weeks, students dropping out because they couldn't speak without pain, and parents who had never even seen a toothbrush.
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#475569', mb: 5, lineHeight: 1.8, fontWeight: 500, textAlign: 'justify' }}>
+              He realized that for the millions of children in Tanzania's hardest environments, a "private clinic" was a fantasy. They didn't need a dentist in a city office; they needed a dentist who would drive to them. **That is why we started.** SWDR was founded to ensure that geography and poverty are no longer death sentences for a child's smile.
+            </Typography>
+            
+            <Box>
               <Button
                 variant="contained"
                 onClick={onDonateClick}
@@ -193,15 +174,38 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
                   '&:hover': { bgcolor: '#0369a1' }
                 }}
               >
-                Stand With Our Commitment
+                Help Us Reach More Villages
               </Button>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+
+          {/* Image Section (30%) */}
+          <Box 
+            sx={{ 
+              width: { xs: '100%', md: '30%' }, 
+              borderLeft: { md: '4px solid #1e293b' },
+              borderTop: { xs: '4px solid #1e293b', md: 'none' },
+              overflow: 'hidden',
+              minHeight: { xs: 300, md: 'auto' }
+            }}
+          >
+            <Box 
+              component="img"
+              src="/images/swdr_doctor_rome.png"
+              alt="Dr Jerome Rome"
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </Box>
+        </Box>
 
         {/* TIMELINE JOURNEY */}
         <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '4px solid #1e293b', boxShadow: '12px 12px 0px #1e293b', mb: 12, px: { xs: 3, md: 8 } }}>
-          <Typography variant="h3" fontWeight="900" align="center" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
+          <Typography variant="h3" align="center" sx={{ fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
             <TimelineIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Our Journey So Far
           </Typography>
 
@@ -232,7 +236,7 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
                     '&:hover': { transform: 'translateX(8px)' }
                   }}
                 >
-                  <Typography variant="h5" fontWeight="900" color="#0284c7" gutterBottom sx={{ textTransform: 'uppercase' }}>
+                  <Typography variant="h5" color="#0284c7" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
                     {item.year} — {item.title}
                   </Typography>
                   <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, fontWeight: 500, fontSize: '1.05rem' }}>
@@ -245,105 +249,127 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
         </Box>
 
         {/* BE PART OF THE MOVEMENT */}
-        <Box sx={{ mb: 12 }}>
+        <Box sx={{ mb: 4 }}>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h3" fontWeight="900" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 3, textTransform: 'uppercase', letterSpacing: '-1px' }}>
-              <VolunteerActivismIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Be Part of the Movement
+            <Typography variant="h3" sx={{ fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 3, textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' } }}>
+              Be Part of the Movement
             </Typography>
-            <Typography variant="body1" sx={{ maxWidth: 700, mx: 'auto', fontWeight: 600, color: '#475569' }}>
-              Smile with Doctor Rome is a collective movement. Your support, whether medical, financial, or logistics, keeps our dental truck moving.
+            <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
+              Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
             </Typography>
+            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', border: '2px solid #1e293b', mx: 'auto', mt: 3 }} />
           </Box>
 
           <Grid container spacing={4}>
             {[
               {
-                title: 'Sponsor an Outreach',
-                desc: 'Support the complete clinical costs of one rural mobile camp. Funds go directly to purchasing dental materials and truck fuel.',
+                title: 'Sponsor an Charity',
+                desc: 'Support the complete clinical costs of one rural mobile camp. Your funds go directly to purchasing dental materials, truck fuel, and medical supplies.',
                 actionText: 'Sponsor a Camp Now',
                 action: onDonateClick,
-                color: '#ef4444'
+                icon: <VolunteerActivismIcon />
               },
               {
                 title: 'Volunteer Your Skills',
-                desc: 'Are you a licensed dentist, hygienist, or nurse? Register to travel with Dr. Rome on our upcoming scheduled calendar dates.',
-                actionText: 'See Outreach Calendar',
+                desc: 'Are you a licensed dentist, hygienist, or nurse? Register to join our mobile team on our upcoming rural charity sessions across East Africa.',
+                actionText: 'Join the Medical Team',
                 action: () => setCurrentPage('home'),
-                color: '#22c55e'
+                icon: <GroupsIcon />
               },
               {
                 title: 'Donate Dental Equipment',
-                desc: 'We seek donations of examination chairs, dental tools, and supplies. Reach out to arrange delivery coordinates.',
-                actionText: 'Contact Our Office',
+                desc: 'We are always in need of examination chairs, pediatric dental tools, and consumable supplies. Help us equip our mobile units with the best tools.',
+                actionText: 'Equipment Donation',
                 action: () => setCurrentPage('contact'),
-                color: '#a855f7'
+                icon: <LocalHospitalIcon />
               }
             ].map((item, idx) => (
-              <Grid item xs={12} md={4} key={idx}>
-                <Card sx={{ ...neoCardStyle, boxShadow: `8px 8px 0px ${item.color}` }}>
-                  <CardContent sx={{ p: 5, height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant="h5" fontWeight="900" gutterBottom sx={{ textTransform: 'uppercase', mb: 3 }}>
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, mb: 5, flexGrow: 1, fontWeight: 500 }}>
-                      {item.desc}
-                    </Typography>
-                    <Button 
-                      variant="contained" 
-                      onClick={item.action}
-                      fullWidth
-                      sx={{ 
-                        ...neoButtonStyle, 
-                        bgcolor: 'white', 
-                        color: '#1e293b', 
-                        boxShadow: `4px 4px 0px ${item.color}`,
-                        border: `3px solid ${item.color}`,
-                        '&:hover': { bgcolor: '#f8fafc', boxShadow: `6px 6px 0px ${item.color}` }
-                      }}
-                    >
-                      {item.actionText}
-                    </Button>
-                  </CardContent>
-                </Card>
+              <Grid size={{ xs: 12, md: 4 }} key={idx}>
+                <Box
+                  sx={{
+                    p: 4,
+                    border: '4px solid #1e293b',
+                    boxShadow: '10px 10px 0px #1e293b',
+                    bgcolor: 'white',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    transition: 'all 0.15s ease',
+                    '&:hover': {
+                      transform: 'translate(-3px, -3px)',
+                      boxShadow: '14px 14px 0px #0284c7',
+                      borderColor: '#0284c7'
+                    }
+                  }}
+                >
+                  {/* Icon Box */}
+                  <Box 
+                    sx={{ 
+                      width: 80, 
+                      height: 80, 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      bgcolor: '#f0f9ff',
+                      border: '3px solid #1e293b',
+                      boxShadow: '4px 4px 0px #1e293b',
+                      color: '#0284c7',
+                      mb: 4,
+                      '& .MuiSvgIcon-root': { fontSize: '2rem' }
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
+
+                  <Typography 
+                    variant="h5" 
+                    sx={{ 
+                      fontWeight: '900', 
+                      textTransform: 'uppercase', 
+                      mb: 2, 
+                      color: '#1e293b', 
+                      letterSpacing: '-0.5px' 
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: '#475569', 
+                      fontWeight: 500, 
+                      lineHeight: 1.8, 
+                      textAlign: 'justify',
+                      mb: 4,
+                      flexGrow: 1
+                    }}
+                  >
+                    {item.desc}
+                  </Typography>
+
+                  <Button 
+                    variant="contained" 
+                    onClick={item.action}
+                    fullWidth
+                    sx={{ 
+                      ...neoButtonStyle, 
+                      bgcolor: '#0284c7', 
+                      color: 'white',
+                      py: 1.8,
+                      fontSize: '0.95rem',
+                      '&:hover': { bgcolor: '#0369a1' }
+                    }}
+                  >
+                    {item.actionText}
+                  </Button>
+                </Box>
               </Grid>
             ))}
           </Grid>
         </Box>
-
-        {/* GET IN TOUCH BANNER */}
-        <Paper 
-          elevation={0}
-          sx={{
-            bgcolor: '#1e293b',
-            color: 'white',
-            p: { xs: 6, md: 8 },
-            borderRadius: 0,
-            textAlign: 'center',
-            border: '4px solid #0284c7',
-            boxShadow: '15px 15px 0px #1e293b',
-          }}
-        >
-          <Typography variant="h3" fontWeight="900" gutterBottom sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, textTransform: 'uppercase', mb: 3 }}>
-            <MarkEmailReadIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Get in Touch
-          </Typography>
-          <Typography variant="h6" sx={{ color: '#94a3b8', mb: 5, maxWidth: 700, mx: 'auto', lineHeight: 1.8, fontWeight: 600 }}>
-            Do you have questions regarding our NGO registrations, partnership queries, or donation receipt issues? Send us a direct message now.
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={() => setCurrentPage('contact')}
-            sx={{ 
-              ...neoButtonStyle, 
-              bgcolor: '#0284c7', 
-              color: 'white',
-              px: 6,
-              fontSize: '1.1rem',
-              '&:hover': { bgcolor: '#0369a1' }
-            }}
-          >
-            Go to Contact Page
-          </Button>
-        </Paper>
 
       </Container>
     </Box>
