@@ -14,13 +14,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link } from 'react-router-dom';
 
-interface FooterProps {
-  setCurrentPage: (page: string) => void;
-  onDonateClick: () => void;
-}
-
-export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
+export default function Footer() {
   const [email, setEmail] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -32,10 +28,10 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
   };
 
   const navLinks = [
-    { id: 'home', label: 'Homepage' },
-    { id: 'about', label: 'About Us' },
-    { id: 'why-we-started', label: 'Why We Started' },
-    { id: 'contact', label: 'Contact Us' },
+    { id: '/', label: 'Homepage' },
+    { id: '/about', label: 'About Us' },
+    { id: '/why-we-started', label: 'Why We Started' },
+    { id: '/contact', label: 'Contact Us' },
   ];
 
   const socials = [
@@ -85,8 +81,8 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
               <Box sx={{ width: 5, bgcolor: '#0284c7', flexShrink: 0, mr: 1.5 }} />
               <Typography
                 variant="h6"
-                fontWeight="900"
                 sx={{
+                  fontWeight: '900',
                   textTransform: 'uppercase',
                   letterSpacing: '-0.5px',
                   color: '#1e293b',
@@ -149,8 +145,8 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
           >
             <Typography
               variant="overline"
-              fontWeight="900"
               sx={{
+                fontWeight: '900',
                 color: '#0284c7',
                 letterSpacing: '2px',
                 fontSize: '0.68rem',
@@ -164,8 +160,8 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
               {navLinks.map((item) => (
                 <Box
                   key={item.id}
-                  component="button"
-                  onClick={() => setCurrentPage(item.id)}
+                  component={Link}
+                  to={item.id}
                   sx={{
                     background: 'none',
                     border: 'none',
@@ -179,6 +175,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
                     fontWeight: 700,
                     color: '#1e293b',
                     display: 'block',
+                    textDecoration: 'none',
                     transition: 'all 0.15s',
                     '&:hover': {
                       color: '#0284c7',
@@ -204,8 +201,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
           >
             <Typography
               variant="overline"
-              fontWeight="900"
-              sx={{ color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
+              sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
             >
               Clinic &amp; Charity HQ
             </Typography>
@@ -225,7 +221,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
                 },
               ].map((row) => (
                 <Box key={row.label} sx={{ borderLeft: '3px solid #0284c7', pl: 1.5 }}>
-                  <Typography variant="caption" fontWeight="900" sx={{ color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  <Typography variant="caption" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                     {row.label}
                   </Typography>
                   <Typography variant="body2" sx={{ color: '#475569', mt: 0.3, lineHeight: 1.7 }}>
@@ -245,8 +241,7 @@ export default function Footer({ setCurrentPage, onDonateClick }: FooterProps) {
           >
             <Typography
               variant="overline"
-              fontWeight="900"
-              sx={{ color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
+              sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
             >
               Join the Movement
             </Typography>

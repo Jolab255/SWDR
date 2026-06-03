@@ -1,8 +1,9 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { Box, Container, Typography, Button, Paper, Collapse, Divider } from '@mui/material';
-import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
+import { Box, Container, Typography, Button, Paper } from '@mui/material';
+import ErrorIcon from '@mui/icons-material/Error';
+import HomeIcon from '@mui/icons-material/Home';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 interface Props {
   children: ReactNode;
@@ -12,174 +13,151 @@ interface State {
   hasError: boolean;
   error: Error | null;
   errorInfo: ErrorInfo | null;
-  showDetails: boolean;
 }
 
-export default class ErrorBoundary extends Component<Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
     error: null,
     errorInfo: null,
-    showDetails: false
   };
 
-  public static getDerivedStateFromError(error: Error): Partial<State> {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true, error };
+  public static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error, errorInfo: null };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error in SWDR App:', error, errorInfo);
-    this.setState({ errorInfo });
+    console.error('Uncaught error:', error, errorInfo);
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
   }
 
-  private handleResetCache = () => {
-    if (window.confirm('This will reset your local CMS data (Events & News) to stable default templates. Proceed?')) {
-      localStorage.clear();
-      window.location.reload();
-    }
+  private handleReset = () => {
+    this.setState({ hasError: false, error: null, errorInfo: null });
+    window.location.href = '/';
   };
 
-  private handleReload = () => {
+  private handleRefresh = () => {
     window.location.reload();
   };
 
   public render() {
     if (this.state.hasError) {
+      const BORDER = "3px solid #1e293b";
+      const SHADOW = "10px 10px 0px #1e293b";
+
       return (
         <Box 
           sx={{ 
             minHeight: '100vh', 
-            bgcolor: '#f8fafc', 
             display: 'flex', 
             alignItems: 'center', 
-            justifyContent: 'center',
-            py: 6,
-            px: 2
+            justifyContent: 'center', 
+            bgcolor: '#f8fafc',
+            p: 3 
           }}
         >
           <Container maxWidth="sm">
             <Paper 
-              elevation={0}
-              sx={{
-                p: { xs: 4, md: 5 },
-                borderRadius: 5,
-                border: '1px solid',
-                borderColor: 'error.light',
-                bgcolor: 'white',
-                textAlign: 'center',
-                boxShadow: '0 10px 30px rgba(225, 29, 72, 0.05)'
+              elevation={0} 
+              sx={{ 
+                p: { xs: 4, md: 6 }, 
+                textAlign: 'center', 
+                borderRadius: 0, 
+                border: BORDER, 
+                boxShadow: SHADOW,
+                bgcolor: 'white'
               }}
             >
-              <Box 
-                sx={{ 
-                  width: 70, 
-                  height: 70, 
-                  borderRadius: '50%', 
-                  bgcolor: 'error.light', 
-                  color: 'error.main', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  mx: 'auto',
-                  mb: 3
-                }}
-              >
-                <ReportProblemIcon sx={{ fontSize: 40 }} />
-              </Box>
-
-              <Typography variant="h5" fontWeight="900" gutterBottom sx={{ color: '#1e293b' }}>
-                Application Caught a Warning
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 4, lineHeight: 1.6 }}>
-                Smile with Dr. Rome's diagnostic safeguard caught a runtime rendering issue. 
-                This usually occurs due to a browser caching glitch or incompatible mock data structure entered via CMS.
-              </Typography>
-
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', mb: 4 }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<RefreshIcon />}
-                  onClick={this.handleReload}
-                  sx={{ borderRadius: 2.5, px: 3, py: 1.2, textTransform: 'none' }}
-                >
-                  Reload Page
-                </Button>
-                
-                <Button
-                  variant="outlined"
-                  color="error"
-                  startIcon={<RestartAltIcon />}
-                  onClick={this.handleResetCache}
-                  sx={{ borderRadius: 2.5, px: 3, py: 1.2, textTransform: 'none' }}
-                >
-                  Reset CMS Database
-                </Button>
-              </Box>
-
-              <Button 
-                variant="text" 
-                size="small" 
-                onClick={() => this.setState(prev => ({ showDetails: !prev.showDetails }))}
-                sx={{ textTransform: 'none', fontWeight: 'bold' }}
-              >
-                {this.state.showDetails ? 'Hide Diagnostics' : 'Show Diagnostic Logs'}
-              </Button>
-
-              <Collapse in={this.state.showDetails} sx={{ mt: 3, textAlign: 'left' }}>
-                <Divider sx={{ mb: 2 }} />
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
                 <Box 
                   sx={{ 
-                    bgcolor: 'grey.50', 
-                    p: 2.5, 
-                    borderRadius: 3, 
-                    border: '1px solid', 
-                    borderColor: 'grey.200',
-                    maxHeight: 250,
-                    overflowY: 'auto'
+                    width: 80, 
+                    height: 80, 
+                    bgcolor: '#fff1f2', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    color: '#e11d48', 
+                    border: '3px solid #1e293b',
+                    boxShadow: '4px 4px 0px #1e293b'
                   }}
                 >
-                  <Typography variant="subtitle2" color="error.main" fontWeight="bold" gutterBottom>
-                    Error details:
+                  <ErrorIcon sx={{ fontSize: 48 }} />
+                </Box>
+              </Box>
+
+              <Typography variant="h5" sx={{ fontWeight: "900", mb: 2, color: 'text.primary' }}>
+                Oops! Something went wrong.
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 4, lineHeight: 1.6 }}>
+                Our pediatric dental support team has been notified of this technical issue. Please try refreshing the page or navigating back to the homepage.
+              </Typography>
+              
+              {this.state.error && (
+                <Box sx={{ mb: 4, p: 2.5, bgcolor: '#fff1f2', border: '2px solid #e11d48', textAlign: 'left', overflow: 'auto', maxHeight: '200px' }}>
+                  <Typography variant="subtitle2" color="error.main" sx={{ fontWeight: "bold" }} gutterBottom>
+                    Technical Error Details:
                   </Typography>
-                  <Typography 
-                    variant="caption" 
-                    component="pre" 
-                    sx={{ 
-                      fontFamily: 'monospace', 
-                      display: 'block', 
-                      whiteSpace: 'pre-wrap', 
-                      wordBreak: 'break-all',
-                      color: 'text.primary'
-                    }}
-                  >
-                    {this.state.error && this.state.error.toString()}
+                  <Typography variant="caption" component="pre" sx={{ fontFamily: 'monospace', color: '#be123c', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+                    {this.state.error.toString()}
                   </Typography>
                   
                   {this.state.errorInfo && (
                     <>
-                      <Typography variant="subtitle2" color="text.secondary" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
-                        Component Stack Trace:
+                      <Typography variant="subtitle2" color="text.secondary" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+                        Component Stack:
                       </Typography>
-                      <Typography 
-                        variant="caption" 
-                        component="pre" 
-                        sx={{ 
-                          fontFamily: 'monospace', 
-                          display: 'block', 
-                          whiteSpace: 'pre-wrap', 
-                          fontSize: '0.75rem',
-                          color: 'text.secondary' 
-                        }}
-                      >
+                      <Typography variant="caption" component="pre" sx={{ fontFamily: 'monospace', color: '#64748b', fontSize: '0.7rem', whiteSpace: 'pre-wrap' }}>
                         {this.state.errorInfo.componentStack}
                       </Typography>
                     </>
                   )}
                 </Box>
-              </Collapse>
+              )}
 
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
+                <Button 
+                  fullWidth 
+                  variant="contained" 
+                  onClick={this.handleRefresh} 
+                  startIcon={<RefreshIcon />}
+                  sx={{ 
+                    py: 1.5, 
+                    borderRadius: 0, 
+                    fontWeight: "900", 
+                    textTransform: "uppercase", 
+                    boxShadow: "4px 4px 0px #1e293b", 
+                    border: "2px solid #1e293b", 
+                    bgcolor: "#0284c7", 
+                    color: "white",
+                    "&:hover": { bgcolor: "#0369a1", transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px #1e293b" }
+                  }}
+                >
+                  Refresh Page
+                </Button>
+                <Button 
+                  fullWidth 
+                  variant="outlined" 
+                  onClick={this.handleReset} 
+                  startIcon={<HomeIcon />}
+                  sx={{ 
+                    py: 1.5, 
+                    borderRadius: 0, 
+                    fontWeight: "900", 
+                    textTransform: "uppercase", 
+                    border: "2px solid #1e293b", 
+                    boxShadow: "4px 4px 0px #1e293b", 
+                    color: "#1e293b", 
+                    bgcolor: "white",
+                    "&:hover": { bgcolor: "#f0f9ff", transform: "translate(-1px, -1px)", boxShadow: "3px 3px 0px #1e293b" }
+                  }}
+                >
+                  Go Home
+                </Button>
+              </Box>
             </Paper>
           </Container>
         </Box>
@@ -189,3 +167,5 @@ export default class ErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;

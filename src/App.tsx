@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider, CssBaseline, Box } from '@mui/material';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -8,6 +9,15 @@ import WhyWeStarted from './pages/WhyWeStarted';
 import ContactUs from './pages/ContactUs';
 import CMSDashboard from './pages/CMSDashboard';
 import DonateWidget from './components/DonateWidget';
+
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 // Define our premium blue & white theme
 const theme = createTheme({
@@ -117,13 +127,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<string>('home');
   const [donateOpen, setDonateOpen] = useState<boolean>(false);
-
-  // Scroll to top automatically when switching pages
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
 
   const handleDonateOpen = () => {
     setDonateOpen(true);
@@ -133,46 +137,30 @@ function App() {
     setDonateOpen(false);
   };
 
-  // Content switcher based on active page state
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <Home onDonateClick={handleDonateOpen} setCurrentPage={setCurrentPage} />;
-      case 'about':
-        return <AboutUs onDonateClick={handleDonateOpen} />;
-      case 'why-we-started':
-        return <WhyWeStarted onDonateClick={handleDonateOpen} setCurrentPage={setCurrentPage} />;
-      case 'contact':
-        return <ContactUs />;
-      case 'cms':
-        return <CMSDashboard />;
-      default:
-        return <Home onDonateClick={handleDonateOpen} setCurrentPage={setCurrentPage} />;
-    }
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <ScrollToTop />
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100vw' }}>
         
         {/* Sticky Header Navigation */}
-        <Navbar 
-          currentPage={currentPage} 
-          setCurrentPage={setCurrentPage} 
-          onDonateClick={handleDonateOpen} 
-        />
+        <Navbar onDonateClick={handleDonateOpen} />
 
         {/* Dynamic Canvas Area */}
         <Box component="main" sx={{ flexGrow: 1 }}>
-          {renderPage()}
+          <Routes>
+            <Route path="/" element={<Home onDonateClick={handleDonateOpen} />} />
+            <Route path="/about" element={<AboutUs onDonateClick={handleDonateOpen} />} />
+            <Route path="/why-we-started" element={<WhyWeStarted onDonateClick={handleDonateOpen} />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/cms" element={<CMSDashboard />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Home onDonateClick={handleDonateOpen} />} />
+          </Routes>
         </Box>
 
         {/* Unified Portal Footer */}
-        <Footer 
-          setCurrentPage={setCurrentPage} 
-          onDonateClick={handleDonateOpen} 
-        />
+        <Footer />
 
         {/* Global checkout donation dialog */}
         <DonateWidget 

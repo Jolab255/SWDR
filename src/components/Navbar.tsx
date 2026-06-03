@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -17,32 +17,27 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
   onDonateClick: () => void;
 }
 
-export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: NavbarProps) {
+export default function Navbar({ onDonateClick }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'why-we-started', label: 'Why We Started' },
-    { id: 'contact', label: 'Contact Us' },
+    { id: '/', label: 'Home' },
+    { id: '/about', label: 'About Us' },
+    { id: '/why-we-started', label: 'Why We Started' },
+    { id: '/contact', label: 'Contact Us' },
   ];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleNavClick = (pageId: string) => {
-    setCurrentPage(pageId);
-    if (mobileOpen) setMobileOpen(false);
   };
 
   return (
@@ -62,13 +57,15 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
             
             {/* 1. Sleek Typographic Logo */}
             <Box 
+              component={Link}
+              to="/"
               sx={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 cursor: 'pointer',
-                userSelect: 'none'
+                userSelect: 'none',
+                textDecoration: 'none'
               }}
-              onClick={() => handleNavClick('home')}
             >
               <Typography 
                 variant="h5" 
@@ -90,11 +87,12 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
             {!isMobile && (
               <Box sx={{ display: 'flex', gap: 3.5, alignItems: 'center' }}>
                 {navItems.map((item) => {
-                  const isActive = currentPage === item.id;
+                  const isActive = location.pathname === item.id;
                   return (
                     <Box
+                      component={Link}
+                      to={item.id}
                       key={item.id}
-                      onClick={() => handleNavClick(item.id)}
                       sx={{
                         cursor: 'pointer',
                         fontWeight: 900,
@@ -106,6 +104,7 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
                         py: 0.8,
                         transition: 'all 0.15s ease-in-out',
                         userSelect: 'none',
+                        textDecoration: 'none',
                         borderBottom: '3px solid',
                         borderColor: isActive ? 'secondary.main' : 'transparent',
                         '&:hover': {
@@ -195,33 +194,39 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
         ModalProps={{
           keepMounted: true
         }}
+        slotProps={{
+          paper: {
+            sx: { 
+              boxSizing: 'border-box', 
+              width: 270, 
+              borderRadius: 0,
+              borderLeft: '4px solid #1e293b',
+              bgcolor: '#ffffff'
+            }
+          }
+        }}
         sx={{
           display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { 
-            boxSizing: 'border-box', 
-            width: 270, 
-            borderRadius: 0,
-            borderLeft: '4px solid #1e293b',
-            bgcolor: '#ffffff'
-          }
         }}
       >
         <Box sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%', bgcolor: 'white' }}>
           <Box sx={{ mb: 4, mt: 1, px: 1, borderBottom: '2.5px solid #1e293b', pb: 2 }}>
-            <Typography variant="h6" fontWeight="900" color="text.primary" sx={{ textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
+            <Typography variant="h6" color="text.primary" sx={{ fontWeight: "900", textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
               SMILE <Box component="span" sx={{ color: 'primary.main', textTransform: 'lowercase', fontStyle: 'italic' }}>with</Box> DR. ROME
             </Typography>
-            <Typography variant="caption" color="text.secondary" fontWeight="700">
+            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700" }}>
               Restoring Health & Smiles
             </Typography>
           </Box>
           <List sx={{ mb: 'auto' }}>
             {navItems.map((item) => {
-              const isActive = currentPage === item.id;
+              const isActive = location.pathname === item.id;
               return (
                 <ListItem key={item.id} disablePadding sx={{ mb: 1.5 }}>
                   <ListItemButton 
-                    onClick={() => handleNavClick(item.id)}
+                    component={Link}
+                    to={item.id}
+                    onClick={handleDrawerToggle}
                     selected={isActive}
                     sx={{
                       borderRadius: 0,
@@ -239,12 +244,16 @@ export default function Navbar({ currentPage, setCurrentPage, onDonateClick }: N
                   >
                     <ListItemText 
                       primary={item.label} 
-                      primaryTypographyProps={{ 
-                        fontWeight: '900',
-                        fontSize: '0.9rem',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px'
-                      }} 
+                      slotProps={{
+                        primary: {
+                          sx: {
+                            fontWeight: '900',
+                            fontSize: '0.9rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px'
+                          }
+                        }
+                      }}
                     />
                   </ListItemButton>
                 </ListItem>

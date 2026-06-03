@@ -3,23 +3,23 @@ import {
   Container,
   Typography,
   Grid,
-  Paper,
   Button,
 } from '@mui/material';
 import FlagIcon from '@mui/icons-material/Flag';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import GroupsIcon from '@mui/icons-material/Groups';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { useNavigate } from 'react-router-dom';
 
 interface WhyWeStartedProps {
   onDonateClick: () => void;
-  setCurrentPage: (page: string) => void;
 }
 
-export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeStartedProps) {
+export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
+  const navigate = useNavigate();
+
   const timelineEvents = [
     {
       year: '2021',
@@ -48,19 +48,6 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
     }
   ];
 
-  const neoCardStyle = {
-    borderRadius: 0,
-    border: '3px solid #1e293b',
-    boxShadow: '10px 10px 0px #1e293b',
-    bgcolor: 'white',
-    height: '100%',
-    transition: 'all 0.2s ease',
-    '&:hover': {
-      transform: 'translate(-4px, -4px)',
-      boxShadow: '14px 14px 0px #1e293b',
-    }
-  };
-
   const neoButtonStyle = {
     px: 4,
     py: 1.8,
@@ -85,30 +72,9 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
     <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: 10, pb: 8, bgcolor: '#f0f9ff', borderBottom: '4px solid #1e293b' }}>
+      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '4px solid #1e293b' }}>
         <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', mb: 4 }}>
-            <Box 
-              sx={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: 1.5, 
-                mb: 3, 
-                bgcolor: '#ffffff',
-                color: '#1e293b',
-                px: 2.5,
-                py: 1,
-                borderRadius: 0,
-                border: '3px solid #1e293b',
-                boxShadow: '4px 4px 0px #1e293b',
-                fontWeight: '900',
-                textTransform: 'uppercase',
-                fontSize: '0.85rem',
-                letterSpacing: '1px'
-              }}
-            >
-              OUR HISTORY & COMMITMENT
-            </Box>
+          <Box sx={{ textAlign: 'center' }}>
             <Typography 
               variant="h1" 
               sx={{ 
@@ -193,6 +159,7 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
               component="img"
               src="/images/swdr_doctor_rome.png"
               alt="Dr Jerome Rome"
+              loading="lazy"
               sx={{
                 width: '100%',
                 height: '100%',
@@ -205,7 +172,7 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
 
         {/* TIMELINE JOURNEY */}
         <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '4px solid #1e293b', boxShadow: '12px 12px 0px #1e293b', mb: 12, px: { xs: 3, md: 8 } }}>
-          <Typography variant="h3" align="center" sx={{ fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
+          <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
             <TimelineIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Our Journey So Far
           </Typography>
 
@@ -273,14 +240,14 @@ export default function WhyWeStarted({ onDonateClick, setCurrentPage }: WhyWeSta
                 title: 'Volunteer Your Skills',
                 desc: 'Are you a licensed dentist, hygienist, or nurse? Register to join our mobile team on our upcoming rural charity sessions across East Africa.',
                 actionText: 'Join the Medical Team',
-                action: () => setCurrentPage('home'),
+                action: () => navigate('/'),
                 icon: <GroupsIcon />
               },
               {
                 title: 'Donate Dental Equipment',
                 desc: 'We are always in need of examination chairs, pediatric dental tools, and consumable supplies. Help us equip our mobile units with the best tools.',
                 actionText: 'Equipment Donation',
-                action: () => setCurrentPage('contact'),
+                action: () => navigate('/contact'),
                 icon: <LocalHospitalIcon />
               }
             ].map((item, idx) => (

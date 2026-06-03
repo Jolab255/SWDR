@@ -22,6 +22,28 @@ export interface NewsArticle {
   image: string;
 }
 
+export interface ImpactStory {
+  id: string;
+  title: string;
+  location: string;
+  date: string;
+  description: string;
+  image: string;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  tag: string;
+  desc: string;
+  image: string;
+  socials: {
+    linkedin: string;
+    instagram: string;
+  };
+}
+
 export const INITIAL_EVENTS: ClinicEvent[] = [
   {
     id: 'evt-1',
@@ -118,24 +140,80 @@ export const INITIAL_NEWS: NewsArticle[] = [
   }
 ];
 
+export const INITIAL_IMPACT: ImpactStory[] = [
+  {
+    id: 'impact-1',
+    title: 'Rural Hygiene Campaign',
+    location: 'Morogoro Rural',
+    date: '2026-05-15',
+    description: 'Our team visited rural primary schools, providing hygiene kits and teaching effective brushing habits to over 500 children.',
+    image: '/images/hygiene_campaign.png'
+  },
+  {
+    id: 'impact-2',
+    title: 'Mobile Clinic Deployment',
+    location: 'Kisarawe District',
+    date: '2026-04-20',
+    description: 'The SWDR Mobile Dental Unit reaching remote villages that have never seen a dentist in decades.',
+    image: '/images/mobile_clinic.png'
+  },
+  {
+    id: 'impact-3',
+    title: 'Restorative Surgery Success',
+    location: 'Dar es Salaam HQ',
+    date: '2026-03-12',
+    description: 'Dr. Jerome Rome performing a life-changing restorative dental surgery for a child with severe congenital issues.',
+    image: '/images/restorative_surgery.png'
+  },
+  {
+    id: 'impact-4',
+    title: 'Community Surgical Camp',
+    location: 'Arusha Outskirts',
+    date: '2026-02-05',
+    description: 'Gathering families for our quarterly free surgical camp in the Morogoro region.',
+    image: '/images/surgical_camp.png'
+  }
+];
+
+export const INITIAL_TEAM: TeamMember[] = [
+  {
+    id: 'team-1',
+    name: 'Dr. Jerome Rome, DDS',
+    role: 'Founder & Lead Pediatric Dentist',
+    tag: 'MUHAS · UCSF Pediatric Specialist',
+    desc: 'With over 12 years of clinical experience, Dr. Rome graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.',
+    image: '/images/swdr_doctor_rome.png',
+    socials: { linkedin: '#', instagram: '#' },
+  },
+  {
+    id: 'team-2',
+    name: 'Dr. Sarah Mrosso, DDS',
+    role: 'Charity Coordinator & Orthodontist',
+    tag: 'Rural Deployment Lead',
+    desc: 'Dr. Sarah oversees the logistics and clinical execution of all rural charity camps. Her passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.',
+    image: '/images/swdr_hero.png',
+    socials: { linkedin: '#', instagram: '#' },
+  },
+  {
+    id: 'team-3',
+    name: 'Sister Neema Lema, RN',
+    role: 'Senior Surgical Nurse',
+    tag: 'OR & Recovery Specialist',
+    desc: 'Sister Neema handles child patient coordination, operating room sanitation, and postoperative recovery care. She is renowned for her comforting presence that keeps kids completely calm.',
+    image: '/images/swdr_happy_children.png',
+    socials: { linkedin: '#', instagram: '#' },
+  },
+];
+
 // Helper functions to manage localStorage data with fail-safe error handling
 export const getStoredEvents = (): ClinicEvent[] => {
   try {
-    const version = localStorage.getItem('swdr_events_version');
-    if (version !== 'v5') {
-      localStorage.removeItem('swdr_events');
-      localStorage.setItem('swdr_events_version', 'v5');
-    }
     const data = localStorage.getItem('swdr_events');
     if (!data) {
       localStorage.setItem('swdr_events', JSON.stringify(INITIAL_EVENTS));
       return INITIAL_EVENTS;
     }
-    const parsed = JSON.parse(data);
-    if (!Array.isArray(parsed) || parsed.length < 5) {
-      throw new Error("Invalid events format or insufficient events in localStorage");
-    }
-    return parsed;
+    return JSON.parse(data);
   } catch (error) {
     console.error('Failed to parse stored events, resetting data:', error);
     localStorage.setItem('swdr_events', JSON.stringify(INITIAL_EVENTS));
@@ -158,11 +236,7 @@ export const getStoredNews = (): NewsArticle[] => {
       localStorage.setItem('swdr_news', JSON.stringify(INITIAL_NEWS));
       return INITIAL_NEWS;
     }
-    const parsed = JSON.parse(data);
-    if (!Array.isArray(parsed)) {
-      throw new Error("Invalid news format in localStorage");
-    }
-    return parsed;
+    return JSON.parse(data);
   } catch (error) {
     console.error('Failed to parse stored news, resetting data:', error);
     localStorage.setItem('swdr_news', JSON.stringify(INITIAL_NEWS));
@@ -175,5 +249,51 @@ export const saveStoredNews = (news: NewsArticle[]) => {
     localStorage.setItem('swdr_news', JSON.stringify(news));
   } catch (error) {
     console.error('Failed to save news to localStorage:', error);
+  }
+};
+
+export const getStoredImpact = (): ImpactStory[] => {
+  try {
+    const data = localStorage.getItem('swdr_impact');
+    if (!data) {
+      localStorage.setItem('swdr_impact', JSON.stringify(INITIAL_IMPACT));
+      return INITIAL_IMPACT;
+    }
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Failed to parse stored impact, resetting data:', error);
+    localStorage.setItem('swdr_impact', JSON.stringify(INITIAL_IMPACT));
+    return INITIAL_IMPACT;
+  }
+};
+
+export const saveStoredImpact = (impact: ImpactStory[]) => {
+  try {
+    localStorage.setItem('swdr_impact', JSON.stringify(impact));
+  } catch (error) {
+    console.error('Failed to save impact to localStorage:', error);
+  }
+};
+
+export const getStoredTeam = (): TeamMember[] => {
+  try {
+    const data = localStorage.getItem('swdr_team');
+    if (!data) {
+      localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));
+      return INITIAL_TEAM;
+    }
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Failed to parse stored team, resetting data:', error);
+    localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));
+    return INITIAL_TEAM;
+  }
+};
+
+export const saveStoredTeam = (team: TeamMember[]) => {
+  try {
+    localStorage.setItem('swdr_team', JSON.stringify(team));
+  } catch (error) {
+    console.error('Failed to save team to localStorage:', error);
   }
 };
