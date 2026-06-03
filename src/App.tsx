@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -128,6 +129,7 @@ const theme = createTheme({
 
 function App() {
   const [donateOpen, setDonateOpen] = useState<boolean>(false);
+  const location = useLocation();
 
   const handleDonateOpen = () => {
     setDonateOpen(true);
@@ -141,6 +143,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ScrollToTop />
+
+      {/* Dynamic SEO Meta Tags */}
+      <Helmet>
+        <link rel="canonical" href={`https://smiledrrome.org${location.pathname === '/' ? '' : location.pathname}`} />
+      </Helmet>
+
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100vw' }}>
         
         {/* Sticky Header Navigation */}
