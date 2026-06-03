@@ -1,15 +1,24 @@
-import { useState, useEffect } from 'react';
-import { createTheme, ThemeProvider, CssBaseline, Box } from '@mui/material';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { createTheme, ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import WhyWeStarted from './pages/WhyWeStarted';
-import ContactUs from './pages/ContactUs';
-import CMSDashboard from './pages/CMSDashboard';
 import DonateWidget from './components/DonateWidget';
+
+// Lazy load pages for performance (Code Splitting)
+const Home = lazy(() => import('./pages/Home'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const WhyWeStarted = lazy(() => import('./pages/WhyWeStarted'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const CMSDashboard = lazy(() => import('./pages/CMSDashboard'));
+
+// Sleek loading placeholder for lazy components
+const PageLoader = () => (
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', bgcolor: 'white' }}>
+    <CircularProgress size={50} thickness={4} sx={{ color: '#0284c7' }} />
+  </Box>
+);
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -156,15 +165,17 @@ function App() {
 
         {/* Dynamic Canvas Area */}
         <Box component="main" sx={{ flexGrow: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home onDonateClick={handleDonateOpen} />} />
-            <Route path="/about" element={<AboutUs onDonateClick={handleDonateOpen} />} />
-            <Route path="/why-we-started" element={<WhyWeStarted onDonateClick={handleDonateOpen} />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/cms" element={<CMSDashboard />} />
-            {/* Fallback to Home */}
-            <Route path="*" element={<Home onDonateClick={handleDonateOpen} />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home onDonateClick={handleDonateOpen} />} />
+              <Route path="/about" element={<AboutUs onDonateClick={handleDonateOpen} />} />
+              <Route path="/why-we-started" element={<WhyWeStarted onDonateClick={handleDonateOpen} />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/cms" element={<CMSDashboard />} />
+              {/* Fallback to Home */}
+              <Route path="*" element={<Home onDonateClick={handleDonateOpen} />} />
+            </Routes>
+          </Suspense>
         </Box>
 
         {/* Unified Portal Footer */}
