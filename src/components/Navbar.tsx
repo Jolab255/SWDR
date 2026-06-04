@@ -65,7 +65,8 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 alignItems: 'center', 
                 cursor: 'pointer',
                 userSelect: 'none',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                ml: { xs: 1, sm: 2.5 }
               }}
             >
               <Box 
