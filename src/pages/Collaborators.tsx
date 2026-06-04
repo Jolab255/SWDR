@@ -7,12 +7,8 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Divider,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import ChildCareIcon from '@mui/icons-material/ChildCare';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface CollaboratorsProps {
@@ -26,38 +22,38 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
   const partners = [
     {
       name: 'Dorcas Homecare Initiatives',
-      tagline: 'Empowering children with Cerebral Palsy & special needs',
-      icon: <ChildCareIcon sx={{ fontSize: 32, color: '#1b4f93' }} />,
+      tagline: 'Cerebral Palsy Care & Rehabilitation Center',
       image: '/images/swdr_happy_children.png',
       location: 'Madale, Wazo — Dar es Salaam, Tanzania',
-      founded: 'Founded by Rehema Simfukwe in January 2025',
-      mission: 'Dorcas Homecare Initiative is dedicated to providing specialized therapy, physiotherapy equipment, and essential resources to children living with cerebral palsy and other neurological conditions. The center actively combats the social stigma surrounding physical disabilities in local communities while providing a safe, supportive environment for families.',
-      collaboration: 'SWDR collaborates with Dorcas Homecare to integrate specialized oral healthcare into their developmental therapies. Since children with cerebral palsy face unique oral hygiene and muscular coordination challenges, we provide direct on-site dental screenings, specialized treatments, and training for caregivers to ensure healthy smiles alongside motor rehabilitation.',
-      ctaText: 'Visit Dorcas Homecare',
+      founded: 'Established: Jan 2025',
+      author: 'Founded by Rehema Simfukwe',
+      mission: 'Dorcas Homecare Initiative provides specialized care, physical therapies, and essential adaptive equipment (including wheelchairs and standing frames) to Tanzanian children living with cerebral palsy. The center acts as a safe sanctuary for development while actively educating communities to eliminate the deep-rooted social stigma surrounding childhood neurological conditions.',
+      collaboration: 'SWDR collaborates closely with Dorcas Homecare to integrate clinical oral health into their therapy schedules. Children with neurological motor difficulties face severe dental health challenges due to restricted chewing muscles and cleaning limitations. We conduct regular, direct on-site specialized dental cleanings, screening campaigns, and caregiver oral hygiene training.',
+      ctaText: 'Visit Center Profile',
       link: 'https://dorcashomecareinitiative.or.tz'
     },
     {
       name: 'Serunt Nutrition',
-      tagline: 'Clinical nutrition & preventive lifestyle coaching',
-      icon: <HealthAndSafetyIcon sx={{ fontSize: 32, color: '#1b4f93' }} />,
+      tagline: 'Clinical Medical Nutrition & Lifestyle Therapy',
       image: '/images/hygiene_campaign.png',
       location: 'Dar es Salaam, Tanzania',
-      founded: 'Medical Nutrition Firm & Wellness Clinic',
-      mission: 'Serunt Nutrition is a premier medical nutrition firm focused on enabling individuals and communities to adopt healthier lifestyles. They specialize in clinical nutrition therapy, meal planning, and preventive care programs targeting non-communicable diseases (NCDs) such as diabetes, hypertension, and childhood malnutrition.',
-      collaboration: 'SWDR partners with Serunt Nutrition to combine dental health with general nutritional support. Dietary hygiene is a major driver of early childhood cavities and tooth decay. Together, we conduct combined educational workshops at our outreach camps, distributing hygiene kits while teaching rural families about low-sugar, nutrient-dense diets that protect both their bodies and their teeth.',
-      ctaText: 'Visit Serunt Nutrition',
+      founded: 'Medical Nutrition Center',
+      author: 'Clinical Dietitian Network',
+      mission: 'Serunt Nutrition is an established medical nutrition organization in Tanzania. They focus on preventing and managing chronic non-communicable diseases (such as juvenile diabetes, childhood obesity, and severe dental caries) by designing evidence-based nutrition guides, school health plans, and localized dietary education programs.',
+      collaboration: 'Our collaboration with Serunt Nutrition targets the dietary roots of early childhood tooth decay in rural and coastal communities. By combining dental camps with professional nutritional coaching, we distribute specialized hygiene kits alongside nutrition counseling. This dual-focus program teaches families how to build healthy, low-sugar diets to protect children\'s teeth.',
+      ctaText: 'Visit Nutrition Portal',
       link: 'http://www.seruntnutrition.co.tz'
     },
     {
       name: 'FOFR ME Foundation',
-      tagline: 'Grassroots community healthcare & village outreach',
-      icon: <HandshakeIcon sx={{ fontSize: 32, color: '#1b4f93' }} />,
+      tagline: 'Grassroots Community Health Mobilization',
       image: '/images/mobile_clinic.png',
-      location: 'Dar es Salaam & Coastal Regions, Tanzania',
-      founded: 'Grassroots Health Advocacy Partner',
-      mission: 'FOFR ME Foundation works at the community level to mobilize volunteer networks, deliver healthcare advocacy, and coordinate medical camps for underprivileged children. They specialize in local community entry, mapping remote villages in need of support, and handling ground logistics for specialized medical teams.',
-      collaboration: 'FOFR ME Foundation is our primary ground logistics and mobilization partner for rural outreach campaigns. Their team identifies communities with critical dental care gaps, schedules clinical dates with local ward leaders, and prepares village logistics so that our mobile dental units can set up and treat hundreds of children safely and efficiently.',
-      ctaText: 'Contact FOFR ME',
+      location: 'Coastal & Pwani Districts, Tanzania',
+      founded: 'Outreach Operations Partner',
+      author: 'Community Liaison Team',
+      mission: 'FOFR ME Foundation operates as a grassroots health advocacy network across coastal regions of Tanzania. They map communities lacking basic medical services, organize rural healthcare camps, coordinate volunteer medical teams, and manage ground logistics with local authorities to ensure safe, legal, and high-impact operations.',
+      collaboration: 'FOFR ME Foundation serves as our lead operational coordinator for mobile dental clinics in underserved regions. Their field officers handle community entry, schedule outreach camps with ward offices, and manage local logistics. This allows our clinical team to immediately set up mobile chairs and begin treating children upon arrival.',
+      ctaText: 'Inquire Partnership',
       link: '#'
     }
   ];
@@ -122,7 +118,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
               fontWeight: 500
             }}
           >
-            Restoring children's smiles requires a holistic approach. We proudly partner with local Tanzanian foundations, clinics, and advocacy groups to integrate dental care, nutrition, and special needs therapy.
+            Restoring children's smiles requires a holistic approach. We partner with local Tanzanian foundations, clinics, and advocacy groups to integrate dental care, nutrition, and special needs therapy.
           </Typography>
           <Box sx={{ width: 64, height: 4, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
         </Container>
@@ -130,14 +126,14 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
 
       {/* PARTNERS CONTENT SECTION */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
-        <Grid container spacing={5}>
+        <Grid container spacing={6}>
           {partners.map((partner, index) => (
             <Grid item xs={12} key={index}>
               <Card 
                 elevation={0}
                 sx={{ 
                   display: 'flex', 
-                  flexDirection: { xs: 'column', md: index % 2 === 0 ? 'row' : 'row-reverse' },
+                  flexDirection: 'column',
                   border: BORDER,
                   boxShadow: SHADOW,
                   borderRadius: 3,
@@ -149,56 +145,86 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                   }
                 }}
               >
-                {/* Image Section */}
+                {/* Image Banner */}
                 <CardMedia
                   component="img"
                   image={partner.image}
                   alt={partner.name}
                   sx={{ 
-                    width: { xs: '100%', md: '45%' },
-                    height: { xs: 260, sm: 340, md: 'auto' },
-                    minHeight: { md: 420 },
+                    width: '100%',
+                    height: { xs: 200, sm: 280, md: 360 },
                     objectFit: 'cover'
                   }}
                 />
 
-                {/* Content Section */}
-                <CardContent sx={{ p: { xs: 3, sm: 4, md: 5 }, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
-                    {partner.icon}
-                    <Typography variant="caption" sx={{ color: '#1b4f93', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      {partner.founded}
-                    </Typography>
+                {/* Content Details (Redesigned into structured columns) */}
+                <CardContent sx={{ p: { xs: 3, sm: 4, md: 5 } }}>
+                  
+                  {/* Top Meta Header */}
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: 2, mb: 3 }}>
+                    <Box>
+                      <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', fontSize: { xs: '1.5rem', sm: '1.8rem' }, mb: 0.5 }}>
+                        {partner.name}
+                      </Typography>
+                      <Typography variant="subtitle1" sx={{ color: '#475569', fontWeight: 600, fontStyle: 'italic', fontSize: '0.95rem' }}>
+                        {partner.tagline}
+                      </Typography>
+                    </Box>
+                    
+                    {/* Meta Tags */}
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.2 }}>
+                      <Box sx={{ px: 1.8, py: 0.6, bgcolor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: 1.5 }}>
+                        <Typography variant="caption" sx={{ fontWeight: '800', color: '#475569', textTransform: 'uppercase', fontSize: '0.72rem', tracking: '0.5px' }}>
+                          Location: {partner.location}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ px: 1.8, py: 0.6, bgcolor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 1.5 }}>
+                        <Typography variant="caption" sx={{ fontWeight: '800', color: '#166534', textTransform: 'uppercase', fontSize: '0.72rem', tracking: '0.5px' }}>
+                          {partner.founded}
+                        </Typography>
+                      </Box>
+                    </Box>
                   </Box>
 
-                  <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', fontSize: { xs: '1.4rem', sm: '1.75rem' }, mb: 0.5 }}>
-                    {partner.name}
-                  </Typography>
+                  {/* Clean Description Columns */}
+                  <Grid container spacing={4} sx={{ mb: 4 }}>
+                    {/* Column 1: Core Mission (Left) */}
+                    <Grid item xs={12} md={6}>
+                      <Box sx={{ pr: { md: 2 } }}>
+                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
+                          Core Mission & Focus
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.7, fontSize: '0.92rem', textAlign: 'justify' }}>
+                          {partner.mission}
+                        </Typography>
+                      </Box>
+                    </Grid>
 
-                  <Typography variant="subtitle1" sx={{ color: '#475569', fontWeight: 600, fontStyle: 'italic', mb: 2.5, fontSize: '0.95rem' }}>
-                    {partner.tagline}
-                  </Typography>
+                    {/* Column 2: Collaboration Highlight (Right Side Container) */}
+                    <Grid item xs={12} md={6}>
+                      <Box 
+                        sx={{ 
+                          p: 3, 
+                          bgcolor: '#f0f9ff', 
+                          borderLeft: '4px solid #1b4f93', 
+                          borderRadius: '0 8px 8px 0',
+                          height: '100%',
+                          boxShadow: '0 2px 8px rgba(27,79,147,0.03)'
+                        }}
+                      >
+                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#1b4f93', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
+                          Joint SWDR Partnership Impact
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#334155', lineHeight: 1.6, fontSize: '0.92rem', textAlign: 'justify' }}>
+                          {partner.collaboration}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </Grid>
 
-                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: '700', fontSize: '0.8rem', mb: 2, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    📍 Location: {partner.location}
-                  </Typography>
-
-                  <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, mb: 3, fontSize: '0.95rem' }}>
-                    {partner.mission}
-                  </Typography>
-
-                  <Divider sx={{ my: 2.5 }} />
-
-                  <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#1b4f93', mb: 1, textTransform: 'uppercase', letterSpacing: '0.5px', fontSize: '0.8rem' }}>
-                    🤝 Our Collaboration:
-                  </Typography>
-
-                  <Typography variant="body2" sx={{ color: '#334155', lineHeight: 1.6, mb: 3.5 }}>
-                    {partner.collaboration}
-                  </Typography>
-
-                  <Box sx={{ display: 'flex', gap: 2 }}>
-                    {partner.link !== '#' && (
+                  {/* CTA Buttons */}
+                  {partner.link !== '#' && (
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                       <Button
                         variant="outlined"
                         color="primary"
@@ -210,6 +236,9 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                           fontWeight: '800',
                           textTransform: 'none',
                           border: '1.5px solid',
+                          px: 3.5,
+                          py: 1.2,
+                          fontSize: '0.88rem',
                           '&:hover': {
                             border: '1.5px solid',
                             bgcolor: '#f0f9ff'
@@ -218,8 +247,9 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                       >
                         {partner.ctaText}
                       </Button>
-                    )}
-                  </Box>
+                    </Box>
+                  )}
+
                 </CardContent>
               </Card>
             </Grid>
