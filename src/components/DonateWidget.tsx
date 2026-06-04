@@ -361,7 +361,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                   />
                 )}
 
-                <Paper elevation={0} sx={{ p: 2, mt: 2.5, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.1)', borderRadius: 2 }}>
+                <Paper elevation={0} sx={{ p: 2, mt: 2.5, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(27, 79, 147,0.1)', borderRadius: 2 }}>
                   <Typography variant="caption" sx={{ fontWeight: "900", color: '#1b4f93', textTransform: 'uppercase', display: 'block', mb: 0.5 }}>Your Impact:</Typography>
                   <Typography variant="body2" sx={{ fontWeight: 600, color: '#1e293b', fontStyle: 'italic', fontSize: '0.825rem' }}>
                     {getImpactText()}
@@ -428,7 +428,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                               borderRadius: 2,
                               cursor: 'pointer',
                               bgcolor: 'white',
-                              boxShadow: mobileCarrier === carrier ? '0 4px 12px rgba(2,132,199,0.15)' : 'none',
+                              boxShadow: mobileCarrier === carrier ? '0 4px 12px rgba(27, 79, 147,0.15)' : 'none',
                               transition: 'all 0.2s ease',
                               '&:hover': {
                                 borderColor: '#1b4f93',
@@ -552,8 +552,8 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
               disabled={loading}
               sx={{ 
                 px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#1b4f93', 
-                boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
-                '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
+                boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)',
+                '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(27, 79, 147,0.4)' }
               }}
             >
               {activeStep === 3 ? 'Confirm' : activeStep === 2 ? 'Pay Now' : 'Continue'}

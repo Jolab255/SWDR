@@ -58,7 +58,7 @@ export default function ContactUs() {
                 py: 1,
                 borderRadius: 2,
                 border: '1px solid #bae6fd',
-                boxShadow: '0 2px 6px rgba(2,132,199,0.12)',
+                boxShadow: '0 2px 6px rgba(27, 79, 147,0.12)',
                 fontWeight: '900',
                 textTransform: 'uppercase',
                 fontSize: '0.85rem',
@@ -115,7 +115,7 @@ export default function ContactUs() {
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
-                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#1b4f93', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(2,132,199,0.1)', display: 'flex', flexShrink: 0 }}>
+                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#1b4f93', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(27, 79, 147,0.1)', display: 'flex', flexShrink: 0 }}>
                         {item.icon}
                       </Box>
                       <Box>
@@ -264,11 +264,11 @@ export default function ContactUs() {
                         fontSize: '1rem',
                         bgcolor: '#1b4f93',
                         color: 'white',
-                        boxShadow: '0 4px 14px rgba(2,132,199,0.35)',
+                        boxShadow: '0 4px 14px rgba(27, 79, 147,0.35)',
                         transition: 'all 0.2s ease',
                         '&:hover': {
                           bgcolor: '#113a70',
-                          boxShadow: '0 6px 20px rgba(2,132,199,0.45)',
+                          boxShadow: '0 6px 20px rgba(27, 79, 147,0.45)',
                         },
                       }}
                     >

@@ -87,12 +87,12 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
               fontSize: '0.95rem',
               bgcolor: '#1b4f93',
               color: 'white',
-              boxShadow: '0 4px 16px rgba(2,132,199,0.35)',
+              boxShadow: '0 4px 16px rgba(27, 79, 147,0.35)',
               transition: 'all 0.2s ease',
               width: { xs: '100%', sm: 'auto' },
               '&:hover': {
                 bgcolor: '#113a70',
-                boxShadow: '0 8px 24px rgba(2,132,199,0.45)',
+                boxShadow: '0 8px 24px rgba(27, 79, 147,0.45)',
               },
             }}
           >

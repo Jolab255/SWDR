@@ -68,7 +68,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
               sx={{
                 p: 4,
                 border: '1px solid rgba(255,255,255,0.9)',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(2,132,199,0.08)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(27, 79, 147,0.08)',
                 bgcolor: '#ffffff',
                 height: '100%',
                 display: 'flex',
@@ -79,7 +79,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
                 borderRadius: 3,
                 '&:hover': {
                   transform: 'translateY(-6px)',
-                  boxShadow: '0 20px 48px rgba(2,132,199,0.18), 0 4px 12px rgba(0,0,0,0.08)',
+                  boxShadow: '0 20px 48px rgba(27, 79, 147,0.18), 0 4px 12px rgba(0,0,0,0.08)',
                   borderColor: '#bae6fd'
                 }
               }}
@@ -88,7 +88,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
                 sx={{ 
                   width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center',
                   bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2,
-                  boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
+                  boxShadow: '0 2px 8px rgba(27, 79, 147,0.15)',
                   color: '#1b4f93', mb: 4, '& .MuiSvgIcon-root': { fontSize: '2rem' }
                 }}
               >
@@ -110,8 +110,8 @@ export default function Movement({ onDonateClick }: MovementProps) {
                 sx={{ 
                   py: 1.8, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
                   letterSpacing: '1px', fontSize: '0.95rem', bgcolor: '#1b4f93', color: 'white',
-                  boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
-                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
+                  boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)',
+                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(27, 79, 147,0.4)' }
                 }}
               >
                 {item.actionText}

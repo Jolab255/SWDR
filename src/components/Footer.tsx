@@ -118,7 +118,7 @@ export default function Footer() {
                       bgcolor: '#1b4f93',
                       color: 'white',
                       borderColor: '#1b4f93',
-                      boxShadow: '0 4px 10px rgba(2,132,199,0.3)',
+                      boxShadow: '0 4px 10px rgba(27, 79, 147,0.3)',
                     },
                   }}
                 >
@@ -275,11 +275,11 @@ export default function Footer() {
                     py: 1.4,
                     bgcolor: '#1b4f93',
                     color: 'white',
-                    boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                    boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)',
                     transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: '#113a70',
-                      boxShadow: '0 4px 14px rgba(2,132,199,0.4)',
+                      boxShadow: '0 4px 14px rgba(27, 79, 147,0.4)',
                     },
                   }}
                 >

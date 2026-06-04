@@ -130,9 +130,9 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
                 sx={{
                   alignSelf: 'flex-start',
                   px: 4, py: 1, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
-                  bgcolor: '#1b4f93', color: 'white', boxShadow: '0 2px 10px rgba(2,132,199,0.4)',
+                  bgcolor: '#1b4f93', color: 'white', boxShadow: '0 2px 10px rgba(27, 79, 147,0.4)',
                   pointerEvents: 'auto',
-                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(2,132,199,0.5)' }
+                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(27, 79, 147,0.5)' }
                 }}
               >
                 View Impact Gallery
@@ -163,7 +163,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
               {impactStories.map((story) => (
                 <Box key={story.id} onClick={() => setLightboxImage(story.image)} sx={{ borderRadius: 1, overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'scale(1.02)', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 2, '& .overlay': { opacity: 1 } } }}>
                   <Box component="img" src={story.image} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(2, 132, 199, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
+                  <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(27, 79, 147, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
                     <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1 }}>{story.title}</Typography>
                     <Typography variant="caption" sx={{ fontWeight: '700' }}>📍 {story.location}</Typography>
                   </Box>

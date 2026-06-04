@@ -56,7 +56,7 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               py: 1,
               borderRadius: 2,
               border: '1px solid #bae6fd',
-              boxShadow: '0 2px 6px rgba(2,132,199,0.12)',
+              boxShadow: '0 2px 6px rgba(27, 79, 147,0.12)',
               fontWeight: '900',
               textTransform: 'uppercase',
               fontSize: '0.85rem',
@@ -178,9 +178,9 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                             onClick={() => onReadMoreClick(ev)}
                             sx={{ 
                               py: 1, borderRadius: 1.5, fontWeight: '900', textTransform: 'none',
-                              fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(2,132,199,0.15)',
+                              fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(27, 79, 147,0.15)',
                               bgcolor: '#1b4f93', color: '#ffffff',
-                              '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 10px rgba(2,132,199,0.25)' }
+                              '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 10px rgba(27, 79, 147,0.25)' }
                             }}
                           >
                             See Event Details

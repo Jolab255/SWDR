@@ -95,13 +95,13 @@ export default function Hero({ onDonateClick }: HeroProps) {
                     fontSize: '1rem', 
                     textTransform: 'none', 
                     border: '1px solid #1b4f93',
-                    boxShadow: '0 2px 6px rgba(2,132,199,0.15)',
+                    boxShadow: '0 2px 6px rgba(27, 79, 147,0.15)',
                     bgcolor: 'white',
                     color: '#1b4f93',
                     textDecoration: 'none',
                     transition: 'all 0.2s',
                     '&:hover': { 
-                      boxShadow: '0 4px 14px rgba(2,132,199,0.25)',
+                      boxShadow: '0 4px 14px rgba(27, 79, 147,0.25)',
                       bgcolor: '#f0f9ff',
                     } 
                   }}

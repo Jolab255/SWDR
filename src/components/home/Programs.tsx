@@ -66,7 +66,7 @@ export default function Programs() {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  bgcolor: 'rgba(2, 132, 199, 0.65)', // Softer blue overlay (65% opacity)
+                  bgcolor: 'rgba(27, 79, 147, 0.65)', // Softer blue overlay (65% opacity)
                   zIndex: 1,
                 }
               }}

@@ -55,10 +55,10 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
     fontWeight: '900',
     fontSize: '1rem',
     textTransform: 'none',
-    boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+    boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)',
     transition: 'all 0.2s ease',
     '&:hover': {
-      boxShadow: '0 4px 16px rgba(2,132,199,0.4)',
+      boxShadow: '0 4px 16px rgba(27, 79, 147,0.4)',
     },
   };
 
@@ -185,7 +185,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     bgcolor: '#1b4f93',
                     border: '3px solid #bae6fd',
                     borderRadius: '50%',
-                    boxShadow: '0 2px 8px rgba(2,132,199,0.3)'
+                    boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)'
                   }}
                 />
                 
@@ -264,7 +264,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     borderRadius: 2,
                     '&:hover': {
                       transform: 'translateY(-4px)',
-                      boxShadow: '0 12px 32px rgba(2,132,199,0.15)',
+                      boxShadow: '0 12px 32px rgba(27, 79, 147,0.15)',
                       borderColor: '#1b4f93'
                     }
                   }}
@@ -280,7 +280,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                       bgcolor: '#f0f9ff',
                       border: '1px solid #bae6fd',
                       borderRadius: 2,
-                      boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
+                      boxShadow: '0 2px 8px rgba(27, 79, 147,0.15)',
                       color: '#1b4f93',
                       mb: 4,
                       '& .MuiSvgIcon-root': { fontSize: '2rem' }

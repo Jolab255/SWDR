@@ -97,7 +97,7 @@ const theme = createTheme({
           padding: '8px 20px',
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: '0 4px 12px rgba(2, 132, 199, 0.15)',
+            boxShadow: '0 4px 12px rgba(27, 79, 147, 0.15)',
           },
         },
       },

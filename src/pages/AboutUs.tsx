@@ -19,7 +19,7 @@ interface AboutUsProps {
 // ─── Shared clean token ───────────────────────────────────────────────────────
 const BORDER = '1px solid #1b4f93';
 const SHADOW = '0 4px 20px rgba(0,0,0,0.08)';
-const SHADOW_HOVER = '0 12px 32px rgba(2,132,199,0.15)';
+const SHADOW_HOVER = '0 12px 32px rgba(27, 79, 147,0.15)';
 
 export default function AboutUs({ onDonateClick }: AboutUsProps) {
   const [team, setTeam] = useState<TeamMember[]>([]);
@@ -79,7 +79,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
               and free reconstructive surgeries for the most vulnerable.
             </Typography>
             <Box>
-              <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<FavoriteIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(2,132,199,0.3)', '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(2,132,199,0.4)' } }}>
+              <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<FavoriteIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)', '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(27, 79, 147,0.4)' } }}>
                 Sponsor a Smile
               </Button>
             </Box>
@@ -93,7 +93,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
           <Grid container>
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box sx={{ p: { xs: 5, md: 7 }, borderRight: { sm: '1px solid #e2e8f0' }, borderBottom: { xs: '1px solid #e2e8f0', sm: 'none' }, bgcolor: '#e0f2fe', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
+                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(27, 79, 147,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Mission</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
@@ -104,7 +104,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
 
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box sx={{ p: { xs: 5, md: 7 }, bgcolor: '#e0f2fe', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
+                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(27, 79, 147,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Vision</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
@@ -201,10 +201,10 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, textAlign: 'justify', fontSize: '1rem', fontWeight: 500, mb: 4 }}>{member.desc}</Typography>
                     <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                      <Box component="a" href={member.socials.linkedin} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
+                      <Box component="a" href={member.socials.linkedin} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(27, 79, 147,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
                         <LinkedInIcon sx={{ fontSize: 20 }} />
                       </Box>
-                      <Box component="a" href={member.socials.instagram} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
+                      <Box component="a" href={member.socials.instagram} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(27, 79, 147,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
                         <InstagramIcon sx={{ fontSize: 20 }} />
                       </Box>
                     </Box>
@@ -295,12 +295,12 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                 fontSize: '0.95rem',
                 bgcolor: '#1b4f93',
                 color: 'white',
-                boxShadow: '0 4px 16px rgba(2,132,199,0.35)',
+                boxShadow: '0 4px 16px rgba(27, 79, 147,0.35)',
                 transition: 'all 0.2s ease',
                 width: { xs: '100%', sm: 'auto' },
                 '&:hover': {
                   bgcolor: '#113a70',
-                  boxShadow: '0 8px 24px rgba(2,132,199,0.45)',
+                  boxShadow: '0 8px 24px rgba(27, 79, 147,0.45)',
                 },
               }}
             >
