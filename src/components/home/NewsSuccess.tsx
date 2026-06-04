@@ -20,11 +20,11 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
   if (news.length === 0) return null;
 
   return (
-    <Box sx={{ py: 7, bgcolor: '#f0f9ff', borderTop: '1px solid #e2e8f0' }}>
+    <Box sx={{ py: 7, bgcolor: '#fdf2f8', borderTop: '1px solid #e2e8f0' }}>
       <Container maxWidth="xl">
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 8, flexWrap: 'wrap', gap: 3 }}>
           <Box>
-            <Typography variant="overline" sx={{ fontWeight: '900', color: '#1b4f93', letterSpacing: '3px' }}>
+            <Typography variant="overline" sx={{ fontWeight: '900', color: '#be185d', letterSpacing: '3px' }}>
               Stories of Transformation
             </Typography>
             <Typography variant="h3" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mt: 1, letterSpacing: '-1px' }}>
@@ -46,7 +46,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
                   <Typography variant="body2" sx={{ color: '#475569', mb: 3, lineHeight: 1.7, textAlign: 'justify' }}>
                     {article.summary}
                   </Typography>
-                  <Button endIcon={<ArrowForwardIcon />} sx={{ fontWeight: '900', p: 0, color: '#1b4f93', '&:hover': { bgcolor: 'transparent', color: '#113a70', pl: 1 } }}>
+                  <Button endIcon={<ArrowForwardIcon />} sx={{ fontWeight: '900', p: 0, color: '#be185d', '&:hover': { bgcolor: 'transparent', color: '#9d174d', pl: 1 } }}>
                     Read Full Story
                   </Button>
                 </CardContent>

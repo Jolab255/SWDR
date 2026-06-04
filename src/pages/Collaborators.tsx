@@ -66,8 +66,8 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
         sx={{ 
           pt: { xs: 4, md: 5.5 }, 
           pb: { xs: 3, md: 4 }, 
-          bgcolor: '#f0f9ff', 
-          borderBottom: '1px solid #bae6fd',
+          bgcolor: '#fdf2f8', 
+          borderBottom: '1px solid #fce7f3',
           textAlign: 'center'
         }}
       >
@@ -79,12 +79,12 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
               gap: 1.5, 
               mb: 2, 
               bgcolor: '#ffffff',
-              color: '#1b4f93',
+              color: '#be185d',
               px: 2.5,
               py: 0.8,
               borderRadius: 2,
-              border: '1px solid #bae6fd',
-              boxShadow: '0 2px 6px rgba(27, 79, 147, 0.08)',
+              border: '1px solid #fce7f3',
+              boxShadow: '0 2px 6px rgba(190, 24, 93, 0.08)',
               fontWeight: '900',
               textTransform: 'uppercase',
               fontSize: '0.8rem',
@@ -120,7 +120,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
           >
             Restoring children's smiles requires a holistic approach. We partner with local Tanzanian foundations, clinics, and advocacy groups to integrate dental care, nutrition, and special needs therapy.
           </Typography>
-          <Box sx={{ width: 64, height: 4, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
+          <Box sx={{ width: 64, height: 4, bgcolor: '#be185d', mx: 'auto', mt: 3, borderRadius: 2 }} />
         </Container>
       </Box>
 
@@ -141,7 +141,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                   transition: 'all 0.3s ease',
                   '&:hover': {
                     boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
-                    borderColor: '#1b4f93'
+                    borderColor: '#be185d'
                   }
                 }}
               >
@@ -205,14 +205,14 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                       <Box 
                         sx={{ 
                           p: 3, 
-                          bgcolor: '#f0f9ff', 
-                          borderLeft: '4px solid #1b4f93', 
+                          bgcolor: '#fdf2f8', 
+                          borderLeft: '4px solid #be185d', 
                           borderRadius: '0 8px 8px 0',
                           height: '100%',
-                          boxShadow: '0 2px 8px rgba(27,79,147,0.03)'
+                          boxShadow: '0 2px 8px rgba(190, 24, 93,0.03)'
                         }}
                       >
-                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#1b4f93', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
+                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
                           Joint SWDR Partnership Impact
                         </Typography>
                         <Typography variant="body2" sx={{ color: '#334155', lineHeight: 1.6, fontSize: '0.92rem', textAlign: 'justify' }}>
@@ -241,7 +241,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                           fontSize: '0.88rem',
                           '&:hover': {
                             border: '1.5px solid',
-                            bgcolor: '#f0f9ff'
+                            bgcolor: '#fdf2f8'
                           }
                         }}
                       >
@@ -262,9 +262,9 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
         sx={{ 
           pt: { xs: 5, md: 6 }, 
           pb: { xs: 4, md: 5 }, 
-          bgcolor: '#f0f9ff', 
-          borderTop: '1px solid #bae6fd', 
-          borderBottom: '1px solid #bae6fd',
+          bgcolor: '#fdf2f8', 
+          borderTop: '1px solid #fce7f3', 
+          borderBottom: '1px solid #fce7f3',
           width: '100%',
         }}
       >
@@ -310,13 +310,13 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontSize: '0.9rem',
-                bgcolor: '#1b4f93',
+                bgcolor: '#be185d',
                 color: 'white',
-                boxShadow: '0 4px 16px rgba(27, 79, 147, 0.3)',
+                boxShadow: '0 4px 16px rgba(190, 24, 93, 0.3)',
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  bgcolor: '#113a70',
-                  boxShadow: '0 8px 24px rgba(27, 79, 147, 0.45)',
+                  bgcolor: '#9d174d',
+                  boxShadow: '0 8px 24px rgba(190, 24, 93, 0.45)',
                 },
               }}
             >

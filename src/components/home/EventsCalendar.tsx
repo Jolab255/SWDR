@@ -50,13 +50,13 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               alignItems: 'center', 
               gap: 1.5, 
               mb: 3, 
-              bgcolor: '#e0f2fe',
+              bgcolor: '#fbcfe8',
               color: '#1e293b',
               px: 2.5,
               py: 1,
               borderRadius: 2,
-              border: '1px solid #bae6fd',
-              boxShadow: '0 2px 6px rgba(27, 79, 147,0.12)',
+              border: '1px solid #fce7f3',
+              boxShadow: '0 2px 6px rgba(190, 24, 93,0.12)',
               fontWeight: '900',
               textTransform: 'uppercase',
               fontSize: '0.85rem',
@@ -143,7 +143,7 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                         <CardMedia component="img" height="220" image={ev.image} alt={ev.title} loading="lazy" />
                         {/* Overlay Calendar Date Badge */}
                         <Box sx={{ position: 'absolute', top: 12, left: 12, bgcolor: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(4px)', px: 2, py: 0.75, borderRadius: 1.5, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 52 }}>
-                          <Typography variant="caption" sx={{ fontWeight: 800, color: '#1b4f93', textTransform: 'uppercase', fontSize: '0.7rem', lineHeight: 1 }}>
+                          <Typography variant="caption" sx={{ fontWeight: 800, color: '#be185d', textTransform: 'uppercase', fontSize: '0.7rem', lineHeight: 1 }}>
                             {new Date(ev.date).toLocaleDateString('en-TZ', { month: 'short' })}
                           </Typography>
                           <Typography variant="h5" sx={{ fontWeight: 900, color: '#1e293b', lineHeight: 1.1, mt: 0.25 }}>
@@ -157,13 +157,13 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                         </Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 2 }}>
                           <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-                            <LocationOnIcon sx={{ color: '#1b4f93', fontSize: '1.1rem', mt: 0.25, flexShrink: 0 }} />
+                            <LocationOnIcon sx={{ color: '#be185d', fontSize: '1.1rem', mt: 0.25, flexShrink: 0 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', fontSize: '0.85rem' }}>
                               {ev.location}
                             </Typography>
                           </Box>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <AccessTimeIcon sx={{ color: '#1b4f93', fontSize: '1.1rem', flexShrink: 0 }} />
+                            <AccessTimeIcon sx={{ color: '#be185d', fontSize: '1.1rem', flexShrink: 0 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', fontSize: '0.85rem' }}>
                               {ev.time}
                             </Typography>
@@ -178,9 +178,9 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                             onClick={() => onReadMoreClick(ev)}
                             sx={{ 
                               py: 1, borderRadius: 1.5, fontWeight: '900', textTransform: 'none',
-                              fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(27, 79, 147,0.15)',
-                              bgcolor: '#1b4f93', color: '#ffffff',
-                              '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 10px rgba(27, 79, 147,0.25)' }
+                              fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(190, 24, 93,0.15)',
+                              bgcolor: '#be185d', color: '#ffffff',
+                              '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 10px rgba(190, 24, 93,0.25)' }
                             }}
                           >
                             See Event Details
@@ -222,10 +222,10 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
                 {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
                   <Box key={idx} onClick={() => setCarouselIndex(idx)} sx={{
-                    width: 10, height: 10, bgcolor: carouselIndex === idx ? '#1b4f93' : '#cbd5e1',
+                    width: 10, height: 10, bgcolor: carouselIndex === idx ? '#be185d' : '#cbd5e1',
                     borderRadius: '50%',
                     cursor: 'pointer', transition: 'all 0.2s ease',
-                    '&:hover': { transform: 'scale(1.3)', bgcolor: '#1b4f93' }
+                    '&:hover': { transform: 'scale(1.3)', bgcolor: '#be185d' }
                   }} />
                 ))}
               </Box>

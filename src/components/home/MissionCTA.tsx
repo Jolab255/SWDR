@@ -16,9 +16,9 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
       sx={{ 
         pt: { xs: 6, md: 7.5 }, 
         pb: { xs: 4, md: 5 }, 
-        bgcolor: '#f0f9ff', 
-        borderTop: '1px solid #bae6fd', 
-        borderBottom: '1px solid #bae6fd',
+        bgcolor: '#fdf2f8', 
+        borderTop: '1px solid #fce7f3', 
+        borderBottom: '1px solid #fce7f3',
         width: '100%',
       }}
     >
@@ -61,7 +61,7 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
             { label: '✓ Secure Checkout', desc: 'Encrypted via Selcom Gateway' },
           ].map((badge, index) => (
             <Box key={index} sx={{ textAlign: 'center' }}>
-              <Typography sx={{ fontWeight: '900', color: '#1b4f93', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
+              <Typography sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
                 {badge.label}
               </Typography>
               <Typography color="text.secondary" sx={{ fontWeight: '600', fontSize: { xs: '0.75rem', sm: '0.825rem' }, display: 'block' }}>
@@ -85,14 +85,14 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
               textTransform: 'uppercase',
               letterSpacing: '1px',
               fontSize: '0.95rem',
-              bgcolor: '#1b4f93',
+              bgcolor: '#be185d',
               color: 'white',
-              boxShadow: '0 4px 16px rgba(27, 79, 147,0.35)',
+              boxShadow: '0 4px 16px rgba(190, 24, 93,0.35)',
               transition: 'all 0.2s ease',
               width: { xs: '100%', sm: 'auto' },
               '&:hover': {
-                bgcolor: '#113a70',
-                boxShadow: '0 8px 24px rgba(27, 79, 147,0.45)',
+                bgcolor: '#9d174d',
+                boxShadow: '0 8px 24px rgba(190, 24, 93,0.45)',
               },
             }}
           >

@@ -114,7 +114,7 @@ const PaymentSupportInfo = () => (
       lineHeight: 1.4
     }}
   >
-    Payment issues? Contact support: <strong style={{ color: '#1b4f93' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#1b4f93' }}>support@smilewithdrrome.org</strong>
+    Payment issues? Contact support: <strong style={{ color: '#be185d' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#be185d' }}>support@smilewithdrrome.org</strong>
   </Typography>
 );
 
@@ -262,9 +262,9 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
         }
       }}
     >
-      <DialogTitle sx={{ borderBottom: BORDER, bgcolor: '#f0f9ff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2.5 }}>
+      <DialogTitle sx={{ borderBottom: BORDER, bgcolor: '#fdf2f8', display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2.5 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <VolunteerActivismIcon sx={{ color: '#1b4f93' }} />
+          <VolunteerActivismIcon sx={{ color: '#be185d' }} />
           <Typography variant="h5" sx={{ fontWeight: "900", textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
             Sponsor a Smile
           </Typography>
@@ -277,14 +277,14 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
       <DialogContent sx={{ p: { xs: 2.5, md: 3 } }}>
         {!success ? (
           <>
-            <Stepper activeStep={activeStep} sx={{ mb: 3, '& .MuiStepIcon-root': { borderRadius: 0, width: 28, height: 28 }, '& .MuiStepIcon-root.Mui-active, & .MuiStepIcon-root.Mui-completed': { color: '#1b4f93' } }}>
+            <Stepper activeStep={activeStep} sx={{ mb: 3, '& .MuiStepIcon-root': { borderRadius: 0, width: 28, height: 28 }, '& .MuiStepIcon-root.Mui-active, & .MuiStepIcon-root.Mui-completed': { color: '#be185d' } }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel 
                     slotProps={{
                       stepIcon: {
                         sx: {
-                          '&.Mui-active, &.Mui-completed': { color: '#1b4f93' },
+                          '&.Mui-active, &.Mui-completed': { color: '#be185d' },
                           borderRadius: 0
                         }
                       }
@@ -336,11 +336,11 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                           py: 1.25,
                           borderRadius: 0,
                           fontWeight: '900',
-                          border: amount === preset ? '1px solid #1b4f93' : '1px solid #e2e8f0',
+                          border: amount === preset ? '1px solid #be185d' : '1px solid #e2e8f0',
                           boxShadow: 'none',
-                          bgcolor: amount === preset ? '#1b4f93' : 'white',
+                          bgcolor: amount === preset ? '#be185d' : 'white',
                           color: amount === preset ? 'white' : '#1e293b',
-                          '&:hover': { bgcolor: amount === preset ? '#113a70' : '#f0f9ff', borderColor: '#1b4f93' }
+                          '&:hover': { bgcolor: amount === preset ? '#9d174d' : '#fdf2f8', borderColor: '#be185d' }
                         }}
                       >
                         {formatPreset(preset)}
@@ -361,8 +361,8 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                   />
                 )}
 
-                <Paper elevation={0} sx={{ p: 2, mt: 2.5, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(27, 79, 147,0.1)', borderRadius: 2 }}>
-                  <Typography variant="caption" sx={{ fontWeight: "900", color: '#1b4f93', textTransform: 'uppercase', display: 'block', mb: 0.5 }}>Your Impact:</Typography>
+                <Paper elevation={0} sx={{ p: 2, mt: 2.5, bgcolor: '#fdf2f8', border: '1px solid #fce7f3', boxShadow: '0 2px 8px rgba(190, 24, 93,0.1)', borderRadius: 2 }}>
+                  <Typography variant="caption" sx={{ fontWeight: "900", color: '#be185d', textTransform: 'uppercase', display: 'block', mb: 0.5 }}>Your Impact:</Typography>
                   <Typography variant="body2" sx={{ fontWeight: 600, color: '#1e293b', fontStyle: 'italic', fontSize: '0.825rem' }}>
                     {getImpactText()}
                   </Typography>
@@ -396,7 +396,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                       fullWidth variant={paymentMethod === 'mobile' ? 'contained' : 'outlined'}
                       startIcon={<IconButton size="small" sx={{ p: 0.5, color: paymentMethod === 'mobile' ? 'white' : 'inherit' }}><PaymentsIcon /></IconButton>}
                       onClick={() => setPaymentMethod('mobile')}
-                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'mobile' ? '0 0 0 2px #1b4f93' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'mobile' ? '#1b4f93' : 'white', color: paymentMethod === 'mobile' ? 'white' : '#1e293b' }}
+                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'mobile' ? '0 0 0 2px #be185d' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'mobile' ? '#be185d' : 'white', color: paymentMethod === 'mobile' ? 'white' : '#1e293b' }}
                     >
                       Mobile Money
                     </Button>
@@ -406,7 +406,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                       fullWidth variant={paymentMethod === 'card' ? 'contained' : 'outlined'}
                       startIcon={<IconButton size="small" sx={{ p: 0.5, color: paymentMethod === 'card' ? 'white' : 'inherit' }}><SecurityIcon /></IconButton>}
                       onClick={() => setPaymentMethod('card')}
-                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'card' ? '0 0 0 2px #1b4f93' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'card' ? '#1b4f93' : 'white', color: paymentMethod === 'card' ? 'white' : '#1e293b' }}
+                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'card' ? '0 0 0 2px #be185d' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'card' ? '#be185d' : 'white', color: paymentMethod === 'card' ? 'white' : '#1e293b' }}
                     >
                       Credit Card
                     </Button>
@@ -424,14 +424,14 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                             sx={{
                               p: 0.75,
                               border: '2px solid',
-                              borderColor: mobileCarrier === carrier ? '#1b4f93' : '#e2e8f0',
+                              borderColor: mobileCarrier === carrier ? '#be185d' : '#e2e8f0',
                               borderRadius: 2,
                               cursor: 'pointer',
                               bgcolor: 'white',
-                              boxShadow: mobileCarrier === carrier ? '0 4px 12px rgba(27, 79, 147,0.15)' : 'none',
+                              boxShadow: mobileCarrier === carrier ? '0 4px 12px rgba(190, 24, 93,0.15)' : 'none',
                               transition: 'all 0.2s ease',
                               '&:hover': {
-                                borderColor: '#1b4f93',
+                                borderColor: '#be185d',
                                 transform: 'translateY(-2px)',
                                 boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                               }
@@ -508,7 +508,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                   </>
                 ) : (
                   <Box sx={{ py: 3 }}>
-                    <CircularProgress size={45} thickness={5} sx={{ color: '#1b4f93', mb: 2 }} />
+                    <CircularProgress size={45} thickness={5} sx={{ color: '#be185d', mb: 2 }} />
                     <Typography variant="subtitle2" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Connecting...</Typography>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700", mt: 0.5, display: 'block' }}>Selcom API is validating your request.</Typography>
                   </Box>
@@ -551,9 +551,9 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
               onClick={activeStep === 3 ? handleVerify : handleNext}
               disabled={loading}
               sx={{ 
-                px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#1b4f93', 
-                boxShadow: '0 2px 8px rgba(27, 79, 147,0.3)',
-                '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(27, 79, 147,0.4)' }
+                px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#be185d', 
+                boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)',
+                '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 14px rgba(190, 24, 93,0.4)' }
               }}
             >
               {activeStep === 3 ? 'Confirm' : activeStep === 2 ? 'Pay Now' : 'Continue'}

@@ -129,10 +129,10 @@ class ErrorBoundary extends Component<Props, State> {
                     borderRadius: 2, 
                     fontWeight: "900", 
                     textTransform: "uppercase", 
-                    boxShadow: "0 2px 8px rgba(27, 79, 147,0.3)", 
-                    bgcolor: "#1b4f93", 
+                    boxShadow: "0 2px 8px rgba(190, 24, 93,0.3)", 
+                    bgcolor: "#be185d", 
                     color: "white",
-                    "&:hover": { bgcolor: "#113a70", boxShadow: "0 4px 12px rgba(27, 79, 147,0.4)" }
+                    "&:hover": { bgcolor: "#9d174d", boxShadow: "0 4px 12px rgba(190, 24, 93,0.4)" }
                   }}
                 >
                   Refresh Page
@@ -151,7 +151,7 @@ class ErrorBoundary extends Component<Props, State> {
                     boxShadow: "0 1px 4px rgba(0,0,0,0.06)", 
                     color: "#1e293b", 
                     bgcolor: "white",
-                    "&:hover": { bgcolor: "#f0f9ff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }
+                    "&:hover": { bgcolor: "#fdf2f8", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }
                   }}
                 >
                   Go Home

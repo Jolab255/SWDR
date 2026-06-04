@@ -17,7 +17,7 @@ const Collaborators = lazy(() => import('./pages/Collaborators'));
 // Sleek loading placeholder for lazy components
 const PageLoader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', bgcolor: 'white' }}>
-    <CircularProgress size={50} thickness={4} sx={{ color: '#1b4f93' }} />
+    <CircularProgress size={50} thickness={4} sx={{ color: '#be185d' }} />
   </Box>
 );
 
@@ -34,21 +34,21 @@ function ScrollToTop() {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1b4f93', // Sky Blue primary
-      light: '#e0f2fe', // Extremely soft blue highlights
-      dark: '#113a70', // Deep navy blue
+      main: '#be185d', // Sky Blue primary
+      light: '#fbcfe8', // Extremely soft blue highlights
+      dark: '#9d174d', // Deep navy blue
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#113a70', // Deep Cobalt/Navy Blue
-      light: '#f0f9ff', // Extra soft ice blue highlight
+      main: '#9d174d', // Deep Cobalt/Navy Blue
+      light: '#fdf2f8', // Extra soft ice blue highlight
       dark: '#1e293b', // Midnight Blue / Dark Slate
       contrastText: '#ffffff',
     },
     success: {
-      main: '#1b4f93', // Sky Blue success
-      light: '#e0f2fe', // Soft ice blue success
-      dark: '#113a70', // Deep blue success
+      main: '#be185d', // Sky Blue success
+      light: '#fbcfe8', // Soft ice blue success
+      dark: '#9d174d', // Deep blue success
     },
     background: {
       default: '#f8fafc', // Sleek soft blue-grey canvas
@@ -98,7 +98,7 @@ const theme = createTheme({
           padding: '8px 20px',
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: '0 4px 12px rgba(27, 79, 147, 0.15)',
+            boxShadow: '0 4px 12px rgba(190, 24, 93, 0.15)',
           },
         },
       },

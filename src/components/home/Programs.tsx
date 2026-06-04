@@ -52,8 +52,8 @@ export default function Programs() {
                 backgroundImage: 'url(/images/swdr_happy_children.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                borderRight: { md: '1px solid #bae6fd' },
-                borderBottom: { xs: '1px solid #bae6fd', md: 'none' },
+                borderRight: { md: '1px solid #fce7f3' },
+                borderBottom: { xs: '1px solid #fce7f3', md: 'none' },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -66,7 +66,7 @@ export default function Programs() {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  bgcolor: 'rgba(27, 79, 147, 0.65)', // Softer blue overlay (65% opacity)
+                  bgcolor: 'rgba(190, 24, 93, 0.65)', // Softer blue overlay (65% opacity)
                   zIndex: 1,
                 }
               }}
@@ -74,10 +74,10 @@ export default function Programs() {
               <Box sx={{ position: 'relative', zIndex: 2 }}>
                 <Box sx={{
                   display: 'inline-flex', alignItems: 'center',
-                  bgcolor: 'white', border: '1px solid #bae6fd',
+                  bgcolor: 'white', border: '1px solid #fce7f3',
                   borderRadius: 10, px: 2, py: 0.7, mb: 4, width: 'fit-content',
                 }}>
-                  <Typography sx={{ fontSize: '0.72rem', fontWeight: '800', color: '#1b4f93', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                  <Typography sx={{ fontSize: '0.72rem', fontWeight: '800', color: '#be185d', textTransform: 'uppercase', letterSpacing: '2px' }}>
                     What We Do
                   </Typography>
                 </Box>
@@ -104,7 +104,7 @@ export default function Programs() {
                   sx={{
                     fontSize: '1.05rem',
                     lineHeight: 1.85,
-                    color: '#f0f9ff',
+                    color: '#fdf2f8',
                     fontWeight: 500,
                     maxWidth: 380,
                   }}
@@ -125,13 +125,13 @@ export default function Programs() {
                     display: 'flex',
                     gap: 3,
                     p: { xs: 4, md: 5 },
-                    borderBottom: idx < programs.length - 1 ? '1px solid #f0f9ff' : 'none',
+                    borderBottom: idx < programs.length - 1 ? '1px solid #fdf2f8' : 'none',
                     bgcolor: 'white',
                     transition: 'all 0.2s ease',
                     '&:hover': {
-                      bgcolor: '#f0f9ff',
-                      '& .prog-num': { color: '#1b4f93' },
-                      '& .prog-icon-box': { bgcolor: '#1b4f93', color: 'white' },
+                      bgcolor: '#fdf2f8',
+                      '& .prog-num': { color: '#be185d' },
+                      '& .prog-icon-box': { bgcolor: '#be185d', color: 'white' },
                     },
                   }}
                 >
@@ -142,7 +142,7 @@ export default function Programs() {
                       fontSize: '3rem',
                       fontWeight: '900',
                       lineHeight: 1,
-                      color: '#bae6fd',
+                      color: '#fce7f3',
                       minWidth: 56,
                       transition: 'color 0.2s',
                       userSelect: 'none',
@@ -157,8 +157,8 @@ export default function Programs() {
                         className="prog-icon-box"
                         sx={{
                           width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          bgcolor: '#f0f9ff', color: '#1b4f93', borderRadius: 1.5,
-                          border: '1px solid #bae6fd',
+                          bgcolor: '#fdf2f8', color: '#be185d', borderRadius: 1.5,
+                          border: '1px solid #fce7f3',
                           transition: 'all 0.2s ease',
                           flexShrink: 0,
                         }}

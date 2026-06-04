@@ -43,7 +43,7 @@ export default function ContactUs() {
     <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 3.5, md: 4.5 }, pb: { xs: 2.5, md: 3.5 }, bgcolor: '#f0f9ff', borderBottom: '1px solid #e2e8f0' }}>
+      <Box sx={{ pt: { xs: 3.5, md: 4.5 }, pb: { xs: 2.5, md: 3.5 }, bgcolor: '#fdf2f8', borderBottom: '1px solid #e2e8f0' }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Box 
@@ -57,8 +57,8 @@ export default function ContactUs() {
                 px: 2.5,
                 py: 1,
                 borderRadius: 2,
-                border: '1px solid #bae6fd',
-                boxShadow: '0 2px 6px rgba(27, 79, 147,0.12)',
+                border: '1px solid #fce7f3',
+                boxShadow: '0 2px 6px rgba(190, 24, 93,0.12)',
                 fontWeight: '900',
                 textTransform: 'uppercase',
                 fontSize: '0.85rem',
@@ -78,9 +78,9 @@ export default function ContactUs() {
                 lineHeight: 1.1
               }}
             >
-              Contact <Box component="span" sx={{ color: '#1b4f93' }}>Us</Box>
+              Contact <Box component="span" sx={{ color: '#be185d' }}>Us</Box>
             </Typography>
-            <Box sx={{ width: 64, height: 5, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
+            <Box sx={{ width: 64, height: 5, bgcolor: '#be185d', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
         </Container>
       </Box>
@@ -115,11 +115,11 @@ export default function ContactUs() {
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
-                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#1b4f93', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(27, 79, 147,0.1)', display: 'flex', flexShrink: 0 }}>
+                      <Box sx={{ p: 1.2, bgcolor: '#fdf2f8', color: '#be185d', border: '1px solid #fce7f3', borderRadius: 1, boxShadow: '0 1px 4px rgba(190, 24, 93,0.1)', display: 'flex', flexShrink: 0 }}>
                         {item.icon}
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: '#1b4f93', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        <Typography variant="caption" sx={{ color: '#be185d', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                           {item.label}
                         </Typography>
                         {item.link ? (
@@ -133,7 +133,7 @@ export default function ContactUs() {
                               lineHeight: 1.5,
                               textDecoration: 'none',
                               fontSize: '0.875rem',
-                              '&:hover': { color: '#1b4f93' }
+                              '&:hover': { color: '#be185d' }
                             }}
                           >
                             {item.value}
@@ -262,13 +262,13 @@ export default function ContactUs() {
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
                         fontSize: '1rem',
-                        bgcolor: '#1b4f93',
+                        bgcolor: '#be185d',
                         color: 'white',
-                        boxShadow: '0 4px 14px rgba(27, 79, 147,0.35)',
+                        boxShadow: '0 4px 14px rgba(190, 24, 93,0.35)',
                         transition: 'all 0.2s ease',
                         '&:hover': {
-                          bgcolor: '#113a70',
-                          boxShadow: '0 6px 20px rgba(27, 79, 147,0.45)',
+                          bgcolor: '#9d174d',
+                          boxShadow: '0 6px 20px rgba(190, 24, 93,0.45)',
                         },
                       }}
                     >

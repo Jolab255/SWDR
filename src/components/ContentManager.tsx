@@ -245,7 +245,7 @@ export default function ContentManager() {
           transition: 'all 0.1s ease',
           '&:hover': {
             transform: 'translate(-2px, -2px)',
-            boxShadow: '8px 8px 0px #1b4f93',
+            boxShadow: '8px 8px 0px #be185d',
           }
         }}
       >
@@ -259,7 +259,7 @@ export default function ContentManager() {
             <Chip 
               label={item.category || (type === 'team' ? 'Team' : 'Impact')} 
               size="small" 
-              sx={{ fontWeight: '900', borderRadius: 0, border: '2px solid #1e293b', bgcolor: '#f0f9ff' }} 
+              sx={{ fontWeight: '900', borderRadius: 0, border: '2px solid #1e293b', bgcolor: '#fdf2f8' }} 
             />
             {item.date && <Typography variant="caption" sx={{ fontWeight: 700 }}>📅 {item.date}</Typography>}
           </Box>
@@ -275,7 +275,7 @@ export default function ContentManager() {
             <IconButton 
               size="small" 
               onClick={() => handleOpenEdit(item)}
-              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#f0f9ff', color: '#1b4f93' }}
+              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#fdf2f8', color: '#be185d' }}
             >
               <EditIcon fontSize="small" />
             </IconButton>
@@ -309,9 +309,9 @@ export default function ContentManager() {
           onClick={handleOpenAdd}
           sx={{ 
             borderRadius: 0, px: 3, py: 1.2, 
-            fontWeight: '900', bgcolor: '#1b4f93',
+            fontWeight: '900', bgcolor: '#be185d',
             border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-            '&:hover': { bgcolor: '#113a70', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+            '&:hover': { bgcolor: '#9d174d', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
           }}
         >
           Add {tabIndex === 0 ? 'Event' : tabIndex === 1 ? 'Article' : tabIndex === 2 ? 'Impact' : 'Member'}
@@ -335,7 +335,7 @@ export default function ContentManager() {
         scrollButtons="auto"
         sx={{ 
           mb: 5, 
-          '& .MuiTabs-indicator': { height: 4, bgcolor: '#1b4f93' },
+          '& .MuiTabs-indicator': { height: 4, bgcolor: '#be185d' },
           '& .MuiTab-root': { 
             py: 2, fontSize: '0.85rem', fontWeight: '900', textTransform: 'uppercase', color: '#64748b',
             '&.Mui-selected': { color: '#1e293b' }
@@ -364,7 +364,7 @@ export default function ContentManager() {
         scroll="body"
         slotProps={{ paper: { sx: { borderRadius: 0, border: BORDER, boxShadow: '15px 15px 0px #1e293b' } } }}
       >
-        <DialogTitle sx={{ fontWeight: '900', textTransform: 'uppercase', borderBottom: BORDER, bgcolor: '#f0f9ff' }}>
+        <DialogTitle sx={{ fontWeight: '900', textTransform: 'uppercase', borderBottom: BORDER, bgcolor: '#fdf2f8' }}>
           {dialogMode === 'add' ? 'Create New Entry' : 'Update Existing Entry'}
         </DialogTitle>
         
@@ -517,9 +517,9 @@ export default function ContentManager() {
             onClick={handleSave}
             sx={{ 
               borderRadius: 0, px: 4, py: 1.5, 
-              fontWeight: '900', bgcolor: '#1b4f93',
+              fontWeight: '900', bgcolor: '#be185d',
               border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-              '&:hover': { bgcolor: '#113a70', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+              '&:hover': { bgcolor: '#9d174d', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
             }}
           >
             Commit Changes

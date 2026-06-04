@@ -134,13 +134,13 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   fontWeight: '900',
                   textTransform: 'none',
                   fontSize: '0.9rem',
-                  boxShadow: '0 2px 8px rgba(27, 79, 147, 0.25)',
+                  boxShadow: '0 2px 8px rgba(190, 24, 93, 0.25)',
                   bgcolor: 'primary.main',
                   color: 'white',
                   transition: 'all 0.2s ease',
                   '&:hover': {
                     bgcolor: 'primary.dark',
-                    boxShadow: '0 4px 14px rgba(27, 79, 147, 0.4)'
+                    boxShadow: '0 4px 14px rgba(190, 24, 93, 0.4)'
                   }
                 }}
               >
@@ -219,7 +219,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                     selected={isActive}
                     sx={{
                       borderRadius: 0,
-                      borderLeft: isActive ? '4px solid #1b4f93' : '4px solid transparent',
+                      borderLeft: isActive ? '4px solid #be185d' : '4px solid transparent',
                       bgcolor: isActive ? '#f8fafc' : 'transparent',
                       '&.Mui-selected': {
                         bgcolor: '#f8fafc',
@@ -227,7 +227,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                         '&:hover': { bgcolor: '#f8fafc' }
                       },
                       '&:hover': {
-                        bgcolor: '#e0f2fe'
+                        bgcolor: '#fbcfe8'
                       }
                     }}
                   >
@@ -266,12 +266,12 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 fontWeight: '900',
                 textTransform: 'none',
                 fontSize: '0.95rem',
-                boxShadow: '0 2px 8px rgba(27, 79, 147, 0.25)',
+                boxShadow: '0 2px 8px rgba(190, 24, 93, 0.25)',
                 bgcolor: 'primary.main',
                 color: 'white',
                 '&:hover': {
                   bgcolor: 'primary.dark',
-                  boxShadow: '0 4px 14px rgba(27, 79, 147, 0.4)'
+                  boxShadow: '0 4px 14px rgba(190, 24, 93, 0.4)'
                 }
               }}
             >
