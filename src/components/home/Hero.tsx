@@ -33,16 +33,15 @@ export default function Hero({ onDonateClick }: HeroProps) {
                 variant="h1" 
                 gutterBottom
                 sx={{ 
-                  fontSize: { xs: '2.5rem', sm: '3.5rem', md: '3.75rem' },
+                  fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' },
                   lineHeight: 1.15,
-                  letterSpacing: '-1.5px',
+                  letterSpacing: '-1px',
                   fontWeight: 900,
                   color: 'text.primary',
                   mb: 2.5
                 }}
               >
-                Restoring Health.<br />
-                Restoring <Box component="span" sx={{ color: 'primary.main' }}>Children's Smiles.</Box>
+                CHILDREN WITH SPECIAL HEALTHCARE NEEDS <Box component="span" sx={{ color: 'primary.main' }}>DESERVE BETTER ORAL HEALTHCARE SERVICES.</Box>
               </Typography>
               <Typography 
                 variant="body1" 
