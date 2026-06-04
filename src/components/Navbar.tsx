@@ -54,7 +54,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
         }}
       >
         <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: { xs: 80, md: 90 } }}>
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: { xs: 120, md: 140 } }}>
             
             {/* Logo Image */}
             <Box 
@@ -73,7 +73,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 src="/logo.png"
                 alt="Smile with Doctor Rome"
                 sx={{ 
-                  height: { xs: 60, md: 72 },
+                  height: { xs: 120, md: 144 },
                   width: 'auto',
                   display: 'block',
                   objectFit: 'contain'

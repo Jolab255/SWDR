@@ -84,7 +84,7 @@ export default function Footer() {
                 src="/logo.png"
                 alt="Smile with Doctor Rome"
                 sx={{ 
-                  height: 75,
+                  height: 150,
                   width: 'auto',
                   display: 'block',
                   objectFit: 'contain'
