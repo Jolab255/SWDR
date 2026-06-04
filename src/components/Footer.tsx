@@ -47,7 +47,8 @@ export default function Footer() {
       sx={{
         bgcolor: 'white',
         color: '#1e293b',
-        borderTop: '4px solid #1e293b',
+        borderTop: '1px solid #e2e8f0',
+        boxShadow: '0 -1px 8px rgba(0,0,0,0.04)',
         mt: 'auto',
       }}
     >
@@ -63,7 +64,7 @@ export default function Footer() {
               sm: '1fr 1fr',
               md: '2fr 1fr 1.5fr 1.5fr',
             },
-            borderBottom: '3px solid #1e293b',
+            borderBottom: '1px solid #e2e8f0',
           }}
         >
 
@@ -72,8 +73,8 @@ export default function Footer() {
             sx={{
               py: { xs: 5, md: 7 },
               pr: { md: 5 },
-              borderRight: { md: '3px solid #1e293b' },
-              borderBottom: { xs: '3px solid #1e293b', md: 'none' },
+              borderRight: { md: '1px solid #e2e8f0' },
+              borderBottom: { xs: '1px solid #e2e8f0', md: 'none' },
             }}
           >
             {/* Brand name with blue left bar */}
@@ -109,22 +110,17 @@ export default function Footer() {
                   aria-label={s.label}
                   sx={{
                     width: 40, height: 40,
-                    borderRadius: 0,
-                    border: '2.5px solid #1e293b',
-                    boxShadow: '3px 3px 0px #1e293b',
+                    borderRadius: 1,
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
                     bgcolor: 'white',
                     color: '#1e293b',
-                    transition: 'all 0.15s ease',
+                    transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: '#0284c7',
                       color: 'white',
                       borderColor: '#0284c7',
-                      boxShadow: '3px 3px 0px #1e293b',
-                      transform: 'translate(-2px, -2px)',
-                    },
-                    '&:active': {
-                      transform: 'translate(1px, 1px)',
-                      boxShadow: '1px 1px 0px #1e293b',
+                      boxShadow: '0 4px 10px rgba(2,132,199,0.3)',
                     },
                   }}
                 >
@@ -139,8 +135,8 @@ export default function Footer() {
             sx={{
               py: { xs: 5, md: 7 },
               px: { sm: 4, md: 4 },
-              borderRight: { md: '3px solid #1e293b' },
-              borderBottom: { xs: '3px solid #1e293b', sm: '3px solid #1e293b', md: 'none' },
+              borderRight: { md: '1px solid #e2e8f0' },
+              borderBottom: { xs: '1px solid #e2e8f0', sm: '1px solid #e2e8f0', md: 'none' },
             }}
           >
             <Typography
@@ -195,8 +191,8 @@ export default function Footer() {
             sx={{
               py: { xs: 5, md: 7 },
               px: { sm: 0, md: 4 },
-              borderRight: { md: '3px solid #1e293b' },
-              borderBottom: { xs: '3px solid #1e293b', md: 'none' },
+              borderRight: { md: '1px solid #e2e8f0' },
+              borderBottom: { xs: '1px solid #e2e8f0', md: 'none' },
             }}
           >
             <Typography
@@ -260,11 +256,11 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     '& .MuiOutlinedInput-root': {
-                      borderRadius: 0,
+                      borderRadius: 1,
                       bgcolor: 'white',
-                      '& fieldset': { border: '2.5px solid #1e293b' },
+                      '& fieldset': { border: '1px solid #cbd5e1' },
                       '&:hover fieldset': { borderColor: '#0284c7' },
-                      '&.Mui-focused fieldset': { borderColor: '#0284c7', borderWidth: '2.5px' },
+                      '&.Mui-focused fieldset': { borderColor: '#0284c7', borderWidth: '2px' },
                     },
                     input: { color: '#1e293b', fontWeight: 600, fontSize: '0.9rem' },
                   }}
@@ -273,7 +269,7 @@ export default function Footer() {
                   type="submit"
                   variant="contained"
                   sx={{
-                    borderRadius: 0,
+                    borderRadius: 1,
                     fontWeight: '900',
                     textTransform: 'uppercase',
                     letterSpacing: '1.5px',
@@ -281,17 +277,11 @@ export default function Footer() {
                     py: 1.4,
                     bgcolor: '#0284c7',
                     color: 'white',
-                    border: '2.5px solid #1e293b',
-                    boxShadow: '4px 4px 0px #1e293b',
-                    transition: 'all 0.15s ease',
+                    boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                    transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: '#0369a1',
-                      transform: 'translate(-2px, -2px)',
-                      boxShadow: '6px 6px 0px #1e293b',
-                    },
-                    '&:active': {
-                      transform: 'translate(1px, 1px)',
-                      boxShadow: '2px 2px 0px #1e293b',
+                      boxShadow: '0 4px 14px rgba(2,132,199,0.4)',
                     },
                   }}
                 >
@@ -341,9 +331,9 @@ export default function Footer() {
           onClose={() => setOpenSnackbar(false)}
           severity="success"
           sx={{
-            borderRadius: 0,
-            border: '2px solid #1e293b',
-            boxShadow: '4px 4px 0px #1e293b',
+            borderRadius: 1,
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
             fontWeight: 700,
           }}
         >

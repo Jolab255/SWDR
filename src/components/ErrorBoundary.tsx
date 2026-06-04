@@ -126,14 +126,13 @@ class ErrorBoundary extends Component<Props, State> {
                   startIcon={<RefreshIcon />}
                   sx={{ 
                     py: 1.5, 
-                    borderRadius: 0, 
+                    borderRadius: 2, 
                     fontWeight: "900", 
                     textTransform: "uppercase", 
-                    boxShadow: "4px 4px 0px #1e293b", 
-                    border: "2px solid #1e293b", 
+                    boxShadow: "0 2px 8px rgba(2,132,199,0.3)", 
                     bgcolor: "#0284c7", 
                     color: "white",
-                    "&:hover": { bgcolor: "#0369a1", transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px #1e293b" }
+                    "&:hover": { bgcolor: "#0369a1", boxShadow: "0 4px 12px rgba(2,132,199,0.4)" }
                   }}
                 >
                   Refresh Page
@@ -145,14 +144,14 @@ class ErrorBoundary extends Component<Props, State> {
                   startIcon={<HomeIcon />}
                   sx={{ 
                     py: 1.5, 
-                    borderRadius: 0, 
+                    borderRadius: 2, 
                     fontWeight: "900", 
                     textTransform: "uppercase", 
-                    border: "2px solid #1e293b", 
-                    boxShadow: "4px 4px 0px #1e293b", 
+                    border: "1px solid #e2e8f0", 
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.06)", 
                     color: "#1e293b", 
                     bgcolor: "white",
-                    "&:hover": { bgcolor: "#f0f9ff", transform: "translate(-1px, -1px)", boxShadow: "3px 3px 0px #1e293b" }
+                    "&:hover": { bgcolor: "#f0f9ff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }
                   }}
                 >
                   Go Home

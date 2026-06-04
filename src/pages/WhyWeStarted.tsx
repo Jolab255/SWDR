@@ -51,28 +51,22 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
   const neoButtonStyle = {
     px: 4,
     py: 1.8,
-    borderRadius: 0,
+    borderRadius: 2,
     fontWeight: '900',
     fontSize: '1rem',
     textTransform: 'none',
-    border: '3px solid #1e293b',
-    boxShadow: '4px 4px 0px #1e293b',
-    transition: 'all 0.15s ease-in-out',
+    boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+    transition: 'all 0.2s ease',
     '&:hover': {
-      transform: 'translate(-2px, -2px)',
-      boxShadow: '6px 6px 0px #1e293b',
+      boxShadow: '0 4px 16px rgba(2,132,199,0.4)',
     },
-    '&:active': {
-      transform: 'translate(1px, 1px)',
-      boxShadow: '2px 2px 0px #1e293b',
-    }
   };
 
   return (
     <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '4px solid #1e293b' }}>
+      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '1px solid #e2e8f0' }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center' }}>
             <Typography 
@@ -97,12 +91,13 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
         <Box 
           sx={{ 
             mb: 12,
-            border: '4px solid #1e293b', 
-            boxShadow: '12px 12px 0px #1e293b',
+            border: '1px solid #e2e8f0', 
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
             bgcolor: 'white',
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
-            overflow: 'hidden'
+            overflow: 'hidden',
+            borderRadius: 2,
           }}
         >
           {/* Info Section (70%) */}
@@ -149,8 +144,8 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           <Box 
             sx={{ 
               width: { xs: '100%', md: '30%' }, 
-              borderLeft: { md: '4px solid #1e293b' },
-              borderTop: { xs: '4px solid #1e293b', md: 'none' },
+              border: { md: '1px solid #e2e8f0' },
+              borderTop: { xs: '1px solid #e2e8f0', md: 'none' },
               overflow: 'hidden',
               minHeight: { xs: 300, md: 'auto' }
             }}
@@ -171,12 +166,12 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
         </Box>
 
         {/* TIMELINE JOURNEY */}
-        <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '4px solid #1e293b', boxShadow: '12px 12px 0px #1e293b', mb: 12, px: { xs: 3, md: 8 } }}>
+        <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', mb: 12, px: { xs: 3, md: 8 }, borderRadius: 2 }}>
           <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
             <TimelineIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Our Journey So Far
           </Typography>
 
-          <Box sx={{ position: 'relative', pl: { xs: 4, sm: 8 }, borderLeft: '6px solid #1e293b' }}>
+          <Box sx={{ position: 'relative', pl: { xs: 4, sm: 8 }, borderLeft: '3px solid #0284c7' }}>
             {timelineEvents.map((item, idx) => (
               <Box key={idx} sx={{ position: 'relative', mb: 8, '&:last-child': { mb: 0 } }}>
                 {/* Square Node */}
@@ -188,8 +183,9 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     width: 30,
                     height: 30,
                     bgcolor: '#0284c7',
-                    border: '4px solid #1e293b',
-                    boxShadow: '4px 4px 0px #1e293b'
+                    border: '3px solid #bae6fd',
+                    borderRadius: '50%',
+                    boxShadow: '0 2px 8px rgba(2,132,199,0.3)'
                   }}
                 />
                 
@@ -197,10 +193,11 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                   sx={{ 
                     p: 4, 
                     bgcolor: 'white', 
-                    border: '3px solid #1e293b', 
-                    boxShadow: '6px 6px 0px #1e293b',
-                    transition: 'transform 0.2s',
-                    '&:hover': { transform: 'translateX(8px)' }
+                    border: '1px solid #e2e8f0', 
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
+                    borderRadius: 2,
+                    transition: 'all 0.2s ease',
+                    '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }
                   }}
                 >
                   <Typography variant="h5" color="#0284c7" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
@@ -224,7 +221,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
               Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
             </Typography>
-            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', border: '2px solid #1e293b', mx: 'auto', mt: 3 }} />
+            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
 
           <Grid container spacing={4}>
@@ -255,18 +252,19 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                 <Box
                   sx={{
                     p: 4,
-                    border: '4px solid #1e293b',
-                    boxShadow: '10px 10px 0px #1e293b',
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.07)',
                     bgcolor: 'white',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     textAlign: 'center',
-                    transition: 'all 0.15s ease',
+                    transition: 'all 0.2s ease',
+                    borderRadius: 2,
                     '&:hover': {
-                      transform: 'translate(-3px, -3px)',
-                      boxShadow: '14px 14px 0px #0284c7',
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 32px rgba(2,132,199,0.15)',
                       borderColor: '#0284c7'
                     }
                   }}
@@ -280,8 +278,9 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                       alignItems: 'center', 
                       justifyContent: 'center',
                       bgcolor: '#f0f9ff',
-                      border: '3px solid #1e293b',
-                      boxShadow: '4px 4px 0px #1e293b',
+                      border: '1px solid #bae6fd',
+                      borderRadius: 2,
+                      boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
                       color: '#0284c7',
                       mb: 4,
                       '& .MuiSvgIcon-root': { fontSize: '2rem' }

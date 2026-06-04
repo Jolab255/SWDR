@@ -47,7 +47,8 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
         elevation={0}
         sx={{
           bgcolor: '#ffffff',
-          borderBottom: '4px solid #1e293b',
+          borderBottom: '1px solid #e2e8f0',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
           color: 'text.primary',
           zIndex: theme.zIndex.drawer + 1
         }}
@@ -130,23 +131,17 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 sx={{
                   px: { xs: 2, sm: 3 },
                   py: 1.2,
-                  borderRadius: 0,
+                  borderRadius: 2,
                   fontWeight: '900',
                   textTransform: 'none',
                   fontSize: '0.9rem',
-                  boxShadow: '2px 2px 0px #1e293b',
-                  border: '2px solid #1e293b',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                   bgcolor: 'secondary.main',
                   color: 'white',
-                  transition: 'all 0.15s ease-in-out',
+                  transition: 'all 0.2s ease',
                   '&:hover': {
                     bgcolor: 'secondary.dark',
-                    transform: 'translate(-1px, -1px)',
-                    boxShadow: '3px 3px 0px #1e293b'
-                  },
-                  '&:active': {
-                    transform: 'translate(1px, 1px)',
-                    boxShadow: '1px 1px 0px #1e293b'
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                   }
                 }}
               >
@@ -161,19 +156,14 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   onClick={handleDrawerToggle}
                   sx={{ 
                     ml: 0.5, 
-                    border: '2.5px solid #1e293b', 
+                    border: '1px solid #e2e8f0', 
                     p: 0.8, 
-                    borderRadius: 0,
+                    borderRadius: 1,
                     bgcolor: 'white',
-                    boxShadow: '2px 2px 0px #1e293b',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
                     '&:hover': {
                       bgcolor: 'primary.light',
-                      transform: 'translate(-1px, -1px)',
-                      boxShadow: '3px 3px 0px #1e293b'
-                    },
-                    '&:active': {
-                      transform: 'translate(1px, 1px)',
-                      boxShadow: '1px 1px 0px #1e293b'
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
                     }
                   }}
                 >
@@ -199,8 +189,8 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
             sx: { 
               boxSizing: 'border-box', 
               width: 270, 
-              borderRadius: 0,
-              borderLeft: '4px solid #1e293b',
+              borderLeft: '1px solid #e2e8f0',
+              boxShadow: '-4px 0 20px rgba(0,0,0,0.08)',
               bgcolor: '#ffffff'
             }
           }
@@ -210,7 +200,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
         }}
       >
         <Box sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%', bgcolor: 'white' }}>
-          <Box sx={{ mb: 4, mt: 1, px: 1, borderBottom: '2.5px solid #1e293b', pb: 2 }}>
+          <Box sx={{ mb: 4, mt: 1, px: 1, borderBottom: '1px solid #e2e8f0', pb: 2 }}>
             <Typography variant="h6" color="text.primary" sx={{ fontWeight: "900", textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
               SMILE <Box component="span" sx={{ color: 'primary.main', textTransform: 'lowercase', fontStyle: 'italic' }}>with</Box> DR. ROME
             </Typography>
@@ -273,16 +263,16 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               }}
               sx={{ 
                 py: 1.5, 
-                borderRadius: 0, 
+                borderRadius: 2, 
                 fontWeight: '900',
                 textTransform: 'none',
                 fontSize: '0.95rem',
-                boxShadow: '2px 2px 0px #1e293b',
-                border: '2px solid #1e293b',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                 bgcolor: 'secondary.main',
                 color: 'white',
                 '&:hover': {
-                  bgcolor: 'secondary.dark'
+                  bgcolor: 'secondary.dark',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                 }
               }}
             >

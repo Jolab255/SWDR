@@ -20,7 +20,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
   if (news.length === 0) return null;
 
   return (
-    <Box sx={{ py: 12, bgcolor: '#f0f9ff', borderTop: '4px solid #1e293b' }}>
+    <Box sx={{ py: 7, bgcolor: '#f0f9ff', borderTop: '1px solid #e2e8f0' }}>
       <Container maxWidth="xl">
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 8, flexWrap: 'wrap', gap: 3 }}>
           <Box>
@@ -36,10 +36,10 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
         <Grid container spacing={4}>
           {news.map((article) => (
             <Grid size={{ xs: 12, md: 4 }} key={article.id}>
-              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', border: '3px solid #1e293b', boxShadow: '8px 8px 0px #1e293b', borderRadius: 0, '&:hover': { transform: 'translate(-4px, -4px)', boxShadow: '12px 12px 0px #0284c7' }, transition: 'all 0.2s' }}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', borderRadius: 2, '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 12px 32px rgba(0,0,0,0.12)' }, transition: 'all 0.2s ease' }}>
                 <CardMedia component="img" height="240" image={article.image} alt={article.title} loading="lazy" />
                 <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <Chip label={article.category} size="small" sx={{ fontWeight: '900', borderRadius: 0, border: '2px solid #1e293b', bgcolor: 'white', mb: 2 }} />
+                  <Chip label={article.category} size="small" sx={{ fontWeight: '900', borderRadius: 1, border: '1px solid #e2e8f0', bgcolor: 'white', mb: 2 }} />
                   <Typography variant="h5" sx={{ fontWeight: '900', mb: 2, color: '#1e293b', lineHeight: 1.2 }}>
                     {article.title}
                   </Typography>

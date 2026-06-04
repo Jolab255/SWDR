@@ -16,6 +16,8 @@ import {
   CircularProgress,
   Alert,
   Paper,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SecurityIcon from '@mui/icons-material/Security';
@@ -30,8 +32,95 @@ interface DonateWidgetProps {
 
 const steps = ['Amount', 'Personal', 'Payment', 'Verify'];
 
+const currencies = [
+  { code: 'TZS', symbol: 'TSh', label: 'Tanzanian Shilling', presets: ['25000', '50000', '100000', '250000', '500000'], locale: 'en-TZ' },
+  { code: 'USD', symbol: '$', label: 'US Dollar', presets: ['10', '25', '50', '100', '250'], locale: 'en-US' },
+  { code: 'KES', symbol: 'KSh', label: 'Kenyan Shilling', presets: ['1000', '2500', '5000', '10000', '25000'], locale: 'en-KE' },
+  { code: 'EUR', symbol: '€', label: 'Euro', presets: ['10', '25', '50', '100', '250'], locale: 'de-DE' },
+  { code: 'GBP', symbol: '£', label: 'British Pound', presets: ['10', '25', '50', '100', '250'], locale: 'en-GB' },
+];
+
+const CarrierLogo = ({ carrier }: { carrier: string }) => {
+  switch (carrier) {
+    case 'mpesa':
+      return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <svg viewBox="0 0 120 40" width="100%" height="32" style={{ display: 'block' }}>
+            <rect width="120" height="40" rx="6" fill="#e11d48" />
+            <circle cx="25" cy="20" r="10" fill="#ffffff" />
+            <path d="M27 23 C27 17, 22 17, 22 21 C22 25, 27 25, 27 23" stroke="#e11d48" strokeWidth="2.5" fill="none" />
+            <text x="75" y="25" fontFamily="'Inter', sans-serif" fontWeight="900" fontSize="15" fill="#ffffff" textAnchor="middle">
+              m-pesa
+            </text>
+            <circle cx="104" cy="20" r="4" fill="#22c55e" />
+          </svg>
+        </Box>
+      );
+    case 'tigopesa':
+      return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <svg viewBox="0 0 120 40" width="100%" height="32" style={{ display: 'block' }}>
+            <rect width="120" height="40" rx="6" fill="#00249c" />
+            <text x="60" y="25" fontFamily="'Inter', sans-serif" fontWeight="900" fontSize="14" textAnchor="middle">
+              <tspan fill="#ffffff">tigo</tspan>
+              <tspan fill="#facc15"> pesa</tspan>
+            </text>
+          </svg>
+        </Box>
+      );
+    case 'airtelmoney':
+      return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <svg viewBox="0 0 120 40" width="100%" height="32" style={{ display: 'block' }}>
+            <rect width="120" height="40" rx="6" fill="#ff0000" />
+            <path d="M22 20 C22 15, 28 15, 28 20 C28 25, 24 25, 24 20" stroke="#ffffff" strokeWidth="2.5" fill="none" />
+            <text x="72" y="20" fontFamily="'Inter', sans-serif" fontWeight="900" fontSize="12" fill="#ffffff" textAnchor="middle">
+              airtel
+            </text>
+            <text x="72" y="30" fontFamily="'Inter', sans-serif" fontWeight="800" fontSize="8" fill="#ffffff" textAnchor="middle" letterSpacing="1px">
+              MONEY
+            </text>
+          </svg>
+        </Box>
+      );
+    case 'halopesa':
+      return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <svg viewBox="0 0 120 40" width="100%" height="32" style={{ display: 'block' }}>
+            <rect width="120" height="40" rx="6" fill="#ff6600" />
+            <text x="60" y="25" fontFamily="'Inter', sans-serif" fontWeight="900" fontSize="13" textAnchor="middle">
+              <tspan fill="#ffffff">halo</tspan>
+              <tspan fill="#ffeb3b">pesa</tspan>
+            </text>
+          </svg>
+        </Box>
+      );
+    default:
+      return null;
+  }
+};
+
+
+
+const PaymentSupportInfo = () => (
+  <Typography 
+    variant="caption" 
+    color="text.secondary" 
+    sx={{ 
+      display: 'block', 
+      textAlign: 'center', 
+      mt: 2.5, 
+      fontWeight: '600',
+      lineHeight: 1.4
+    }}
+  >
+    Payment issues? Contact support: <strong style={{ color: '#0284c7' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#0284c7' }}>support@smiledrrome.org</strong>
+  </Typography>
+);
+
 export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const [activeStep, setActiveSlide] = useState(0);
+  const [currency, setCurrency] = useState(currencies[0]);
   const [amount, setAmount] = useState('50000');
   const [paymentMethod, setPaymentMethod] = useState('mobile');
   const [mobileCarrier, setMobileCarrier] = useState('mpesa');
@@ -49,11 +138,12 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const [cardExpiry, setCardExpiry] = useState('');
   const [cardCvv, setCardCvv] = useState('');
 
-  const BORDER = "3px solid #1e293b";
-  const SHADOW = "8px 8px 0px #1e293b";
+  const BORDER = "1px solid #e2e8f0";
+  const SHADOW = "0 8px 32px rgba(0,0,0,0.12)";
 
   const resetWidget = () => {
     setActiveSlide(0);
+    setCurrency(currencies[0]);
     setAmount('50000');
     setLoading(false);
     setSuccess(false);
@@ -103,7 +193,55 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
 
   const formatCurrency = (val: string) => {
     const num = amount === 'custom' ? parseInt(customAmount) : parseInt(val);
-    return new Intl.NumberFormat('en-TZ', { style: 'currency', currency: 'TZS', maximumFractionDigits: 0 }).format(num || 0);
+    return new Intl.NumberFormat(currency.locale, { style: 'currency', currency: currency.code, maximumFractionDigits: 0 }).format(num || 0);
+  };
+
+  const formatPreset = (val: string) => {
+    if (val === 'custom') return 'Other';
+    const num = parseInt(val);
+    if (currency.code === 'TZS') {
+      return val.slice(0, -3) + 'k';
+    }
+    if (currency.code === 'KES') {
+      return num >= 1000 ? `${num / 1000}k` : num.toString();
+    }
+    return `${currency.symbol}${val}`;
+  };
+
+  const getTzsEquivalent = () => {
+    const val = amount === 'custom' ? parseInt(customAmount || '0') : parseInt(amount);
+    if (!val) return 0;
+    if (currency.code === 'TZS') return val;
+    if (currency.code === 'USD') return val * 2600;
+    if (currency.code === 'KES') return val * 20;
+    if (currency.code === 'EUR') return val * 2800;
+    if (currency.code === 'GBP') return val * 3300;
+    return val;
+  };
+
+  const getImpactText = () => {
+    const tzs = getTzsEquivalent();
+    if (tzs <= 0) return 'Please enter an amount to see your impact.';
+    if (tzs < 25000) {
+      return `This buys pediatric dental supplies for underprivileged children.`;
+    }
+    if (tzs < 50000) {
+      return 'This buys 1 pediatric dental hygiene kit (Brush, Paste, Floss).';
+    }
+    if (tzs < 100000) {
+      return 'This funds 1 complete rural clinical screening for a child.';
+    }
+    if (tzs < 250000) {
+      return 'This covers 2 restorative fillings for a child in pain.';
+    }
+    if (tzs < 500000) {
+      return 'This sponsors clinical travel for our rural mobile unit.';
+    }
+    const pct = Math.floor((tzs / 1000000) * 100);
+    if (pct >= 100) {
+      return `This fully funds ${Math.floor(tzs / 1000000)} cleft-lip reconstructive surgery!`;
+    }
+    return `This funds ${pct}% of a cleft-lip reconstructive surgery.`;
   };
 
   return (
@@ -116,7 +254,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
       slotProps={{
         paper: {
           sx: {
-            borderRadius: 0,
+            borderRadius: 2,
             border: BORDER,
             boxShadow: SHADOW,
             m: { xs: 2, sm: 3 }
@@ -131,15 +269,15 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
             Sponsor a Smile
           </Typography>
         </Box>
-        <IconButton onClick={handleCloseWrapper} size="small" sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: 'white' }}>
+        <IconButton onClick={handleCloseWrapper} size="small" sx={{ border: '1px solid #e2e8f0', borderRadius: 1, bgcolor: 'white' }}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
 
-      <DialogContent sx={{ p: { xs: 3, md: 5 } }}>
+      <DialogContent sx={{ p: { xs: 2.5, md: 3 } }}>
         {!success ? (
           <>
-            <Stepper activeStep={activeStep} sx={{ mb: 6, '& .MuiStepIcon-root': { borderRadius: 0, width: 28, height: 28 }, '& .MuiStepIcon-root.Mui-active, & .MuiStepIcon-root.Mui-completed': { color: '#0284c7' } }}>
+            <Stepper activeStep={activeStep} sx={{ mb: 3, '& .MuiStepIcon-root': { borderRadius: 0, width: 28, height: 28 }, '& .MuiStepIcon-root.Mui-active, & .MuiStepIcon-root.Mui-completed': { color: '#0284c7' } }}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel 
@@ -161,28 +299,51 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
             {/* STEP 0: AMOUNT SELECTION */}
             {activeStep === 0 && (
               <Box>
-                <Typography variant="subtitle2" color="#1e293b" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1.5, display: 'block', letterSpacing: '0.5px' }}>
-                  Choose Donation Amount
-                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography variant="subtitle2" color="#1e293b" sx={{ fontWeight: "900", textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Choose Donation Amount
+                  </Typography>
+                  <Select
+                    size="small"
+                    value={currency.code}
+                    onChange={(e) => {
+                      const curr = currencies.find(c => c.code === e.target.value) || currencies[0];
+                      setCurrency(curr);
+                      setAmount(curr.presets[1]);
+                    }}
+                    sx={{
+                      width: 120,
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold',
+                      '& .MuiSelect-select': { py: 0.75 }
+                    }}
+                  >
+                    {currencies.map((curr) => (
+                      <MenuItem key={curr.code} value={curr.code} sx={{ fontSize: '0.8rem', fontWeight: 'bold' }}>
+                        {curr.code} ({curr.symbol})
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Box>
                 <Grid container spacing={2}>
-                  {['25000', '50000', '100000', '250000', '500000', 'custom'].map((preset) => (
+                  {[...currency.presets, 'custom'].map((preset) => (
                     <Grid size={{ xs: 4 }} key={preset}>
                       <Button
                         fullWidth
                         variant={amount === preset ? 'contained' : 'outlined'}
                         onClick={() => setAmount(preset)}
                         sx={{
-                          py: 1.5,
+                          py: 1.25,
                           borderRadius: 0,
                           fontWeight: '900',
-                          border: '2px solid #1e293b',
-                          boxShadow: amount === preset ? '3px 3px 0px #0284c7' : '2px 2px 0px #1e293b',
+                          border: amount === preset ? '1px solid #0284c7' : '1px solid #e2e8f0',
+                          boxShadow: 'none',
                           bgcolor: amount === preset ? '#0284c7' : 'white',
                           color: amount === preset ? 'white' : '#1e293b',
-                          '&:hover': { bgcolor: amount === preset ? '#0369a1' : '#f0f9ff', borderColor: '#1e293b' }
+                          '&:hover': { bgcolor: amount === preset ? '#0369a1' : '#f0f9ff', borderColor: '#0284c7' }
                         }}
                       >
-                        {preset === 'custom' ? 'Other' : preset.slice(0, -3) + 'k'}
+                        {formatPreset(preset)}
                       </Button>
                     </Grid>
                   ))}
@@ -190,21 +351,20 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
 
                 {amount === 'custom' && (
                   <TextField
-                    fullWidth label="Enter Amount (TZS)" type="number" sx={{ mt: 3 }}
-                    value={customAmount} onChange={(e) => setCustomAmount(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, fontWeight: 'bold' } } }}
+                    fullWidth
+                    label={`Enter Amount (${currency.code})`}
+                    type="number"
+                    sx={{ mt: 2 }}
+                    value={customAmount}
+                    onChange={(e) => setCustomAmount(e.target.value)}
+                    slotProps={{ input: { sx: { borderRadius: 1.5, fontWeight: 'bold' } } }}
                   />
                 )}
 
-                <Paper elevation={0} sx={{ p: 2.5, mt: 4, bgcolor: '#f0f9ff', border: '2px solid #1e293b', boxShadow: '4px 4px 0px #0284c7', borderRadius: 0 }}>
+                <Paper elevation={0} sx={{ p: 2, mt: 2.5, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.1)', borderRadius: 2 }}>
                   <Typography variant="caption" sx={{ fontWeight: "900", color: '#0284c7', textTransform: 'uppercase', display: 'block', mb: 0.5 }}>Your Impact:</Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: '#1e293b', fontStyle: 'italic' }}>
-                    {amount === '25000' ? 'This buys 1 pediatric dental hygiene kit (Brush, Paste, Floss).' 
-                      : amount === '50000' ? 'This funds 1 complete rural clinical screening for a child.'
-                      : amount === '100000' ? 'This covers 2 restorative fillings for a child in pain.'
-                      : amount === '250000' ? 'This sponsors clinical travel for our rural mobile unit.'
-                      : amount === '500000' ? 'This funds 50% of a cleft-lip reconstructive surgery.'
-                      : `This buys ${Math.floor(parseInt(customAmount || '0')/10000)} pediatric dental kits for underprivileged children.`}
+                  <Typography variant="body2" sx={{ fontWeight: 600, color: '#1e293b', fontStyle: 'italic', fontSize: '0.825rem' }}>
+                    {getImpactText()}
                   </Typography>
                 </Paper>
               </Box>
@@ -217,9 +377,9 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                   Donor Information
                 </Typography>
                 <Grid container spacing={2.5}>
-                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Full Name" value={name} onChange={(e) => setName(e.target.value)} slotProps={{ input: { sx: { borderRadius: 0 } } }} /></Grid>
-                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} slotProps={{ input: { sx: { borderRadius: 0 } } }} /></Grid>
-                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Phone (for M-Pesa / Tigo Pesa)" value={phone} onChange={(e) => setPhone(e.target.value)} slotProps={{ input: { sx: { borderRadius: 0 } } }} /></Grid>
+                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Full Name" value={name} onChange={(e) => setName(e.target.value)} slotProps={{ input: { sx: { borderRadius: 1.5 } } }} /></Grid>
+                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} slotProps={{ input: { sx: { borderRadius: 1.5 } } }} /></Grid>
+                  <Grid size={{ xs: 12 }}><TextField fullWidth label="Phone (for Mobile Money)" value={phone} onChange={(e) => setPhone(e.target.value)} slotProps={{ input: { sx: { borderRadius: 1.5 } } }} /></Grid>
                 </Grid>
               </Box>
             )}
@@ -230,13 +390,13 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                 <Typography variant="subtitle2" color="#1e293b" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1.5, display: 'block', letterSpacing: '0.5px' }}>
                   Select Payment Method
                 </Typography>
-                <Grid container spacing={2} sx={{ mb: 4 }}>
+                <Grid container spacing={2} sx={{ mb: 2 }}>
                   <Grid size={{ xs: 6 }}>
                     <Button
                       fullWidth variant={paymentMethod === 'mobile' ? 'contained' : 'outlined'}
-                      startIcon={<IconButton size="small"><PaymentsIcon /></IconButton>}
+                      startIcon={<IconButton size="small" sx={{ p: 0.5, color: paymentMethod === 'mobile' ? 'white' : 'inherit' }}><PaymentsIcon /></IconButton>}
                       onClick={() => setPaymentMethod('mobile')}
-                      sx={{ py: 2, borderRadius: 0, fontWeight: '900', border: '2px solid #1e293b', boxShadow: paymentMethod === 'mobile' ? '4px 4px 0px #0284c7' : '2px 2px 0px #1e293b', bgcolor: paymentMethod === 'mobile' ? '#0284c7' : 'white', color: paymentMethod === 'mobile' ? 'white' : '#1e293b' }}
+                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'mobile' ? '0 0 0 2px #0284c7' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'mobile' ? '#0284c7' : 'white', color: paymentMethod === 'mobile' ? 'white' : '#1e293b' }}
                     >
                       Mobile Money
                     </Button>
@@ -244,9 +404,9 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                   <Grid size={{ xs: 6 }}>
                     <Button
                       fullWidth variant={paymentMethod === 'card' ? 'contained' : 'outlined'}
-                      startIcon={<IconButton size="small"><SecurityIcon /></IconButton>}
+                      startIcon={<IconButton size="small" sx={{ p: 0.5, color: paymentMethod === 'card' ? 'white' : 'inherit' }}><SecurityIcon /></IconButton>}
                       onClick={() => setPaymentMethod('card')}
-                      sx={{ py: 2, borderRadius: 0, fontWeight: '900', border: '2px solid #1e293b', boxShadow: paymentMethod === 'card' ? '4px 4px 0px #0284c7' : '2px 2px 0px #1e293b', bgcolor: paymentMethod === 'card' ? '#0284c7' : 'white', color: paymentMethod === 'card' ? 'white' : '#1e293b' }}
+                      sx={{ py: 1.5, borderRadius: 1.5, fontWeight: '900', border: '1px solid #e2e8f0', boxShadow: paymentMethod === 'card' ? '0 0 0 2px #0284c7' : '0 1px 4px rgba(0,0,0,0.06)', bgcolor: paymentMethod === 'card' ? '#0284c7' : 'white', color: paymentMethod === 'card' ? 'white' : '#1e293b' }}
                     >
                       Credit Card
                     </Button>
@@ -254,55 +414,78 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                 </Grid>
 
                 {paymentMethod === 'mobile' ? (
-                  <Box sx={{ p: 3, border: '2.5px solid #1e293b', bgcolor: '#f8fafc' }}>
-                    <Typography variant="caption" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1, display: 'block' }}>Network Provider (Tanzania)</Typography>
-                    <Grid container spacing={1}>
+                  <Box sx={{ p: 2, border: '1px solid #e2e8f0', bgcolor: '#f8fafc', borderRadius: 2 }}>
+                    <Typography variant="caption" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1.5, display: 'block' }}>Network Provider (Tanzania)</Typography>
+                    <Grid container spacing={1.5}>
                       {['mpesa', 'tigopesa', 'airtelmoney', 'halopesa'].map((carrier) => (
-                        <Grid size={{ xs: 3 }} key={carrier}>
+                        <Grid size={{ xs: 6, sm: 3 }} key={carrier}>
                           <Box
                             onClick={() => setMobileCarrier(carrier)}
                             sx={{
-                              p: 1, border: '2px solid #1e293b', textAlign: 'center', cursor: 'pointer',
-                              bgcolor: mobileCarrier === carrier ? '#0284c7' : 'white',
-                              color: mobileCarrier === carrier ? 'white' : '#1e293b',
-                              fontWeight: 'bold', fontSize: '0.75rem', textTransform: 'uppercase'
+                              p: 0.75,
+                              border: '2px solid',
+                              borderColor: mobileCarrier === carrier ? '#0284c7' : '#e2e8f0',
+                              borderRadius: 2,
+                              cursor: 'pointer',
+                              bgcolor: 'white',
+                              boxShadow: mobileCarrier === carrier ? '0 4px 12px rgba(2,132,199,0.15)' : 'none',
+                              transition: 'all 0.2s ease',
+                              '&:hover': {
+                                borderColor: '#0284c7',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                              }
                             }}
                           >
-                            {carrier}
+                            <CarrierLogo carrier={carrier} />
                           </Box>
                         </Grid>
                       ))}
                     </Grid>
                   </Box>
                 ) : (
-                  <Box sx={{ p: 3, border: '2.5px solid #1e293b', bgcolor: '#f8fafc' }}>
-                    <Typography variant="caption" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1, display: 'block' }}>Card Details (Mock)</Typography>
-                    <Grid container spacing={2}>
+                  <Box sx={{ p: 2, border: '1px solid #e2e8f0', bgcolor: '#f8fafc', borderRadius: 2 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
+                      <Typography variant="caption" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Card Details (Mock)</Typography>
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <svg viewBox="0 0 45 15" width="30" height="12">
+                          <rect width="45" height="15" fill="#1a1f71" rx="2" />
+                          <text x="22.5" y="11.5" fontFamily="'Inter', sans-serif" fontWeight="bold" fontSize="10" fill="#f7b614" textAnchor="middle" fontStyle="italic">VISA</text>
+                        </svg>
+                        <svg viewBox="0 0 45 15" width="30" height="12">
+                          <rect width="45" height="15" fill="#222" rx="2" />
+                          <circle cx="18" cy="7.5" r="5.5" fill="#eb001b" />
+                          <circle cx="27" cy="7.5" r="5.5" fill="#ff5f00" opacity="0.85" />
+                        </svg>
+                      </Box>
+                    </Box>
+                    <Grid container spacing={1.5}>
                       <Grid size={{ xs: 12 }}>
                         <TextField 
                           fullWidth size="small" label="Card Number" value={cardNumber} onChange={(e) => setCardNumber(e.target.value.replace(/[^0-9]/g, ''))} 
-                          slotProps={{ input: { sx: { borderRadius: 0 } } }} 
+                          slotProps={{ input: { sx: { borderRadius: 1.5 } } }} 
                         />
                       </Grid>
                       <Grid size={{ xs: 6 }}>
                         <TextField 
                           fullWidth size="small" label="MM/YY" value={cardExpiry} onChange={(e) => setCardExpiry(e.target.value)} 
-                          slotProps={{ input: { sx: { borderRadius: 0 } } }} 
+                          slotProps={{ input: { sx: { borderRadius: 1.5 } } }} 
                         />
                       </Grid>
                       <Grid size={{ xs: 6 }}>
                         <TextField 
                           fullWidth size="small" label="CVV" type="password" value={cardCvv} onChange={(e) => setCardCvv(e.target.value.replace(/[^0-9]/g, ''))} 
-                          slotProps={{ input: { sx: { borderRadius: 0 } } }} 
+                          slotProps={{ input: { sx: { borderRadius: 1.5 } } }} 
                         />
                       </Grid>
                     </Grid>
                   </Box>
                 )}
                 
-                <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', fontWeight: "700", mt: 3 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', fontWeight: "700", mt: 2 }}>
                   Secured by Selcom Gateway Tanzania 🔒
                 </Typography>
+                <PaymentSupportInfo />
               </Box>
             )}
 
@@ -311,42 +494,44 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
               <Box sx={{ textAlign: 'center' }}>
                 {!loading ? (
                   <>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: "900", textAlign: 'center' }}>📲 CHECK YOUR PHONE</Typography>
-                    <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: "700" }}>
-                      We sent a prompt to <strong>{phone}</strong>. Enter the OTP code or the transaction ID to confirm your <strong>{formatCurrency(amount)}</strong> donation.
+                    <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: "900", textAlign: 'center' }}>📲 CHECK YOUR PHONE</Typography>
+                    <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: "700", fontSize: '0.85rem' }}>
+                      We sent a prompt to <strong>{phone}</strong>. Enter the OTP code or transaction ID to confirm your <strong>{formatCurrency(amount)}</strong> donation.
                     </Typography>
                     <TextField 
-                      fullWidth label="6-Digit OTP" value={otpCode} onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))} 
-                      slotProps={{ htmlInput: { maxLength: 6, style: { textAlign: 'center', letterSpacing: '8px', fontWeight: '900', fontSize: '1.5rem' } } }} 
-                      sx={{ mb: 3, mt: 4 }} 
+                      fullWidth size="small" label="6-Digit OTP" value={otpCode} onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))} 
+                      slotProps={{ htmlInput: { maxLength: 6, style: { textAlign: 'center', letterSpacing: '8px', fontWeight: '900', fontSize: '1.25rem' } } }} 
+                      sx={{ mb: 2, mt: 2 }} 
                     />
-                    <Alert severity="info" sx={{ borderRadius: 0, border: '2px solid #1e293b', fontWeight: 'bold' }}>Reference: {transactionRef}</Alert>
+                    <Alert severity="info" sx={{ py: 0.5, borderRadius: 1.5, border: '1px solid #e2e8f0', fontWeight: 'bold', fontSize: '0.75rem' }}>Reference: {transactionRef}</Alert>
+                    <PaymentSupportInfo />
                   </>
                 ) : (
-                  <Box sx={{ py: 4 }}>
-                    <CircularProgress size={60} thickness={5} sx={{ color: '#0284c7', mb: 3 }} />
-                    <Typography variant="h6" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Connecting...</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ fontWeight: "700", mt: 1 }}>Selcom API is validating your request.</Typography>
+                  <Box sx={{ py: 3 }}>
+                    <CircularProgress size={45} thickness={5} sx={{ color: '#0284c7', mb: 2 }} />
+                    <Typography variant="subtitle2" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Connecting...</Typography>
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700", mt: 0.5, display: 'block' }}>Selcom API is validating your request.</Typography>
                   </Box>
                 )}
               </Box>
             )}
+
           </>
         ) : (
           <Box sx={{ textAlign: 'center', py: 4 }}>
             <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-              <Box sx={{ width: 100, height: 100, bgcolor: 'success.light', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'success.dark', border: '4px solid', borderColor: 'success.dark', borderRadius: 0, boxShadow: '6px 6px 0px #1e293b' }}>
+              <Box sx={{ width: 100, height: 100, bgcolor: 'success.light', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'success.dark', border: '2px solid', borderColor: 'success.dark', borderRadius: 2, boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }}>
                 <CheckCircleIcon sx={{ fontSize: 60 }} />
               </Box>
             </Box>
             <Typography variant="h4" sx={{ fontWeight: "900", textTransform: 'uppercase', mb: 1 }}>Awesome!</Typography>
             <Typography variant="body1" sx={{ fontWeight: "800", mb: 3 }}>Thank you, {name || 'supporter'}! Your donation of {formatCurrency(amount)} was received.</Typography>
-            <Box sx={{ p: 3, bgcolor: '#f0fdf4', border: '2.5px solid #166534', borderRadius: 0, textAlign: 'left', mb: 4 }}>
+            <Box sx={{ p: 3, bgcolor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 2, textAlign: 'left', mb: 4 }}>
               <Typography variant="caption" sx={{ fontWeight: "900", display: 'block', textTransform: 'uppercase', mb: 1, color: 'grey.600' }}>Transaction Receipt</Typography>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}><Typography variant="caption" sx={{ fontWeight: "700" }}>Reference:</Typography><Typography variant="caption" sx={{ fontWeight: "900" }}>{transactionRef}</Typography></Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}><Typography variant="caption" sx={{ fontWeight: "700" }}>Date:</Typography><Typography variant="caption" sx={{ fontWeight: "900" }}>{new Date().toLocaleDateString()}</Typography></Box>
             </Box>
-            <Button fullWidth variant="contained" onClick={handleCloseWrapper} sx={{ py: 2, borderRadius: 0, fontWeight: '900', bgcolor: 'secondary.dark' }}>Close Window</Button>
+            <Button fullWidth variant="contained" onClick={handleCloseWrapper} sx={{ py: 2, borderRadius: 1.5, fontWeight: '900', bgcolor: 'secondary.dark' }}>Close Window</Button>
           </Box>
         )}
       </DialogContent>
@@ -366,9 +551,9 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
               onClick={activeStep === 3 ? handleVerify : handleNext}
               disabled={loading}
               sx={{ 
-                px: 5, py: 1.5, borderRadius: 0, fontWeight: '900', bgcolor: '#0284c7', 
-                border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-                '&:hover': { bgcolor: '#0369a1', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+                px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#0284c7', 
+                boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
               }}
             >
               {activeStep === 3 ? 'Confirm' : activeStep === 2 ? 'Pay Now' : 'Continue'}

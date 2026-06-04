@@ -24,8 +24,8 @@ export default function ContactUs() {
   const [message, setMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const BORDER = '3px solid #1e293b';
-  const SHADOW = '8px 8px 0px #1e293b';
+  const BORDER = '1px solid #e2e8f0';
+  const SHADOW = '0 4px 20px rgba(0,0,0,0.08)';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export default function ContactUs() {
     <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '4px solid #1e293b' }}>
+      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '1px solid #e2e8f0' }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Box 
@@ -56,9 +56,9 @@ export default function ContactUs() {
                 color: '#1e293b',
                 px: 2.5,
                 py: 1,
-                borderRadius: 0,
-                border: BORDER,
-                boxShadow: '4px 4px 0px #1e293b',
+                borderRadius: 2,
+                border: '1px solid #bae6fd',
+                boxShadow: '0 2px 6px rgba(2,132,199,0.12)',
                 fontWeight: '900',
                 textTransform: 'uppercase',
                 fontSize: '0.85rem',
@@ -80,7 +80,7 @@ export default function ContactUs() {
             >
               Contact <Box component="span" sx={{ color: '#0284c7' }}>Us</Box>
             </Typography>
-            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', border: '2px solid #1e293b', mx: 'auto', mt: 3 }} />
+            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
         </Container>
       </Box>
@@ -96,6 +96,7 @@ export default function ContactUs() {
                   border: BORDER, 
                   boxShadow: SHADOW,
                   bgcolor: 'white',
+                  borderRadius: 2,
                 }}
               >
                 <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 2 }}>
@@ -114,7 +115,7 @@ export default function ContactUs() {
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
-                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#0284c7', border: BORDER, boxShadow: '2px 2px 0px #1e293b', display: 'flex', flexShrink: 0 }}>
+                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#0284c7', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(2,132,199,0.1)', display: 'flex', flexShrink: 0 }}>
                         {item.icon}
                       </Box>
                       <Box>
@@ -158,6 +159,7 @@ export default function ContactUs() {
                 border: BORDER,
                 boxShadow: SHADOW,
                 bgcolor: 'white',
+                borderRadius: 2,
               }}
             >
               <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 2 }}>
@@ -180,18 +182,8 @@ export default function ContactUs() {
                       slotProps={{ 
                         input: { 
                           sx: { 
-                            borderRadius: 0, 
+                            borderRadius: 1, 
                             fontWeight: 600,
-                            '& .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                              borderRadius: 0,
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
                           } 
                         } 
                       }}
@@ -208,18 +200,8 @@ export default function ContactUs() {
                       slotProps={{ 
                         input: { 
                           sx: { 
-                            borderRadius: 0, 
+                            borderRadius: 1, 
                             fontWeight: 600,
-                            '& .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                              borderRadius: 0,
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
                           } 
                         } 
                       }}
@@ -235,18 +217,8 @@ export default function ContactUs() {
                       slotProps={{ 
                         input: { 
                           sx: { 
-                            borderRadius: 0, 
+                            borderRadius: 1, 
                             fontWeight: 600,
-                            '& .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                              borderRadius: 0,
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
                           } 
                         } 
                       }}
@@ -270,18 +242,8 @@ export default function ContactUs() {
                       slotProps={{ 
                         input: { 
                           sx: { 
-                            borderRadius: 0, 
+                            borderRadius: 1, 
                             fontWeight: 600,
-                            '& .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                              borderRadius: 0,
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
-                              border: BORDER,
-                            },
                           } 
                         } 
                       }}
@@ -295,25 +257,19 @@ export default function ContactUs() {
                       fullWidth
                       sx={{ 
                         px: 4, py: 2, 
-                        borderRadius: 0, 
+                        borderRadius: 2, 
                         fontWeight: '900', 
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
                         fontSize: '1rem',
                         bgcolor: '#0284c7',
                         color: 'white',
-                        border: BORDER,
-                        boxShadow: '4px 4px 0px #1e293b',
-                        transition: 'all 0.15s ease',
+                        boxShadow: '0 4px 14px rgba(2,132,199,0.35)',
+                        transition: 'all 0.2s ease',
                         '&:hover': {
                           bgcolor: '#0369a1',
-                          transform: 'translate(-2px, -2px)',
-                          boxShadow: '6px 6px 0px #1e293b',
+                          boxShadow: '0 6px 20px rgba(2,132,199,0.45)',
                         },
-                        '&:active': {
-                          transform: 'translate(1px, 1px)',
-                          boxShadow: '2px 2px 0px #1e293b',
-                        }
                       }}
                     >
                       Send Message
@@ -332,9 +288,9 @@ export default function ContactUs() {
           onClose={() => setShowSuccess(false)} 
           severity="success" 
           sx={{ 
-            borderRadius: 0, 
-            border: BORDER, 
-            boxShadow: '8px 8px 0px #1e293b',
+            borderRadius: 1, 
+            border: '1px solid #e2e8f0', 
+            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
             fontWeight: 'bold',
             bgcolor: 'white',
             color: '#1e293b'

@@ -31,10 +31,8 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
 
   if (impactStories.length === 0) return null;
 
-  const BORDER = '4px solid #1e293b';
-
   return (
-    <Box sx={{ py: 10, bgcolor: 'white', borderTop: BORDER }}>
+    <Box sx={{ py: 6, bgcolor: 'white', borderTop: '1px solid #e2e8f0' }}>
       <Container maxWidth="xl">
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography 
@@ -57,8 +55,8 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
           width: '100%', 
           height: '55vh',
           overflow: 'hidden',
-          border: BORDER,
-          boxShadow: '12px 12px 0px #1e293b',
+          borderRadius: 2,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
         }}>
           {/* Main Slider */}
           <Box 
@@ -131,10 +129,10 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
                 }}
                 sx={{
                   alignSelf: 'flex-start',
-                  px: 4, py: 1, borderRadius: 0, fontWeight: '900', textTransform: 'uppercase',
-                  bgcolor: '#0284c7', color: 'white', border: '3px solid white', boxShadow: '4px 4px 0px white',
+                  px: 4, py: 1, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
+                  bgcolor: '#0284c7', color: 'white', boxShadow: '0 2px 10px rgba(2,132,199,0.4)',
                   pointerEvents: 'auto',
-                  '&:hover': { bgcolor: '#0369a1', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px white' }
+                  '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 16px rgba(2,132,199,0.5)' }
                 }}
               >
                 View Impact Gallery
@@ -149,21 +147,21 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
           onClose={() => setOpenGalleryGrid(false)}
           maxWidth="lg"
           fullWidth
-          slotProps={{ paper: { sx: { borderRadius: 0, border: '4px solid #1e293b', boxShadow: '20px 20px 0px #1e293b' } } }}
+          slotProps={{ paper: { sx: { borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' } } }}
         >
           <Box sx={{ p: { xs: 2, md: 4 } }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
               <Typography variant="h4" sx={{ fontWeight: '900', textTransform: 'uppercase', fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
                 Charity Moments Gallery
               </Typography>
-              <IconButton onClick={() => setOpenGalleryGrid(false)} sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: 'white' }}>
+              <IconButton onClick={() => setOpenGalleryGrid(false)} sx={{ border: '1px solid #e2e8f0', borderRadius: 1, bgcolor: 'white' }}>
                 <CloseIcon />
               </IconButton>
             </Box>
             
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gridAutoRows: '240px', gap: 3 }}>
               {impactStories.map((story) => (
-                <Box key={story.id} onClick={() => setLightboxImage(story.image)} sx={{ border: '4px solid #1e293b', overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'translate(-4px, -4px)', boxShadow: '8px 8px 0px #0284c7', borderColor: '#0284c7', zIndex: 2, '& .overlay': { opacity: 1 } } }}>
+                <Box key={story.id} onClick={() => setLightboxImage(story.image)} sx={{ borderRadius: 1, overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'scale(1.02)', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 2, '& .overlay': { opacity: 1 } } }}>
                   <Box component="img" src={story.image} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(2, 132, 199, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
                     <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1 }}>{story.title}</Typography>

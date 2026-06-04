@@ -27,18 +27,18 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
             onClick={onBack}
             startIcon={<ArrowBackIcon />}
             sx={{ 
-              color: '#1e293b', fontWeight: '900', textTransform: 'none', borderRadius: 0,
-              border: '2px solid #1e293b', boxShadow: '4px 4px 0px #1e293b', px: 3, py: 1.2,
+              color: '#1e293b', fontWeight: '900', textTransform: 'none', borderRadius: 2,
+              border: '1px solid #e2e8f0', boxShadow: '0 1px 4px rgba(0,0,0,0.06)', px: 3, py: 1.2,
               bgcolor: 'white', transition: 'all 0.2s',
-              '&:hover': { transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b', bgcolor: '#f0f9ff' }
+              '&:hover': { boxShadow: '0 4px 12px rgba(0,0,0,0.1)', bgcolor: '#f0f9ff' }
             }}
           >
             Back to Events Calendar
           </Button>
         </Box>
 
-        <Paper elevation={0} sx={{ borderRadius: 0, border: '3px solid #1e293b', boxShadow: '10px 10px 0px #1e293b', bgcolor: 'white', overflow: 'hidden', mb: 4 }}>
-          <Box sx={{ position: 'relative', width: '100%', height: { xs: 250, sm: 400 }, overflow: 'hidden', borderBottom: '3px solid #1e293b' }}>
+        <Paper elevation={0} sx={{ borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', bgcolor: 'white', overflow: 'hidden', mb: 4 }}>
+          <Box sx={{ position: 'relative', width: '100%', height: { xs: 250, sm: 400 }, overflow: 'hidden' }}>
             <Box component="img" src={event.image} alt={event.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             <Box sx={{ position: 'absolute', top: 20, right: 20, bgcolor: 'rgba(15, 23, 42, 0.85)', backdropFilter: 'blur(8px)', color: '#ffffff', px: 2.5, py: 1, fontSize: '0.85rem', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
               {event.category}
@@ -57,7 +57,7 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
                 { icon: '📍', label: 'Location', val: event.location }
               ].map((item, i) => (
                 <Grid size={{ xs: 12, sm: 4 }} key={i}>
-                  <Paper elevation={0} sx={{ p: 3, bgcolor: '#f8fafc', border: '2px solid #1e293b', boxShadow: '4px 4px 0px #0284c7', borderRadius: 0, height: '100%' }}>
+                  <Paper elevation={0} sx={{ p: 3, bgcolor: '#f8fafc', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(2,132,199,0.1)', borderRadius: 2, height: '100%' }}>
                     <Typography sx={{ fontSize: '1.5rem', mb: 1 }}>{item.icon}</Typography>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: '900', textTransform: 'uppercase', display: 'block', mb: 1, letterSpacing: '0.5px' }}>{item.label}</Typography>
                     <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'text.primary' }}>{item.val}</Typography>
@@ -73,7 +73,7 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
               {event.description}
             </Typography>
 
-            <Paper elevation={0} sx={{ p: { xs: 4, md: 6 }, background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '3px solid #1e293b', boxShadow: '8px 8px 0px #0284c7', borderRadius: 0, mb: 4, position: 'relative', overflow: 'hidden', '&:hover': { transform: 'translate(-4px, -4px)', boxShadow: '12px 12px 0px #0369a1' }, transition: 'all 0.3s' }}>
+            <Paper elevation={0} sx={{ p: { xs: 4, md: 6 }, background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '1px solid #bae6fd', boxShadow: '0 4px 20px rgba(2,132,199,0.12)', borderRadius: 2, mb: 4, position: 'relative', overflow: 'hidden', '&:hover': { boxShadow: '0 8px 32px rgba(2,132,199,0.2)' }, transition: 'all 0.3s' }}>
               <Box sx={{ position: 'absolute', right: -20, bottom: -30, fontSize: '12rem', opacity: 0.05, userSelect: 'none', pointerEvents: 'none' }}>🦷</Box>
               <Grid container spacing={4} sx={{ position: 'relative', zIndex: 2, alignItems: 'center' }}>
                 <Grid size={{ xs: 12 }}>
@@ -84,10 +84,46 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
                     Every child deserves a pain-free, healthy smile. You can make an immediate impact by either contributing your specialized medical or general coordination skills on the ground as a volunteer, or by providing the vital financial resources to purchase high-quality clinical supplies, restorative dental materials, and emergency tools.
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button variant="contained" onClick={onDonateClick} startIcon={<FavoriteIcon />} sx={{ flex: 1, py: 1.5, fontWeight: '900', border: '2px solid #1e293b', boxShadow: '3px 3px 0px #1e293b', bgcolor: 'secondary.main' }}>
+                    <Button 
+                      variant="contained" 
+                      onClick={onDonateClick} 
+                      startIcon={<FavoriteIcon />} 
+                      sx={{ 
+                        flex: 1, 
+                        py: 1.5, 
+                        fontWeight: '900', 
+                        borderRadius: 2,
+                        textTransform: 'none',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+                        bgcolor: 'secondary.main',
+                        color: 'white',
+                        '&:hover': {
+                          bgcolor: 'secondary.dark',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                        }
+                      }}
+                    >
                       Donate to Event
                     </Button>
-                    <Button variant="contained" onClick={onRegisterClick} startIcon={<PeopleIcon />} sx={{ flex: 1, py: 1.5, fontWeight: '900', border: '2px solid #1e293b', boxShadow: '3px 3px 0px #1e293b', bgcolor: '#0284c7' }}>
+                    <Button 
+                      variant="contained" 
+                      onClick={onRegisterClick} 
+                      startIcon={<PeopleIcon />} 
+                      sx={{ 
+                        flex: 1, 
+                        py: 1.5, 
+                        fontWeight: '900', 
+                        borderRadius: 2,
+                        textTransform: 'none',
+                        boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                        bgcolor: '#0284c7',
+                        color: 'white',
+                        '&:hover': {
+                          bgcolor: '#0369a1',
+                          boxShadow: '0 4px 12px rgba(2,132,199,0.4)',
+                        }
+                      }}
+                    >
                       Join as Volunteer
                     </Button>
                   </Box>

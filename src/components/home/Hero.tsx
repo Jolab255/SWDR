@@ -66,23 +66,17 @@ export default function Hero({ onDonateClick }: HeroProps) {
                   sx={{ 
                     px: 4, 
                     py: 1.8, 
-                    borderRadius: 0, 
+                    borderRadius: 2, 
                     fontWeight: '900', 
                     fontSize: '1rem', 
                     textTransform: 'none',
-                    border: '2px solid #1e293b',
-                    boxShadow: '2px 2px 0px #1e293b',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                     bgcolor: 'secondary.main',
                     color: 'white',
-                    transition: 'all 0.15s ease-in-out',
+                    transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: 'secondary.dark',
-                      transform: 'translate(-1px, -1px)',
-                      boxShadow: '3px 3px 0px #1e293b'
-                    },
-                    '&:active': {
-                      transform: 'translate(1px, 1px)',
-                      boxShadow: '1px 1px 0px #1e293b'
+                      boxShadow: '0 4px 14px rgba(0,0,0,0.2)'
                     }
                   }}
                 >
@@ -97,21 +91,19 @@ export default function Hero({ onDonateClick }: HeroProps) {
                   sx={{ 
                     px: 4, 
                     py: 1.8, 
-                    borderRadius: 0, 
+                    borderRadius: 2, 
                     fontWeight: '900', 
                     fontSize: '1rem', 
                     textTransform: 'none', 
-                    border: '2px solid #1e293b',
-                    boxShadow: '4px 4px 0px #1e293b',
+                    border: '1px solid #0284c7',
+                    boxShadow: '0 2px 6px rgba(2,132,199,0.15)',
                     bgcolor: 'white',
-                    color: '#1e293b',
+                    color: '#0284c7',
                     textDecoration: 'none',
                     transition: 'all 0.2s',
                     '&:hover': { 
-                      transform: 'translate(-2px, -2px)',
-                      boxShadow: '6px 6px 0px #1e293b',
-                      bgcolor: 'primary.light',
-                      border: '2px solid #1e293b'
+                      boxShadow: '0 4px 14px rgba(2,132,199,0.25)',
+                      bgcolor: '#f0f9ff',
                     } 
                   }}
                 >
@@ -129,10 +121,10 @@ export default function Hero({ onDonateClick }: HeroProps) {
                   position: 'relative',
                   width: '100%',
                   maxWidth: 440,
-                  borderRadius: 0,
-                  border: '3px solid #1e293b',
-                  boxShadow: '8px 8px 0px #0284c7',
-                  overflow: 'visible',
+                  borderRadius: 2,
+                  border: '1px solid #e2e8f0',
+                  boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+                  overflow: 'hidden',
                   bgcolor: 'white'
                 }}
               >
@@ -145,8 +137,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
                     width: '100%',
                     height: { xs: 320, md: 440 },
                     objectFit: 'cover',
-                    borderRadius: 0,
-                    borderBottom: '3px solid #1e293b',
+                    borderRadius: 2,
                     display: 'block',
                     transition: 'transform 0.3s ease',
                     '&:hover': { transform: 'scale(1.02)' }

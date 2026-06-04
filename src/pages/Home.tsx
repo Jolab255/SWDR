@@ -32,6 +32,7 @@ export default function Home({ onDonateClick }: HomeProps) {
   // Form State
   const [regName, setRegName] = useState('');
   const [regEmail, setRegEmail] = useState('');
+  const [regPhone, setRegPhone] = useState('');
   const [regProfession, setRegProfession] = useState('Dentist');
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function Home({ onDonateClick }: HomeProps) {
 
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!regName || !regEmail || !selectedEvent) return;
+    if (!regName || !regEmail || !regPhone || !selectedEvent) return;
 
     const updatedEvents = events.map(item => {
       if (item.id === selectedEvent.id) {
@@ -66,6 +67,7 @@ export default function Home({ onDonateClick }: HomeProps) {
     setOpenRegSuccess(true);
     setRegName('');
     setRegEmail('');
+    setRegPhone('');
   };
 
   // If viewing full details of an event
@@ -86,6 +88,7 @@ export default function Home({ onDonateClick }: HomeProps) {
           selectedEvent={selectedEvent}
           regName={regName} setRegName={setRegName}
           regEmail={regEmail} setRegEmail={setRegEmail}
+          regPhone={regPhone} setRegPhone={setRegPhone}
           regProfession={regProfession} setRegProfession={setRegProfession}
           onSubmitRegister={handleRegisterSubmit}
           onDonateClick={onDonateClick}
@@ -113,6 +116,7 @@ export default function Home({ onDonateClick }: HomeProps) {
         selectedEvent={selectedEvent}
         regName={regName} setRegName={setRegName}
         regEmail={regEmail} setRegEmail={setRegEmail}
+        regPhone={regPhone} setRegPhone={setRegPhone}
         regProfession={regProfession} setRegProfession={setRegProfession}
         onSubmitRegister={handleRegisterSubmit}
         onDonateClick={onDonateClick}

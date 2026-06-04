@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   Typography,
   Grid,
   Button,
@@ -41,7 +42,15 @@ export default function Movement({ onDonateClick }: MovementProps) {
   ];
 
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box
+      sx={{
+        py: { xs: 6, md: 8 },
+        bgcolor: '#f0f9ff',
+        borderTop: '1px solid #bae6fd',
+        borderBottom: '1px solid #bae6fd',
+      }}
+    >
+      <Container maxWidth="xl">
       <Box sx={{ textAlign: 'center', mb: 8 }}>
         <Typography variant="h3" sx={{ fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 3, textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' } }}>
           Be Part of the Movement
@@ -49,7 +58,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
         <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
           Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
         </Typography>
-        <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', border: '2px solid #1e293b', mx: 'auto', mt: 3 }} />
+        <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
       </Box>
 
       <Grid container spacing={4}>
@@ -58,26 +67,28 @@ export default function Movement({ onDonateClick }: MovementProps) {
             <Box
               sx={{
                 p: 4,
-                border: '4px solid #1e293b',
-                boxShadow: '10px 10px 0px #1e293b',
-                bgcolor: 'white',
+                border: '1px solid rgba(255,255,255,0.9)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(2,132,199,0.08)',
+                bgcolor: '#ffffff',
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 textAlign: 'center',
-                transition: 'all 0.15s ease',
+                transition: 'all 0.25s ease',
+                borderRadius: 3,
                 '&:hover': {
-                  transform: 'translate(-3px, -3px)',
-                  boxShadow: '14px 14px 0px #0284c7',
-                  borderColor: '#0284c7'
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 20px 48px rgba(2,132,199,0.18), 0 4px 12px rgba(0,0,0,0.08)',
+                  borderColor: '#bae6fd'
                 }
               }}
             >
               <Box 
                 sx={{ 
                   width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  bgcolor: '#f0f9ff', border: '3px solid #1e293b', boxShadow: '4px 4px 0px #1e293b',
+                  bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2,
+                  boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
                   color: '#0284c7', mb: 4, '& .MuiSvgIcon-root': { fontSize: '2rem' }
                 }}
               >
@@ -97,10 +108,10 @@ export default function Movement({ onDonateClick }: MovementProps) {
                 onClick={item.action}
                 fullWidth
                 sx={{ 
-                  py: 1.8, borderRadius: 0, fontWeight: '900', textTransform: 'uppercase',
+                  py: 1.8, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
                   letterSpacing: '1px', fontSize: '0.95rem', bgcolor: '#0284c7', color: 'white',
-                  border: '3px solid #1e293b', boxShadow: '4px 4px 0px #1e293b',
-                  '&:hover': { bgcolor: '#0369a1', transform: 'translate(-3px, -3px)', boxShadow: '6px 6px 0px #1e293b' }
+                  boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                  '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
                 }}
               >
                 {item.actionText}
@@ -109,6 +120,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
           </Grid>
         ))}
       </Grid>
+      </Container>
     </Box>
   );
 }
