@@ -43,7 +43,7 @@ export default function ContactUs() {
     <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#f0f9ff', borderBottom: '1px solid #e2e8f0' }}>
+      <Box sx={{ pt: { xs: 3.5, md: 4.5 }, pb: { xs: 2.5, md: 3.5 }, bgcolor: '#f0f9ff', borderBottom: '1px solid #e2e8f0' }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Box 

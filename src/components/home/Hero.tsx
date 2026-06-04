@@ -17,8 +17,8 @@ export default function Hero({ onDonateClick }: HeroProps) {
     <Box 
       sx={{
         position: 'relative',
-        pt: { xs: 4, md: 6 },
-        pb: { xs: 6, md: 8 },
+        pt: { xs: 2.5, md: 3.5 },
+        pb: { xs: 4, md: 5 },
         background: 'linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%)',
         color: 'text.primary',
         overflow: 'hidden'
