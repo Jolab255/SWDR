@@ -123,7 +123,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
             <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={onDonateClick}
                 startIcon={<FavoriteIcon />}
                 sx={{
@@ -133,13 +133,13 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   fontWeight: '900',
                   textTransform: 'none',
                   fontSize: '0.9rem',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                  bgcolor: 'secondary.main',
+                  boxShadow: '0 2px 8px rgba(27, 79, 147, 0.25)',
+                  bgcolor: 'primary.main',
                   color: 'white',
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    bgcolor: 'secondary.dark',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                    bgcolor: 'primary.dark',
+                    boxShadow: '0 4px 14px rgba(27, 79, 147, 0.4)'
                   }
                 }}
               >
@@ -253,7 +253,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
             <Button
               fullWidth
               variant="contained"
-              color="secondary"
+              color="primary"
               startIcon={<FavoriteIcon />}
               onClick={() => {
                 handleDrawerToggle();
@@ -265,12 +265,12 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 fontWeight: '900',
                 textTransform: 'none',
                 fontSize: '0.95rem',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                bgcolor: 'secondary.main',
+                boxShadow: '0 2px 8px rgba(27, 79, 147, 0.25)',
+                bgcolor: 'primary.main',
                 color: 'white',
                 '&:hover': {
-                  bgcolor: 'secondary.dark',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                  bgcolor: 'primary.dark',
+                  boxShadow: '0 4px 14px rgba(27, 79, 147, 0.4)'
                 }
               }}
             >
