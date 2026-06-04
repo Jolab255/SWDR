@@ -12,6 +12,7 @@ const AboutUs = lazy(() => import('./pages/AboutUs'));
 const WhyWeStarted = lazy(() => import('./pages/WhyWeStarted'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
 const CMSDashboard = lazy(() => import('./pages/CMSDashboard'));
+const Collaborators = lazy(() => import('./pages/Collaborators'));
 
 // Sleek loading placeholder for lazy components
 const PageLoader = () => (
@@ -170,6 +171,7 @@ function App() {
               <Route path="/" element={<Home onDonateClick={handleDonateOpen} />} />
               <Route path="/about" element={<AboutUs onDonateClick={handleDonateOpen} />} />
               <Route path="/why-we-started" element={<WhyWeStarted onDonateClick={handleDonateOpen} />} />
+              <Route path="/collaborators" element={<Collaborators onDonateClick={handleDonateOpen} />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cms" element={<CMSDashboard />} />
               {/* Fallback to Home */}

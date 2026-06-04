@@ -31,6 +31,7 @@ export default function Footer() {
     { id: '/', label: 'Homepage' },
     { id: '/about', label: 'About Us' },
     { id: '/why-we-started', label: 'Why We Started' },
+    { id: '/collaborators', label: 'Collaborators' },
     { id: '/contact', label: 'Contact Us' },
   ];
 
