@@ -111,7 +111,7 @@ export default function ContactUs() {
                     { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Mikocheni B, Plot 23, Mwai Kibaki Road, Dar es Salaam, Tanzania' },
                     { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 22 270 0981 / +255 784 766 373', link: 'tel:+255222700981' },
                     { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 784 766 373', color: 'success.dark', link: 'https://wa.me/255784766373' },
-                    { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smiledrrome.org / info@swdrclinic.org', link: 'mailto:donations@smiledrrome.org' },
+                    { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smilewithdrrome.org / info@swdrclinic.org', link: 'mailto:donations@smilewithdrrome.org' },
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>

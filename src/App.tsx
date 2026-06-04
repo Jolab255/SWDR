@@ -155,7 +155,7 @@ function App() {
 
       {/* Dynamic SEO Meta Tags */}
       <Helmet>
-        <link rel="canonical" href={`https://smiledrrome.org${location.pathname === '/' ? '' : location.pathname}`} />
+        <link rel="canonical" href={`https://smilewithdrrome.org${location.pathname === '/' ? '' : location.pathname}`} />
       </Helmet>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100vw' }}>

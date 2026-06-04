@@ -114,7 +114,7 @@ const PaymentSupportInfo = () => (
       lineHeight: 1.4
     }}
   >
-    Payment issues? Contact support: <strong style={{ color: '#0284c7' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#0284c7' }}>support@smiledrrome.org</strong>
+    Payment issues? Contact support: <strong style={{ color: '#0284c7' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#0284c7' }}>support@smilewithdrrome.org</strong>
   </Typography>
 );
 

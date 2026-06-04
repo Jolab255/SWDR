@@ -213,7 +213,7 @@ export default function Footer() {
                 },
                 {
                   label: 'Email',
-                  value: 'donations@smiledrrome.org',
+                  value: 'donations@smilewithdrrome.org',
                 },
               ].map((row) => (
                 <Box key={row.label} sx={{ borderLeft: '3px solid #0284c7', pl: 1.5 }}>
