@@ -56,7 +56,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: 75 }}>
             
-            {/* 1. Sleek Typographic Logo */}
+            {/* Logo Image */}
             <Box 
               component={Link}
               to="/"
@@ -68,20 +68,17 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 textDecoration: 'none'
               }}
             >
-              <Typography 
-                variant="h5" 
-                noWrap 
+              <Box 
+                component="img"
+                src="/logo.png"
+                alt="Smile with Doctor Rome"
                 sx={{ 
-                  fontWeight: 900, 
-                  textTransform: 'uppercase',
-                  letterSpacing: '-0.8px', 
-                  color: '#1e293b',
-                  fontSize: { xs: '1.1rem', md: '1.35rem' },
-                  lineHeight: 1
+                  height: { xs: 48, md: 56 },
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain'
                 }}
-              >
-                SMILE <Box component="span" sx={{ color: 'primary.main', fontWeight: 500, textTransform: 'lowercase', fontStyle: 'italic', mx: 0.2 }}>with</Box> DR. ROME
-              </Typography>
+              />
             </Box>
 
             {/* 2. Elegant Navigation Links (Desktop) */}

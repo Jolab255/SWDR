@@ -77,21 +77,19 @@ export default function Footer() {
               borderBottom: { xs: '1px solid #e2e8f0', md: 'none' },
             }}
           >
-            {/* Brand name with blue left bar */}
-            <Box sx={{ display: 'flex', alignItems: 'stretch', gap: 0, mb: 2 }}>
-              <Box sx={{ width: 5, bgcolor: '#0284c7', flexShrink: 0, mr: 1.5 }} />
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: '900',
-                  textTransform: 'uppercase',
-                  letterSpacing: '-0.5px',
-                  color: '#1e293b',
-                  lineHeight: 1.15,
+            {/* Brand name/logo */}
+            <Box sx={{ mb: 2.5 }}>
+              <Box 
+                component="img"
+                src="/logo.png"
+                alt="Smile with Doctor Rome"
+                sx={{ 
+                  height: 52,
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain'
                 }}
-              >
-                Smile with<br />Dr. Rome
-              </Typography>
+              />
             </Box>
 
             <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, mb: 4, maxWidth: 320 }}>
