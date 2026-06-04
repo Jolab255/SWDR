@@ -130,9 +130,9 @@ class ErrorBoundary extends Component<Props, State> {
                     fontWeight: "900", 
                     textTransform: "uppercase", 
                     boxShadow: "0 2px 8px rgba(2,132,199,0.3)", 
-                    bgcolor: "#0284c7", 
+                    bgcolor: "#1b4f93", 
                     color: "white",
-                    "&:hover": { bgcolor: "#0369a1", boxShadow: "0 4px 12px rgba(2,132,199,0.4)" }
+                    "&:hover": { bgcolor: "#113a70", boxShadow: "0 4px 12px rgba(2,132,199,0.4)" }
                   }}
                 >
                   Refresh Page

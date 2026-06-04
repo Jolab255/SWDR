@@ -21,7 +21,7 @@ export default function CMSDashboard() {
               mb: 2 
             }}
           >
-            <Typography variant="overline" sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '2px' }}>
+            <Typography variant="overline" sx={{ fontWeight: '900', color: '#1b4f93', letterSpacing: '2px' }}>
               Administrative Command Center
             </Typography>
           </Box>
@@ -35,9 +35,9 @@ export default function CMSDashboard() {
               fontSize: { xs: '2.5rem', md: '3.5rem' }
             }}
           >
-            CMS <Box component="span" sx={{ color: '#0284c7' }}>Dashboard</Box>
+            CMS <Box component="span" sx={{ color: '#1b4f93' }}>Dashboard</Box>
           </Typography>
-          <Box sx={{ width: 80, height: 6, bgcolor: '#0284c7', border: BORDER, mx: 'auto', mt: 2 }} />
+          <Box sx={{ width: 80, height: 6, bgcolor: '#1b4f93', border: BORDER, mx: 'auto', mt: 2 }} />
         </Box>
 
         {/* Content Manager Container */}

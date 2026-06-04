@@ -143,7 +143,7 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                         <CardMedia component="img" height="220" image={ev.image} alt={ev.title} loading="lazy" />
                         {/* Overlay Calendar Date Badge */}
                         <Box sx={{ position: 'absolute', top: 12, left: 12, bgcolor: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(4px)', px: 2, py: 0.75, borderRadius: 1.5, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 52 }}>
-                          <Typography variant="caption" sx={{ fontWeight: 800, color: '#0284c7', textTransform: 'uppercase', fontSize: '0.7rem', lineHeight: 1 }}>
+                          <Typography variant="caption" sx={{ fontWeight: 800, color: '#1b4f93', textTransform: 'uppercase', fontSize: '0.7rem', lineHeight: 1 }}>
                             {new Date(ev.date).toLocaleDateString('en-TZ', { month: 'short' })}
                           </Typography>
                           <Typography variant="h5" sx={{ fontWeight: 900, color: '#1e293b', lineHeight: 1.1, mt: 0.25 }}>
@@ -157,13 +157,13 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                         </Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 2 }}>
                           <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-                            <LocationOnIcon sx={{ color: '#0284c7', fontSize: '1.1rem', mt: 0.25, flexShrink: 0 }} />
+                            <LocationOnIcon sx={{ color: '#1b4f93', fontSize: '1.1rem', mt: 0.25, flexShrink: 0 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', fontSize: '0.85rem' }}>
                               {ev.location}
                             </Typography>
                           </Box>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <AccessTimeIcon sx={{ color: '#0284c7', fontSize: '1.1rem', flexShrink: 0 }} />
+                            <AccessTimeIcon sx={{ color: '#1b4f93', fontSize: '1.1rem', flexShrink: 0 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: '#475569', fontSize: '0.85rem' }}>
                               {ev.time}
                             </Typography>
@@ -179,8 +179,8 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                             sx={{ 
                               py: 1, borderRadius: 1.5, fontWeight: '900', textTransform: 'none',
                               fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(2,132,199,0.15)',
-                              bgcolor: '#0284c7', color: '#ffffff',
-                              '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 10px rgba(2,132,199,0.25)' }
+                              bgcolor: '#1b4f93', color: '#ffffff',
+                              '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 10px rgba(2,132,199,0.25)' }
                             }}
                           >
                             See Event Details
@@ -222,10 +222,10 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
                 {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
                   <Box key={idx} onClick={() => setCarouselIndex(idx)} sx={{
-                    width: 10, height: 10, bgcolor: carouselIndex === idx ? '#0284c7' : '#cbd5e1',
+                    width: 10, height: 10, bgcolor: carouselIndex === idx ? '#1b4f93' : '#cbd5e1',
                     borderRadius: '50%',
                     cursor: 'pointer', transition: 'all 0.2s ease',
-                    '&:hover': { transform: 'scale(1.3)', bgcolor: '#0284c7' }
+                    '&:hover': { transform: 'scale(1.3)', bgcolor: '#1b4f93' }
                   }} />
                 ))}
               </Box>

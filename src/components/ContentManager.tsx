@@ -245,7 +245,7 @@ export default function ContentManager() {
           transition: 'all 0.1s ease',
           '&:hover': {
             transform: 'translate(-2px, -2px)',
-            boxShadow: '8px 8px 0px #0284c7',
+            boxShadow: '8px 8px 0px #1b4f93',
           }
         }}
       >
@@ -275,7 +275,7 @@ export default function ContentManager() {
             <IconButton 
               size="small" 
               onClick={() => handleOpenEdit(item)}
-              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#f0f9ff', color: '#0284c7' }}
+              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#f0f9ff', color: '#1b4f93' }}
             >
               <EditIcon fontSize="small" />
             </IconButton>
@@ -309,9 +309,9 @@ export default function ContentManager() {
           onClick={handleOpenAdd}
           sx={{ 
             borderRadius: 0, px: 3, py: 1.2, 
-            fontWeight: '900', bgcolor: '#0284c7',
+            fontWeight: '900', bgcolor: '#1b4f93',
             border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-            '&:hover': { bgcolor: '#0369a1', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+            '&:hover': { bgcolor: '#113a70', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
           }}
         >
           Add {tabIndex === 0 ? 'Event' : tabIndex === 1 ? 'Article' : tabIndex === 2 ? 'Impact' : 'Member'}
@@ -335,7 +335,7 @@ export default function ContentManager() {
         scrollButtons="auto"
         sx={{ 
           mb: 5, 
-          '& .MuiTabs-indicator': { height: 4, bgcolor: '#0284c7' },
+          '& .MuiTabs-indicator': { height: 4, bgcolor: '#1b4f93' },
           '& .MuiTab-root': { 
             py: 2, fontSize: '0.85rem', fontWeight: '900', textTransform: 'uppercase', color: '#64748b',
             '&.Mui-selected': { color: '#1e293b' }
@@ -517,9 +517,9 @@ export default function ContentManager() {
             onClick={handleSave}
             sx={{ 
               borderRadius: 0, px: 4, py: 1.5, 
-              fontWeight: '900', bgcolor: '#0284c7',
+              fontWeight: '900', bgcolor: '#1b4f93',
               border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-              '&:hover': { bgcolor: '#0369a1', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+              '&:hover': { bgcolor: '#113a70', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
             }}
           >
             Commit Changes

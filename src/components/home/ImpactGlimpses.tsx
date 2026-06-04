@@ -109,13 +109,13 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
               
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, md: 4 }, mb: 2 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <LocationOnIcon sx={{ color: '#0284c7', fontSize: { xs: '1rem', md: '1.25rem' } }} />
+                  <LocationOnIcon sx={{ color: '#1b4f93', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                   <Typography variant="body1" sx={{ fontWeight: '700', fontSize: { xs: '0.85rem', md: '1rem' } }}>
                     Location: {impactStories[activeSlide]?.location}
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <CalendarTodayIcon sx={{ color: '#0284c7', fontSize: { xs: '0.9rem', md: '1.1rem' } }} />
+                  <CalendarTodayIcon sx={{ color: '#1b4f93', fontSize: { xs: '0.9rem', md: '1.1rem' } }} />
                   <Typography variant="body1" sx={{ fontWeight: '700', fontSize: { xs: '0.85rem', md: '1rem' } }}>
                     Date: {impactStories[activeSlide]?.date}
                   </Typography>
@@ -130,9 +130,9 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
                 sx={{
                   alignSelf: 'flex-start',
                   px: 4, py: 1, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
-                  bgcolor: '#0284c7', color: 'white', boxShadow: '0 2px 10px rgba(2,132,199,0.4)',
+                  bgcolor: '#1b4f93', color: 'white', boxShadow: '0 2px 10px rgba(2,132,199,0.4)',
                   pointerEvents: 'auto',
-                  '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 16px rgba(2,132,199,0.5)' }
+                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(2,132,199,0.5)' }
                 }}
               >
                 View Impact Gallery
@@ -176,7 +176,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
         {/* --- LIGHTBOX --- */}
         <Dialog open={!!lightboxImage} onClose={() => setLightboxImage(null)} maxWidth="lg" slotProps={{ paper: { sx: { borderRadius: 0, bgcolor: 'transparent', boxShadow: 'none', overflow: 'visible' } } }}>
           <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <IconButton onClick={() => setLightboxImage(null)} sx={{ position: 'absolute', top: -50, right: 0, color: 'white', bgcolor: 'rgba(0,0,0,0.5)', borderRadius: 0, border: '2px solid white', '&:hover': { bgcolor: '#0284c7' } }}>
+            <IconButton onClick={() => setLightboxImage(null)} sx={{ position: 'absolute', top: -50, right: 0, color: 'white', bgcolor: 'rgba(0,0,0,0.5)', borderRadius: 0, border: '2px solid white', '&:hover': { bgcolor: '#1b4f93' } }}>
               <CloseIcon />
             </IconButton>
             {lightboxImage && <Box component="img" src={lightboxImage} sx={{ maxWidth: '100%', maxHeight: '85vh', border: '5px solid white', boxShadow: '0 0 40px rgba(0,0,0,0.5)' }} />}

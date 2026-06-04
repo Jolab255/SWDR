@@ -127,7 +127,7 @@ export default function HomeDialogs({
           </DialogContent>
           <DialogActions sx={{ px: 3, pb: 3.5, pt: 1.5, display: "flex", gap: 1.5 }}> 
             <Button onClick={onCloseRegister} sx={{ borderRadius: 2, fontWeight: "900", textTransform: "none", px: 3, py: 1, border: "1px solid #e2e8f0", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", color: "#1e293b", bgcolor: "white", "&:hover": { bgcolor: "#f0f9ff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" } }}>Cancel</Button> 
-            <Button type="submit" variant="contained" sx={{ borderRadius: 2, fontWeight: "900", textTransform: "none", px: 3, py: 1, boxShadow: "0 2px 8px rgba(2,132,199,0.3)", background: "linear-gradient(135deg, #0284c7 0%, #0369a1 100%)", color: "#ffffff", "&:hover": { background: "linear-gradient(135deg, #0369a1 0%, #0284c7 100%)", boxShadow: "0 4px 14px rgba(2,132,199,0.4)" } }}>Confirm Registration</Button> 
+            <Button type="submit" variant="contained" sx={{ borderRadius: 2, fontWeight: "900", textTransform: "none", px: 3, py: 1, boxShadow: "0 2px 8px rgba(2,132,199,0.3)", background: "linear-gradient(135deg, #1b4f93 0%, #113a70 100%)", color: "#ffffff", "&:hover": { background: "linear-gradient(135deg, #113a70 0%, #1b4f93 100%)", boxShadow: "0 4px 14px rgba(2,132,199,0.4)" } }}>Confirm Registration</Button> 
           </DialogActions> 
         </form> 
       </Dialog>
@@ -154,7 +154,7 @@ export default function HomeDialogs({
             <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', lineHeight: 1.5 }}>Your support on the ground is invaluable. If you are able, a small donation will go a long way in purchasing essential clinical supplies.</Typography>
           </Paper>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}> 
-            <Button fullWidth variant="contained" onClick={() => { onCloseRegSuccess(); onDonateClick(); }} startIcon={<FavoriteIcon />} sx={{ py: 1.6, borderRadius: 2, fontWeight: "900", textTransform: "uppercase", letterSpacing: "1px", fontSize: "0.95rem", boxShadow: "0 2px 8px rgba(2,132,199,0.3)", bgcolor: "#0284c7", color: "white", "&:hover": { bgcolor: "#0369a1", boxShadow: "0 4px 14px rgba(2,132,199,0.4)" } }}>Donate Now</Button> 
+            <Button fullWidth variant="contained" onClick={() => { onCloseRegSuccess(); onDonateClick(); }} startIcon={<FavoriteIcon />} sx={{ py: 1.6, borderRadius: 2, fontWeight: "900", textTransform: "uppercase", letterSpacing: "1px", fontSize: "0.95rem", boxShadow: "0 2px 8px rgba(2,132,199,0.3)", bgcolor: "#1b4f93", color: "white", "&:hover": { bgcolor: "#113a70", boxShadow: "0 4px 14px rgba(2,132,199,0.4)" } }}>Donate Now</Button> 
             <Button fullWidth variant="outlined" onClick={onCloseRegSuccess} sx={{ py: 1.4, borderRadius: 2, fontWeight: "900", textTransform: "none", fontSize: "0.9rem", border: "1px solid #e2e8f0", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", color: "#1e293b", bgcolor: "white", "&:hover": { bgcolor: "#f0f9ff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" } }}>Close</Button> 
           </Box> 
         </DialogContent> 

@@ -218,7 +218,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                     selected={isActive}
                     sx={{
                       borderRadius: 0,
-                      borderLeft: isActive ? '4px solid #0284c7' : '4px solid transparent',
+                      borderLeft: isActive ? '4px solid #1b4f93' : '4px solid transparent',
                       bgcolor: isActive ? '#f8fafc' : 'transparent',
                       '&.Mui-selected': {
                         bgcolor: '#f8fafc',

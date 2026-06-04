@@ -17,7 +17,7 @@ interface AboutUsProps {
 }
 
 // ─── Shared clean token ───────────────────────────────────────────────────────
-const BORDER = '1px solid #0284c7';
+const BORDER = '1px solid #1b4f93';
 const SHADOW = '0 4px 20px rgba(0,0,0,0.08)';
 const SHADOW_HOVER = '0 12px 32px rgba(2,132,199,0.15)';
 
@@ -57,7 +57,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                 lineHeight: 1.1,
               }}
             >
-              Who <Box component="span" sx={{ color: '#0284c7' }}>We Are</Box>
+              Who <Box component="span" sx={{ color: '#1b4f93' }}>We Are</Box>
             </Typography>
           </Box>
         </Container>
@@ -70,7 +70,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
             <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 1.5, fontSize: { xs: '1.6rem', md: '2.1rem' } }}>
               The Smile Mission
             </Typography>
-            <Box sx={{ width: 48, height: 4, bgcolor: '#0284c7', mb: 3, borderRadius: 2 }} />
+            <Box sx={{ width: 48, height: 4, bgcolor: '#1b4f93', mb: 3, borderRadius: 2 }} />
             <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.75, fontSize: '1.025rem', fontWeight: 500, mb: 4 }}>
               Smile with Doctor Rome Dental Clinic (SWDR) was founded with a singular, radical focus: that professional
               pediatric dental care should never be a luxury. In Tanzania, untreated dental decay often leads to chronic
@@ -79,7 +79,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
               and free reconstructive surgeries for the most vulnerable.
             </Typography>
             <Box>
-              <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<FavoriteIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(2,132,199,0.3)', '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 16px rgba(2,132,199,0.4)' } }}>
+              <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<FavoriteIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(2,132,199,0.3)', '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 16px rgba(2,132,199,0.4)' } }}>
                 Sponsor a Smile
               </Button>
             </Box>
@@ -93,7 +93,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
           <Grid container>
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box sx={{ p: { xs: 5, md: 7 }, borderRight: { sm: '1px solid #e2e8f0' }, borderBottom: { xs: '1px solid #e2e8f0', sm: 'none' }, bgcolor: '#e0f2fe', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#0284c7', borderRadius: 1 }}>
+                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Mission</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
@@ -104,7 +104,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
 
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box sx={{ p: { xs: 5, md: 7 }, bgcolor: '#e0f2fe', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#0284c7', borderRadius: 1 }}>
+                <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #bae6fd', boxShadow: '0 2px 8px rgba(2,132,199,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#1b4f93', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Vision</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
@@ -123,7 +123,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
             <Typography variant="h3" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' }, mt: 0.5, mb: 1.5 }}>
               Our Core Values
             </Typography>
-            <Box sx={{ width: 56, height: 4, bgcolor: '#0284c7', mx: 'auto', borderRadius: 2 }} />
+            <Box sx={{ width: 56, height: 4, bgcolor: '#1b4f93', mx: 'auto', borderRadius: 2 }} />
           </Box>
 
           <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -151,7 +151,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                     variant="h5" 
                     sx={{ 
                       fontWeight: "900", 
-                      color: '#0284c7', 
+                      color: '#1b4f93', 
                       textTransform: 'uppercase', 
                       letterSpacing: '-0.5px', 
                       fontSize: '1.25rem',
@@ -186,7 +186,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
             <Typography variant="h3" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' }, mb: 1.5 }}>
               The Compassionate Experts
             </Typography>
-            <Box sx={{ width: 56, height: 4, bgcolor: '#0284c7', mx: 'auto', borderRadius: 2 }} />
+            <Box sx={{ width: 56, height: 4, bgcolor: '#1b4f93', mx: 'auto', borderRadius: 2 }} />
           </Box>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -196,15 +196,15 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                 <Box key={idx} sx={{ width: { xs: '95%', md: '75%' }, minHeight: { md: '25vh' }, alignSelf: isEven ? 'flex-start' : 'flex-end', display: 'flex', flexDirection: { xs: 'column', md: isEven ? 'row' : 'row-reverse' }, border: BORDER, borderRadius: 2, boxShadow: SHADOW, bgcolor: 'white', transition: 'all 0.2s ease', '&:hover': { transform: 'translateY(-4px)', boxShadow: SHADOW_HOVER } }}>
                   <Box sx={{ width: { xs: '100%', md: '70%' }, p: { xs: 4, md: 6 }, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: isEven ? 'white' : '#f8fafc' }}>
                     <Typography variant="h5" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-0.5px', mb: 1 }}>{member.name}</Typography>
-                    <Typography variant="subtitle1" sx={{ fontWeight: "800", color: '#0284c7', textTransform: 'uppercase', letterSpacing: '1.5px', mb: 3, fontSize: '0.85rem' }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: "800", color: '#1b4f93', textTransform: 'uppercase', letterSpacing: '1.5px', mb: 3, fontSize: '0.85rem' }}>
                       {member.role} — <Box component="span" sx={{ color: '#64748b', fontWeight: 600 }}>{member.tag}</Box>
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, textAlign: 'justify', fontSize: '1rem', fontWeight: 500, mb: 4 }}>{member.desc}</Typography>
                     <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                      <Box component="a" href={member.socials.linkedin} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#0284c7', borderColor: '#0284c7' } }}>
+                      <Box component="a" href={member.socials.linkedin} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
                         <LinkedInIcon sx={{ fontSize: 20 }} />
                       </Box>
-                      <Box component="a" href={member.socials.instagram} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#0284c7', borderColor: '#0284c7' } }}>
+                      <Box component="a" href={member.socials.instagram} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(2,132,199,0.2)', color: '#1b4f93', borderColor: '#1b4f93' } }}>
                         <InstagramIcon sx={{ fontSize: 20 }} />
                       </Box>
                     </Box>
@@ -269,7 +269,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
               { label: '✓ Secure Checkout', desc: 'Encrypted via Selcom Gateway' },
             ].map((badge, index) => (
               <Box key={index} sx={{ textAlign: 'center' }}>
-                <Typography sx={{ fontWeight: '900', color: '#0284c7', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
+                <Typography sx={{ fontWeight: '900', color: '#1b4f93', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
                   {badge.label}
                 </Typography>
                 <Typography color="text.secondary" sx={{ fontWeight: '600', fontSize: { xs: '0.75rem', sm: '0.825rem' }, display: 'block' }}>
@@ -293,13 +293,13 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontSize: '0.95rem',
-                bgcolor: '#0284c7',
+                bgcolor: '#1b4f93',
                 color: 'white',
                 boxShadow: '0 4px 16px rgba(2,132,199,0.35)',
                 transition: 'all 0.2s ease',
                 width: { xs: '100%', sm: 'auto' },
                 '&:hover': {
-                  bgcolor: '#0369a1',
+                  bgcolor: '#113a70',
                   boxShadow: '0 8px 24px rgba(2,132,199,0.45)',
                 },
               }}

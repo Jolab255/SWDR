@@ -58,7 +58,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
         <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
           Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
         </Typography>
-        <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
+        <Box sx={{ width: 64, height: 5, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
       </Box>
 
       <Grid container spacing={4}>
@@ -89,7 +89,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
                   width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center',
                   bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2,
                   boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
-                  color: '#0284c7', mb: 4, '& .MuiSvgIcon-root': { fontSize: '2rem' }
+                  color: '#1b4f93', mb: 4, '& .MuiSvgIcon-root': { fontSize: '2rem' }
                 }}
               >
                 {item.icon}
@@ -109,9 +109,9 @@ export default function Movement({ onDonateClick }: MovementProps) {
                 fullWidth
                 sx={{ 
                   py: 1.8, borderRadius: 2, fontWeight: '900', textTransform: 'uppercase',
-                  letterSpacing: '1px', fontSize: '0.95rem', bgcolor: '#0284c7', color: 'white',
+                  letterSpacing: '1px', fontSize: '0.95rem', bgcolor: '#1b4f93', color: 'white',
                   boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
-                  '&:hover': { bgcolor: '#0369a1', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
+                  '&:hover': { bgcolor: '#113a70', boxShadow: '0 4px 14px rgba(2,132,199,0.4)' }
                 }}
               >
                 {item.actionText}

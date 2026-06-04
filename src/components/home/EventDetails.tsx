@@ -116,10 +116,10 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
                         borderRadius: 2,
                         textTransform: 'none',
                         boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
-                        bgcolor: '#0284c7',
+                        bgcolor: '#1b4f93',
                         color: 'white',
                         '&:hover': {
-                          bgcolor: '#0369a1',
+                          bgcolor: '#113a70',
                           boxShadow: '0 4px 12px rgba(2,132,199,0.4)',
                         }
                       }}

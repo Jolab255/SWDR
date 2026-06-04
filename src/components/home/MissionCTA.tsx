@@ -61,7 +61,7 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
             { label: '✓ Secure Checkout', desc: 'Encrypted via Selcom Gateway' },
           ].map((badge, index) => (
             <Box key={index} sx={{ textAlign: 'center' }}>
-              <Typography sx={{ fontWeight: '900', color: '#0284c7', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
+              <Typography sx={{ fontWeight: '900', color: '#1b4f93', textTransform: 'uppercase', display: 'block', fontSize: { xs: '0.85rem', sm: '0.95rem' }, letterSpacing: '0.5px' }}>
                 {badge.label}
               </Typography>
               <Typography color="text.secondary" sx={{ fontWeight: '600', fontSize: { xs: '0.75rem', sm: '0.825rem' }, display: 'block' }}>
@@ -85,13 +85,13 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
               textTransform: 'uppercase',
               letterSpacing: '1px',
               fontSize: '0.95rem',
-              bgcolor: '#0284c7',
+              bgcolor: '#1b4f93',
               color: 'white',
               boxShadow: '0 4px 16px rgba(2,132,199,0.35)',
               transition: 'all 0.2s ease',
               width: { xs: '100%', sm: 'auto' },
               '&:hover': {
-                bgcolor: '#0369a1',
+                bgcolor: '#113a70',
                 boxShadow: '0 8px 24px rgba(2,132,199,0.45)',
               },
             }}

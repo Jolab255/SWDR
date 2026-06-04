@@ -94,10 +94,10 @@ export default function Hero({ onDonateClick }: HeroProps) {
                     fontWeight: '900', 
                     fontSize: '1rem', 
                     textTransform: 'none', 
-                    border: '1px solid #0284c7',
+                    border: '1px solid #1b4f93',
                     boxShadow: '0 2px 6px rgba(2,132,199,0.15)',
                     bgcolor: 'white',
-                    color: '#0284c7',
+                    color: '#1b4f93',
                     textDecoration: 'none',
                     transition: 'all 0.2s',
                     '&:hover': { 

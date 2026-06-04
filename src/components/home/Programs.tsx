@@ -77,7 +77,7 @@ export default function Programs() {
                   bgcolor: 'white', border: '1px solid #bae6fd',
                   borderRadius: 10, px: 2, py: 0.7, mb: 4, width: 'fit-content',
                 }}>
-                  <Typography sx={{ fontSize: '0.72rem', fontWeight: '800', color: '#0284c7', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                  <Typography sx={{ fontSize: '0.72rem', fontWeight: '800', color: '#1b4f93', textTransform: 'uppercase', letterSpacing: '2px' }}>
                     What We Do
                   </Typography>
                 </Box>
@@ -130,8 +130,8 @@ export default function Programs() {
                     transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: '#f0f9ff',
-                      '& .prog-num': { color: '#0284c7' },
-                      '& .prog-icon-box': { bgcolor: '#0284c7', color: 'white' },
+                      '& .prog-num': { color: '#1b4f93' },
+                      '& .prog-icon-box': { bgcolor: '#1b4f93', color: 'white' },
                     },
                   }}
                 >
@@ -157,7 +157,7 @@ export default function Programs() {
                         className="prog-icon-box"
                         sx={{
                           width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          bgcolor: '#f0f9ff', color: '#0284c7', borderRadius: 1.5,
+                          bgcolor: '#f0f9ff', color: '#1b4f93', borderRadius: 1.5,
                           border: '1px solid #bae6fd',
                           transition: 'all 0.2s ease',
                           flexShrink: 0,

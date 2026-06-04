@@ -24,7 +24,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
       <Container maxWidth="xl">
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 8, flexWrap: 'wrap', gap: 3 }}>
           <Box>
-            <Typography variant="overline" sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '3px' }}>
+            <Typography variant="overline" sx={{ fontWeight: '900', color: '#1b4f93', letterSpacing: '3px' }}>
               Stories of Transformation
             </Typography>
             <Typography variant="h3" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mt: 1, letterSpacing: '-1px' }}>
@@ -46,7 +46,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
                   <Typography variant="body2" sx={{ color: '#475569', mb: 3, lineHeight: 1.7, textAlign: 'justify' }}>
                     {article.summary}
                   </Typography>
-                  <Button endIcon={<ArrowForwardIcon />} sx={{ fontWeight: '900', p: 0, color: '#0284c7', '&:hover': { bgcolor: 'transparent', color: '#0369a1', pl: 1 } }}>
+                  <Button endIcon={<ArrowForwardIcon />} sx={{ fontWeight: '900', p: 0, color: '#1b4f93', '&:hover': { bgcolor: 'transparent', color: '#113a70', pl: 1 } }}>
                     Read Full Story
                   </Button>
                 </CardContent>

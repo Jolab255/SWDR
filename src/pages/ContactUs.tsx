@@ -78,9 +78,9 @@ export default function ContactUs() {
                 lineHeight: 1.1
               }}
             >
-              Contact <Box component="span" sx={{ color: '#0284c7' }}>Us</Box>
+              Contact <Box component="span" sx={{ color: '#1b4f93' }}>Us</Box>
             </Typography>
-            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
+            <Box sx={{ width: 64, height: 5, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
         </Container>
       </Box>
@@ -115,11 +115,11 @@ export default function ContactUs() {
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
-                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#0284c7', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(2,132,199,0.1)', display: 'flex', flexShrink: 0 }}>
+                      <Box sx={{ p: 1.2, bgcolor: '#f0f9ff', color: '#1b4f93', border: '1px solid #bae6fd', borderRadius: 1, boxShadow: '0 1px 4px rgba(2,132,199,0.1)', display: 'flex', flexShrink: 0 }}>
                         {item.icon}
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: '#0284c7', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        <Typography variant="caption" sx={{ color: '#1b4f93', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                           {item.label}
                         </Typography>
                         {item.link ? (
@@ -133,7 +133,7 @@ export default function ContactUs() {
                               lineHeight: 1.5,
                               textDecoration: 'none',
                               fontSize: '0.875rem',
-                              '&:hover': { color: '#0284c7' }
+                              '&:hover': { color: '#1b4f93' }
                             }}
                           >
                             {item.value}
@@ -262,12 +262,12 @@ export default function ContactUs() {
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
                         fontSize: '1rem',
-                        bgcolor: '#0284c7',
+                        bgcolor: '#1b4f93',
                         color: 'white',
                         boxShadow: '0 4px 14px rgba(2,132,199,0.35)',
                         transition: 'all 0.2s ease',
                         '&:hover': {
-                          bgcolor: '#0369a1',
+                          bgcolor: '#113a70',
                           boxShadow: '0 6px 20px rgba(2,132,199,0.45)',
                         },
                       }}

@@ -16,7 +16,7 @@ const CMSDashboard = lazy(() => import('./pages/CMSDashboard'));
 // Sleek loading placeholder for lazy components
 const PageLoader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', bgcolor: 'white' }}>
-    <CircularProgress size={50} thickness={4} sx={{ color: '#0284c7' }} />
+    <CircularProgress size={50} thickness={4} sx={{ color: '#1b4f93' }} />
   </Box>
 );
 
@@ -33,21 +33,21 @@ function ScrollToTop() {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0284c7', // Sky Blue primary
+      main: '#1b4f93', // Sky Blue primary
       light: '#e0f2fe', // Extremely soft blue highlights
-      dark: '#0369a1', // Deep navy blue
+      dark: '#113a70', // Deep navy blue
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#0369a1', // Deep Cobalt/Navy Blue
+      main: '#113a70', // Deep Cobalt/Navy Blue
       light: '#f0f9ff', // Extra soft ice blue highlight
       dark: '#1e293b', // Midnight Blue / Dark Slate
       contrastText: '#ffffff',
     },
     success: {
-      main: '#0284c7', // Sky Blue success
+      main: '#1b4f93', // Sky Blue success
       light: '#e0f2fe', // Soft ice blue success
-      dark: '#0369a1', // Deep blue success
+      dark: '#113a70', // Deep blue success
     },
     background: {
       default: '#f8fafc', // Sleek soft blue-grey canvas

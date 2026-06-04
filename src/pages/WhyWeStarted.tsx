@@ -80,7 +80,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                 lineHeight: 1.1
               }}
             >
-              Why We <Box component="span" sx={{ color: '#0284c7' }}>Started</Box>
+              Why We <Box component="span" sx={{ color: '#1b4f93' }}>Started</Box>
             </Typography>
           </Box>
         </Container>
@@ -111,7 +111,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             }}
           >
             <Typography variant="h3" sx={{ fontWeight: '900', mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, textTransform: 'uppercase', fontSize: '2.2rem', letterSpacing: '-1px' }}>
-              <FlagIcon sx={{ fontSize: '2.8rem', color: '#0284c7' }} /> The Turning Point
+              <FlagIcon sx={{ fontSize: '2.8rem', color: '#1b4f93' }} /> The Turning Point
             </Typography>
             <Typography variant="body1" sx={{ color: '#1e293b', mb: 3, lineHeight: 1.7, fontWeight: 700, fontSize: '1.2rem' }}>
               "It started with a single volunteer trip to Morogoro that changed everything."
@@ -130,9 +130,9 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                 startIcon={<FavoriteIcon />}
                 sx={{ 
                   ...neoButtonStyle,
-                  bgcolor: '#0284c7',
+                  bgcolor: '#1b4f93',
                   color: 'white',
-                  '&:hover': { bgcolor: '#0369a1' }
+                  '&:hover': { bgcolor: '#113a70' }
                 }}
               >
                 Help Us Reach More Villages
@@ -168,10 +168,10 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
         {/* TIMELINE JOURNEY */}
         <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', mb: 12, px: { xs: 3, md: 8 }, borderRadius: 2 }}>
           <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
-            <TimelineIcon sx={{ fontSize: '3rem', color: '#0284c7' }} /> Our Journey So Far
+            <TimelineIcon sx={{ fontSize: '3rem', color: '#1b4f93' }} /> Our Journey So Far
           </Typography>
 
-          <Box sx={{ position: 'relative', pl: { xs: 4, sm: 8 }, borderLeft: '3px solid #0284c7' }}>
+          <Box sx={{ position: 'relative', pl: { xs: 4, sm: 8 }, borderLeft: '3px solid #1b4f93' }}>
             {timelineEvents.map((item, idx) => (
               <Box key={idx} sx={{ position: 'relative', mb: 8, '&:last-child': { mb: 0 } }}>
                 {/* Square Node */}
@@ -182,7 +182,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     top: 0,
                     width: 30,
                     height: 30,
-                    bgcolor: '#0284c7',
+                    bgcolor: '#1b4f93',
                     border: '3px solid #bae6fd',
                     borderRadius: '50%',
                     boxShadow: '0 2px 8px rgba(2,132,199,0.3)'
@@ -200,7 +200,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }
                   }}
                 >
-                  <Typography variant="h5" color="#0284c7" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
+                  <Typography variant="h5" color="#1b4f93" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
                     {item.year} — {item.title}
                   </Typography>
                   <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, fontWeight: 500, fontSize: '1.05rem' }}>
@@ -221,7 +221,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
               Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
             </Typography>
-            <Box sx={{ width: 64, height: 5, bgcolor: '#0284c7', mx: 'auto', mt: 3, borderRadius: 2 }} />
+            <Box sx={{ width: 64, height: 5, bgcolor: '#1b4f93', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
 
           <Grid container spacing={4}>
@@ -265,7 +265,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     '&:hover': {
                       transform: 'translateY(-4px)',
                       boxShadow: '0 12px 32px rgba(2,132,199,0.15)',
-                      borderColor: '#0284c7'
+                      borderColor: '#1b4f93'
                     }
                   }}
                 >
@@ -281,7 +281,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                       border: '1px solid #bae6fd',
                       borderRadius: 2,
                       boxShadow: '0 2px 8px rgba(2,132,199,0.15)',
-                      color: '#0284c7',
+                      color: '#1b4f93',
                       mb: 4,
                       '& .MuiSvgIcon-root': { fontSize: '2rem' }
                     }}
@@ -322,11 +322,11 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     fullWidth
                     sx={{ 
                       ...neoButtonStyle, 
-                      bgcolor: '#0284c7', 
+                      bgcolor: '#1b4f93', 
                       color: 'white',
                       py: 1.8,
                       fontSize: '0.95rem',
-                      '&:hover': { bgcolor: '#0369a1' }
+                      '&:hover': { bgcolor: '#113a70' }
                     }}
                   >
                     {item.actionText}

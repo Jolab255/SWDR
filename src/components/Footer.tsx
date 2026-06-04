@@ -115,9 +115,9 @@ export default function Footer() {
                     color: '#1e293b',
                     transition: 'all 0.2s ease',
                     '&:hover': {
-                      bgcolor: '#0284c7',
+                      bgcolor: '#1b4f93',
                       color: 'white',
-                      borderColor: '#0284c7',
+                      borderColor: '#1b4f93',
                       boxShadow: '0 4px 10px rgba(2,132,199,0.3)',
                     },
                   }}
@@ -141,7 +141,7 @@ export default function Footer() {
               variant="overline"
               sx={{
                 fontWeight: '900',
-                color: '#0284c7',
+                color: '#1b4f93',
                 letterSpacing: '2px',
                 fontSize: '0.68rem',
                 display: 'block',
@@ -172,7 +172,7 @@ export default function Footer() {
                     textDecoration: 'none',
                     transition: 'all 0.15s',
                     '&:hover': {
-                      color: '#0284c7',
+                      color: '#1b4f93',
                       pl: 1,
                     },
                     '&:last-child': { borderBottom: 'none' },
@@ -195,7 +195,7 @@ export default function Footer() {
           >
             <Typography
               variant="overline"
-              sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
+              sx={{ fontWeight: '900', color: '#1b4f93', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
             >
               Clinic &amp; Charity HQ
             </Typography>
@@ -214,7 +214,7 @@ export default function Footer() {
                   value: 'donations@smilewithdrrome.org',
                 },
               ].map((row) => (
-                <Box key={row.label} sx={{ borderLeft: '3px solid #0284c7', pl: 1.5 }}>
+                <Box key={row.label} sx={{ borderLeft: '3px solid #1b4f93', pl: 1.5 }}>
                   <Typography variant="caption" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                     {row.label}
                   </Typography>
@@ -235,7 +235,7 @@ export default function Footer() {
           >
             <Typography
               variant="overline"
-              sx={{ fontWeight: '900', color: '#0284c7', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
+              sx={{ fontWeight: '900', color: '#1b4f93', letterSpacing: '2px', fontSize: '0.68rem', display: 'block', mb: 2.5 }}
             >
               Join the Movement
             </Typography>
@@ -257,8 +257,8 @@ export default function Footer() {
                       borderRadius: 1,
                       bgcolor: 'white',
                       '& fieldset': { border: '1px solid #cbd5e1' },
-                      '&:hover fieldset': { borderColor: '#0284c7' },
-                      '&.Mui-focused fieldset': { borderColor: '#0284c7', borderWidth: '2px' },
+                      '&:hover fieldset': { borderColor: '#1b4f93' },
+                      '&.Mui-focused fieldset': { borderColor: '#1b4f93', borderWidth: '2px' },
                     },
                     input: { color: '#1e293b', fontWeight: 600, fontSize: '0.9rem' },
                   }}
@@ -273,12 +273,12 @@ export default function Footer() {
                     letterSpacing: '1.5px',
                     fontSize: '0.82rem',
                     py: 1.4,
-                    bgcolor: '#0284c7',
+                    bgcolor: '#1b4f93',
                     color: 'white',
                     boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
                     transition: 'all 0.2s ease',
                     '&:hover': {
-                      bgcolor: '#0369a1',
+                      bgcolor: '#113a70',
                       boxShadow: '0 4px 14px rgba(2,132,199,0.4)',
                     },
                   }}
@@ -305,7 +305,7 @@ export default function Footer() {
         >
           <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
             <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 700 }}>
-              © {new Date().getFullYear()} SWDR. Developed by <Box component="span" sx={{ color: '#0284c7' }}>Jolab</Box> | <Box component="a" href="mailto:yonahmatete@gmail.com" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#0284c7' } }}>yonahmatete@gmail.com</Box> | <Box component="a" href="https://wa.me/255765929374" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#0284c7' } }}>+255 765 929 374</Box>
+              © {new Date().getFullYear()} SWDR. Developed by <Box component="span" sx={{ color: '#1b4f93' }}>Jolab</Box> | <Box component="a" href="mailto:yonahmatete@gmail.com" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#1b4f93' } }}>yonahmatete@gmail.com</Box> | <Box component="a" href="https://wa.me/255765929374" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#1b4f93' } }}>+255 765 929 374</Box>
             </Typography>
           </Box>
           <Typography
