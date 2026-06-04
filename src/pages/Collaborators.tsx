@@ -133,7 +133,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                 elevation={0}
                 sx={{ 
                   display: 'flex', 
-                  flexDirection: 'column',
+                  flexDirection: { xs: 'column', md: index % 2 === 0 ? 'row' : 'row-reverse' },
                   border: BORDER,
                   boxShadow: SHADOW,
                   borderRadius: 3,
@@ -145,82 +145,69 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                   }
                 }}
               >
-                {/* Image Banner */}
+                {/* Image Section (Alternating Side-by-Side) */}
                 <CardMedia
                   component="img"
                   image={partner.image}
                   alt={partner.name}
                   sx={{ 
-                    width: '100%',
-                    height: { xs: 200, sm: 280, md: 360 },
+                    width: { xs: '100%', md: '45%' },
+                    height: { xs: 260, sm: 340, md: 'auto' },
+                    minHeight: { md: 450 },
                     objectFit: 'cover'
                   }}
                 />
 
-                {/* Content Details (Redesigned into structured columns) */}
-                <CardContent sx={{ p: { xs: 3, sm: 4, md: 5 } }}>
+                {/* Content Details */}
+                <CardContent sx={{ p: { xs: 3, sm: 4, md: 5 }, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   
-                  {/* Top Meta Header */}
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: 2, mb: 3 }}>
-                    <Box>
-                      <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', fontSize: { xs: '1.5rem', sm: '1.8rem' }, mb: 0.5 }}>
-                        {partner.name}
-                      </Typography>
-                      <Typography variant="subtitle1" sx={{ color: '#475569', fontWeight: 600, fontStyle: 'italic', fontSize: '0.95rem' }}>
-                        {partner.tagline}
+                  {/* Title & Tagline */}
+                  <Box sx={{ mb: 2.5 }}>
+                    <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', fontSize: { xs: '1.4rem', sm: '1.75rem' }, mb: 0.5 }}>
+                      {partner.name}
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ color: '#475569', fontWeight: 600, fontStyle: 'italic', fontSize: '0.95rem' }}>
+                      {partner.tagline}
+                    </Typography>
+                  </Box>
+
+                  {/* Meta Tags (No Emojis, Clean Badges) */}
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.2, mb: 3 }}>
+                    <Box sx={{ px: 1.5, py: 0.5, bgcolor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: 1.5 }}>
+                      <Typography variant="caption" sx={{ fontWeight: '800', color: '#475569', textTransform: 'uppercase', fontSize: '0.72rem', letterSpacing: '0.5px' }}>
+                        Location: {partner.location}
                       </Typography>
                     </Box>
-                    
-                    {/* Meta Tags */}
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.2 }}>
-                      <Box sx={{ px: 1.8, py: 0.6, bgcolor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: 1.5 }}>
-                        <Typography variant="caption" sx={{ fontWeight: '800', color: '#475569', textTransform: 'uppercase', fontSize: '0.72rem', tracking: '0.5px' }}>
-                          Location: {partner.location}
-                        </Typography>
-                      </Box>
-                      <Box sx={{ px: 1.8, py: 0.6, bgcolor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 1.5 }}>
-                        <Typography variant="caption" sx={{ fontWeight: '800', color: '#166534', textTransform: 'uppercase', fontSize: '0.72rem', tracking: '0.5px' }}>
-                          {partner.founded}
-                        </Typography>
-                      </Box>
+                    <Box sx={{ px: 1.5, py: 0.5, bgcolor: '#fdf2f8', border: '1px solid #fce7f3', borderRadius: 1.5 }}>
+                      <Typography variant="caption" sx={{ fontWeight: '800', color: '#9d174d', textTransform: 'uppercase', fontSize: '0.72rem', letterSpacing: '0.5px' }}>
+                        {partner.founded}
+                      </Typography>
                     </Box>
                   </Box>
 
-                  {/* Clean Description Columns */}
-                  <Grid container spacing={4} sx={{ mb: 4 }}>
-                    {/* Column 1: Core Mission (Left) */}
-                    <Grid item xs={12} md={6}>
-                      <Box sx={{ pr: { md: 2 } }}>
-                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
-                          Core Mission & Focus
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.7, fontSize: '0.92rem', textAlign: 'justify' }}>
-                          {partner.mission}
-                        </Typography>
-                      </Box>
-                    </Grid>
+                  {/* Core Mission */}
+                  <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, mb: 3, fontSize: '0.95rem', textAlign: 'justify' }}>
+                    {partner.mission}
+                  </Typography>
 
-                    {/* Column 2: Collaboration Highlight (Right Side Container) */}
-                    <Grid item xs={12} md={6}>
-                      <Box 
-                        sx={{ 
-                          p: 3, 
-                          bgcolor: '#fdf2f8', 
-                          borderLeft: '4px solid #be185d', 
-                          borderRadius: '0 8px 8px 0',
-                          height: '100%',
-                          boxShadow: '0 2px 8px rgba(190, 24, 93,0.03)'
-                        }}
-                      >
-                        <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', mb: 1.5, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
-                          Joint SWDR Partnership Impact
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#334155', lineHeight: 1.6, fontSize: '0.92rem', textAlign: 'justify' }}>
-                          {partner.collaboration}
-                        </Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
+                  {/* Partnership Highlight Box (No Emojis) */}
+                  <Box 
+                    sx={{ 
+                      p: 3, 
+                      bgcolor: '#fdf2f8', 
+                      borderLeft: '4px solid #be185d', 
+                      borderRadius: '0 8px 8px 0',
+                      mb: 3,
+                      boxShadow: '0 2px 8px rgba(190, 24, 93, 0.02)'
+                    }}
+                  >
+                    <Typography variant="subtitle2" sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', mb: 1, letterSpacing: '0.5px', fontSize: '0.8rem' }}>
+                      Our Collaboration
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#334155', lineHeight: 1.6, fontSize: '0.92rem', textAlign: 'justify' }}>
+                      {partner.collaboration}
+                    </Typography>
+                  </Box>
 
                   {/* CTA Buttons */}
                   {partner.link !== '#' && (
