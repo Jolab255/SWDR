@@ -128,7 +128,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
         <Grid container spacing={6}>
           {partners.map((partner, index) => (
-            <Grid item xs={12} key={index}>
+            <Grid size={{ xs: 12 }} key={index}>
               <Card 
                 elevation={0}
                 sx={{ 
