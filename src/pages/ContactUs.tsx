@@ -40,10 +40,28 @@ export default function ContactUs() {
   };
 
   return (
-    <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
+    <Box 
+      sx={{ 
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        overflow: 'hidden' 
+      }}
+    >
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 3.5, md: 4.5 }, pb: { xs: 2.5, md: 3.5 }, bgcolor: '#fdf2f8', borderBottom: '1px solid #e2e8f0' }}>
+      <Box 
+        sx={{ 
+          pt: { xs: 3.5, md: 4.5 }, 
+          pb: { xs: 2.5, md: 3.5 }, 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+          borderBottom: '1px solid #e2e8f0' 
+        }}
+      >
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Box 
@@ -95,7 +113,7 @@ export default function ContactUs() {
                   p: { xs: 4, md: 5 }, 
                   border: BORDER, 
                   boxShadow: SHADOW,
-                  bgcolor: 'white',
+                  bgcolor: 'rgba(255, 255, 255, 0.9)',
                   borderRadius: 2,
                 }}
               >
@@ -158,7 +176,7 @@ export default function ContactUs() {
                 p: { xs: 4, md: 6 },
                 border: BORDER,
                 boxShadow: SHADOW,
-                bgcolor: 'white',
+                bgcolor: 'rgba(255, 255, 255, 0.9)',
                 borderRadius: 2,
               }}
             >

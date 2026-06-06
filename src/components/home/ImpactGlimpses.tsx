@@ -32,7 +32,16 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
   if (impactStories.length === 0) return null;
 
   return (
-    <Box sx={{ py: 6, bgcolor: 'white', borderTop: '1px solid #e2e8f0' }}>
+    <Box 
+      sx={{ 
+        py: 6, 
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        borderTop: '1px solid #e2e8f0' 
+      }}
+    >
       <Container maxWidth="xl">
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography 

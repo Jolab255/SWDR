@@ -41,7 +41,16 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
   const handleNext = () => setCarouselIndex((prev) => Math.min(maxIndex, prev + 1));
 
   return (
-    <Box sx={{ py: 6, bgcolor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+    <Box 
+      sx={{ 
+        py: 6, 
+        backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        borderTop: '1px solid #e2e8f0' 
+      }}
+    >
       <Container maxWidth="xl">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Box 

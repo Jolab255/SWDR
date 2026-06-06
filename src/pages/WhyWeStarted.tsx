@@ -22,29 +22,40 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
 
   const timelineEvents = [
     {
-      year: '2021',
-      title: 'The Eye-Opener (Morogoro)',
-      desc: 'Dr. Jerome Rome volunteers at a rural orphanage in Morogoro. He discovers that over 90% of children suffered from active toothaches and facial infections, with absolutely zero access to dental professionals or simple toothbrushes.'
-    },
-    {
-      year: '2022',
-      title: 'Genesis of SWDR Charity',
-      desc: 'Dr. Rome dedicates a portion of his private city clinic profits to start Smile with Doctor Rome Dental Clinic - Charity Branch. We conduct our first charity in Kisarawe, Pwani, screening and treating 85 kids inside a school classroom.'
-    },
-    {
-      year: '2023',
-      title: 'The Mobile Dental Truck',
-      desc: 'Recognizing classroom environments limit medical quality, we buy and retrofit a clinical mobile truck. Equipped with solar-powered patient chairs, dental tools, clean water tanks, and sterilization chambers.'
+      year: '2024',
+      title: 'JUST FOR ME CHARITY – MLIMANI CITY',
+      desc: 'We collaborated with Just For Me Foundation in December 2024 to organize a one-day charity event which gathered 300+ children with physical impairment and orphans from various centers in and around Dar es Salaam. Services provided: dental screening, oral hygiene instructions through demonstrations, oral health education to caregivers on how to handle the oral health status of these children. Products offered: toothbrushes and toothpastes.',
+      image: '/images/swdr_happy_children.png'
     },
     {
       year: '2024',
-      title: 'Specialized Cleft & Palate Surgeries',
-      desc: 'Visiting maxillofacial specialists partner with SWDR. We successfully perform our first batch of 12 free reconstructive cleft palate surgeries for children whose families could never afford clinical fees.'
+      title: 'AT VIGWAZA PWANI - MAASAI COMMUNITY',
+      desc: 'We collaborated with Kesho Angavu Initiative (KAI) to serve the Masai Community at Vigwaza, a Maasai community in Pwani. This was a 3-days event and we served 150+ children from the Maasai community living in rural areas. We addressed issues pertaining to oral health, screened for dental abnormalities and encouraged proper oral hygiene maintenance.',
+      image: '/images/surgical_camp.png'
+    },
+    {
+      year: '2024',
+      title: 'IN SINGISA VILLAGE MOROGORO',
+      desc: 'We had a trip to Singisa Village, more than 260 KM from Dar es Salaam city center for a dental camp. In this village, there is no internet. A single school and dispensary are found far away from residential spots. This was a one week program. In this village we served 700+ children. We had a dental booth where we did dental screening, oral hygiene instructions, counselling on oral health matters and Atraumatic Restorative Treatments (ART).',
+      image: '/images/mobile_clinic.png'
     },
     {
       year: '2025',
-      title: 'Unified Checkout Integration',
-      desc: 'To support rising operation costs, we secure direct free API integrations with Tanzanian mobile networks (M-Pesa, Tigo Pesa, Airtel Money, Halopesa) and Selcom, enabling seamless domestic and international donation flows.'
+      title: 'DORCAS HOMECARE CENTRE',
+      desc: 'This is a center for children with Cerebral Palsy. These children have uncoordinated motor functions. This tendency makes their muscles stiff sometimes and this makes it hard for their caregivers to clean their oral cavity. So, we visited this center on the WORLD ORAL HEALTH DAY 2025. Services offered: oral health education to caregivers, oral hygiene instructions to caregivers, dental screening of both children and caregivers. Dental Products offered: toothpastes and toothbrushes.',
+      image: '/images/hygiene_campaign.png'
+    },
+    {
+      year: '2025',
+      title: 'AT SIFA VILLAGE ORPHANAGE CENTER',
+      desc: 'We collaborated with Walimwengu Foundation in paying a visit this center for charity purpose. At this community we managed to serve 100+ orphans and 50+ adults. Services offered: oral health education, oral hygiene instructions, dental screening and counselling on matters pertaining oral health.',
+      image: '/images/swdr_hero.png'
+    },
+    {
+      year: '2026',
+      title: 'AT JERUSALEM CHILDREN’S HOME',
+      desc: 'We collaborated with Agents Of Smile Foundation on 21st March, 2026 at Jerusalem Children’s Home in conducting a charity outreach. At this center we served 60+ who are orphans and others abandoned. We did oral hygiene screening, oral health promotion and gave oral hygiene kits.',
+      image: '/images/restorative_surgery.png'
     }
   ];
 
@@ -63,10 +74,28 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
   };
 
   return (
-    <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
+    <Box 
+      sx={{ 
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        overflow: 'hidden' 
+      }}
+    >
       
       {/* HEADER SECTION */}
-      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#fdf2f8', borderBottom: '1px solid #e2e8f0' }}>
+      <Box 
+        sx={{ 
+          pt: { xs: 6, md: 7 }, 
+          pb: { xs: 4, md: 5 }, 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+          borderBottom: '1px solid #e2e8f0' 
+        }}
+      >
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center' }}>
             <Typography 
@@ -93,7 +122,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             mb: 12,
             border: '1px solid #e2e8f0', 
             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            bgcolor: 'white',
+            bgcolor: 'rgba(255, 255, 255, 0.9)',
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
             overflow: 'hidden',
@@ -114,13 +143,32 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
               <FlagIcon sx={{ fontSize: '2.8rem', color: '#be185d' }} /> The Turning Point
             </Typography>
             <Typography variant="body1" sx={{ color: '#1e293b', mb: 3, lineHeight: 1.7, fontWeight: 700, fontSize: '1.2rem' }}>
-              "It started with a single volunteer trip to Morogoro that changed everything."
+              "A single volunteer trip that changed everything."
             </Typography>
             <Typography variant="body1" sx={{ color: '#475569', mb: 4, lineHeight: 1.8, fontWeight: 500, textAlign: 'justify' }}>
-              While running a successful private practice in Dar es Salaam, Dr. Jerome Rome took a weekend to volunteer in rural Morogoro. What he found wasn't just "bad teeth"—it was a humanitarian crisis. He saw children with massive facial abscesses who hadn't slept in weeks, students dropping out because they couldn't speak without pain, and parents who had never even seen a toothbrush.
+              In his third year as a dental student Dr. Melkisedeck Robert had to an opportunity to
+              guide Letricia (late) and her mother through different departments at Muhimbili National
+              Hospital where she was running various investigations. Born with a neurological
+              disorder that kept her back curved and loss of coordination, Dr. Melkisedeck Robert
+              noticed something unfair with her oral hygiene.
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#475569', mb: 4, lineHeight: 1.8, fontWeight: 500, textAlign: 'justify' }}>
+              A few weeks later he teamed up with Jody Holmes, Shawn Dunn and Andrew Dunn in
+              Mwanza who were funding Letricia’s treatment. Together, they focused on helping
+              children with special healthcare needs in schools, orphanages, and remote areas. As a
+              dental student, he became increasingly concerned during outreach programs after
+              noticing that many children had poor oral hygiene and untreated tooth decay. These
+              communities reflected a much larger problem affecting millions of children across
+              Tanzania and Africa.
             </Typography>
             <Typography variant="body1" sx={{ color: '#475569', mb: 5, lineHeight: 1.8, fontWeight: 500, textAlign: 'justify' }}>
-              He realized that for the millions of children in Tanzania's hardest environments, a "private clinic" was a fantasy. They didn't need a dentist in a city office; they needed a dentist who would drive to them. **That is why we started.** SWDR was founded to ensure that geography and poverty are no longer death sentences for a child's smile.
+              Knowing that dental services are expensive for them to afford, knowing they had no
+              access to dental services easily, knowing such communities knew little or nothing about
+              oral health – He found reasons beyond doubt as to why oral health services should
+              move from institutions to communities especially to children with special healthcare
+              needs. These children didn’t need a dentist in the city office, they needed one who
+              could drive to them -That is why we started. SWDR was founded to ensure that
+              geography, education and poverty are no longer death sentences for a child's smile.
             </Typography>
             
             <Box>
@@ -165,8 +213,78 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           </Box>
         </Box>
 
+        {/* WHY FOCUS ON PRIMARY PREVENTION AND HEALTH PROMOTION */}
+        <Box sx={{ mb: 12 }}>
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Typography variant="h3" sx={{ fontWeight: '900', mb: 3, textTransform: 'uppercase', letterSpacing: '-1px', fontSize: { xs: '2rem', md: '2.5rem' } }}>
+              Why Focus on Primary Prevention &amp; Health Promotion
+            </Typography>
+            <Box sx={{ width: 64, height: 5, bgcolor: '#be185d', mx: 'auto', mt: 3, borderRadius: 2 }} />
+          </Box>
+
+          <Grid container spacing={4}>
+            {[
+              {
+                title: 'Avoid occurrence',
+                desc: 'We prioritize preventive care for children with special healthcare needs by reducing the risk of dental problems before they develop. Through tailored oral health education for children and caregivers, along with regular screenings, we help prevent cavities, gum disease, and other oral problems. Our proactive approach promotes healthier smiles and improved overall well-being.'
+              },
+              {
+                title: 'Arrest progression',
+                desc: 'Early detection and timely intervention are essential in caring for children with special healthcare needs. When dental problems are identified early, we provide tailored treatment and follow-up care to stop their progression. Our team works closely with caregivers and communities to monitor oral health and ensure children receive the support needed to prevent more serious complications.'
+              },
+              {
+                title: 'Reduce consequences / rehabilitate',
+                desc: 'Dental problems in children with special healthcare needs can significantly affect overall health and quality of life. We focus on timely treatment and rehabilitation to reduce pain, prevent complications, and restore oral function. Through caregiver education and accessible care, we help manage the wider health impacts of untreated dental conditions.'
+              },
+              {
+                title: 'Enable community control over their health',
+                desc: 'We empower children with special healthcare needs and their caregivers through education, support, and accessible dental care. By promoting awareness and preventive practices, we help families take an active role in managing their oral health and improving outcomes.'
+              }
+            ].map((item, idx) => (
+              <Grid size={{ xs: 12, md: 6 }} key={idx}>
+                <Box
+                  sx={{
+                    p: 4,
+                    border: '1px solid #e2e8f0',
+                    bgcolor: 'rgba(255, 255, 255, 0.9)',
+                    height: '100%',
+                    borderRadius: 2,
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      transform: 'translateY(-3px)',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                      borderColor: '#be185d'
+                    }
+                  }}
+                >
+                  <Typography variant="h5" sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', mb: 2, letterSpacing: '-0.5px', fontSize: '1.25rem' }}>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, fontSize: '0.98rem', fontWeight: 500, textAlign: 'justify' }}>
+                    {item.desc}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
         {/* TIMELINE JOURNEY */}
-        <Box sx={{ py: 10, bgcolor: '#f8fafc', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', mb: 12, px: { xs: 3, md: 8 }, borderRadius: 2 }}>
+        <Box 
+          sx={{ 
+            py: 10, 
+            backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
+            backgroundRepeat: 'no-repeat, repeat',
+            backgroundSize: 'auto, 120px 120px',
+            backgroundAttachment: 'scroll, fixed',
+            border: '1px solid #e2e8f0', 
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)', 
+            mb: 12, 
+            px: { xs: 3, md: 8 }, 
+            borderRadius: 2 
+          }}
+        >
           <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
             <TimelineIcon sx={{ fontSize: '3rem', color: '#be185d' }} /> Our Journey So Far
           </Typography>
@@ -179,33 +297,62 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                   sx={{
                     position: 'absolute',
                     left: { xs: -47, sm: -79 },
-                    top: 0,
+                    top: { xs: 20, md: 32 },
                     width: 30,
                     height: 30,
                     bgcolor: '#be185d',
                     border: '3px solid #fce7f3',
                     borderRadius: '50%',
-                    boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)'
+                    boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)',
+                    zIndex: 2
                   }}
                 />
                 
                 <Box 
                   sx={{ 
-                    p: 4, 
-                    bgcolor: 'white', 
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: idx % 2 === 0 ? 'row' : 'row-reverse' },
                     border: '1px solid #e2e8f0', 
                     boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                     borderRadius: 2,
+                    overflow: 'hidden',
+                    bgcolor: 'rgba(255, 255, 255, 0.9)',
                     transition: 'all 0.2s ease',
                     '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }
                   }}
                 >
-                  <Typography variant="h5" color="#be185d" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
-                    {item.year} — {item.title}
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, fontWeight: 500, fontSize: '1.05rem' }}>
-                    {item.desc}
-                  </Typography>
+                  {/* Photo Container */}
+                  <Box 
+                    sx={{
+                      width: { xs: '100%', md: '32%' },
+                      minHeight: { xs: 220, md: 'auto' },
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <Box 
+                      component="img"
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                  </Box>
+
+                  {/* Content Details */}
+                  <Box sx={{ p: 4, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Typography variant="h5" color="#be185d" gutterBottom sx={{ fontWeight: '900', textTransform: 'uppercase', fontSize: '1.2rem', letterSpacing: '-0.3px' }}>
+                      {item.year} — {item.title}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, fontWeight: 500, fontSize: '0.98rem', textAlign: 'justify' }}>
+                      {item.desc}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             ))}
@@ -219,7 +366,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
               Be Part of the Movement
             </Typography>
             <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
-              Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
+              Smile with Doctor Rome is more than a clinic; it's a collective mission to restore oral health to the most vulnerable. Join us in making dental pain a thing of the past for African children.
             </Typography>
             <Box sx={{ width: 64, height: 5, bgcolor: '#be185d', mx: 'auto', mt: 3, borderRadius: 2 }} />
           </Box>
@@ -227,7 +374,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           <Grid container spacing={4}>
             {[
               {
-                title: 'Sponsor an Charity',
+                title: 'Sponsor a Charity',
                 desc: 'Support the complete clinical costs of one rural mobile camp. Your funds go directly to purchasing dental materials, truck fuel, and medical supplies.',
                 actionText: 'Sponsor a Camp Now',
                 action: onDonateClick,
@@ -254,7 +401,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     p: 4,
                     border: '1px solid #e2e8f0',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.07)',
-                    bgcolor: 'white',
+                    bgcolor: 'rgba(255, 255, 255, 0.9)',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',

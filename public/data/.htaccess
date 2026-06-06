@@ -1,0 +1,2 @@
+# Block public downloads of the database
+Deny from all

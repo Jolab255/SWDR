@@ -59,14 +59,25 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
   ];
 
   return (
-    <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
+    <Box 
+      sx={{ 
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        overflow: 'hidden' 
+      }}
+    >
       
       {/* HEADER HERO SECTION */}
       <Box 
         sx={{ 
           pt: { xs: 4, md: 5.5 }, 
           pb: { xs: 3, md: 4 }, 
-          bgcolor: '#fdf2f8', 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
           borderBottom: '1px solid #fce7f3',
           textAlign: 'center'
         }}
@@ -138,6 +149,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                   boxShadow: SHADOW,
                   borderRadius: 3,
                   overflow: 'hidden',
+                  bgcolor: 'rgba(255, 255, 255, 0.9)',
                   transition: 'all 0.3s ease',
                   '&:hover': {
                     boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
@@ -194,7 +206,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                   <Box 
                     sx={{ 
                       p: 3, 
-                      bgcolor: '#fdf2f8', 
+                      bgcolor: 'rgba(253, 242, 248, 0.85)', 
                       borderLeft: '4px solid #be185d', 
                       borderRadius: '0 8px 8px 0',
                       mb: 3,
@@ -249,7 +261,10 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
         sx={{ 
           pt: { xs: 5, md: 6 }, 
           pb: { xs: 4, md: 5 }, 
-          bgcolor: '#fdf2f8', 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
           borderTop: '1px solid #fce7f3', 
           borderBottom: '1px solid #fce7f3',
           width: '100%',

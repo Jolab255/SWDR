@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// Force Vite HMR cache invalidation
 import {
   AppBar,
   Toolbar,
@@ -144,7 +145,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   }
                 }}
               >
-                Donate Now
+                Donate to Save a Smile
               </Button>
 
               {isMobile && (
@@ -275,7 +276,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 }
               }}
             >
-              Donate Now
+              Donate to Save a Smile
             </Button>
           </Box>
         </Box>

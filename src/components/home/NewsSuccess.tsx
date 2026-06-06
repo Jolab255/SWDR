@@ -20,7 +20,16 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
   if (news.length === 0) return null;
 
   return (
-    <Box sx={{ py: 7, bgcolor: '#fdf2f8', borderTop: '1px solid #e2e8f0' }}>
+    <Box 
+      sx={{ 
+        py: 7, 
+        backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        borderTop: '1px solid #e2e8f0' 
+      }}
+    >
       <Container maxWidth="xl">
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 8, flexWrap: 'wrap', gap: 3 }}>
           <Box>

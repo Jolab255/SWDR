@@ -40,10 +40,28 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
   ];
 
   return (
-    <Box sx={{ bgcolor: '#ffffff', overflow: 'hidden' }}>
+    <Box 
+      sx={{ 
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        overflow: 'hidden' 
+      }}
+    >
       
       {/* ── HERO / INTRO ────────────────────────────────────────────────────── */}
-      <Box sx={{ pt: { xs: 6, md: 7 }, pb: { xs: 4, md: 5 }, bgcolor: '#fdf2f8', borderBottom: '1px solid #e2e8f0' }}>
+      <Box 
+        sx={{ 
+          pt: { xs: 6, md: 7 }, 
+          pb: { xs: 4, md: 5 }, 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+          borderBottom: '1px solid #e2e8f0' 
+        }}
+      >
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Typography
@@ -64,19 +82,29 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
       </Box>
 
       {/* ── PROFILE STATEMENT ───────────────────────────────────────────────── */}
-      <Box sx={{ py: { xs: 4, md: 6 }, borderBottom: '1px solid #e2e8f0', bgcolor: '#f8fafc' }}>
+      <Box 
+        sx={{ 
+          py: { xs: 4, md: 6 }, 
+          borderBottom: '1px solid #e2e8f0', 
+          backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+        }}
+      >
         <Container maxWidth="md">
           <Box sx={{ border: BORDER, boxShadow: SHADOW, bgcolor: 'white', p: { xs: 4, md: 6 }, borderRadius: 2 }}>
             <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 1.5, fontSize: { xs: '1.6rem', md: '2.1rem' } }}>
               The Smile Mission
             </Typography>
             <Box sx={{ width: 48, height: 4, bgcolor: '#be185d', mb: 3, borderRadius: 2 }} />
-            <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.75, fontSize: '1.025rem', fontWeight: 500, mb: 4 }}>
-              Smile with Doctor Rome Dental Clinic (SWDR) was founded with a singular, radical focus: that professional
-              pediatric dental care should never be a luxury. In Tanzania, untreated dental decay often leads to chronic
-              facial abscesses, severe pain, school absenteeism, and malnutrition. Today, SWDR is a hybrid social enterprise —
-              our city clinic funds core operations while 100% of donations are poured directly into our rural charities
-              and free reconstructive surgeries for the most vulnerable.
+            <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, fontSize: '1.025rem', fontWeight: 500, mb: 4 }}>
+              Smile with Doctor Rome Dental Clinic (SWDR) was founded with a singular and
+              transformative vision: to move paediatric dental care from institutions into the
+              community for easy and quick accessibility. In Tanzania, untreated dental decay causes
+              severe pain, infections, school absenteeism, and malnutrition. SWDR addresses this by
+              delivering mobile dental services that are flexible, accessible, and reach children with
+              special healthcare needs wherever they are.
             </Typography>
             <Box>
               <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<FavoriteIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)', '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 16px rgba(190, 24, 93,0.4)' } }}>
@@ -91,24 +119,60 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
       <Box sx={{ borderBottom: '1px solid #e2e8f0' }}>
         <Container maxWidth="xl" disableGutters>
           <Grid container>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <Box sx={{ p: { xs: 5, md: 7 }, borderRight: { sm: '1px solid #e2e8f0' }, borderBottom: { xs: '1px solid #e2e8f0', sm: 'none' }, bgcolor: '#fbcfe8', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Grid size={{ xs: 12, sm: 6 }} sx={{ display: 'flex' }}>
+              <Box 
+                sx={{ 
+                  p: { xs: 5, md: 7 }, 
+                  borderRight: { sm: '1px solid #e2e8f0' }, 
+                  borderBottom: { xs: '1px solid #e2e8f0', sm: 'none' }, 
+                  backgroundImage: 'linear-gradient(180deg, rgba(251, 207, 232, 0.97) 0%, rgba(251, 207, 232, 0.97) 100%), url("/favicon.png")',
+                  backgroundRepeat: 'no-repeat, repeat',
+                  backgroundSize: 'auto, 120px 120px',
+                  backgroundAttachment: 'scroll, fixed',
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  width: '100%', 
+                  height: '100%', 
+                  flexGrow: 1 
+                }}
+              >
                 <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #fce7f3', boxShadow: '0 2px 8px rgba(190, 24, 93,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#be185d', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Mission</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
-                  To restore pediatric health, cure chronic infections, and reconstruct congenital dental issues for underprivileged children in Tanzania's hardest environments — by delivering 100% free professional dental treatments, surgeries, and continuous oral hygiene education.
+                  At Smile with Dr Rome, our mission is to provide comprehensive, compassionate dental
+                  care to children with special healthcare needs, especially those in underserved
+                  communities. We prioritize oral health promotion and preventive care by empowering
+                  children, caregivers, and communities with the knowledge and support needed to
+                  maintain healthy smiles and improve quality of life of every child we serve.
                 </Typography>
               </Box>
             </Grid>
 
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <Box sx={{ p: { xs: 5, md: 7 }, bgcolor: '#fbcfe8', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Grid size={{ xs: 12, sm: 6 }} sx={{ display: 'flex' }}>
+              <Box 
+                sx={{ 
+                  p: { xs: 5, md: 7 }, 
+                  backgroundImage: 'linear-gradient(180deg, rgba(251, 207, 232, 0.97) 0%, rgba(251, 207, 232, 0.97) 100%), url("/favicon.png")',
+                  backgroundRepeat: 'no-repeat, repeat',
+                  backgroundSize: 'auto, 120px 120px',
+                  backgroundAttachment: 'scroll, fixed',
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  width: '100%', 
+                  height: '100%', 
+                  flexGrow: 1 
+                }}
+              >
                 <Box sx={{ display: 'inline-flex', alignItems: 'center', border: '1px solid #fce7f3', boxShadow: '0 2px 8px rgba(190, 24, 93,0.2)', px: 3, py: 1, mb: 4, bgcolor: '#be185d', borderRadius: 1 }}>
                   <Typography sx={{ fontWeight: "900", color: '#fff', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem' }}>Our Vision</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.85, fontSize: '1.025rem', fontWeight: 500, textAlign: 'justify' }}>
-                  A healthy, pain-free smile and complete dental wellbeing for every child in East Africa — ensuring they grow up with confidence and without health barriers, regardless of their economic or geographical background.
+                  Our vision is to create a community where every child with special healthcare needs
+                  enjoys lifelong oral health, supported by accessible care, prevention, and the knowledge
+                  to make informed oral health decisions.
                 </Typography>
               </Box>
             </Grid>
@@ -117,7 +181,16 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
       </Box>
 
       {/* ── OUR CORE VALUES ──────────────────────────────────────────────────── */}
-      <Box sx={{ py: { xs: 8, md: 10 }, borderBottom: '1px solid #e2e8f0', bgcolor: '#f8fafc' }}>
+      <Box 
+        sx={{ 
+          py: { xs: 8, md: 10 }, 
+          borderBottom: '1px solid #e2e8f0', 
+          backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+        }}
+      >
         <Container maxWidth="xl">
           <Box sx={{ mb: 7, textAlign: 'center' }}>
             <Typography variant="h3" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' }, mt: 0.5, mb: 1.5 }}>
@@ -180,7 +253,17 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
       </Box>
 
       {/* ── OUR TEAM ────────────────────────────────────────────────────────── */}
-      <Box sx={{ py: { xs: 7, md: 9 }, bgcolor: 'white', borderTop: '1px solid #e2e8f0', overflow: 'hidden' }}>
+      <Box 
+        sx={{ 
+          py: { xs: 7, md: 9 }, 
+          backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
+          borderTop: '1px solid #e2e8f0', 
+          overflow: 'hidden' 
+        }}
+      >
         <Container maxWidth="xl" sx={{ px: 0 }}>
           <Box sx={{ mb: 10, textAlign: 'center', px: 2 }}>
             <Typography variant="h3" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1.5px', fontSize: { xs: '2rem', md: '2.8rem' }, mb: 1.5 }}>
@@ -194,7 +277,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
               const isEven = idx % 2 === 0;
               return (
                 <Box key={idx} sx={{ width: { xs: '95%', md: '75%' }, minHeight: { md: '25vh' }, alignSelf: isEven ? 'flex-start' : 'flex-end', display: 'flex', flexDirection: { xs: 'column', md: isEven ? 'row' : 'row-reverse' }, border: BORDER, borderRadius: 2, boxShadow: SHADOW, bgcolor: 'white', transition: 'all 0.2s ease', '&:hover': { transform: 'translateY(-4px)', boxShadow: SHADOW_HOVER } }}>
-                  <Box sx={{ width: { xs: '100%', md: '70%' }, p: { xs: 4, md: 6 }, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: isEven ? 'white' : '#f8fafc' }}>
+                  <Box sx={{ width: { xs: '100%', md: '70%' }, p: { xs: 4, md: 6 }, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: isEven ? 'rgba(255, 255, 255, 0.9)' : 'rgba(248, 250, 252, 0.9)' }}>
                     <Typography variant="h5" sx={{ fontWeight: "900", color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-0.5px', mb: 1 }}>{member.name}</Typography>
                     <Typography variant="subtitle1" sx={{ fontWeight: "800", color: '#be185d', textTransform: 'uppercase', letterSpacing: '1.5px', mb: 3, fontSize: '0.85rem' }}>
                       {member.role} — <Box component="span" sx={{ color: '#64748b', fontWeight: 600 }}>{member.tag}</Box>
@@ -224,7 +307,10 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
         sx={{ 
           pt: { xs: 6, md: 7.5 }, 
           pb: { xs: 4, md: 5 }, 
-          bgcolor: '#fdf2f8', 
+          backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+          backgroundRepeat: 'no-repeat, repeat',
+          backgroundSize: 'auto, 120px 120px',
+          backgroundAttachment: 'scroll, fixed',
           borderTop: '1px solid #fce7f3', 
           borderBottom: '1px solid #fce7f3',
           width: '100%',

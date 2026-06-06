@@ -2,7 +2,9 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { createTheme, ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+// Force Vite HMR cache reload
 import Navbar from './components/Navbar';
+// Force Vite HMR cache reload
 import Footer from './components/Footer';
 import DonateWidget from './components/DonateWidget';
 
@@ -159,7 +161,7 @@ function App() {
         <link rel="canonical" href={`https://smilewithdrrome.org${location.pathname === '/' ? '' : location.pathname}`} />
       </Helmet>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100vw' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
         
         {/* Sticky Header Navigation */}
         <Navbar onDonateClick={handleDonateOpen} />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Force Vite HMR cache invalidation
 import {
   Box,
   Container,
@@ -46,7 +47,10 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        bgcolor: 'white',
+        backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.975) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
         color: '#1e293b',
         borderTop: '1px solid #e2e8f0',
         boxShadow: '0 -1px 8px rgba(0,0,0,0.04)',

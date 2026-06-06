@@ -12,33 +12,41 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 const programs = [
   {
     num: '01',
-    title: 'Mobile Clinics',
-    desc: 'We deploy equipped mobile units to remote rural villages where dental services are non-existent, performing critical emergency checkups and relief extractions for school pupils.',
-    icon: <DirectionsBusIcon sx={{ fontSize: '1.6rem' }} />,
+    title: 'Oral Health Education & Awareness',
+    desc: 'We provide tailored education programs to children, caregivers, and communities on proper oral hygiene, prevention of dental diseases, and the importance of regular dental care.',
+    icon: <HealthAndSafetyIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '02',
-    title: 'Restorative Surgery',
-    desc: 'At our permanent center in Dar es Salaam, we provide advanced endodontic treatment, dental restoration, and emergency oral surgeries to children referred from our rural mobile campaigns.',
+    title: 'Dental Screening & Consultation',
+    desc: 'We conduct outreach screenings and professional consultations to assess oral health conditions, identify urgent needs, and guide patients toward appropriate care.',
     icon: <MedicalServicesIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '03',
-    title: 'Hygiene Campaigns',
-    desc: 'We host dynamic preventative hygiene checkups and educational workshops in primary schools, distributing dental health kits (toothbrushes and pastes) to foster lasting positive habits.',
-    icon: <HealthAndSafetyIcon sx={{ fontSize: '1.6rem' }} />,
+    title: 'Free Dental Treatment Services',
+    desc: 'We deliver comprehensive, no-cost dental treatments including preventive care, basic restorative procedures, pain management, and referrals for advanced care when needed.',
+    icon: <LocalHospitalIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '04',
-    title: 'Surgical Camps',
-    desc: 'We coordinate cleft lip and palate reconstruction camps, collaborating with local municipal hospitals to execute complex pediatric oral and maxillofacial surgeries completely free of charge.',
-    icon: <LocalHospitalIcon sx={{ fontSize: '1.6rem' }} />,
+    title: 'Community Outreach & Mobile Dental Services',
+    desc: 'We reach underserved and remote populations through mobile clinics and field programs, ensuring access to dental care for vulnerable children who cannot visit health facilities.',
+    icon: <DirectionsBusIcon sx={{ fontSize: '1.6rem' }} />,
   },
 ];
 
 export default function Programs() {
   return (
-    <Box sx={{ bgcolor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+    <Box 
+      sx={{ 
+        backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
+        borderTop: '1px solid #e2e8f0' 
+      }}
+    >
       <Container maxWidth="xl" disableGutters>
         <Grid container>
 
@@ -109,7 +117,7 @@ export default function Programs() {
                     maxWidth: 380,
                   }}
                 >
-                  Smile with Doctor Rome Clinic delivers professional dental services and reconstructive oral surgery through four core humanitarian programs.
+                  Smile With Dr Rome Dental Clinic which delivers mobile professional dental services through four core humanitarian programs.
                 </Typography>
               </Box>
             </Box>
@@ -126,10 +134,10 @@ export default function Programs() {
                     gap: 3,
                     p: { xs: 4, md: 5 },
                     borderBottom: idx < programs.length - 1 ? '1px solid #fdf2f8' : 'none',
-                    bgcolor: 'white',
+                    bgcolor: 'transparent',
                     transition: 'all 0.2s ease',
                     '&:hover': {
-                      bgcolor: '#fdf2f8',
+                      bgcolor: 'rgba(253, 242, 248, 0.55)',
                       '& .prog-num': { color: '#be185d' },
                       '& .prog-icon-box': { bgcolor: '#be185d', color: 'white' },
                     },

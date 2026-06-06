@@ -19,7 +19,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
   
   const actions = [
     {
-      title: 'Sponsor an Charity',
+      title: 'Sponsor a Charity',
       desc: 'Support the complete clinical costs of one rural mobile camp. Your funds go directly to purchasing dental materials, truck fuel, and medical supplies.',
       actionText: 'Sponsor a Camp Now',
       action: onDonateClick,
@@ -45,7 +45,10 @@ export default function Movement({ onDonateClick }: MovementProps) {
     <Box
       sx={{
         py: { xs: 6, md: 8 },
-        bgcolor: '#fdf2f8',
+        backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
         borderTop: '1px solid #fce7f3',
         borderBottom: '1px solid #fce7f3',
       }}
@@ -56,7 +59,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
           Be Part of the Movement
         </Typography>
         <Typography variant="body1" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 500, color: '#475569', lineHeight: 1.85, fontSize: '1.1rem' }}>
-          Smile with Doctor Rome is more than a clinic; it's a collective mission to restore health to the most vulnerable. Join us in making dental pain a thing of the past for Tanzania's children.
+          Smile with Doctor Rome is more than a clinic; it's a collective mission to restore oral health to the most vulnerable. Join us in making dental pain a thing of the past for African children.
         </Typography>
         <Box sx={{ width: 64, height: 5, bgcolor: '#be185d', mx: 'auto', mt: 3, borderRadius: 2 }} />
       </Box>

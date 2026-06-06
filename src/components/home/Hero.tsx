@@ -19,7 +19,10 @@ export default function Hero({ onDonateClick }: HeroProps) {
         position: 'relative',
         pt: { xs: 2.5, md: 3.5 },
         pb: { xs: 4, md: 5 },
-        background: 'linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%)',
+        backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.95) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
         color: 'text.primary',
         overflow: 'hidden'
       }}
@@ -33,15 +36,26 @@ export default function Hero({ onDonateClick }: HeroProps) {
                 variant="h1" 
                 gutterBottom
                 sx={{ 
-                  fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' },
+                  fontSize: { xs: '1.6rem', sm: '2.2rem', md: '2.8rem' },
                   lineHeight: 1.15,
                   letterSpacing: '-1px',
-                  fontWeight: 900,
+                  fontWeight: 700,
                   color: 'text.primary',
-                  mb: 2.5
+                  mb: 3
                 }}
               >
-                CHILDREN WITH SPECIAL HEALTHCARE NEEDS <Box component="span" sx={{ color: 'primary.main' }}>DESERVE BETTER ORAL HEALTHCARE SERVICES.</Box>
+                Making Oral Healthcare Accessible to{' '}
+                <Box 
+                  component="span" 
+                  sx={{ 
+                    background: 'linear-gradient(135deg, #be185d 0%, #e11d48 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    display: 'inline'
+                  }}
+                >
+                  Children with Special Healthcare Needs
+                </Box>
               </Typography>
               <Typography 
                 variant="body1" 
@@ -50,32 +64,31 @@ export default function Hero({ onDonateClick }: HeroProps) {
                   color: 'text.secondary', 
                   fontSize: '1.1rem',
                   lineHeight: 1.7,
-                  maxWidth: 580
+                  maxWidth: 680
                 }}
               >
-                We provide professional, free dental treatments and reconstructive surgeries to vulnerable children in remote villages and challenging environments across Tanzania. Join us to make a lasting impact.
+                We provide professional, free comprehensive dental cares services ranging from education, consultation to treatment to children with special healthcare needs. We serve children with physical impairments (disabilities/handicapped), street children, orphans, refugees, the poor, prisoners, abused children, and children living in remote areas.
               </Typography>
 
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                 <Button
                   variant="contained"
-                  size="large"
                   onClick={onDonateClick}
                   startIcon={<FavoriteIcon />}
                   sx={{ 
-                    px: 4, 
-                    py: 1.8, 
+                    px: 3, 
+                    py: 1.2, 
                     borderRadius: 2, 
-                    fontWeight: '900', 
-                    fontSize: '1rem', 
+                    fontWeight: 700, 
+                    fontSize: '0.9rem', 
                     textTransform: 'none',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
                     bgcolor: 'secondary.main',
                     color: 'white',
                     transition: 'all 0.2s ease',
                     '&:hover': {
                       bgcolor: 'secondary.dark',
-                      boxShadow: '0 4px 14px rgba(0,0,0,0.2)'
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.18)'
                     }
                   }}
                 >
@@ -84,24 +97,23 @@ export default function Hero({ onDonateClick }: HeroProps) {
                 <Button
                   variant="outlined"
                   color="primary"
-                  size="large"
                   component={Link}
                   to="/about"
                   sx={{ 
-                    px: 4, 
-                    py: 1.8, 
+                    px: 3, 
+                    py: 1.2, 
                     borderRadius: 2, 
-                    fontWeight: '900', 
-                    fontSize: '1rem', 
+                    fontWeight: 700, 
+                    fontSize: '0.9rem', 
                     textTransform: 'none', 
                     border: '1px solid #be185d',
-                    boxShadow: '0 2px 6px rgba(190, 24, 93,0.15)',
+                    boxShadow: '0 2px 6px rgba(190, 24, 93,0.1)',
                     bgcolor: 'white',
                     color: '#be185d',
                     textDecoration: 'none',
                     transition: 'all 0.2s',
                     '&:hover': { 
-                      boxShadow: '0 4px 14px rgba(190, 24, 93,0.25)',
+                      boxShadow: '0 4px 12px rgba(190, 24, 93,0.18)',
                       bgcolor: '#fdf2f8',
                     } 
                   }}

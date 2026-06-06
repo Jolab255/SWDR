@@ -98,14 +98,42 @@ export default function Home({ onDonateClick }: HomeProps) {
   }
 
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <Hero onDonateClick={onDonateClick} />
-      <Programs />
-      <MissionCTA onDonateClick={onDonateClick} />
-      <EventsCalendar events={events} onReadMoreClick={handleReadMore} />
-      <ImpactGlimpses impactStories={impactStories} />
-      <NewsSuccess news={news} />
-      <Movement onDonateClick={onDonateClick} />
+    <Box 
+      sx={{ 
+        overflow: 'hidden',
+        position: 'relative',
+        // Subtle repeated favicon tooth pattern
+        backgroundImage: 'url("/favicon.png")',
+        backgroundRepeat: 'repeat',
+        backgroundSize: '120px 120px',
+        backgroundAttachment: 'fixed',
+        bgcolor: '#ffffff',
+      }}
+    >
+      {/* Semi-transparent white overlay to make the repeated favicon look very subtle ("kwa mbali") */}
+      <Box 
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: 'rgba(255, 255, 255, 0.975)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+      
+      {/* Content wrapper sitting above the overlay */}
+      <Box sx={{ position: 'relative', zIndex: 2 }}>
+        <Hero onDonateClick={onDonateClick} />
+        <Programs />
+        <MissionCTA onDonateClick={onDonateClick} />
+        <EventsCalendar events={events} onReadMoreClick={handleReadMore} />
+        <ImpactGlimpses impactStories={impactStories} />
+        <NewsSuccess news={news} />
+        <Movement onDonateClick={onDonateClick} />
+      </Box>
       
       {/* Invisible Dialogs for Home Context */}
       <HomeDialogs 

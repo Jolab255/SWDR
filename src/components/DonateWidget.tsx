@@ -14,7 +14,6 @@ import {
   Step,
   StepLabel,
   CircularProgress,
-  Alert,
   Paper,
   Select,
   MenuItem,
@@ -118,6 +117,156 @@ const PaymentSupportInfo = () => (
   </Typography>
 );
 
+const SimulatedUssdScreen = ({ 
+  amountText, 
+  carrier, 
+  onSuccess, 
+  onCancel 
+}: { 
+  amountText: string; 
+  carrier: string; 
+  onSuccess: () => void; 
+  onCancel: () => void;
+}) => {
+  const [inputVal, setInputVal] = useState('');
+  const [ussdStep, setUssdStep] = useState(0); 
+  const [pinVal, setPinVal] = useState('');
+
+  const handleSend = () => {
+    if (ussdStep === 0) {
+      if (inputVal.trim() === '1') {
+        setUssdStep(1);
+      } else {
+        alert('Please select option 1 to confirm payment.');
+      }
+    } else if (ussdStep === 1) {
+      if (pinVal.length >= 4) {
+        onSuccess();
+      } else {
+        alert('Please enter a 4-digit PIN to authorize payment.');
+      }
+    }
+  };
+
+  const carrierNames = {
+    mpesa: 'M-Pesa',
+    tigopesa: 'Tigo Pesa',
+    airtelmoney: 'Airtel Money',
+    halopesa: 'Halo Pesa'
+  };
+
+  return (
+    <Box sx={{ maxWidth: 280, mx: 'auto', border: '6px solid #475569', borderRadius: 4, bgcolor: '#1e293b', p: 1.5, boxShadow: '0 8px 24px rgba(0,0,0,0.15)', mb: 2 }}>
+      <Box sx={{ bgcolor: '#0f172a', borderRadius: 2.5, minHeight: 280, p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Box sx={{ bgcolor: 'white', borderRadius: 1.5, p: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+          {ussdStep === 0 ? (
+            <>
+              <Typography sx={{ color: '#be185d', fontWeight: '900', fontSize: '0.85rem', mb: 1, textTransform: 'uppercase' }}>
+                {carrierNames[carrier as keyof typeof carrierNames] || 'Wallet'} Push
+              </Typography>
+              <Typography sx={{ color: '#1e293b', fontSize: '0.8rem', mb: 2, fontWeight: 700, lineHeight: 1.4 }}>
+                Pay {amountText} to SWDR CLINIC?<br />
+                1. Yes<br />
+                2. No
+              </Typography>
+              <TextField 
+                size="small" 
+                fullWidth 
+                autoFocus
+                placeholder="Type 1 and click Send" 
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+                slotProps={{ htmlInput: { style: { fontSize: '0.8rem', padding: '6px 10px', textAlign: 'center', fontWeight: 'bold' } } }}
+                sx={{ mb: 2 }}
+              />
+            </>
+          ) : (
+            <>
+              <Typography sx={{ color: '#be185d', fontWeight: '900', fontSize: '0.85rem', mb: 1, textTransform: 'uppercase' }}>
+                Enter PIN
+              </Typography>
+              <Typography sx={{ color: '#1e293b', fontSize: '0.8rem', mb: 2, fontWeight: 700, lineHeight: 1.4 }}>
+                Enter your 4-digit mobile wallet PIN to authorize.
+              </Typography>
+              <TextField 
+                size="small" 
+                fullWidth 
+                type="password"
+                autoFocus
+                placeholder="4-digit PIN" 
+                value={pinVal}
+                onChange={(e) => setPinVal(e.target.value.replace(/[^0-9]/g, ''))}
+                slotProps={{ htmlInput: { maxLength: 4, style: { textAlign: 'center', fontSize: '1.1rem', letterSpacing: '6px', fontWeight: '900', padding: '6px 10px' } } }}
+                sx={{ mb: 2 }}
+              />
+            </>
+          )}
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Button onClick={onCancel} variant="outlined" size="small" fullWidth sx={{ textTransform: 'none', fontSize: '0.75rem', py: 0.5 }}>Cancel</Button>
+            <Button onClick={handleSend} variant="contained" size="small" fullWidth sx={{ textTransform: 'none', fontSize: '0.75rem', py: 0.5, bgcolor: '#be185d', color: 'white' }}>Send</Button>
+          </Box>
+        </Box>
+      </Box>
+      <Typography sx={{ color: '#94a3b8', fontSize: '0.6rem', textAlign: 'center', mt: 1, fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Simulated USSD Terminal</Typography>
+    </Box>
+  );
+};
+
+const SimulatedThreeDSecureScreen = ({ 
+  amountText, 
+  cardNumber,
+  onSuccess, 
+  onCancel 
+}: { 
+  amountText: string; 
+  cardNumber: string;
+  onSuccess: () => void; 
+  onCancel: () => void;
+}) => {
+  const [otpVal, setOtpVal] = useState('');
+
+  const handleVerify = () => {
+    if (otpVal.length === 6) {
+      onSuccess();
+    } else {
+      alert('Please enter the 6-digit OTP code sent to your phone.');
+    }
+  };
+
+  const maskedCard = cardNumber ? `•••• •••• •••• ${cardNumber.slice(-4)}` : '•••• •••• •••• 1234';
+
+  return (
+    <Box sx={{ maxWidth: 320, mx: 'auto', border: '1px solid #e2e8f0', borderRadius: 2, bgcolor: 'white', p: 3, boxShadow: '0 4px 16px rgba(0,0,0,0.08)', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', pb: 1.5, mb: 2 }}>
+        <Typography sx={{ color: '#be185d', fontWeight: '900', fontSize: '0.85rem' }}>VISA Secure</Typography>
+        <Typography sx={{ color: '#1e293b', fontWeight: '900', fontSize: '0.85rem' }}>Mastercard Identity Check</Typography>
+      </Box>
+      <Typography sx={{ color: '#475569', fontSize: '0.8rem', mb: 2.5, textAlign: 'left', lineHeight: 1.5, fontWeight: 500 }}>
+        An OTP has been sent to the mobile phone registered to card <strong>{maskedCard}</strong> to authorize payment of <strong>{amountText}</strong>.
+      </Typography>
+      <Box sx={{ mb: 3 }}>
+        <TextField 
+          size="small" 
+          fullWidth 
+          autoFocus
+          label="Enter 6-Digit OTP"
+          value={otpVal}
+          onChange={(e) => setOtpVal(e.target.value.replace(/[^0-9]/g, ''))}
+          slotProps={{ htmlInput: { maxLength: 6, style: { textAlign: 'center', fontSize: '1rem', letterSpacing: '4px', fontWeight: 'bold' } } }}
+          sx={{ mb: 1 }}
+        />
+        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', fontWeight: 'bold' }}>
+          Use mock OTP: <strong>123456</strong>
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Button onClick={onCancel} variant="outlined" size="small" fullWidth sx={{ textTransform: 'none', borderRadius: 1 }}>Cancel</Button>
+        <Button onClick={handleVerify} variant="contained" size="small" fullWidth sx={{ textTransform: 'none', borderRadius: 1, bgcolor: '#be185d', color: 'white' }}>Verify</Button>
+      </Box>
+    </Box>
+  );
+};
+
 export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const [activeStep, setActiveSlide] = useState(0);
   const [currency, setCurrency] = useState(currencies[0]);
@@ -126,8 +275,8 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const [mobileCarrier, setMobileCarrier] = useState('mpesa');
   const [loading, setLoading] = useState(false);
   const [transactionRef, setTransactionRef] = useState('');
-  const [otpCode, setOtpCode] = useState('');
   const [success, setSuccess] = useState(false);
+  const [pollingIntervalId, setPollingIntervalId] = useState<any>(null);
 
   // Form states
   const [name, setName] = useState('');
@@ -142,13 +291,16 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const SHADOW = "0 8px 32px rgba(0,0,0,0.12)";
 
   const resetWidget = () => {
+    if (pollingIntervalId) {
+      clearInterval(pollingIntervalId);
+      setPollingIntervalId(null);
+    }
     setActiveSlide(0);
     setCurrency(currencies[0]);
     setAmount('50000');
     setLoading(false);
     setSuccess(false);
     setTransactionRef('');
-    setOtpCode('');
     setCustomAmount('');
     setName('');
     setEmail('');
@@ -163,25 +315,89 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
     onClose();
   };
 
+  const startPollingStatus = (refCode: string) => {
+    if (pollingIntervalId) {
+      clearInterval(pollingIntervalId);
+    }
+    
+    const intId = setInterval(() => {
+      fetch(`/api/status.php?ref=${refCode}`)
+      .then(res => res.json())
+      .then(resData => {
+        if (resData.status === 'SUCCESS') {
+          if (resData.payment_status === 'SUCCESS') {
+            clearInterval(intId);
+            setPollingIntervalId(null);
+            setSuccess(true);
+          } else if (resData.payment_status === 'FAILED') {
+            clearInterval(intId);
+            setPollingIntervalId(null);
+            alert('Payment authorization failed. Please try again.');
+            setActiveSlide(2);
+          }
+        }
+      })
+      .catch(err => {
+        console.error('Polling error:', err);
+      });
+    }, 3000);
+    
+    setPollingIntervalId(intId);
+  };
+
   const handleNext = () => {
     if (activeStep === 0 && amount === 'custom' && !customAmount) return;
     if (activeStep === 1 && (!name || !email || !phone)) return;
     
     if (activeStep === 2) {
       setLoading(true);
-      // Simulate API call to Selcom Gateway
-      setTimeout(() => {
+      
+      const payload = {
+        amount: amount === 'custom' ? parseInt(customAmount) : parseInt(amount),
+        currency: currency.code,
+        name: name,
+        email: email,
+        phone: phone,
+        paymentMethod: paymentMethod,
+        mobileCarrier: mobileCarrier
+      };
+      
+      fetch('/api/pay.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(resData => {
         setLoading(false);
-        setTransactionRef('SWDR-' + Math.random().toString(36).substr(2, 9).toUpperCase());
-        setActiveSlide(3);
-      }, 2000);
+        if (resData.status === 'SUCCESS') {
+          setTransactionRef(resData.reference);
+          
+          if (paymentMethod === 'card' && resData.payment_url) {
+            window.location.href = resData.payment_url;
+          } else {
+            setActiveSlide(3);
+            startPollingStatus(resData.reference);
+          }
+        } else {
+          alert(resData.message || 'Failed to initiate payment.');
+        }
+      })
+      .catch(err => {
+        setLoading(false);
+        console.error(err);
+        alert('Connection error occurred while connecting to payment gateway.');
+      });
     } else {
       setActiveSlide((prev) => prev + 1);
     }
   };
 
-  const handleVerify = () => {
-    if (otpCode.length < 6) return;
+  const handleVerifySuccess = () => {
+    if (pollingIntervalId) {
+      clearInterval(pollingIntervalId);
+      setPollingIntervalId(null);
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -492,26 +708,26 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
             {/* STEP 3: VERIFICATION */}
             {activeStep === 3 && (
               <Box sx={{ textAlign: 'center' }}>
-                {!loading ? (
-                  <>
-                    <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: "900", textAlign: 'center' }}>📲 CHECK YOUR PHONE</Typography>
-                    <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: "700", fontSize: '0.85rem' }}>
-                      We sent a prompt to <strong>{phone}</strong>. Enter the OTP code or transaction ID to confirm your <strong>{formatCurrency(amount)}</strong> donation.
-                    </Typography>
-                    <TextField 
-                      fullWidth size="small" label="6-Digit OTP" value={otpCode} onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))} 
-                      slotProps={{ htmlInput: { maxLength: 6, style: { textAlign: 'center', letterSpacing: '8px', fontWeight: '900', fontSize: '1.25rem' } } }} 
-                      sx={{ mb: 2, mt: 2 }} 
-                    />
-                    <Alert severity="info" sx={{ py: 0.5, borderRadius: 1.5, border: '1px solid #e2e8f0', fontWeight: 'bold', fontSize: '0.75rem' }}>Reference: {transactionRef}</Alert>
-                    <PaymentSupportInfo />
-                  </>
-                ) : (
-                  <Box sx={{ py: 3 }}>
+                {loading ? (
+                  <Box sx={{ py: 5 }}>
                     <CircularProgress size={45} thickness={5} sx={{ color: '#be185d', mb: 2 }} />
-                    <Typography variant="subtitle2" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Connecting...</Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700", mt: 0.5, display: 'block' }}>Selcom API is validating your request.</Typography>
+                    <Typography variant="subtitle2" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Validating...</Typography>
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700", mt: 0.5, display: 'block' }}>Selcom Gateway is finalizing payment.</Typography>
                   </Box>
+                ) : paymentMethod === 'mobile' ? (
+                  <SimulatedUssdScreen 
+                    amountText={formatCurrency(amount)} 
+                    carrier={mobileCarrier} 
+                    onSuccess={handleVerifySuccess} 
+                    onCancel={handleBack} 
+                  />
+                ) : (
+                  <SimulatedThreeDSecureScreen 
+                    amountText={formatCurrency(amount)} 
+                    cardNumber={cardNumber}
+                    onSuccess={handleVerifySuccess} 
+                    onCancel={handleBack} 
+                  />
                 )}
               </Box>
             )}
@@ -546,18 +762,20 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
           </Button>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Typography variant="h6" sx={{ fontWeight: '900', color: '#1e293b' }}>{formatCurrency(amount)}</Typography>
-            <Button
-              variant="contained"
-              onClick={activeStep === 3 ? handleVerify : handleNext}
-              disabled={loading}
-              sx={{ 
-                px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#be185d', 
-                boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)',
-                '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 14px rgba(190, 24, 93,0.4)' }
-              }}
-            >
-              {activeStep === 3 ? 'Confirm' : activeStep === 2 ? 'Pay Now' : 'Continue'}
-            </Button>
+            {activeStep !== 3 && (
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                disabled={loading}
+                sx={{ 
+                  px: 5, py: 1.5, borderRadius: 2, fontWeight: '900', bgcolor: '#be185d', 
+                  boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)',
+                  '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 14px rgba(190, 24, 93,0.4)' }
+                }}
+              >
+                {activeStep === 2 ? 'Pay Now' : 'Continue'}
+              </Button>
+            )}
           </Box>
         </DialogActions>
       )}

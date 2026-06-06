@@ -16,7 +16,10 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
       sx={{ 
         pt: { xs: 6, md: 7.5 }, 
         pb: { xs: 4, md: 5 }, 
-        bgcolor: '#fdf2f8', 
+        backgroundImage: 'linear-gradient(180deg, rgba(253, 242, 248, 0.97) 0%, rgba(253, 242, 248, 0.97) 100%), url("/favicon.png")',
+        backgroundRepeat: 'no-repeat, repeat',
+        backgroundSize: 'auto, 120px 120px',
+        backgroundAttachment: 'scroll, fixed',
         borderTop: '1px solid #fce7f3', 
         borderBottom: '1px solid #fce7f3',
         width: '100%',
