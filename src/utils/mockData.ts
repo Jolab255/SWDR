@@ -89,7 +89,7 @@ export const INITIAL_EVENTS: ClinicEvent[] = [
     location: 'Arusha Orphanage Centre, Arusha',
     description: 'Our specialized pediatric team is hosting an interactive, high-energy Oral Hygiene Workshop for the children at the Arusha Orphanage Centre. Chronic tooth decay is a silent epidemic in orphanage centers due to lack of specialized dental care, lack of individual hygiene supplies, and nutritional gaps. We are bringing a team of dental hygienists and general volunteers to teach over 80 children the fundamentals of oral health through interactive games, giant teeth brushing models, and storytelling. Each child will receive a personalized dental checkup, professional fluoride treatment, and a \'Smile Kit\' containing a 6-month supply of toothbrushes, toothpaste, and dental floss. We will also be training orphanage caretakers on how to spot early signs of infection and maintain daily oral care schedules. Volunteers will work in small groups with the children, assisting them during the brushing practice sessions, coordinating the educational games, and distributing the Smile Kits. Donations of any amount will go directly toward replenishing our clinical fluoride stocks and purchasing high-quality soft-bristle toothbrushes and educational materials. Let\'s make learning about health an exciting and empowering experience for these beautiful children!',
     category: 'Workshop',
-    image: '/images/hygiene_campaign.webp',
+    image: '/images/event_hygiene_workshop.webp',
     slotsTotal: 80,
     slotsRegistered: 65
   },
@@ -101,7 +101,7 @@ export const INITIAL_EVENTS: ClinicEvent[] = [
     location: 'Morogoro Town Hall, Morogoro',
     description: 'Our major educational seminar at the Morogoro Town Hall aims to create sustainable health outcomes by training community leaders, primary school teachers, and parents on the importance of pediatric dental hygiene. In many rural communities, dental decay is misunderstood, and children suffer in silence until infections become severe. This full-day seminar features lectures by Dr. Rome and local public health specialists on nutrition, preventing early childhood caries, and identifying tooth decay before it requires extraction. We will also provide hands-on training to 50 primary school teachers, equipping them with the curriculum and dental kits to run weekly hygiene checks in their classrooms, protecting over 2,000 rural students. Volunteers will assist with participant registration, seminar room setup, distributing health booklets, and coordinating the lunch service. Donations to this seminar are highly impactful: just $50 allows us to fully train and equip a local school teacher, ensuring a whole classroom of children has access to daily hygiene monitoring and early referral programs. Education is the ultimate prevention.',
     category: 'Charity',
-    image: '/images/swdr_hero.webp',
+    image: '/images/event_community_seminar.webp',
     slotsTotal: 100,
     slotsRegistered: 45
   }
@@ -147,7 +147,7 @@ export const INITIAL_IMPACT: ImpactStory[] = [
     location: 'Morogoro Rural',
     date: '2026-05-15',
     description: 'Our team visited rural primary schools, providing hygiene kits and teaching effective brushing habits to over 500 children.',
-    image: '/images/hygiene_campaign.webp'
+    image: '/images/impact_hygiene_campaign.webp'
   },
   {
     id: 'impact-2',
@@ -172,6 +172,30 @@ export const INITIAL_IMPACT: ImpactStory[] = [
     date: '2026-02-05',
     description: 'Gathering families for our quarterly free surgical camp in the Morogoro region.',
     image: '/images/surgical_camp.webp'
+  },
+  {
+    id: 'impact-5',
+    title: 'Specialized Care Integration',
+    location: 'Dorcas Homecare, Madale',
+    date: '2026-03-20',
+    description: 'SWDR team integrating regular specialized dental screenings and mobility assistance for kids with cerebral palsy.',
+    image: '/images/impact_specialized_care.webp'
+  },
+  {
+    id: 'impact-6',
+    title: 'Clinical Outreach Team',
+    location: 'Dar es Salaam HQ',
+    date: '2026-01-10',
+    description: 'Our clinical and volunteer team collaborating on field deployments to reach underserved communities.',
+    image: '/images/impact_team_outreach.webp'
+  },
+  {
+    id: 'impact-7',
+    title: 'Caregiver Education Workshops',
+    location: 'Community Centres',
+    date: '2026-04-05',
+    description: 'Empowering mothers and caretakers with specialized oral care knowledge for their families.',
+    image: '/images/impact_caregiver_workshop.webp'
   }
 ];
 

@@ -37,13 +37,13 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
       year: '2024',
       title: 'IN SINGISA VILLAGE MOROGORO',
       desc: 'We had a trip to Singisa Village, more than 260 KM from Dar es Salaam city center for a dental camp. In this village, there is no internet. A single school and dispensary are found far away from residential spots. This was a one week program. In this village we served 700+ children. We had a dental booth where we did dental screening, oral hygiene instructions, counselling on oral health matters and Atraumatic Restorative Treatments (ART).',
-      image: '/images/mobile_clinic.webp'
+      image: '/images/why_we_started_singisa_school.webp'
     },
     {
       year: '2025',
       title: 'DORCAS HOMECARE CENTRE',
       desc: 'This is a center for children with Cerebral Palsy. These children have uncoordinated motor functions. This tendency makes their muscles stiff sometimes and this makes it hard for their caregivers to clean their oral cavity. So, we visited this center on the WORLD ORAL HEALTH DAY 2025. Services offered: oral health education to caregivers, oral hygiene instructions to caregivers, dental screening of both children and caregivers. Dental Products offered: toothpastes and toothbrushes.',
-      image: '/images/hygiene_campaign.webp'
+      image: '/images/why_we_started_dorcas_training.webp'
     },
     {
       year: '2025',

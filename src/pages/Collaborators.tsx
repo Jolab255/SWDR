@@ -23,7 +23,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'Dorcas Homecare Initiatives',
       tagline: 'Cerebral Palsy Care & Rehabilitation Center',
-      image: '/images/swdr_happy_children.webp',
+      image: '/images/collaborator_dorcas_group.webp',
       location: 'Madale, Wazo — Dar es Salaam, Tanzania',
       founded: 'Established: Jan 2025',
       author: 'Founded by Rehema Simfukwe',
