@@ -23,8 +23,8 @@ if ($db) {
         if ($row) {
             $status = $row['status'];
             
-            // For Sandbox simulation mode, automatically approve the order after 10 seconds
-            if (ENV_MODE === 'sandbox' && $status === 'PENDING') {
+            // For Sandbox simulation mode, automatically approve the order after 10 seconds (only when using dummy sandbox keys)
+            if (SELCOM_API_KEY === 'sandbox-api-key' && $status === 'PENDING') {
                 $createdAt = strtotime($row['created_at']);
                 if (time() - $createdAt > 10) { 
                     $status = 'SUCCESS';

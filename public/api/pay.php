@@ -115,6 +115,7 @@ if ($success) {
         "reference" => $reference,
         "selcom_ref" => $selcomRef,
         "payment_url" => $paymentUrl,
+        "mode" => (SELCOM_API_KEY !== 'sandbox-api-key') ? 'real' : 'mimic',
         "message" => "Payment order created successfully."
     ));
 } else {

@@ -277,6 +277,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
   const [transactionRef, setTransactionRef] = useState('');
   const [success, setSuccess] = useState(false);
   const [pollingIntervalId, setPollingIntervalId] = useState<any>(null);
+  const [paymentMode, setPaymentMode] = useState<'mimic' | 'real'>('mimic');
 
   // Form states
   const [name, setName] = useState('');
@@ -308,6 +309,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
     setCardNumber('');
     setCardExpiry('');
     setCardCvv('');
+    setPaymentMode('mimic');
   };
 
   const handleCloseWrapper = () => {
@@ -372,6 +374,7 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
         setLoading(false);
         if (resData.status === 'SUCCESS') {
           setTransactionRef(resData.reference);
+          setPaymentMode(resData.mode || 'mimic');
           
           if (paymentMethod === 'card' && resData.payment_url) {
             window.location.href = resData.payment_url;
@@ -713,6 +716,36 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
                     <CircularProgress size={45} thickness={5} sx={{ color: '#be185d', mb: 2 }} />
                     <Typography variant="subtitle2" sx={{ fontWeight: "900", textTransform: 'uppercase' }}>Validating...</Typography>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: "700", mt: 0.5, display: 'block' }}>Selcom Gateway is finalizing payment.</Typography>
+                  </Box>
+                ) : paymentMode === 'real' ? (
+                  <Box sx={{ py: 4, px: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <CircularProgress size={50} thickness={4} sx={{ color: '#be185d', mb: 3 }} />
+                    <Typography variant="h6" sx={{ fontWeight: '900', color: '#1e293b', mb: 1, textTransform: 'uppercase', letterSpacing: '-0.2px' }}>
+                      Check Your Phone
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#475569', mb: 3, fontWeight: 500, lineHeight: 1.6, maxWidth: 320 }}>
+                      We have initiated a secure USSD payment prompt on your phone (<strong>{phone}</strong>). Please enter your mobile money PIN to authorize the transaction of <strong>{formatCurrency(amount)}</strong>.
+                    </Typography>
+                    <Paper elevation={0} sx={{ p: 2, bgcolor: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 2, width: '100%', maxWidth: 320, mb: 3 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 'bold' }}>Provider:</Typography>
+                        <Typography variant="caption" sx={{ color: '#1e293b', fontWeight: '900', textTransform: 'uppercase' }}>{mobileCarrier}</Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 'bold' }}>Reference:</Typography>
+                        <Typography variant="caption" sx={{ color: '#1e293b', fontWeight: '900' }}>{transactionRef}</Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 'bold' }}>Status:</Typography>
+                        <Typography variant="caption" sx={{ color: '#c2410c', fontWeight: '900', display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <CircularProgress size={12} thickness={6} sx={{ color: '#c2410c' }} />
+                          Awaiting PIN Entry...
+                        </Typography>
+                      </Box>
+                    </Paper>
+                    <Button onClick={handleBack} variant="text" size="small" sx={{ textTransform: 'none', color: '#64748b', fontWeight: 'bold' }}>
+                      Change Payment Method
+                    </Button>
                   </Box>
                 ) : paymentMethod === 'mobile' ? (
                   <SimulatedUssdScreen 
