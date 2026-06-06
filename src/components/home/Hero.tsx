@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Link } from 'react-router-dom';
+import heroImg from '../../assets/hero_img.jpeg';
 
 interface HeroProps {
   onDonateClick: () => void;
@@ -141,7 +142,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
               >
                 <Box 
                   component="img"
-                  src="/images/swdr_hero.png"
+                  src={heroImg}
                   alt="Smile with Doctor Rome charity"
                   loading="lazy"
                   sx={{
