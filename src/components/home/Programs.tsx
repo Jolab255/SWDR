@@ -57,7 +57,7 @@ export default function Programs() {
                 height: '100%',
                 minHeight: { md: '520px' },
                 position: 'relative',
-                backgroundImage: 'url(/images/swdr_happy_children.png)',
+                backgroundImage: 'url(/images/swdr_happy_children.webp)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 borderRight: { md: '1px solid #fce7f3' },

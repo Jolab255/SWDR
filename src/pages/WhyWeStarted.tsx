@@ -25,37 +25,37 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
       year: '2024',
       title: 'JUST FOR ME CHARITY – MLIMANI CITY',
       desc: 'We collaborated with Just For Me Foundation in December 2024 to organize a one-day charity event which gathered 300+ children with physical impairment and orphans from various centers in and around Dar es Salaam. Services provided: dental screening, oral hygiene instructions through demonstrations, oral health education to caregivers on how to handle the oral health status of these children. Products offered: toothbrushes and toothpastes.',
-      image: '/images/swdr_happy_children.png'
+      image: '/images/swdr_happy_children.webp'
     },
     {
       year: '2024',
       title: 'AT VIGWAZA PWANI - MAASAI COMMUNITY',
       desc: 'We collaborated with Kesho Angavu Initiative (KAI) to serve the Masai Community at Vigwaza, a Maasai community in Pwani. This was a 3-days event and we served 150+ children from the Maasai community living in rural areas. We addressed issues pertaining to oral health, screened for dental abnormalities and encouraged proper oral hygiene maintenance.',
-      image: '/images/surgical_camp.png'
+      image: '/images/surgical_camp.webp'
     },
     {
       year: '2024',
       title: 'IN SINGISA VILLAGE MOROGORO',
       desc: 'We had a trip to Singisa Village, more than 260 KM from Dar es Salaam city center for a dental camp. In this village, there is no internet. A single school and dispensary are found far away from residential spots. This was a one week program. In this village we served 700+ children. We had a dental booth where we did dental screening, oral hygiene instructions, counselling on oral health matters and Atraumatic Restorative Treatments (ART).',
-      image: '/images/mobile_clinic.png'
+      image: '/images/mobile_clinic.webp'
     },
     {
       year: '2025',
       title: 'DORCAS HOMECARE CENTRE',
       desc: 'This is a center for children with Cerebral Palsy. These children have uncoordinated motor functions. This tendency makes their muscles stiff sometimes and this makes it hard for their caregivers to clean their oral cavity. So, we visited this center on the WORLD ORAL HEALTH DAY 2025. Services offered: oral health education to caregivers, oral hygiene instructions to caregivers, dental screening of both children and caregivers. Dental Products offered: toothpastes and toothbrushes.',
-      image: '/images/hygiene_campaign.png'
+      image: '/images/hygiene_campaign.webp'
     },
     {
       year: '2025',
       title: 'AT SIFA VILLAGE ORPHANAGE CENTER',
       desc: 'We collaborated with Walimwengu Foundation in paying a visit this center for charity purpose. At this community we managed to serve 100+ orphans and 50+ adults. Services offered: oral health education, oral hygiene instructions, dental screening and counselling on matters pertaining oral health.',
-      image: '/images/swdr_hero.png'
+      image: '/images/swdr_hero.webp'
     },
     {
       year: '2026',
       title: 'AT JERUSALEM CHILDREN’S HOME',
       desc: 'We collaborated with Agents Of Smile Foundation on 21st March, 2026 at Jerusalem Children’s Home in conducting a charity outreach. At this center we served 60+ who are orphans and others abandoned. We did oral hygiene screening, oral health promotion and gave oral hygiene kits.',
-      image: '/images/restorative_surgery.png'
+      image: '/images/restorative_surgery.webp'
     }
   ];
 
@@ -200,7 +200,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           >
             <Box 
               component="img"
-              src="/images/swdr_doctor_rome.png"
+              src="/images/swdr_doctor_rome.webp"
               alt="Dr Jerome Rome"
               loading="lazy"
               sx={{

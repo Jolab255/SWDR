@@ -23,7 +23,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'Dorcas Homecare Initiatives',
       tagline: 'Cerebral Palsy Care & Rehabilitation Center',
-      image: '/images/swdr_happy_children.png',
+      image: '/images/swdr_happy_children.webp',
       location: 'Madale, Wazo — Dar es Salaam, Tanzania',
       founded: 'Established: Jan 2025',
       author: 'Founded by Rehema Simfukwe',
@@ -35,7 +35,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'Serunt Nutrition',
       tagline: 'Clinical Medical Nutrition & Lifestyle Therapy',
-      image: '/images/hygiene_campaign.png',
+      image: '/images/hygiene_campaign.webp',
       location: 'Dar es Salaam, Tanzania',
       founded: 'Medical Nutrition Center',
       author: 'Clinical Dietitian Network',
@@ -47,7 +47,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'FOFR ME Foundation',
       tagline: 'Grassroots Community Health Mobilization',
-      image: '/images/mobile_clinic.png',
+      image: '/images/mobile_clinic.webp',
       location: 'Coastal & Pwani Districts, Tanzania',
       founded: 'Outreach Operations Partner',
       author: 'Community Liaison Team',

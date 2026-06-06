@@ -66,7 +66,7 @@ export default function ContentManager() {
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('Dr. Jerome Rome');
-  const [imagePreset, setImagePreset] = useState('/images/swdr_hero.png');
+  const [imagePreset, setImagePreset] = useState('/images/swdr_hero.webp');
   const [customImage, setCustomImage] = useState('');
   
   // New Fields for Team & Impact
@@ -108,7 +108,7 @@ export default function ContentManager() {
     setSummary('');
     setContent('');
     setAuthor('Dr. Jerome Rome');
-    setImagePreset('/images/swdr_hero.png');
+    setImagePreset('/images/swdr_hero.webp');
     setCustomImage('');
     setEventCategory('Charity');
     setNewsCategory('Clinic News');
@@ -199,7 +199,7 @@ export default function ContentManager() {
   };
 
   const handleSave = () => {
-    const finalImage = imagePreset === 'custom' ? customImage || '/images/swdr_hero.png' : imagePreset;
+    const finalImage = imagePreset === 'custom' ? customImage || '/images/swdr_hero.webp' : imagePreset;
 
     if (tabIndex === 0) {
       const updated = dialogMode === 'add' 
@@ -482,11 +482,11 @@ export default function ContentManager() {
                       value={imagePreset} label="Image Preset" onChange={(e) => setImagePreset(e.target.value)}
                       sx={{ borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
                     >
-                      <MenuItem value="/images/swdr_hero.png">🌅 Charity</MenuItem>
-                      <MenuItem value="/images/swdr_doctor_rome.png">👨‍⚕️ Dr. Rome</MenuItem>
-                      <MenuItem value="/images/swdr_happy_children.png">🧒 Children</MenuItem>
-                      <MenuItem value="/images/hygiene_campaign.png">🧼 Hygiene</MenuItem>
-                      <MenuItem value="/images/mobile_clinic.png">🚐 Mobile Clinic</MenuItem>
+                      <MenuItem value="/images/swdr_hero.webp">🌅 Charity</MenuItem>
+                      <MenuItem value="/images/swdr_doctor_rome.webp">👨‍⚕️ Dr. Rome</MenuItem>
+                      <MenuItem value="/images/swdr_happy_children.webp">🧒 Children</MenuItem>
+                      <MenuItem value="/images/hygiene_campaign.webp">🧼 Hygiene</MenuItem>
+                      <MenuItem value="/images/mobile_clinic.webp">🚐 Mobile Clinic</MenuItem>
                       <MenuItem value="custom">🌐 Custom URL</MenuItem>
                     </Select>
                   </FormControl>
