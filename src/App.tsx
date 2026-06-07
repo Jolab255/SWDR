@@ -167,7 +167,7 @@ function App() {
         <Navbar onDonateClick={handleDonateOpen} />
 
         {/* Dynamic Canvas Area */}
-        <Box component="main" sx={{ flexGrow: 1 }}>
+        <Box component="main" sx={{ flexGrow: 1, pt: { xs: '75px', md: '75px' } }}>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home onDonateClick={handleDonateOpen} />} />

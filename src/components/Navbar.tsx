@@ -45,7 +45,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
   return (
     <>
       <AppBar 
-        position="sticky" 
+        position="fixed" 
         elevation={0}
         sx={{
           bgcolor: '#ffffff',

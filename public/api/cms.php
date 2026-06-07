@@ -251,6 +251,50 @@ $initial_data = [
             "image" => "/images/SYLVIA.jpg",
             "socials" => ["linkedin" => "#", "instagram" => "#"]
         ]
+    ],
+    "journey" => [
+        [
+            "id" => "journey-1",
+            "year" => "2024",
+            "title" => "JUST FOR ME CHARITY – MLIMANI CITY",
+            "desc" => "We collaborated with Just For Me Foundation in December 2024 to organize a one-day charity event which gathered 300+ children with physical impairment and orphans from various centers in and around Dar es Salaam. Services provided: dental screening, oral hygiene instructions through demonstrations, oral health education to caregivers on how to handle the oral health status of these children. Products offered: toothbrushes and toothpastes.",
+            "image" => "/images/swdr_happy_children.webp"
+        ],
+        [
+            "id" => "journey-2",
+            "year" => "2024",
+            "title" => "AT VIGWAZA PWANI - MAASAI COMMUNITY",
+            "desc" => "We collaborated with Kesho Angavu Initiative (KAI) to serve the Masai Community at Vigwaza, a Maasai community in Pwani. This was a 3-days event and we served 150+ children from the Maasai community living in rural areas. We addressed issues pertaining to oral health, screened for dental abnormalities and encouraged proper oral hygiene maintenance.",
+            "image" => "/images/surgical_camp.webp"
+        ],
+        [
+            "id" => "journey-3",
+            "year" => "2024",
+            "title" => "IN SINGISA VILLAGE MOROGORO",
+            "desc" => "We had a trip to Singisa Village, more than 260 KM from Dar es Salaam city center for a dental camp. In this village, there is no internet. A single school and dispensary are found far away from residential spots. This was a one week program. In this village we served 700+ children. We had a dental booth where we did dental screening, oral hygiene instructions, counselling on oral health matters and Atraumatic Restorative Treatments (ART).",
+            "image" => "/images/why_we_started_singisa_school.webp"
+        ],
+        [
+            "id" => "journey-4",
+            "year" => "2025",
+            "title" => "DORCAS HOMECARE CENTRE",
+            "desc" => "This is a center for children with Cerebral Palsy. These children have uncoordinated motor functions. This tendency makes their muscles stiff sometimes and this makes it hard for their caregivers to clean their oral cavity. So, we visited this center on the WORLD ORAL HEALTH DAY 2025. Services offered: oral health education to caregivers, oral hygiene instructions to caregivers, dental screening of both children and caregivers. Dental Products offered: toothpastes and toothbrushes.",
+            "image" => "/images/why_we_started_dorcas_training.webp"
+        ],
+        [
+            "id" => "journey-5",
+            "year" => "2025",
+            "title" => "AT SIFA VILLAGE ORPHANAGE CENTER",
+            "desc" => "We collaborated with Walimwengu Foundation in paying a visit this center for charity purpose. At this community we managed to serve 100+ orphans and 50+ adults. Services offered: oral health education, oral hygiene instructions, dental screening and counselling on matters pertaining oral health.",
+            "image" => "/images/swdr_hero.webp"
+        ],
+        [
+            "id" => "journey-6",
+            "year" => "2026",
+            "title" => "AT JERUSALEM CHILDREN’S HOME",
+            "desc" => "We collaborated with Agents Of Smile Foundation on 21st March, 2026 at Jerusalem Children’s Home in conducting a charity outreach. At this center we served 60+ who are orphans and others abandoned. We did oral hygiene screening, oral health promotion and gave oral hygiene kits.",
+            "image" => "/images/restorative_surgery.webp"
+        ]
     ]
 ];
 
@@ -263,6 +307,13 @@ if (!file_exists($dir)) {
 // 2. Initialize file if it doesn't exist
 if (!file_exists(DATA_FILE)) {
     file_put_contents(DATA_FILE, json_encode($initial_data, JSON_PRETTY_PRINT));
+} else {
+    // Migrate to add missing keys (like 'journey') to existing data file
+    $data = json_decode(file_get_contents(DATA_FILE), true);
+    if ($data && !isset($data['journey'])) {
+        $data['journey'] = $initial_data['journey'];
+        file_put_contents(DATA_FILE, json_encode($data, JSON_PRETTY_PRINT));
+    }
 }
 
 // Read current data helper function
@@ -371,7 +422,7 @@ if ($method === 'POST') {
         $section = isset($input['section']) ? $input['section'] : ''; // events, news, impact, team
         $section_data = isset($input['data']) ? $input['data'] : null;
         
-        if (!in_array($section, ['events', 'news', 'impact', 'team']) || !is_array($section_data)) {
+        if (!in_array($section, ['events', 'news', 'impact', 'team', 'journey']) || !is_array($section_data)) {
             http_response_code(400);
             echo json_encode(["status" => "ERROR", "message" => "Invalid section or data format"]);
             exit;

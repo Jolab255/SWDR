@@ -29,6 +29,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import GroupsIcon from '@mui/icons-material/Groups';
+import { MilestoneIcon } from './DentalIcons';
 
 import {
   getStoredEvents,
@@ -39,20 +40,31 @@ import {
   saveStoredImpact,
   getStoredTeam,
   saveStoredTeam,
+  getStoredJourney,
+  saveStoredJourney,
 } from '../utils/mockData';
 import type {
   ClinicEvent,
   NewsArticle,
   ImpactStory,
-  TeamMember
+  TeamMember,
+  JourneyEvent
 } from '../utils/mockData';
 
 export default function ContentManager() {
-  const [tabIndex, setTabIndex] = useState(0); // 0=Events, 1=News, 2=Impact, 3=Team
+  const [tabIndex, setTabIndex] = useState(0); // 0=Events, 1=News, 2=Impact, 3=Team, 4=Journey
   const [events, setEvents] = useState<ClinicEvent[]>([]);
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [impact, setImpact] = useState<ImpactStory[]>([]);
   const [team, setTeam] = useState<TeamMember[]>([]);
+  const [journey, setJourney] = useState<JourneyEvent[]>([]);
+  const [year, setYear] = useState('');
+
+  // Passed-Event Archive Prompt States
+  const [archiveDialogOpen, setArchiveDialogOpen] = useState(false);
+  const [passedEvent, setPassedEvent] = useState<ClinicEvent | null>(null);
+  const [archiveWhatHappened, setArchiveWhatHappened] = useState('');
+  const [archiveImage, setArchiveImage] = useState('');
   
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogMode, setDialogMode] = useState<'add' | 'edit'>('add');
@@ -97,7 +109,78 @@ export default function ContentManager() {
     getStoredNews().then(setNews);
     getStoredImpact().then(setImpact);
     getStoredTeam().then(setTeam);
+    getStoredJourney().then(setJourney);
   }, []);
+
+  // Scan for passed events to prompt archiving
+  useEffect(() => {
+    if (events.length > 0 && !archiveDialogOpen && !passedEvent) {
+      const today = new Date().toISOString().split('T')[0];
+      const dismissedIds = JSON.parse(sessionStorage.getItem('swdr_dismissed_events') || '[]');
+      const passed = events.find(ev => ev.date < today && !dismissedIds.includes(ev.id));
+      if (passed) {
+        setPassedEvent(passed);
+        setArchiveWhatHappened(`We successfully completed our outreach at ${passed.location}. We provided comprehensive dental screenings and treatments, distributing hygiene kits to children in need.`);
+        setArchiveImage(passed.image);
+        setArchiveDialogOpen(true);
+      }
+    }
+  }, [events, archiveDialogOpen, passedEvent]);
+
+  const handleDismissArchive = () => {
+    if (passedEvent) {
+      const dismissedIds = JSON.parse(sessionStorage.getItem('swdr_dismissed_events') || '[]');
+      dismissedIds.push(passedEvent.id);
+      sessionStorage.setItem('swdr_dismissed_events', JSON.stringify(dismissedIds));
+    }
+    setArchiveDialogOpen(false);
+    setPassedEvent(null);
+  };
+
+  const handleArchiveConfirm = async () => {
+    if (!passedEvent) return;
+    if (!archiveWhatHappened.trim()) {
+      alert("Please enter details on what happened during the event.");
+      return;
+    }
+    
+    // Check word count (Msemo / description limit of 100 words)
+    const wordCount = archiveWhatHappened.trim().split(/\s+/).filter(Boolean).length;
+    if (wordCount > 100) {
+      alert(`The description exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it.`);
+      return;
+    }
+
+    try {
+      // Create new impact story
+      const newImpactStory: ImpactStory = {
+        id: 'impact-' + Date.now(),
+        title: passedEvent.title,
+        location: passedEvent.location,
+        date: passedEvent.date,
+        description: archiveWhatHappened,
+        image: archiveImage || passedEvent.image,
+        gallery: [archiveImage || passedEvent.image]
+      };
+
+      // Add to impact stories list
+      const updatedImpact = [newImpactStory, ...impact];
+      await saveStoredImpact(updatedImpact);
+      setImpact(updatedImpact);
+
+      // Remove from upcoming events list
+      const updatedEvents = events.filter(e => e.id !== passedEvent.id);
+      await saveStoredEvents(updatedEvents);
+      setEvents(updatedEvents);
+
+      setArchiveDialogOpen(false);
+      setPassedEvent(null);
+      setAlertMsg({ type: 'success', text: `Successfully archived "${passedEvent.title}" to Previous Events / Impact Stories!` });
+    } catch (err) {
+      console.error(err);
+      alert("Failed to archive event. Verify your connection and admin permission.");
+    }
+  };
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
@@ -126,6 +209,7 @@ export default function ContentManager() {
     setTag('');
     setLinkedin('#');
     setInstagram('#');
+    setYear('');
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -296,6 +380,11 @@ export default function ContentManager() {
       setDescription(tm.desc);
       setLinkedin(tm.socials.linkedin);
       setInstagram(tm.socials.instagram);
+    } else if (tabIndex === 4) {
+      const je = item as JourneyEvent;
+      setYear(je.year);
+      setTitle(je.title);
+      setDescription(je.desc);
     }
     
     setOpenDialog(true);
@@ -318,10 +407,14 @@ export default function ContentManager() {
         const updated = impact.filter(i => i.id !== id);
         await saveStoredImpact(updated);
         setImpact(updated);
-      } else {
+      } else if (tabIndex === 3) {
         const updated = team.filter(t => t.id !== id);
         await saveStoredTeam(updated);
         setTeam(updated);
+      } else {
+        const updated = journey.filter(j => j.id !== id);
+        await saveStoredJourney(updated);
+        setJourney(updated);
       }
       setAlertMsg({ type: 'success', text: 'Item successfully deleted!' });
     } catch (err) {
@@ -358,6 +451,11 @@ export default function ContentManager() {
         setAlertMsg({ type: 'error', text: 'All team fields (Full Name, Role, Specialization Tag, Description) are required.' });
         return;
       }
+    } else if (tabIndex === 4) {
+      if (!year.trim() || !title.trim() || !description.trim()) {
+        setAlertMsg({ type: 'error', text: 'All journey fields (Year, Title, Description) are required.' });
+        return;
+      }
     }
 
     const finalImage = image || (tabIndex === 3 ? '/images/Dorcas_19.webp' : '/images/swdr_hero.webp');
@@ -384,12 +482,18 @@ export default function ContentManager() {
           : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage, gallery } : im);
         await saveStoredImpact(updated);
         setImpact(updated);
-      } else {
+      } else if (tabIndex === 3) {
         const updated = dialogMode === 'add'
           ? [{ id: 'team-' + Date.now(), name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } }, ...team]
           : team.map(tm => tm.id === editId ? { ...tm, name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } } : tm);
         await saveStoredTeam(updated);
         setTeam(updated);
+      } else {
+        const updated = dialogMode === 'add'
+          ? [{ id: 'journey-' + Date.now(), year, title, desc: description, image: finalImage }, ...journey]
+          : journey.map(je => je.id === editId ? { ...je, year, title, desc: description, image: finalImage } : je);
+        await saveStoredJourney(updated);
+        setJourney(updated);
       }
 
       setAlertMsg({ type: 'success', text: 'Changes saved successfully!' });
@@ -428,11 +532,11 @@ export default function ContentManager() {
         <Box sx={{ p: 2.5, flexGrow: 1 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
             <Chip 
-              label={item.category || (type === 'team' ? 'Team' : 'Impact')} 
+              label={item.category || (type === 'team' ? 'Team' : type === 'journey' ? 'Journey' : 'Impact')} 
               size="small" 
               sx={{ fontWeight: '900', borderRadius: 1.5, border: '1px solid #fce7f3', bgcolor: '#fdf2f8', color: '#be185d' }} 
             />
-            {item.date && <Typography variant="caption" sx={{ fontWeight: 700 }}>📅 {item.date}</Typography>}
+            {(item.date || item.year) && <Typography variant="caption" sx={{ fontWeight: 700 }}>📅 {item.date || item.year}</Typography>}
           </Box>
           <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1, color: '#1e293b', minHeight: 40, lineHeight: 1.2 }}>
             {item.title || item.name}
@@ -505,6 +609,12 @@ export default function ContentManager() {
       previewItem.category = 'Team Member';
       previewItem.image = image || '/images/Dorcas_19.webp';
       previewItem.description = description || 'This is where the team member biography will go. Start typing below to see it live!';
+    } else if (tabIndex === 4) {
+      previewItem.title = title || 'Journey Milestone Title';
+      previewItem.date = year || 'Year';
+      previewItem.category = 'Journey';
+      previewItem.image = image || '/images/swdr_hero.webp';
+      previewItem.description = description || 'This is where your journey description will go. Start typing below to see it live!';
     }
 
     return (
@@ -630,7 +740,7 @@ export default function ContentManager() {
             Content Management
           </Typography>
           <Typography variant="body2" sx={{ color: '#64748b', fontWeight: 500 }}>
-            Manage events, news, impact glimpses, and team members.
+            Manage events, news, impact glimpses, team members, and journey milestones.
           </Typography>
         </Box>
         <Button
@@ -644,7 +754,7 @@ export default function ContentManager() {
             '&:hover': { bgcolor: '#9d174d', transform: 'translateY(-2px)', boxShadow: '0 6px 20px rgba(190, 24, 93, 0.35)' }
           }}
         >
-          Add {tabIndex === 0 ? 'Event' : tabIndex === 1 ? 'Article' : tabIndex === 2 ? 'Impact' : 'Member'}
+          Add {tabIndex === 0 ? 'Event' : tabIndex === 1 ? 'Article' : tabIndex === 2 ? 'Impact' : tabIndex === 3 ? 'Member' : 'Journey'}
         </Button>
       </Box>
 
@@ -676,6 +786,7 @@ export default function ContentManager() {
         <Tab icon={<NewspaperIcon />} iconPosition="start" label="News" />
         <Tab icon={<AutoGraphIcon />} iconPosition="start" label="Impact" />
         <Tab icon={<GroupsIcon />} iconPosition="start" label="Team" />
+        <Tab icon={<MilestoneIcon />} iconPosition="start" label="Journey" />
       </Tabs>
 
       <Grid container spacing={3}>
@@ -734,6 +845,20 @@ export default function ContentManager() {
           </Grid>
         )}
         {tabIndex === 3 && team.map(tm => renderCard(tm, 'team'))}
+
+        {tabIndex === 4 && journey.length === 0 && (
+          <Grid size={{ xs: 12 }}>
+            <Paper variant="outlined" sx={{ p: 6, textAlign: 'center', borderRadius: 3, bgcolor: '#f8fafc', borderStyle: 'dashed', borderColor: '#cbd5e1' }}>
+              <Typography variant="h6" color="text.primary" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>
+                No journey timeline events found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Click the "Add Journey" button above to publish your first timeline milestone.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
+        {tabIndex === 4 && journey.map(je => renderCard(je, 'journey'))}
       </Grid>
 
       {/* --- ADD/EDIT ITEM DIALOG FORM --- */}
@@ -758,18 +883,32 @@ export default function ContentManager() {
                 <Grid size={{ xs: 12 }}>
                   <TextField
                     fullWidth
-                    label={tabIndex === 3 ? "Full Name" : "Title"}
+                    label={tabIndex === 3 ? "Full Name" : tabIndex === 4 ? "Milestone Title" : "Title"}
                     value={tabIndex === 3 ? name : title}
                     onChange={(e) => tabIndex === 3 ? setName(e.target.value) : setTitle(e.target.value)}
                     sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                   />
                 </Grid>
 
+                {/* Journey Milestone Year Field */}
+                {tabIndex === 4 && (
+                  <Grid size={{ xs: 12 }}>
+                    <TextField
+                      fullWidth
+                      label="Year"
+                      placeholder="e.g. 2024"
+                      value={year}
+                      onChange={(e) => setYear(e.target.value)}
+                      sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                    />
+                  </Grid>
+                )}
+
                 {/* High Visibility Category / Event Type & Image Selector */}
                 <Grid size={{ xs: 12 }}>
                   <Paper variant="outlined" sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}>
                     <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
-                      🖼️ {tabIndex === 0 ? 'Event Type & Cover Photo' : tabIndex === 1 ? 'News Category & Cover Photo' : 'Cover Photo'}
+                      🖼️ {tabIndex === 0 ? 'Event Type & Cover Photo' : tabIndex === 1 ? 'News Category & Cover Photo' : tabIndex === 4 ? 'Milestone Photo' : 'Cover Photo'}
                     </Typography>
                     
                     <Grid container spacing={2}>
@@ -1196,6 +1335,136 @@ export default function ContentManager() {
             }}
           >
             Commit Changes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* --- PASSED EVENT ARCHIVING DIALOG --- */}
+      <Dialog 
+        open={archiveDialogOpen} 
+        onClose={handleDismissArchive} 
+        maxWidth="md" 
+        fullWidth
+        slotProps={{ paper: { sx: { borderRadius: 3, border: '1px solid #e2e8f0', boxShadow: '0 20px 48px rgba(0, 0, 0, 0.12)' } } }}
+      >
+        <DialogTitle sx={{ fontWeight: '900', textTransform: 'uppercase', borderBottom: BORDER, bgcolor: '#fdf2f8', color: '#be185d' }}>
+          📌 Event Completed: Move to Previous Events?
+        </DialogTitle>
+        <DialogContent sx={{ p: 4, mt: 2 }}>
+          {passedEvent && (
+            <Box>
+              <Typography variant="body1" sx={{ mb: 3, fontWeight: 700, color: '#1e293b' }}>
+                The event <strong>"{passedEvent.title}"</strong> scheduled for <strong>{passedEvent.date}</strong> at <strong>{passedEvent.location}</strong> has passed. 
+                Would you like to archive this event and move it to <strong>Previous Events (Impact Stories)</strong>?
+              </Typography>
+
+              <Grid container spacing={3}>
+                {/* What Happened / Description */}
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    label="What Happened / Outcome Details (Msemo - Max 100 words)"
+                    helperText={`Word Count: ${archiveWhatHappened.trim().split(/\s+/).filter(Boolean).length}/100 words`}
+                    error={archiveWhatHappened.trim().split(/\s+/).filter(Boolean).length > 100}
+                    value={archiveWhatHappened}
+                    onChange={(e) => setArchiveWhatHappened(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+
+                {/* Outcome Image */}
+                <Grid size={{ xs: 12 }}>
+                  <Paper variant="outlined" sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d' }}>
+                      📸 Outcome Cover Photo
+                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+                      <Button
+                        variant="contained"
+                        component="label"
+                        sx={{ 
+                          py: 1.5, px: 3, borderRadius: 2, 
+                          textTransform: 'uppercase', fontWeight: 900, 
+                          bgcolor: '#be185d', '&:hover': { bgcolor: '#9d174d' } 
+                        }}
+                      >
+                        Upload Outcome Image
+                        <input
+                          type="file"
+                          accept="image/*"
+                          hidden
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onloadend = () => {
+                                const img = new Image();
+                                img.src = reader.result as string;
+                                img.onload = () => {
+                                  const canvas = document.createElement('canvas');
+                                  const MAX_WIDTH = 600;
+                                  const MAX_HEIGHT = 450;
+                                  let width = img.width;
+                                  let height = img.height;
+                                  if (width > height) {
+                                    if (width > MAX_WIDTH) {
+                                      height *= MAX_WIDTH / width;
+                                      width = MAX_WIDTH;
+                                    }
+                                  } else {
+                                    if (height > MAX_HEIGHT) {
+                                      width *= MAX_HEIGHT / height;
+                                      height = MAX_HEIGHT;
+                                    }
+                                  }
+                                  canvas.width = width;
+                                  canvas.height = height;
+                                  const ctx = canvas.getContext('2d');
+                                  ctx?.drawImage(img, 0, 0, width, height);
+                                  setArchiveImage(canvas.toDataURL('image/jpeg', 0.7));
+                                };
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                      </Button>
+                      {archiveImage && (
+                        <Box 
+                          component="img" 
+                          src={archiveImage} 
+                          sx={{ 
+                            width: 60, height: 60, objectFit: 'cover', 
+                            borderRadius: 2, border: '1px solid #cbd5e1' 
+                          }} 
+                        />
+                      )}
+                    </Box>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Box>
+          )}
+        </DialogContent>
+        <DialogActions sx={{ p: 3, borderTop: BORDER, bgcolor: '#f8fafc' }}>
+          <Button 
+            onClick={handleDismissArchive}
+            sx={{ fontWeight: '900', color: '#64748b' }}
+          >
+            Ask Me Later
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleArchiveConfirm}
+            sx={{ 
+              borderRadius: 2, px: 4, py: 1.5, 
+              fontWeight: '900', bgcolor: '#be185d',
+              '&:hover': { bgcolor: '#9d174d' }
+            }}
+          >
+            Archive &amp; Move to Previous Events
           </Button>
         </DialogActions>
       </Dialog>

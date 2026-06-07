@@ -46,6 +46,14 @@ export interface TeamMember {
   };
 }
 
+export interface JourneyEvent {
+  id: string;
+  year: string;
+  title: string;
+  desc: string;
+  image: string;
+}
+
 export const INITIAL_EVENTS: ClinicEvent[] = [
   {
     id: 'evt-1',
@@ -273,6 +281,52 @@ export const INITIAL_TEAM: TeamMember[] = [
   },
 ];
 
+export const INITIAL_JOURNEY: JourneyEvent[] = [
+  {
+    id: 'journey-1',
+    year: '2024',
+    title: 'JUST FOR ME CHARITY – MLIMANI CITY',
+    desc: 'We collaborated with Just For Me Foundation in December 2024 to organize a one-day charity event which gathered 300+ children with physical impairment and orphans from various centers in and around Dar es Salaam. Services provided: dental screening, oral hygiene instructions through demonstrations, oral health education to caregivers on how to handle the oral health status of these children. Products offered: toothbrushes and toothpastes.',
+    image: '/images/swdr_happy_children.webp'
+  },
+  {
+    id: 'journey-2',
+    year: '2024',
+    title: 'AT VIGWAZA PWANI - MAASAI COMMUNITY',
+    desc: 'We collaborated with Kesho Angavu Initiative (KAI) to serve the Masai Community at Vigwaza, a Maasai community in Pwani. This was a 3-days event and we served 150+ children from the Maasai community living in rural areas. We addressed issues pertaining to oral health, screened for dental abnormalities and encouraged proper oral hygiene maintenance.',
+    image: '/images/surgical_camp.webp'
+  },
+  {
+    id: 'journey-3',
+    year: '2024',
+    title: 'IN SINGISA VILLAGE MOROGORO',
+    desc: 'We had a trip to Singisa Village, more than 260 KM from Dar es Salaam city center for a dental camp. In this village, there is no internet. A single school and dispensary are found far away from residential spots. This was a one week program. In this village we served 700+ children. We had a dental booth where we did dental screening, oral hygiene instructions, counselling on oral health matters and Atraumatic Restorative Treatments (ART).',
+    image: '/images/why_we_started_singisa_school.webp'
+  },
+  {
+    id: 'journey-4',
+    year: '2025',
+    title: 'DORCAS HOMECARE CENTRE',
+    desc: 'This is a center for children with Cerebral Palsy. These children have uncoordinated motor functions. This tendency makes their muscles stiff sometimes and this makes it hard for their caregivers to clean their oral cavity. So, we visited this center on the WORLD ORAL HEALTH DAY 2025. Services offered: oral health education to caregivers, oral hygiene instructions to caregivers, dental screening of both children and caregivers. Dental Products offered: toothpastes and toothbrushes.',
+    image: '/images/why_we_started_dorcas_training.webp'
+  },
+  {
+    id: 'journey-5',
+    year: '2025',
+    title: 'AT SIFA VILLAGE ORPHANAGE CENTER',
+    desc: 'We collaborated with Walimwengu Foundation in paying a visit this center for charity purpose. At this community we managed to serve 100+ orphans and 50+ adults. Services offered: oral health education, oral hygiene instructions, dental screening and counselling on matters pertaining oral health.',
+    image: '/images/swdr_hero.webp'
+  },
+  {
+    id: 'journey-6',
+    year: '2026',
+    title: 'AT JERUSALEM CHILDREN’S HOME',
+    desc: 'We collaborated with Agents Of Smile Foundation on 21st March, 2026 at Jerusalem Children’s Home in conducting a charity outreach. At this center we served 60+ who are orphans and others abandoned. We did oral hygiene screening, oral health promotion and gave oral hygiene kits.',
+    image: '/images/restorative_surgery.webp'
+  }
+];
+
+
 // Central server-side data fetching cache and fallback mechanism
 let serverDataPromise: Promise<any> | null = null;
 
@@ -281,6 +335,7 @@ export const fetchAllServerData = async (): Promise<{
   news: NewsArticle[];
   impact: ImpactStory[];
   team: TeamMember[];
+  journey?: JourneyEvent[];
 } | null> => {
   if (serverDataPromise) {
     return serverDataPromise;
@@ -303,6 +358,7 @@ export const fetchAllServerData = async (): Promise<{
         localStorage.setItem('swdr_news', JSON.stringify(json.data.news || []));
         localStorage.setItem('swdr_impact', JSON.stringify(json.data.impact || []));
         localStorage.setItem('swdr_team', JSON.stringify(json.data.team || []));
+        localStorage.setItem('swdr_journey', JSON.stringify(json.data.journey || []));
         return json.data;
       }
       throw new Error(json.message || 'Failed to fetch');
@@ -321,7 +377,7 @@ export const getStoredEvents = async (): Promise<ClinicEvent[]> => {
   try {
     const serverData = await fetchAllServerData();
     if (serverData && serverData.events) {
-      return serverData.events;
+      return [...serverData.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     }
   } catch (error) {
     console.error('Failed to get events from server, checking local storage:', error);
@@ -330,12 +386,14 @@ export const getStoredEvents = async (): Promise<ClinicEvent[]> => {
   try {
     const data = localStorage.getItem('swdr_events');
     if (!data) {
-      localStorage.setItem('swdr_events', JSON.stringify(INITIAL_EVENTS));
-      return INITIAL_EVENTS;
+      const sorted = [...INITIAL_EVENTS].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      localStorage.setItem('swdr_events', JSON.stringify(sorted));
+      return sorted;
     }
-    return JSON.parse(data);
+    const parsed: ClinicEvent[] = JSON.parse(data);
+    return parsed.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   } catch (error) {
-    return INITIAL_EVENTS;
+    return [...INITIAL_EVENTS].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }
 };
 
@@ -578,6 +636,62 @@ export const registerForEvent = async (eventId: string): Promise<ClinicEvent[]> 
     });
     localStorage.setItem('swdr_events', JSON.stringify(updated));
     return updated;
+  }
+};
+
+export const getStoredJourney = async (): Promise<JourneyEvent[]> => {
+  try {
+    const serverData = await fetchAllServerData();
+    if (serverData && serverData.journey) {
+      return [...serverData.journey].sort((a, b) => parseInt(a.year) - parseInt(b.year));
+    }
+  } catch (error) {
+    console.error('Failed to get journey from server, checking local storage:', error);
+  }
+
+  try {
+    const data = localStorage.getItem('swdr_journey');
+    if (!data) {
+      const sorted = [...INITIAL_JOURNEY].sort((a, b) => parseInt(a.year) - parseInt(b.year));
+      localStorage.setItem('swdr_journey', JSON.stringify(sorted));
+      return sorted;
+    }
+    const parsed: JourneyEvent[] = JSON.parse(data);
+    return parsed.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+  } catch (error) {
+    return [...INITIAL_JOURNEY].sort((a, b) => parseInt(a.year) - parseInt(b.year));
+  }
+};
+
+export const saveStoredJourney = async (journey: JourneyEvent[]): Promise<void> => {
+  try {
+    localStorage.setItem('swdr_journey', JSON.stringify(journey));
+  } catch (error) {
+    console.error('Failed to save journey to localStorage:', error);
+  }
+
+  serverDataPromise = null;
+
+  try {
+    const authHash = sessionStorage.getItem('swdr_auth_hash') || '';
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHash
+      },
+      body: JSON.stringify({
+        action: 'save_section',
+        section: 'journey',
+        data: journey
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Failed to sync journey to server:', error);
+    throw error;
   }
 };
 
