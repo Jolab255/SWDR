@@ -372,28 +372,6 @@ export default function CMSDashboard() {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Tooltip title="Auto logout triggers after 15 minutes of inactivity">
-              <Paper
-                elevation={0}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  border: '1px solid #dcfce7',
-                  bgcolor: '#f0fdf4',
-                  color: '#166534',
-                  borderRadius: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
-                }}
-              >
-                <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#22c55e' }} />
-                <Typography variant="caption" sx={{ fontWeight: '700', textTransform: 'uppercase' }}>
-                  Secure Session Active
-                </Typography>
-              </Paper>
-            </Tooltip>
-
             <Button
               variant="outlined"
               color="error"
