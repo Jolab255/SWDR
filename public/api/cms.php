@@ -231,19 +231,19 @@ $initial_data = [
         ],
         [
             "id" => "team-2",
-            "name" => "Dr. Michael, DDS",
-            "role" => "Charity Coordinator & Orthodontist",
-            "tag" => "Rural Deployment Lead",
-            "desc" => "Dr. Michael oversees the logistics and clinical execution of all rural charity camps. His passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.",
+            "name" => "Dr. Michael Nyaruga, DDS",
+            "role" => "CO-FOUNDER & DENTIST at SWDR",
+            "tag" => "MUHAS DDS Graduate",
+            "desc" => "Dr. Michael Nyaruga is a Doctor of Dental Surgery (DDS) graduate from Muhimbili University of Health and Allied Sciences (MUHAS). Driven by a commitment to service and lifelong learning, he is passionate about advancing oral health, creating meaningful community impact, and encouraging healthier living through education and care.\n\n“I believe every smile tells a story, my mission is to empower people with knowledge, promote prevention and contribute to healthier communities.”",
             "image" => "/images/MICHAEL.jpg",
             "socials" => ["linkedin" => "#", "instagram" => "#"]
         ],
         [
             "id" => "team-3",
-            "name" => "Dr. Sylvia, DDS",
-            "role" => "Pediatric Dentist & Reconstructive Surgeon",
-            "tag" => "Clinical Operations Lead",
-            "desc" => "Dr. Sylvia specializes in advanced pediatric dental care and reconstructive surgery. Her gentle approach and comforting presence help children feel safe and at ease during complex procedures.",
+            "name" => "Ms. Sylvia Shilinde, DDS",
+            "role" => "CO-FOUNDER at SWDR",
+            "tag" => "MUHAS DDS Student",
+            "desc" => "Ms Sylvia Shilinde is a Doctor of Dental Surgery (DDS) student at Muhimbili University of Health and Allied Sciences (MUHAS). As an aspiring dentist with a passion for community health, she is dedicated to promoting oral health awareness and empowering people through education.\n\n“I aspire to inspire healthier smiles by sharing knowledge, promoting preventive care, and encouraging informed decisions about oral health in every underserved community I reach.”",
             "image" => "/images/SYLVIA.jpg",
             "socials" => ["linkedin" => "#", "instagram" => "#"]
         ]
