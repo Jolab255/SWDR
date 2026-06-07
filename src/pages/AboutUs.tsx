@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import { useState, useEffect } from 'react';
 import type { TeamMember } from '../utils/mockData';
 import { getStoredTeam } from '../utils/mockData';
@@ -285,12 +286,21 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, textAlign: 'justify', fontSize: '1rem', fontWeight: 500, mb: 4, whiteSpace: 'pre-line' }}>{member.desc}</Typography>
                     <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                      <Box component="a" href={member.socials.linkedin} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(190, 24, 93,0.2)', color: '#be185d', borderColor: '#be185d' } }}>
-                        <LinkedInIcon sx={{ fontSize: 20 }} />
-                      </Box>
-                      <Box component="a" href={member.socials.instagram} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(190, 24, 93,0.2)', color: '#be185d', borderColor: '#be185d' } }}>
-                        <InstagramIcon sx={{ fontSize: 20 }} />
-                      </Box>
+                      {member.socials.linkedin && member.socials.linkedin !== '#' && (
+                        <Box component="a" href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(190, 24, 93,0.2)', color: '#be185d', borderColor: '#be185d' } }}>
+                          <LinkedInIcon sx={{ fontSize: 20 }} />
+                        </Box>
+                      )}
+                      {member.socials.instagram && member.socials.instagram !== '#' && (
+                        <Box component="a" href={member.socials.instagram} target="_blank" rel="noopener noreferrer" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(190, 24, 93,0.2)', color: '#be185d', borderColor: '#be185d' } }}>
+                          <InstagramIcon sx={{ fontSize: 20 }} />
+                        </Box>
+                      )}
+                      {member.socials.twitter && member.socials.twitter !== '#' && (
+                        <Box component="a" href={member.socials.twitter} target="_blank" rel="noopener noreferrer" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, bgcolor: 'white', border: '1px solid #e2e8f0', borderRadius: 1, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', color: '#1e293b', transition: 'all 0.15s ease', '&:hover': { boxShadow: '0 4px 12px rgba(190, 24, 93,0.2)', color: '#be185d', borderColor: '#be185d' } }}>
+                          <TwitterIcon sx={{ fontSize: 20 }} />
+                        </Box>
+                      )}
                     </Box>
                   </Box>
                   <Box sx={{ width: { xs: '100%', md: '30%' }, borderLeft: { md: isEven ? BORDER : 'none' }, borderRight: { md: isEven ? 'none' : BORDER }, borderTop: { xs: BORDER, md: 'none' }, overflow: 'hidden', position: 'relative', minHeight: { xs: 300, md: 'auto' }, borderRadius: { xs: '0 0 8px 8px', md: 0 } }}>

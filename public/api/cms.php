@@ -227,7 +227,11 @@ $initial_data = [
             "tag" => "MUHAS · UCSF Pediatric Specialist",
             "desc" => "With over 12 years of clinical experience, Dr. Melkisedeck Robert graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.",
             "image" => "/images/Dorcas_19.webp",
-            "socials" => ["linkedin" => "#", "instagram" => "#"]
+            "socials" => [
+                "linkedin" => "https://www.linkedin.com/in/melkisedeck-robert-479b422a5?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+                "instagram" => "https://www.instagram.com/dr.rome_smiles?igsh=czdiMTR4ZjNjcHU4&utm_source=qr",
+                "twitter" => "https://x.com/romewajangwa?s=11&t=SioU9kyXnWDdaoFDCIqylA"
+            ]
         ],
         [
             "id" => "team-2",
