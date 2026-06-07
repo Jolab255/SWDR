@@ -292,7 +292,11 @@ export const fetchAllServerData = async (): Promise<{
       if (!res.ok) {
         throw new Error('Failed to fetch from server');
       }
-      const json = await res.json();
+      const text = await res.text();
+      if (text.trim().startsWith('<?php')) {
+        throw new Error('PHP script was not executed by the server (returned raw code)');
+      }
+      const json = JSON.parse(text);
       if (json.status === 'SUCCESS' && json.data) {
         // Cache to localStorage for offline fallback
         localStorage.setItem('swdr_events', JSON.stringify(json.data.events || []));
@@ -549,7 +553,11 @@ export const registerForEvent = async (eventId: string): Promise<ClinicEvent[]> 
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    const json = await response.json();
+    const text = await response.text();
+    if (text.trim().startsWith('<?php')) {
+      throw new Error('PHP script was not executed by the server (returned raw code)');
+    }
+    const json = JSON.parse(text);
     if (json.status === 'SUCCESS' && json.events) {
       serverDataPromise = null;
       localStorage.setItem('swdr_events', JSON.stringify(json.events));

@@ -46,27 +46,27 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     },
     {
       name: 'AGENT OF SMILE',
-      tagline: 'Tanzanian Youth Oral Hygiene Ambassadors & Advocacy Network',
-      image: '/images/event_hygiene_workshop.webp',
-      location: 'Tanzania Outreach Hubs',
+      tagline: 'Community Positivity, Mental Health & Inspirational Youth Advocacy',
+      image: '/images/collaborator_agentsofsmile.jpg',
+      location: 'Dar es Salaam & Coastal Regions, Tanzania',
       founded: 'Established: Feb 2024',
-      author: 'Led by Youth Health Advocates',
-      mission: 'Agent Of Smile is a community-driven movement focused on spreading daily joy, positivity, and inspiration. As an organization, it has set its eye on the underserved communities - spreading smiles through supportive aids.',
-      collaboration: 'SWDR partners with Agent of Smile to deploy student dental hygiene mentors during school outreaches. Their trained youth ambassadors lead fun, interactive teeth-brushing tutorials, coordinate peer-to-peer training sessions, and help manage the distribution of dental care kits. This peer advocacy makes oral hygiene education engaging and highly effective for children.',
-      ctaText: 'Connect with Ambassadors',
-      link: '#'
+      author: 'Founded by Mbarikiwa Mtwa',
+      mission: 'Agent of Smile is a community advocacy and positivity movement led by Tanzanian digital creator and inspirational speaker Mbarikiwa Mtwa. The brand focuses on spreading daily joy, mental health awareness (Afya ya Akili), and spiritual inspiration to children and youth across Tanzanian communities. Through grassroots outreaches, digital content, and support initiatives, it works to build hope and inspire resilience in underserved groups.',
+      collaboration: 'SWDR collaborates with the Agent of Smile movement to bring motivational encouragement, mental wellness checks, and positive reinforcement to children during our dental health clinics. Mbarikiwa Mtwa\'s ambassadors coordinate engaging educational games, distribute health/hygiene kits, and lead interactive lessons that combine oral health with mental and emotional well-being, helping children overcome dental anxiety.',
+      ctaText: 'Visit Inspiration Channel',
+      link: 'https://www.youtube.com/@mbarikiwamtwa'
     },
     {
       name: 'WALIMWENGU FOUNDATION',
-      tagline: 'Holistic Child Welfare, Nutrition & Education Center',
-      image: '/images/event_community_seminar.webp',
-      location: 'Tanzania',
+      tagline: 'Community Child Welfare, Nutrition & Education Coalition',
+      image: '/images/collaborator_walimwengu.jpg',
+      location: 'Bunju, Dar es Salaam, Tanzania',
       founded: 'Established: Nov 2023',
-      author: 'Founded by Dr. Grace Walimwengu',
-      mission: 'Walimwengu Foundation works to break the cycle of poverty by providing disadvantaged children with healthcare access, micro-nutritional support, and quality primary education resources. The foundation operates community hubs that offer safe study spaces, clean water access, and nutritional porridge programs to combat developmental stunting.',
-      collaboration: 'SWDR partners with Walimwengu Foundation to host mobile dental checkup clinics at their community welfare hubs. We perform comprehensive dental screenings, treat painful abscesses, and work together on nutritional assessments. Since diet directly affects tooth decay, we coordinate with their nutritional staff to limit refined sugars in the meals provided to children at the hubs.',
-      ctaText: 'Visit Welfare Foundation',
-      link: '#'
+      author: 'Community Child Welfare Network',
+      mission: 'Walimwengu Foundation is a grassroots child welfare and community initiative that supports orphanage centers (such as Sifa Orphanage in Bunju, Dar es Salaam) with developmental resources, education materials, and nutritional support. The initiative works to bridge gaps for vulnerable children by rallying local volunteers and resources to improve living standards, clean water access, and nutritional porridge programs.',
+      collaboration: 'SWDR partners with the Walimwengu team to deliver mobile dental screening clinics and emergency dental treatments directly to the children at their supported orphanages. Since dental health is closely linked to childhood nutrition, our clinical team works hand-in-hand with their coordinators to provide sugar-free nutritional guides and oral hygiene kits to caregivers, ensuring children grow up with healthy teeth and strong bodies.',
+      ctaText: 'Visit Welfare Partner',
+      link: 'https://volunteerafrica.fi/'
     },
     {
       name: 'JUST FOR ME FOUNDATION',

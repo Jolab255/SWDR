@@ -5,7 +5,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
-import { ToothIcon, HeartIcon, UsersIcon, FlagIcon, MilestoneIcon } from '../components/DentalIcons';
+import { ToothIcon, HeartIcon, UsersIcon, FlagIcon, MilestoneIcon, ToothShieldIcon, DentalMirrorIcon, ToothbrushAndPasteIcon } from '../components/DentalIcons';
 import { useNavigate } from 'react-router-dom';
 
 interface WhyWeStartedProps {
@@ -221,19 +221,23 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             {[
               {
                 title: 'Avoid occurrence',
-                desc: 'We prioritize preventive care for children with special healthcare needs by reducing the risk of dental problems before they develop. Through tailored oral health education for children and caregivers, along with regular screenings, we help prevent cavities, gum disease, and other oral problems. Our proactive approach promotes healthier smiles and improved overall well-being.'
+                desc: 'We prioritize preventive care for children with special healthcare needs by reducing the risk of dental problems before they develop. Through tailored oral health education for children and caregivers, along with regular screenings, we help prevent cavities, gum disease, and other oral problems. Our proactive approach promotes healthier smiles and improved overall well-being.',
+                icon: <ToothShieldIcon />
               },
               {
                 title: 'Arrest progression',
-                desc: 'Early detection and timely intervention are essential in caring for children with special healthcare needs. When dental problems are identified early, we provide tailored treatment and follow-up care to stop their progression. Our team works closely with caregivers and communities to monitor oral health and ensure children receive the support needed to prevent more serious complications.'
+                desc: 'Early detection and timely intervention are essential in caring for children with special healthcare needs. When dental problems are identified early, we provide tailored treatment and follow-up care to stop their progression. Our team works closely with caregivers and communities to monitor oral health and ensure children receive the support needed to prevent more serious complications.',
+                icon: <DentalMirrorIcon />
               },
               {
                 title: 'Reduce consequences / rehabilitate',
-                desc: 'Dental problems in children with special healthcare needs can significantly affect overall health and quality of life. We focus on timely treatment and rehabilitation to reduce pain, prevent complications, and restore oral function. Through caregiver education and accessible care, we help manage the wider health impacts of untreated dental conditions.'
+                desc: 'Dental problems in children with special healthcare needs can significantly affect overall health and quality of life. We focus on timely treatment and rehabilitation to reduce pain, prevent complications, and restore oral function. Through caregiver education and accessible care, we help manage the wider health impacts of untreated dental conditions.',
+                icon: <ToothbrushAndPasteIcon />
               },
               {
                 title: 'Enable community control over their health',
-                desc: 'We empower children with special healthcare needs and their caregivers through education, support, and accessible dental care. By promoting awareness and preventive practices, we help families take an active role in managing their oral health and improving outcomes.'
+                desc: 'We empower children with special healthcare needs and their caregivers through education, support, and accessible dental care. By promoting awareness and preventive practices, we help families take an active role in managing their oral health and improving outcomes.',
+                icon: <UsersIcon />
               }
             ].map((item, idx) => (
               <Grid size={{ xs: 12, md: 6 }} key={idx}>
@@ -253,6 +257,24 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                     }
                   }}
                 >
+                  {/* Icon Box */}
+                  <Box 
+                    sx={{ 
+                      width: 48, 
+                      height: 48, 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      bgcolor: '#fdf2f8',
+                      border: '1px solid #fce7f3',
+                      borderRadius: 2,
+                      color: '#be185d',
+                      mb: 2.5,
+                      '& .MuiSvgIcon-root': { fontSize: '1.5rem' }
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
                   <Typography variant="h5" sx={{ fontWeight: '900', color: '#be185d', textTransform: 'uppercase', mb: 2, letterSpacing: '-0.5px', fontSize: '1.25rem' }}>
                     {item.title}
                   </Typography>

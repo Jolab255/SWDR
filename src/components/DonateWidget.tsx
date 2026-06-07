@@ -113,7 +113,7 @@ const PaymentSupportInfo = () => (
       lineHeight: 1.4
     }}
   >
-    Payment issues? Contact support: <strong style={{ color: '#be185d' }}>+255 712 345 678</strong> (WhatsApp) or <strong style={{ color: '#be185d' }}>support@smilewithdrrome.org</strong>
+    Payment issues? Contact support: <strong style={{ color: '#be185d' }}>+255 756 679 947</strong> (WhatsApp) or <strong style={{ color: '#be185d' }}>support@smilewithdrrome.org</strong>
   </Typography>
 );
 
@@ -324,7 +324,13 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
     
     const intId = setInterval(() => {
       fetch(`/api/status.php?ref=${refCode}`)
-      .then(res => res.json())
+      .then(async res => {
+        const text = await res.text();
+        if (text.trim().startsWith('<?php')) {
+          throw new Error('PHP script was not executed (returned raw code)');
+        }
+        return JSON.parse(text);
+      })
       .then(resData => {
         if (resData.status === 'SUCCESS') {
           if (resData.payment_status === 'SUCCESS') {
@@ -369,7 +375,13 @@ export default function DonateWidget({ open, onClose }: DonateWidgetProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
-      .then(res => res.json())
+      .then(async res => {
+        const text = await res.text();
+        if (text.trim().startsWith('<?php')) {
+          throw new Error('PHP script was not executed (returned raw code)');
+        }
+        return JSON.parse(text);
+      })
       .then(resData => {
         setLoading(false);
         if (resData.status === 'SUCCESS') {

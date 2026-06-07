@@ -48,7 +48,7 @@ export default function Footer() {
     { icon: <InstagramIcon fontSize="small" />, href: 'https://www.instagram.com/smilewith_dr_rome?igsh=MWJ3a28xZWNnOHQwdw%3D%3D&utm_source=qr', label: 'Instagram' },
     { icon: <TikTokIcon fontSize="small" />, href: 'https://www.tiktok.com/@smilewith_dr_rome?_r=1&_t=ZS-96zbkazUNY9', label: 'TikTok' },
     { icon: <TwitterIcon fontSize="small" />, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: <WhatsAppIcon fontSize="small" />, href: 'https://wa.me/255784766373', label: 'WhatsApp' },
+    { icon: <WhatsAppIcon fontSize="small" />, href: 'https://wa.me/255756679947', label: 'WhatsApp' },
   ];
 
   return (
@@ -231,7 +231,7 @@ export default function Footer() {
                 },
                 {
                   label: 'Phone / WhatsApp',
-                  value: <>+255 784 766 373<br />+255 22 270 0981</>,
+                  value: '+255 756 679 947',
                 },
                 {
                   label: 'Email',
@@ -339,12 +339,12 @@ export default function Footer() {
                   '&:hover': { textDecoration: 'underline' } 
                 }}
               >
-                Jolab (Email)
+                Email to Jolab
               </Box>
               {' '}| WhatsApp to{' '}
               <Box 
                 component="a" 
-                href="https://wa.me/255756679947" 
+                href="https://wa.me/255765929374" 
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 

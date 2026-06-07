@@ -119,7 +119,7 @@ export default function ContactUs() {
       </Box>
 
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
-        <Grid container spacing={6}>
+        <Grid container spacing={6} direction={{ xs: 'column-reverse', md: 'row' } as any}>
           {/* LEFT COLUMN: CONTACT DETAILS */}
           <Grid size={{ xs: 12, md: 5 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -142,8 +142,8 @@ export default function ContactUs() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {[
                     { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Plot 100, Block A, House 100, Mfaume Street, Mazengo Road, Upanga Magharibi, Ilala CBD, Dar Es Salaam, 11103, Tanzania' },
-                    { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 22 270 0981 / +255 784 766 373', link: 'tel:+255222700981' },
-                    { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 784 766 373', color: 'success.dark', link: 'https://wa.me/255784766373' },
+                    { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 756 679 947', link: 'tel:+255756679947' },
+                    { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 756 679 947', color: 'success.dark', link: 'https://wa.me/255756679947' },
                     { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smilewithdrrome.org / info@swdrclinic.org', link: 'mailto:donations@smilewithdrrome.org' },
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
@@ -196,7 +196,7 @@ export default function ContactUs() {
               }}
             >
               <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 2 }}>
-                Send SWDR a Message
+                Send Us a Message
               </Typography>
               <Typography variant="body1" sx={{ color: '#475569', fontWeight: 500, lineHeight: 1.7, mb: 5, textAlign: 'justify' }}>
                 Fill out the secure form below. Your request will be filtered and dispatched straight to our pediatric support desks.

@@ -88,12 +88,12 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   width: '1.5px', 
                   bgcolor: '#1e293b', 
                   mx: 1.5, 
-                  display: { xs: 'none', sm: 'block' }
+                  display: 'block'
                 }} 
               />
               <Box 
                 sx={{ 
-                  display: { xs: 'none', sm: 'flex' }, 
+                  display: 'flex', 
                   flexDirection: 'column', 
                   justifyContent: 'center',
                   lineHeight: 1.0
