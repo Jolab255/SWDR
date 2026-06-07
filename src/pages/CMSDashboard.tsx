@@ -140,6 +140,7 @@ export default function CMSDashboard() {
         const token = Array.from(array, (dec) => dec.toString(16).padStart(8, '0')).join('');
 
         sessionStorage.setItem('swdr_auth_token', token);
+        sessionStorage.setItem('swdr_auth_hash', inputHash);
         sessionStorage.setItem('swdr_session_start', Date.now().toString());
         sessionStorage.setItem('swdr_last_activity', Date.now().toString());
 
@@ -172,6 +173,7 @@ export default function CMSDashboard() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('swdr_auth_token');
+    sessionStorage.removeItem('swdr_auth_hash');
     sessionStorage.removeItem('swdr_session_start');
     sessionStorage.removeItem('swdr_last_activity');
     setIsAuthenticated(false);

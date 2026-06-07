@@ -268,8 +268,56 @@ export const INITIAL_TEAM: TeamMember[] = [
   },
 ];
 
-// Helper functions to manage localStorage data with fail-safe error handling
-export const getStoredEvents = (): ClinicEvent[] => {
+// Central server-side data fetching cache and fallback mechanism
+let serverDataPromise: Promise<any> | null = null;
+
+export const fetchAllServerData = async (): Promise<{
+  events: ClinicEvent[];
+  news: NewsArticle[];
+  impact: ImpactStory[];
+  team: TeamMember[];
+} | null> => {
+  if (serverDataPromise) {
+    return serverDataPromise;
+  }
+
+  serverDataPromise = (async () => {
+    try {
+      const res = await fetch('/api/cms.php?action=get_all');
+      if (!res.ok) {
+        throw new Error('Failed to fetch from server');
+      }
+      const json = await res.json();
+      if (json.status === 'SUCCESS' && json.data) {
+        // Cache to localStorage for offline fallback
+        localStorage.setItem('swdr_events', JSON.stringify(json.data.events || []));
+        localStorage.setItem('swdr_news', JSON.stringify(json.data.news || []));
+        localStorage.setItem('swdr_impact', JSON.stringify(json.data.impact || []));
+        localStorage.setItem('swdr_team', JSON.stringify(json.data.team || []));
+        return json.data;
+      }
+      throw new Error(json.message || 'Failed to fetch');
+    } catch (e) {
+      console.warn('CMS API fetch failed, falling back to local storage / mock data:', e);
+      serverDataPromise = null; // reset to allow retries
+      return null;
+    }
+  })();
+
+  return serverDataPromise;
+};
+
+// Helper functions to manage CMS data with API support and localStorage fallback
+export const getStoredEvents = async (): Promise<ClinicEvent[]> => {
+  try {
+    const serverData = await fetchAllServerData();
+    if (serverData && serverData.events) {
+      return serverData.events;
+    }
+  } catch (error) {
+    console.error('Failed to get events from server, checking local storage:', error);
+  }
+
   try {
     const data = localStorage.getItem('swdr_events');
     if (!data) {
@@ -278,21 +326,55 @@ export const getStoredEvents = (): ClinicEvent[] => {
     }
     return JSON.parse(data);
   } catch (error) {
-    console.error('Failed to parse stored events, resetting data:', error);
-    localStorage.setItem('swdr_events', JSON.stringify(INITIAL_EVENTS));
     return INITIAL_EVENTS;
   }
 };
 
-export const saveStoredEvents = (events: ClinicEvent[]) => {
+export const saveStoredEvents = async (events: ClinicEvent[]): Promise<void> => {
+  // Sync to local storage
   try {
     localStorage.setItem('swdr_events', JSON.stringify(events));
   } catch (error) {
     console.error('Failed to save events to localStorage:', error);
   }
+
+  // Clear cache promise so next fetch gets new data
+  serverDataPromise = null;
+
+  // Sync to server
+  try {
+    const authHash = sessionStorage.getItem('swdr_auth_hash') || '';
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHash
+      },
+      body: JSON.stringify({
+        action: 'save_section',
+        section: 'events',
+        data: events
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Failed to sync events to server:', error);
+    throw error;
+  }
 };
 
-export const getStoredNews = (): NewsArticle[] => {
+export const getStoredNews = async (): Promise<NewsArticle[]> => {
+  try {
+    const serverData = await fetchAllServerData();
+    if (serverData && serverData.news) {
+      return serverData.news;
+    }
+  } catch (error) {
+    console.error('Failed to get news from server, checking local storage:', error);
+  }
+
   try {
     const data = localStorage.getItem('swdr_news');
     if (!data) {
@@ -301,21 +383,52 @@ export const getStoredNews = (): NewsArticle[] => {
     }
     return JSON.parse(data);
   } catch (error) {
-    console.error('Failed to parse stored news, resetting data:', error);
-    localStorage.setItem('swdr_news', JSON.stringify(INITIAL_NEWS));
     return INITIAL_NEWS;
   }
 };
 
-export const saveStoredNews = (news: NewsArticle[]) => {
+export const saveStoredNews = async (news: NewsArticle[]): Promise<void> => {
   try {
     localStorage.setItem('swdr_news', JSON.stringify(news));
   } catch (error) {
     console.error('Failed to save news to localStorage:', error);
   }
+
+  serverDataPromise = null;
+
+  try {
+    const authHash = sessionStorage.getItem('swdr_auth_hash') || '';
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHash
+      },
+      body: JSON.stringify({
+        action: 'save_section',
+        section: 'news',
+        data: news
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Failed to sync news to server:', error);
+    throw error;
+  }
 };
 
-export const getStoredImpact = (): ImpactStory[] => {
+export const getStoredImpact = async (): Promise<ImpactStory[]> => {
+  try {
+    const serverData = await fetchAllServerData();
+    if (serverData && serverData.impact) {
+      return serverData.impact;
+    }
+  } catch (error) {
+    console.error('Failed to get impact from server, checking local storage:', error);
+  }
+
   try {
     const data = localStorage.getItem('swdr_impact');
     if (!data) {
@@ -324,99 +437,134 @@ export const getStoredImpact = (): ImpactStory[] => {
     }
     return JSON.parse(data);
   } catch (error) {
-    console.error('Failed to parse stored impact, resetting data:', error);
-    localStorage.setItem('swdr_impact', JSON.stringify(INITIAL_IMPACT));
     return INITIAL_IMPACT;
   }
 };
 
-export const saveStoredImpact = (impact: ImpactStory[]) => {
+export const saveStoredImpact = async (impact: ImpactStory[]): Promise<void> => {
   try {
     localStorage.setItem('swdr_impact', JSON.stringify(impact));
   } catch (error) {
     console.error('Failed to save impact to localStorage:', error);
   }
+
+  serverDataPromise = null;
+
+  try {
+    const authHash = sessionStorage.getItem('swdr_auth_hash') || '';
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHash
+      },
+      body: JSON.stringify({
+        action: 'save_section',
+        section: 'impact',
+        data: impact
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Failed to sync impact to server:', error);
+    throw error;
+  }
 };
 
-export const getStoredTeam = (): TeamMember[] => {
+export const getStoredTeam = async (): Promise<TeamMember[]> => {
+  try {
+    const serverData = await fetchAllServerData();
+    if (serverData && serverData.team) {
+      return serverData.team;
+    }
+  } catch (error) {
+    console.error('Failed to get team from server, checking local storage:', error);
+  }
+
   try {
     const data = localStorage.getItem('swdr_team');
     if (!data) {
       localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));
       return INITIAL_TEAM;
     }
-    let parsed = JSON.parse(data) as TeamMember[];
-    let migrated = false;
-    parsed = parsed.map(m => {
-      if (m.id === 'team-1') {
-        const targetDesc = 'With over 12 years of clinical experience, Dr. Melkisedeck Robert graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.';
-        if (
-          m.name !== 'Dr. Melkisedeck Robert, DDS' ||
-          m.image !== '/images/Dorcas_19.webp' ||
-          m.desc !== targetDesc
-        ) {
-          migrated = true;
-          return {
-            ...m,
-            name: 'Dr. Melkisedeck Robert, DDS',
-            image: '/images/Dorcas_19.webp',
-            desc: targetDesc
-          };
-        }
-      }
-      if (m.id === 'team-2') {
-        const targetDesc = 'Dr. Michael oversees the logistics and clinical execution of all rural charity camps. His passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.';
-        if (
-          m.name !== 'Dr. Michael, DDS' ||
-          m.image !== '/images/MICHAEL.jpg' ||
-          m.desc !== targetDesc
-        ) {
-          migrated = true;
-          return {
-            ...m,
-            name: 'Dr. Michael, DDS',
-            image: '/images/MICHAEL.jpg',
-            desc: targetDesc
-          };
-        }
-      }
-      if (m.id === 'team-3') {
-        const targetDesc = 'Dr. Sylvia specializes in advanced pediatric dental care and reconstructive surgery. Her gentle approach and comforting presence help children feel safe and at ease during complex procedures.';
-        if (
-          m.name !== 'Dr. Sylvia, DDS' ||
-          m.image !== '/images/SYLVIA.jpg' ||
-          m.desc !== targetDesc ||
-          m.role !== 'Pediatric Dentist & Reconstructive Surgeon' ||
-          m.tag !== 'Clinical Operations Lead'
-        ) {
-          migrated = true;
-          return {
-            ...m,
-            name: 'Dr. Sylvia, DDS',
-            image: '/images/SYLVIA.jpg',
-            role: 'Pediatric Dentist & Reconstructive Surgeon',
-            tag: 'Clinical Operations Lead',
-            desc: targetDesc
-          };
-        }
-      }
-      return m;
-    });
-    if (migrated) {
-      localStorage.setItem('swdr_team', JSON.stringify(parsed));
-    }
-    return parsed;
+    return JSON.parse(data);
   } catch (error) {
-    console.error('Failed to parse stored team, resetting data:', error);
-    localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));
     return INITIAL_TEAM;
   }
 };
 
-export const saveStoredTeam = (team: TeamMember[]) => {
+export const saveStoredTeam = async (team: TeamMember[]): Promise<void> => {
   try {
     localStorage.setItem('swdr_team', JSON.stringify(team));
   } catch (error) {
     console.error('Failed to save team to localStorage:', error);
   }
+
+  serverDataPromise = null;
+
+  try {
+    const authHash = sessionStorage.getItem('swdr_auth_hash') || '';
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHash
+      },
+      body: JSON.stringify({
+        action: 'save_section',
+        section: 'team',
+        data: team
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Failed to sync team to server:', error);
+    throw error;
+  }
 };
+
+export const registerForEvent = async (eventId: string): Promise<ClinicEvent[]> => {
+  try {
+    const response = await fetch('/api/cms.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'register_event',
+        eventId: eventId
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const json = await response.json();
+    if (json.status === 'SUCCESS' && json.events) {
+      serverDataPromise = null;
+      localStorage.setItem('swdr_events', JSON.stringify(json.events));
+      return json.events;
+    }
+    throw new Error(json.message || 'Failed to register');
+  } catch (error) {
+    console.error('Failed to register on server, doing local fallback:', error);
+    const localEvents = await getStoredEvents();
+    const updated = localEvents.map(ev => {
+      if (ev.id === eventId) {
+        return {
+          ...ev,
+          slotsRegistered: Math.min(ev.slotsRegistered + 1, ev.slotsTotal)
+        };
+      }
+      return ev;
+    });
+    localStorage.setItem('swdr_events', JSON.stringify(updated));
+    return updated;
+  }
+};
+

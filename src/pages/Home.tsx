@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import type { ClinicEvent, NewsArticle, ImpactStory } from '../utils/mockData';
-import { getStoredEvents, getStoredNews, getStoredImpact } from '../utils/mockData';
+import { getStoredEvents, getStoredNews, getStoredImpact, registerForEvent } from '../utils/mockData';
 
 // Modular Components
 import Hero from '../components/home/Hero';
@@ -36,9 +36,9 @@ export default function Home({ onDonateClick }: HomeProps) {
   const [regProfession, setRegProfession] = useState('Dentist');
 
   useEffect(() => {
-    setEvents(getStoredEvents());
-    setNews(getStoredNews());
-    setImpactStories(getStoredImpact());
+    getStoredEvents().then(setEvents);
+    getStoredNews().then(setNews);
+    getStoredImpact().then(setImpactStories);
   }, []);
 
   const handleReadMore = (ev: ClinicEvent) => {
@@ -51,18 +51,24 @@ export default function Home({ onDonateClick }: HomeProps) {
     e.preventDefault();
     if (!regName || !regEmail || !regPhone || !selectedEvent) return;
 
-    const updatedEvents = events.map(item => {
-      if (item.id === selectedEvent.id) {
-        return {
-          ...item,
-          slotsRegistered: Math.min(item.slotsRegistered + 1, item.slotsTotal)
-        };
-      }
-      return item;
-    });
+    registerForEvent(selectedEvent.id)
+      .then((updatedEvents) => {
+        setEvents(updatedEvents);
+      })
+      .catch((err) => {
+        console.error('Failed to register on server, doing local fallback:', err);
+        const updatedEvents = events.map(item => {
+          if (item.id === selectedEvent.id) {
+            return {
+              ...item,
+              slotsRegistered: Math.min(item.slotsRegistered + 1, item.slotsTotal)
+            };
+          }
+          return item;
+        });
+        setEvents(updatedEvents);
+      });
     
-    setEvents(updatedEvents);
-    localStorage.setItem('swdr_events', JSON.stringify(updatedEvents));
     setOpenRegister(false);
     setOpenRegSuccess(true);
     setRegName('');

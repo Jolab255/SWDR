@@ -25,11 +25,11 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
   const [team, setTeam] = useState<TeamMember[]>([]);
 
   useEffect(() => {
-    // Only fetch if data is available to avoid hydration/render loops
-    const storedTeam = getStoredTeam();
-    if (storedTeam.length > 0) {
-      setTeam(storedTeam);
-    }
+    getStoredTeam().then((storedTeam) => {
+      if (storedTeam.length > 0) {
+        setTeam(storedTeam);
+      }
+    });
   }, []);
 
   const values = [

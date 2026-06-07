@@ -93,10 +93,10 @@ export default function ContentManager() {
   const BORDER = '1px solid #e2e8f0';
 
   useEffect(() => {
-    setEvents(getStoredEvents());
-    setNews(getStoredNews());
-    setImpact(getStoredImpact());
-    setTeam(getStoredTeam());
+    getStoredEvents().then(setEvents);
+    getStoredNews().then(setNews);
+    getStoredImpact().then(setImpact);
+    getStoredTeam().then(setTeam);
   }, []);
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -301,30 +301,36 @@ export default function ContentManager() {
     setOpenDialog(true);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
 
-    if (tabIndex === 0) {
-      const updated = events.filter(e => e.id !== id);
-      setEvents(updated);
-      saveStoredEvents(updated);
-    } else if (tabIndex === 1) {
-      const updated = news.filter(n => n.id !== id);
-      setNews(updated);
-      saveStoredNews(updated);
-    } else if (tabIndex === 2) {
-      const updated = impact.filter(i => i.id !== id);
-      setImpact(updated);
-      saveStoredImpact(updated);
-    } else {
-      const updated = team.filter(t => t.id !== id);
-      setTeam(updated);
-      saveStoredTeam(updated);
+    setAlertMsg(null);
+    try {
+      if (tabIndex === 0) {
+        const updated = events.filter(e => e.id !== id);
+        await saveStoredEvents(updated);
+        setEvents(updated);
+      } else if (tabIndex === 1) {
+        const updated = news.filter(n => n.id !== id);
+        await saveStoredNews(updated);
+        setNews(updated);
+      } else if (tabIndex === 2) {
+        const updated = impact.filter(i => i.id !== id);
+        await saveStoredImpact(updated);
+        setImpact(updated);
+      } else {
+        const updated = team.filter(t => t.id !== id);
+        await saveStoredTeam(updated);
+        setTeam(updated);
+      }
+      setAlertMsg({ type: 'success', text: 'Item successfully deleted!' });
+    } catch (err) {
+      console.error(err);
+      setAlertMsg({ type: 'error', text: 'Failed to delete item from server. Please verify you are connected and authorized.' });
     }
-    setAlertMsg({ type: 'success', text: 'Item successfully deleted!' });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Required fields validations
     if (tabIndex === 0) {
       if (!title.trim() || !date.trim() || !time.trim() || !location.trim() || !description.trim()) {
@@ -358,34 +364,40 @@ export default function ContentManager() {
     const finalEventCategory = eventCategory === 'Other' ? (customEventCategory || 'Other') : eventCategory;
     const finalNewsCategory = newsCategory === 'Other' ? (customNewsCategory || 'Other') : newsCategory;
 
-    if (tabIndex === 0) {
-      const updated = dialogMode === 'add' 
-        ? [{ id: 'evt-' + Date.now(), title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered }, ...events]
-        : events.map(ev => ev.id === editId ? { ...ev, title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered } : ev);
-      setEvents(updated);
-      saveStoredEvents(updated);
-    } else if (tabIndex === 1) {
-      const updated = dialogMode === 'add'
-        ? [{ id: 'news-' + Date.now(), title, date, author, summary, content, category: finalNewsCategory, image: finalImage }, ...news]
-        : news.map(nw => nw.id === editId ? { ...nw, title, date, author, summary, content, category: finalNewsCategory, image: finalImage } : nw);
-      setNews(updated);
-      saveStoredNews(updated);
-    } else if (tabIndex === 2) {
-      const updated = dialogMode === 'add'
-        ? [{ id: 'impact-' + Date.now(), title, location, date, description, image: finalImage, gallery }, ...impact]
-        : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage, gallery } : im);
-      setImpact(updated);
-      saveStoredImpact(updated);
-    } else {
-      const updated = dialogMode === 'add'
-        ? [{ id: 'team-' + Date.now(), name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } }, ...team]
-        : team.map(tm => tm.id === editId ? { ...tm, name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } } : tm);
-      setTeam(updated);
-      saveStoredTeam(updated);
-    }
+    setAlertMsg(null);
+    try {
+      if (tabIndex === 0) {
+        const updated = dialogMode === 'add' 
+          ? [{ id: 'evt-' + Date.now(), title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered }, ...events]
+          : events.map(ev => ev.id === editId ? { ...ev, title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered } : ev);
+        await saveStoredEvents(updated);
+        setEvents(updated);
+      } else if (tabIndex === 1) {
+        const updated = dialogMode === 'add'
+          ? [{ id: 'news-' + Date.now(), title, date, author, summary, content, category: finalNewsCategory, image: finalImage }, ...news]
+          : news.map(nw => nw.id === editId ? { ...nw, title, date, author, summary, content, category: finalNewsCategory, image: finalImage } : nw);
+        await saveStoredNews(updated);
+        setNews(updated);
+      } else if (tabIndex === 2) {
+        const updated = dialogMode === 'add'
+          ? [{ id: 'impact-' + Date.now(), title, location, date, description, image: finalImage, gallery }, ...impact]
+          : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage, gallery } : im);
+        await saveStoredImpact(updated);
+        setImpact(updated);
+      } else {
+        const updated = dialogMode === 'add'
+          ? [{ id: 'team-' + Date.now(), name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } }, ...team]
+          : team.map(tm => tm.id === editId ? { ...tm, name, role, tag, desc: description, image: finalImage, socials: { linkedin, instagram } } : tm);
+        await saveStoredTeam(updated);
+        setTeam(updated);
+      }
 
-    setAlertMsg({ type: 'success', text: 'Changes saved successfully!' });
-    setOpenDialog(false);
+      setAlertMsg({ type: 'success', text: 'Changes saved successfully!' });
+      setOpenDialog(false);
+    } catch (err) {
+      console.error(err);
+      setAlertMsg({ type: 'error', text: 'Failed to save changes to server. Please verify you are connected and authorized.' });
+    }
   };
 
   const renderCard = (item: any, type: string) => (
