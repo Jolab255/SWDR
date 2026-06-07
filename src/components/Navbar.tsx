@@ -85,8 +85,8 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               <Box 
                 sx={{ 
                   height: 38, 
-                  width: '1.5px', 
-                  bgcolor: '#be185d', 
+                  width: '3px', 
+                  bgcolor: '#1e293b', 
                   mx: 2, 
                   display: { xs: 'none', sm: 'block' }
                 }} 
@@ -102,8 +102,8 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 900, 
-                    color: '#be185d', 
+                    fontWeight: 500, 
+                    color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
                     lineHeight: 1.1
@@ -114,7 +114,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 900, 
+                    fontWeight: 500, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
@@ -126,7 +126,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 900, 
+                    fontWeight: 500, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
@@ -138,7 +138,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 900, 
+                    fontWeight: 500, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
