@@ -328,8 +328,34 @@ export default function Footer() {
           }}
         >
           <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-            <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 700 }}>
-              © {new Date().getFullYear()} SWDR. Developed by <Box component="span" sx={{ color: '#be185d' }}>Jolab</Box> | <Box component="a" href="mailto:yonahmatete@gmail.com" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#be185d' } }}>yonahmatete@gmail.com</Box> | <Box component="a" href="https://wa.me/255765929374" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { color: '#be185d' } }}>+255 765 929 374</Box>
+            <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 700, display: 'inline-flex', alignItems: 'center', flexWrap: 'wrap', gap: 0.5 }}>
+              © {new Date().getFullYear()} SWDR. Developed by{' '}
+              <Box 
+                component="a" 
+                href="mailto:yonahmatete@gmail.com" 
+                sx={{ 
+                  color: '#be185d', 
+                  textDecoration: 'none', 
+                  '&:hover': { textDecoration: 'underline' } 
+                }}
+              >
+                Jolab
+              </Box>
+              <Box 
+                component="a" 
+                href="https://wa.me/255765929374" 
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ 
+                  color: '#25D366', 
+                  display: 'inline-flex', 
+                  alignItems: 'center',
+                  ml: 0.5,
+                  '&:hover': { color: '#128C7E' } 
+                }}
+              >
+                <WhatsAppIcon sx={{ fontSize: 16 }} />
+              </Box>
             </Typography>
           </Box>
           <Typography
