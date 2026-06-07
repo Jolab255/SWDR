@@ -447,6 +447,81 @@ export default function ContentManager() {
               />
             </Grid>
 
+            {/* High Visibility Image / Cover Photo Selector */}
+            <Grid size={{ xs: 12 }}>
+              <Paper variant="outlined" sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
+                  🖼️ Image / Cover Photo
+                </Typography>
+                <Grid container spacing={2} alignItems="center">
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <FormControl fullWidth sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
+                      <InputLabel>Image Option</InputLabel>
+                      <Select
+                        value={imagePreset} label="Image Option" onChange={(e) => setImagePreset(e.target.value)}
+                      >
+                        <MenuItem value="/images/swdr_hero.webp">General Charity Campaign</MenuItem>
+                        <MenuItem value="/images/mobile_clinic.webp">Mobile Dental Camp / Outreach</MenuItem>
+                        <MenuItem value="/images/swdr_happy_children.webp">Marathon & Fundraising</MenuItem>
+                        <MenuItem value="/images/Dorcas_19.webp">Surgical & Restorative Camp</MenuItem>
+                        <MenuItem value="/images/hygiene_campaign.webp">School Visit & Education</MenuItem>
+                        <MenuItem value="/images/why_we_started_dorcas_training.webp">Oral Hygiene Workshop</MenuItem>
+                        <MenuItem value="/images/why_we_started_singisa_school.webp">Community Engagement</MenuItem>
+                        <MenuItem value="/images/surgical_camp.webp">Pediatric Screening</MenuItem>
+                        <MenuItem value="upload">Upload Local Image</MenuItem>
+                        <MenuItem value="custom">Custom URL / Other</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+
+                  {imagePreset === 'custom' && (
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Custom Image URL" value={customImage} onChange={(e) => setCustomImage(e.target.value)}
+                        sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                  )}
+
+                  {imagePreset === 'upload' && (
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Button
+                          variant="contained"
+                          component="label"
+                          sx={{ py: 1.5, px: 3, borderRadius: 2, textTransform: 'uppercase', fontWeight: 900, bgcolor: '#be185d', '&:hover': { bgcolor: '#9d174d' } }}
+                        >
+                          Choose File
+                          <input
+                            type="file"
+                            accept="image/*"
+                            hidden
+                            onChange={handleFileChange}
+                          />
+                        </Button>
+                        {uploadedImage ? (
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                            <Box 
+                              component="img" 
+                              src={uploadedImage} 
+                              sx={{ width: 50, height: 50, objectFit: 'cover', borderRadius: 1.5, border: '1px solid #e2e8f0' }} 
+                            />
+                            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                              Loaded ({Math.round(uploadedImage.length / 1024)} KB)
+                            </Typography>
+                          </Box>
+                        ) : (
+                          <Typography variant="caption" color="text.secondary">
+                            No file selected
+                          </Typography>
+                        )}
+                      </Box>
+                    </Grid>
+                  )}
+                </Grid>
+              </Paper>
+            </Grid>
+
             {/* News Specific Fields - Date / Author / Category */}
             {tabIndex === 1 && (
               <>
@@ -614,75 +689,7 @@ export default function ContentManager() {
               />
             </Grid>
 
-            {/* Image Selection */}
-            <Grid size={{ xs: 12 }}>
-              <Divider sx={{ mb: 2, borderBottomWidth: 1 }} />
-              <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase' }}>Select Asset</Typography>
-              <Grid container spacing={2}>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
-                    <InputLabel>Image Preset</InputLabel>
-                    <Select
-                      value={imagePreset} label="Image Preset" onChange={(e) => setImagePreset(e.target.value)}
-                    >
-                      <MenuItem value="/images/swdr_hero.webp">General Charity Campaign</MenuItem>
-                      <MenuItem value="/images/mobile_clinic.webp">Mobile Dental Camp / Outreach</MenuItem>
-                      <MenuItem value="/images/swdr_happy_children.webp">Marathon & Fundraising</MenuItem>
-                      <MenuItem value="/images/Dorcas_19.webp">Surgical & Restorative Camp</MenuItem>
-                      <MenuItem value="/images/hygiene_campaign.webp">School Visit & Education</MenuItem>
-                      <MenuItem value="/images/why_we_started_dorcas_training.webp">Oral Hygiene Workshop</MenuItem>
-                      <MenuItem value="/images/why_we_started_singisa_school.webp">Community Engagement</MenuItem>
-                      <MenuItem value="/images/surgical_camp.webp">Pediatric Screening</MenuItem>
-                      <MenuItem value="upload">Upload Local Image</MenuItem>
-                      <MenuItem value="custom">Custom URL / Other</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                {imagePreset === 'custom' && (
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <TextField
-                      fullWidth label="Custom Image URL" value={customImage} onChange={(e) => setCustomImage(e.target.value)}
-                      sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                    />
-                  </Grid>
-                )}
-                {imagePreset === 'upload' && (
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Button
-                        variant="outlined"
-                        component="label"
-                        sx={{ py: 1.5, borderRadius: 2, textTransform: 'uppercase', fontWeight: 900 }}
-                      >
-                        Choose File
-                        <input
-                          type="file"
-                          accept="image/*"
-                          hidden
-                          onChange={handleFileChange}
-                        />
-                      </Button>
-                      {uploadedImage ? (
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Box 
-                            component="img" 
-                            src={uploadedImage} 
-                            sx={{ width: 45, height: 45, objectFit: 'cover', borderRadius: 1.5, border: '1px solid #e2e8f0' }} 
-                          />
-                          <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
-                            Loaded ({Math.round(uploadedImage.length / 1024)} KB)
-                          </Typography>
-                        </Box>
-                      ) : (
-                        <Typography variant="caption" color="text.secondary">
-                          No file selected
-                        </Typography>
-                      )}
-                    </Box>
-                  </Grid>
-                )}
-              </Grid>
-            </Grid>
+
           </Grid>
         </DialogContent>
 
