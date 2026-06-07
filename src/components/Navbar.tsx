@@ -84,7 +84,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               />
               <Box 
                 sx={{ 
-                  height: 38, 
+                  height: 45, 
                   width: '1.5px', 
                   bgcolor: '#1e293b', 
                   mx: 1.5, 
