@@ -104,48 +104,44 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                     fontSize: '0.55rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '0.5px',
                     lineHeight: 1.0
                   }}
                 >
-                  A COMMUNITY
+                  A Community
                 </Typography>
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '0.5px',
                     lineHeight: 1.0
                   }}
                 >
-                  BASED
+                  Based
                 </Typography>
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '0.5px',
                     lineHeight: 1.0
                   }}
                 >
-                  DENTAL
+                  Dental
                 </Typography>
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
+                    letterSpacing: '0.5px',
                     lineHeight: 1.0
                   }}
                 >
-                  PRACTICE
+                  Practice
                 </Typography>
               </Box>
             </Box>
