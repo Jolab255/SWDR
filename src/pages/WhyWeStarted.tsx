@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Container,
@@ -47,6 +48,10 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
         overflow: 'hidden' 
       }}
     >
+      <Helmet>
+        <title>Why We Started | Smile with Doctor Rome Dental Clinic</title>
+        <meta name="description" content="Read the backstory of how a volunteer outreach trip by Dr. Melkisedeck Robert inspired a pediatric oral prevention revolution for Tanzanian children." />
+      </Helmet>
       
       {/* HEADER SECTION */}
       <Box 

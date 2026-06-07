@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Container,
@@ -50,6 +51,10 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
         overflow: 'hidden' 
       }}
     >
+      <Helmet>
+        <title>About Us | Smile with Doctor Rome Dental Clinic</title>
+        <meta name="description" content="Learn about our mission, core values, and meet our founders Sylvia Shilinde, Michael Nyaruga, and lead pediatric dentist Dr. Melkisedeck Robert in Tanzania." />
+      </Helmet>
       
       {/* ── HERO / INTRO ────────────────────────────────────────────────────── */}
       <Box 

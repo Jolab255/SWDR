@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
 import type { ClinicEvent, NewsArticle, ImpactStory } from '../utils/mockData';
 import { getStoredEvents, getStoredNews, getStoredImpact, registerForEvent } from '../utils/mockData';
@@ -116,6 +117,10 @@ export default function Home({ onDonateClick }: HomeProps) {
         bgcolor: '#ffffff',
       }}
     >
+      <Helmet>
+        <title>Smile with Doctor Rome | Pediatric Care & Donations Tanzania</title>
+        <meta name="description" content="100% free specialized pediatric dental treatments and cleft lip/palate surgeries for children in Tanzania. Support our mobile camps and donate to save a child's smile." />
+      </Helmet>
       {/* Semi-transparent white overlay to make the repeated favicon look very subtle ("kwa mbali") */}
       <Box 
         sx={{

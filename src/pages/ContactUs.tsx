@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Container,
@@ -64,6 +65,10 @@ export default function ContactUs() {
         overflow: 'hidden' 
       }}
     >
+      <Helmet>
+        <title>Contact Us | Smile with Doctor Rome Dental Clinic</title>
+        <meta name="description" content="Reach out to Smile with Doctor Rome Dental Clinic. Send us a message, find our location in Dar es Salaam, or check our open clinic hours." />
+      </Helmet>
       
       {/* HEADER SECTION */}
       <Box 

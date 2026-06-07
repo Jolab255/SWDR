@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Container,
@@ -92,6 +93,10 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
         overflow: 'hidden' 
       }}
     >
+      <Helmet>
+        <title>Our Collaborators | Smile with Doctor Rome Dental Clinic</title>
+        <meta name="description" content="Discover our partnerships with Agents of Smile, Walimwengu Foundation, Just For Me, and Dorcas Homecare to deliver pediatric dental care in Tanzania." />
+      </Helmet>
       
       {/* HEADER HERO SECTION */}
       <Box 
