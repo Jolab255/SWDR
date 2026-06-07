@@ -18,7 +18,8 @@ import {
   Select,
   Chip,
   Alert,
-  Divider
+  Divider,
+  Paper
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -415,9 +416,60 @@ export default function ContentManager() {
       </Tabs>
 
       <Grid container spacing={3}>
+        {tabIndex === 0 && events.length === 0 && (
+          <Grid size={{ xs: 12 }}>
+            <Paper variant="outlined" sx={{ p: 6, textAlign: 'center', borderRadius: 3, bgcolor: '#f8fafc', borderStyle: 'dashed', borderColor: '#cbd5e1' }}>
+              <Typography variant="h6" color="text.primary" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>
+                No scheduled events found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Click the "Add Event" button above to publish your first clinical event or outreach camp.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
         {tabIndex === 0 && events.map(ev => renderCard(ev, 'event'))}
+
+        {tabIndex === 1 && news.length === 0 && (
+          <Grid size={{ xs: 12 }}>
+            <Paper variant="outlined" sx={{ p: 6, textAlign: 'center', borderRadius: 3, bgcolor: '#f8fafc', borderStyle: 'dashed', borderColor: '#cbd5e1' }}>
+              <Typography variant="h6" color="text.primary" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>
+                No news articles found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Click the "Add Article" button above to publish stories, health advice, or clinic news.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
         {tabIndex === 1 && news.map(nw => renderCard(nw, 'news'))}
+
+        {tabIndex === 2 && impact.length === 0 && (
+          <Grid size={{ xs: 12 }}>
+            <Paper variant="outlined" sx={{ p: 6, textAlign: 'center', borderRadius: 3, bgcolor: '#f8fafc', borderStyle: 'dashed', borderColor: '#cbd5e1' }}>
+              <Typography variant="h6" color="text.primary" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>
+                No impact glimpses found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Click the "Add Impact" button above to share pictures and stories of transformation.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
         {tabIndex === 2 && impact.map(im => renderCard(im, 'impact'))}
+
+        {tabIndex === 3 && team.length === 0 && (
+          <Grid size={{ xs: 12 }}>
+            <Paper variant="outlined" sx={{ p: 6, textAlign: 'center', borderRadius: 3, bgcolor: '#f8fafc', borderStyle: 'dashed', borderColor: '#cbd5e1' }}>
+              <Typography variant="h6" color="text.primary" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>
+                No team members found
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Click the "Add Member" button above to list medical coordinators, dentists, and charity leads.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
         {tabIndex === 3 && team.map(tm => renderCard(tm, 'team'))}
       </Grid>
 
@@ -453,7 +505,7 @@ export default function ContentManager() {
                 <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
                   🖼️ Image / Cover Photo
                 </Typography>
-                <Grid container spacing={2} alignItems="center">
+                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                   <Grid size={{ xs: 12, md: 6 }}>
                     <FormControl fullWidth sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
                       <InputLabel>Image Option</InputLabel>
