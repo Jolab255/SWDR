@@ -106,9 +106,8 @@ export default function Footer() {
             </Box>
 
             <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, mb: 4, maxWidth: 320 }}>
-              Smile with Doctor Rome Dental Clinic (SWDR) is a professional pediatric dental center and
-              charity movement in Tanzania — providing free reconstructive dental surgeries and hygiene
-              charities to children in hard environments.
+              Smile With Dr Rome Dental Clinic is a community-based dental practice in Tanzania - providing
+              no-cost oral healthcare services to children with special health needs in Tanzanian communities.
               <Box component="span" sx={{ display: 'block', mt: 1.5, fontWeight: '900', color: '#be185d' }}>
                 #untileveryonesmiles
               </Box>
