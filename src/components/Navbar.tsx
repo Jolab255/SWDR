@@ -87,7 +87,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   height: 38, 
                   width: '3px', 
                   bgcolor: '#1e293b', 
-                  mx: 2, 
+                  mx: 1.5, 
                   display: { xs: 'none', sm: 'block' }
                 }} 
               />
@@ -96,17 +96,17 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   display: { xs: 'none', sm: 'flex' }, 
                   flexDirection: 'column', 
                   justifyContent: 'center',
-                  lineHeight: 1.05
+                  lineHeight: 1.0
                 }}
               >
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 500, 
+                    fontWeight: 400, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    lineHeight: 1.1
+                    lineHeight: 1.0
                   }}
                 >
                   A COMMUNITY
@@ -114,11 +114,11 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 500, 
+                    fontWeight: 400, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    lineHeight: 1.1
+                    lineHeight: 1.0
                   }}
                 >
                   BASED
@@ -126,11 +126,11 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 500, 
+                    fontWeight: 400, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    lineHeight: 1.1
+                    lineHeight: 1.0
                   }}
                 >
                   DENTAL
@@ -138,11 +138,11 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 <Typography 
                   sx={{ 
                     fontSize: '0.55rem', 
-                    fontWeight: 500, 
+                    fontWeight: 400, 
                     color: '#1e293b', 
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    lineHeight: 1.1
+                    lineHeight: 1.0
                   }}
                 >
                   PRACTICE
