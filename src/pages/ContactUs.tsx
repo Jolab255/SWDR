@@ -23,16 +23,31 @@ export default function ContactUs() {
   const [subject, setSubject] = useState('general');
   const [message, setMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const BORDER = '1px solid #e2e8f0';
   const SHADOW = '0 4px 20px rgba(0,0,0,0.08)';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) return;
     
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setErrorMsg('Please fill in all required fields (Name, Email, and Message).');
+      setShowError(true);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMsg('Please enter a valid email address (e.g. name@example.com).');
+      setShowError(true);
+      return;
+    }
+
     // Simulate API request send
     setShowSuccess(true);
+    setShowError(false);
     setName('');
     setEmail('');
     setSubject('general');
@@ -306,15 +321,33 @@ export default function ContactUs() {
           onClose={() => setShowSuccess(false)} 
           severity="success" 
           sx={{ 
-            borderRadius: 1, 
-            border: '1px solid #e2e8f0', 
-            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+            borderRadius: 1.5, 
+            border: '1px solid #bcf0da', 
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
             fontWeight: 'bold',
-            bgcolor: 'white',
-            color: '#1e293b'
+            bgcolor: '#f3faf7',
+            color: '#03543f'
           }}
         >
           🎉 Message successfully sent! Our support office will reach out to you within 24 hours.
+        </Alert>
+      </Snackbar>
+
+      {/* Error message popup */}
+      <Snackbar open={showError} autoHideDuration={5000} onClose={() => setShowError(false)}>
+        <Alert 
+          onClose={() => setShowError(false)} 
+          severity="error" 
+          sx={{ 
+            borderRadius: 1.5, 
+            border: '1px solid #fde8e8', 
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+            fontWeight: 'bold',
+            bgcolor: '#fdf2f2',
+            color: '#9b1c1c'
+          }}
+        >
+          ⚠️ {errorMsg}
         </Alert>
       </Snackbar>
 

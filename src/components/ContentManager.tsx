@@ -325,6 +325,35 @@ export default function ContentManager() {
   };
 
   const handleSave = () => {
+    // Required fields validations
+    if (tabIndex === 0) {
+      if (!title.trim() || !date.trim() || !time.trim() || !location.trim() || !description.trim()) {
+        setAlertMsg({ type: 'error', text: 'All event fields (Title, Date, Time, Location, Description) are required.' });
+        return;
+      }
+    } else if (tabIndex === 1) {
+      if (!title.trim() || !date.trim() || !author.trim() || !summary.trim() || !content.trim()) {
+        setAlertMsg({ type: 'error', text: 'All article fields (Title, Date, Author, Summary, Content) are required.' });
+        return;
+      }
+    } else if (tabIndex === 2) {
+      if (!title.trim() || !date.trim() || !location.trim() || !description.trim()) {
+        setAlertMsg({ type: 'error', text: 'All impact fields (Title, Date, Location, Description) are required.' });
+        return;
+      }
+      // Word limit check: description must be max 100 words
+      const wordCount = description.trim().split(/\s+/).filter(Boolean).length;
+      if (wordCount > 100) {
+        setAlertMsg({ type: 'error', text: `Your quote (msemo) exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it before saving.` });
+        return;
+      }
+    } else if (tabIndex === 3) {
+      if (!name.trim() || !role.trim() || !tag.trim() || !description.trim()) {
+        setAlertMsg({ type: 'error', text: 'All team fields (Full Name, Role, Specialization Tag, Description) are required.' });
+        return;
+      }
+    }
+
     const finalImage = image || (tabIndex === 3 ? '/images/Dorcas_19.webp' : '/images/swdr_hero.webp');
     const finalEventCategory = eventCategory === 'Other' ? (customEventCategory || 'Other') : eventCategory;
     const finalNewsCategory = newsCategory === 'Other' ? (customNewsCategory || 'Other') : newsCategory;
@@ -342,12 +371,6 @@ export default function ContentManager() {
       setNews(updated);
       saveStoredNews(updated);
     } else if (tabIndex === 2) {
-      // Word limit check: description must be max 100 words
-      const wordCount = description.trim().split(/\s+/).filter(Boolean).length;
-      if (wordCount > 100) {
-        alert(`Your quote (msemo) exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it before saving.`);
-        return;
-      }
       const updated = dialogMode === 'add'
         ? [{ id: 'impact-' + Date.now(), title, location, date, description, image: finalImage, gallery }, ...impact]
         : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage, gallery } : im);
