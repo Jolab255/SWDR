@@ -24,8 +24,8 @@ export default function Hero({ onDonateClick }: HeroProps) {
           xs: 'linear-gradient(180deg, rgba(253, 242, 248, 0.95) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
           md: `linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.1) 85%, rgba(255, 255, 255, 0) 100%), url(${heroImg})`
         },
-        backgroundRepeat: 'no-repeat, repeat',
-        backgroundSize: { xs: 'auto, 120px 120px', md: 'cover, 120px 120px' },
+        backgroundRepeat: { xs: 'no-repeat, repeat', md: 'no-repeat, no-repeat' },
+        backgroundSize: { xs: 'auto, 120px 120px', md: 'cover, cover' },
         backgroundPosition: { xs: 'top left', md: 'center right' },
         backgroundAttachment: 'scroll, fixed',
         color: 'text.primary',
