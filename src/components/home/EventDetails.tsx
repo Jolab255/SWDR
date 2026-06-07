@@ -69,7 +69,7 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
             <Typography variant="h5" sx={{ fontWeight: '900', mb: 2.5, color: 'text.primary', borderBottom: '2px solid', pb: 1, borderColor: 'grey.100' }}>
               About this Event
             </Typography>
-            <Typography variant="body1" sx={{ lineHeight: 1.8, color: 'grey.800', fontSize: '1.1rem', mb: 6, textAlign: 'justify' }}>
+            <Typography variant="body1" sx={{ lineHeight: 1.8, color: 'grey.800', fontSize: '1.1rem', mb: 6, textAlign: 'justify', whiteSpace: 'pre-line' }}>
               {event.description}
             </Typography>
 

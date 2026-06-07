@@ -65,7 +65,7 @@ export default function ContentManager() {
   const [description, setDescription] = useState('');
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('Dr. Jerome Rome');
+  const [author, setAuthor] = useState('Dr. Melkisedeck Robert');
   const [imagePreset, setImagePreset] = useState('/images/swdr_hero.webp');
   const [customImage, setCustomImage] = useState('');
   
@@ -85,7 +85,7 @@ export default function ContentManager() {
 
   const [alertMsg, setAlertMsg] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
-  const BORDER = '3px solid #1e293b';
+  const BORDER = '1px solid #e2e8f0';
 
   useEffect(() => {
     setEvents(getStoredEvents());
@@ -107,7 +107,7 @@ export default function ContentManager() {
     setDescription('');
     setSummary('');
     setContent('');
-    setAuthor('Dr. Jerome Rome');
+    setAuthor('Dr. Melkisedeck Robert');
     setImagePreset('/images/swdr_hero.webp');
     setCustomImage('');
     setEventCategory('Charity');
@@ -161,6 +161,7 @@ export default function ContentManager() {
       setNewsCategory(nw.category);
     } else if (tabIndex === 2) {
       const im = item as ImpactStory;
+      setLocation(im.location || '');
       setDescription(im.description);
     } else if (tabIndex === 3) {
       const tm = item as TeamMember;
@@ -239,13 +240,15 @@ export default function ContentManager() {
           display: 'flex',
           flexDirection: 'column',
           border: BORDER,
-          boxShadow: '6px 6px 0px #1e293b',
+          borderRadius: 3,
           bgcolor: 'white',
           overflow: 'hidden',
-          transition: 'all 0.1s ease',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+          transition: 'all 0.2s ease',
           '&:hover': {
-            transform: 'translate(-2px, -2px)',
-            boxShadow: '8px 8px 0px #be185d',
+            transform: 'translateY(-4px)',
+            boxShadow: '0 12px 32px rgba(190, 24, 93, 0.12)',
+            borderColor: '#be185d',
           }
         }}
       >
@@ -259,30 +262,42 @@ export default function ContentManager() {
             <Chip 
               label={item.category || (type === 'team' ? 'Team' : 'Impact')} 
               size="small" 
-              sx={{ fontWeight: '900', borderRadius: 0, border: '2px solid #1e293b', bgcolor: '#fdf2f8' }} 
+              sx={{ fontWeight: '900', borderRadius: 1.5, border: '1px solid #fce7f3', bgcolor: '#fdf2f8', color: '#be185d' }} 
             />
             {item.date && <Typography variant="caption" sx={{ fontWeight: 700 }}>📅 {item.date}</Typography>}
           </Box>
           <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1, color: '#1e293b', minHeight: 40, lineHeight: 1.2 }}>
             {item.title || item.name}
           </Typography>
-          <Typography variant="body2" sx={{ color: '#475569', mb: 2, height: 60, overflow: 'hidden', textAlign: 'justify' }}>
-            {item.description || item.summary || item.desc}
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              color: '#475569', 
+              mb: 2, 
+              maxHeight: 120, 
+              overflowY: 'auto', 
+              textAlign: 'justify',
+              pr: 0.5,
+              '&::-webkit-scrollbar': { width: '4px' },
+              '&::-webkit-scrollbar-thumb': { bgcolor: '#cbd5e1', borderRadius: '4px' }
+            }}
+          >
+            {item.description || item.content || item.summary || item.desc}
           </Typography>
           
-          <Divider sx={{ mb: 2, borderBottomWidth: 2, borderColor: '#e2e8f0' }} />
+          <Divider sx={{ mb: 2, borderColor: '#e2e8f0' }} />
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <IconButton 
               size="small" 
               onClick={() => handleOpenEdit(item)}
-              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#fdf2f8', color: '#be185d' }}
+              sx={{ border: '1px solid #fce7f3', borderRadius: 2, bgcolor: '#fdf2f8', color: '#be185d', '&:hover': { bgcolor: '#fbcfe8' } }}
             >
               <EditIcon fontSize="small" />
             </IconButton>
             <IconButton 
               size="small" 
               onClick={() => handleDelete(item.id)}
-              sx={{ border: '2px solid #1e293b', borderRadius: 0, bgcolor: '#fff1f2', color: '#e11d48' }}
+              sx={{ border: '1px solid #ffe4e6', borderRadius: 2, bgcolor: '#fff1f2', color: '#e11d48', '&:hover': { bgcolor: '#fecdd3' } }}
             >
               <DeleteIcon fontSize="small" />
             </IconButton>
@@ -308,10 +323,10 @@ export default function ContentManager() {
           startIcon={<AddIcon />}
           onClick={handleOpenAdd}
           sx={{ 
-            borderRadius: 0, px: 3, py: 1.2, 
+            borderRadius: 2, px: 3, py: 1.2, 
             fontWeight: '900', bgcolor: '#be185d',
-            border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-            '&:hover': { bgcolor: '#9d174d', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+            boxShadow: '0 4px 12px rgba(190, 24, 93, 0.2)',
+            '&:hover': { bgcolor: '#9d174d', transform: 'translateY(-2px)', boxShadow: '0 6px 20px rgba(190, 24, 93, 0.35)' }
           }}
         >
           Add {tabIndex === 0 ? 'Event' : tabIndex === 1 ? 'Article' : tabIndex === 2 ? 'Impact' : 'Member'}
@@ -322,7 +337,7 @@ export default function ContentManager() {
         <Alert 
           severity={alertMsg.type} 
           onClose={() => setAlertMsg(null)} 
-          sx={{ mb: 4, borderRadius: 0, border: BORDER, boxShadow: '4px 4px 0px #1e293b', fontWeight: 'bold' }}
+          sx={{ mb: 4, borderRadius: 2, border: '1px solid #fbcfe8', fontWeight: 'bold' }}
         >
           {alertMsg.text}
         </Alert>
@@ -335,7 +350,7 @@ export default function ContentManager() {
         scrollButtons="auto"
         sx={{ 
           mb: 5, 
-          '& .MuiTabs-indicator': { height: 4, bgcolor: '#be185d' },
+          '& .MuiTabs-indicator': { height: 4, bgcolor: '#be185d', borderRadius: '4px 4px 0 0' },
           '& .MuiTab-root': { 
             py: 2, fontSize: '0.85rem', fontWeight: '900', textTransform: 'uppercase', color: '#64748b',
             '&.Mui-selected': { color: '#1e293b' }
@@ -362,7 +377,7 @@ export default function ContentManager() {
         maxWidth="md" 
         fullWidth 
         scroll="body"
-        slotProps={{ paper: { sx: { borderRadius: 0, border: BORDER, boxShadow: '15px 15px 0px #1e293b' } } }}
+        slotProps={{ paper: { sx: { borderRadius: 3, border: '1px solid #e2e8f0', boxShadow: '0 20px 48px rgba(0, 0, 0, 0.12)' } } }}
       >
         <DialogTitle sx={{ fontWeight: '900', textTransform: 'uppercase', borderBottom: BORDER, bgcolor: '#fdf2f8' }}>
           {dialogMode === 'add' ? 'Create New Entry' : 'Update Existing Entry'}
@@ -371,55 +386,43 @@ export default function ContentManager() {
         <DialogContent sx={{ p: 4, mt: 2 }}>
           <Grid container spacing={3}>
             {/* Title / Name Field */}
-            <Grid size={{ xs: 12, md: tabIndex === 3 ? 6 : 12 }}>
+            <Grid size={{ xs: 12, md: (tabIndex === 3 || tabIndex === 1) ? 6 : 12 }}>
               <TextField
                 fullWidth
                 label={tabIndex === 3 ? "Full Name" : "Title"}
                 value={tabIndex === 3 ? name : title}
                 onChange={(e) => tabIndex === 3 ? setName(e.target.value) : setTitle(e.target.value)}
-                slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
               />
             </Grid>
 
-            {/* Team Specific Fields */}
-            {tabIndex === 3 && (
+            {/* News Specific Fields - Date / Author / Category */}
+            {tabIndex === 1 && (
               <>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
-                    fullWidth
-                    label="Role / Position"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                    fullWidth label="Author" value={author} onChange={(e) => setAuthor(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                   />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
-                    fullWidth
-                    label="Specialization Tag"
-                    placeholder="e.g. MUHAS · UCSF"
-                    value={tag}
-                    onChange={(e) => setTag(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                    fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                    slotProps={{ inputLabel: { shrink: true } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                   />
                 </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth
-                    label="LinkedIn"
-                    value={linkedin}
-                    onChange={(e) => setLinkedin(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth
-                    label="Instagram"
-                    value={instagram}
-                    onChange={(e) => setInstagram(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
-                  />
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
+                    <InputLabel>Category</InputLabel>
+                    <Select
+                      value={newsCategory} label="Category" onChange={(e) => setNewsCategory(e.target.value as any)}
+                    >
+                      <MenuItem value="Success Story">Success Story</MenuItem>
+                      <MenuItem value="Health Advice">Health Advice</MenuItem>
+                      <MenuItem value="Clinic News">Clinic News</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
               </>
             )}
@@ -430,24 +433,21 @@ export default function ContentManager() {
                 <Grid size={{ xs: 12, md: 4 }}>
                   <TextField
                     fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
-                    slotProps={{ 
-                      inputLabel: { shrink: true },
-                      input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } }
-                    }}
+                    slotProps={{ inputLabel: { shrink: true } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                   />
                 </Grid>
                 <Grid size={{ xs: 12, md: 4 }}>
                   <TextField
                     fullWidth label="Time" value={time} onChange={(e) => setTime(e.target.value)}
-                    slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                   />
                 </Grid>
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
                     <InputLabel>Category</InputLabel>
                     <Select
                       value={eventCategory} label="Category" onChange={(e) => setEventCategory(e.target.value as any)}
-                      sx={{ borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
                     >
                       <MenuItem value="Charity">Charity</MenuItem>
                       <MenuItem value="Surgery">Surgery</MenuItem>
@@ -456,34 +456,128 @@ export default function ContentManager() {
                     </Select>
                   </FormControl>
                 </Grid>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 3 }}>
+                  <TextField
+                    fullWidth label="Total Slots" type="number" value={slotsTotal} onChange={(e) => setSlotsTotal(Number(e.target.value))}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 3 }}>
+                  <TextField
+                    fullWidth label="Registered Slots" type="number" value={slotsRegistered} onChange={(e) => setSlotsRegistered(Number(e.target.value))}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
               </>
+            )}
+
+            {/* Impact Specific Fields */}
+            {tabIndex === 2 && (
+              <>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                    slotProps={{ inputLabel: { shrink: true } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+              </>
+            )}
+
+            {/* Team Specific Fields */}
+            {tabIndex === 3 && (
+              <>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth
+                    label="Role / Position"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth
+                    label="Specialization Tag"
+                    placeholder="e.g. MUHAS · UCSF"
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 3 }}>
+                  <TextField
+                    fullWidth
+                    label="LinkedIn"
+                    value={linkedin}
+                    onChange={(e) => setLinkedin(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 3 }}>
+                  <TextField
+                    fullWidth
+                    label="Instagram"
+                    value={instagram}
+                    onChange={(e) => setInstagram(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
+              </>
+            )}
+
+            {/* News Summary Field */}
+            {tabIndex === 1 && (
+              <Grid size={{ xs: 12 }}>
+                <TextField
+                  fullWidth multiline rows={2}
+                  label="Short Summary Excerpt"
+                  value={summary}
+                  onChange={(e) => setSummary(e.target.value)}
+                  sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                />
+              </Grid>
             )}
 
             {/* Description / Content */}
             <Grid size={{ xs: 12 }}>
               <TextField
-                fullWidth multiline rows={4}
+                fullWidth multiline rows={tabIndex === 1 ? 6 : 4}
                 label={tabIndex === 1 ? "Full Article Content" : "Description"}
-                value={description || content}
+                value={tabIndex === 1 ? content : description}
                 onChange={(e) => tabIndex === 1 ? setContent(e.target.value) : setDescription(e.target.value)}
-                slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
               />
             </Grid>
 
             {/* Image Selection */}
             <Grid size={{ xs: 12 }}>
-              <Divider sx={{ mb: 2, borderBottomWidth: 2 }} />
+              <Divider sx={{ mb: 2, borderBottomWidth: 1 }} />
               <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase' }}>Select Asset</Typography>
               <Grid container spacing={2}>
                 <Grid size={{ xs: 12, md: 6 }}>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
                     <InputLabel>Image Preset</InputLabel>
                     <Select
                       value={imagePreset} label="Image Preset" onChange={(e) => setImagePreset(e.target.value)}
-                      sx={{ borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
                     >
                       <MenuItem value="/images/swdr_hero.webp">🌅 Charity</MenuItem>
-                      <MenuItem value="/images/swdr_doctor_rome.webp">👨‍⚕️ Dr. Rome</MenuItem>
+                      <MenuItem value="/images/Dorcas_19.webp">👨‍⚕️ Dr. Melkisedeck</MenuItem>
+                      <MenuItem value="/images/MICHAEL.jpg">👨‍⚕️ Dr. Michael</MenuItem>
+                      <MenuItem value="/images/SYLVIA.jpg">👩‍⚕️ Dr. Sylvia</MenuItem>
                       <MenuItem value="/images/swdr_happy_children.webp">🧒 Children</MenuItem>
                       <MenuItem value="/images/hygiene_campaign.webp">🧼 Hygiene</MenuItem>
                       <MenuItem value="/images/mobile_clinic.webp">🚐 Mobile Clinic</MenuItem>
@@ -495,7 +589,7 @@ export default function ContentManager() {
                   <Grid size={{ xs: 12, md: 6 }}>
                     <TextField
                       fullWidth label="Custom Image URL" value={customImage} onChange={(e) => setCustomImage(e.target.value)}
-                      slotProps={{ input: { sx: { borderRadius: 0, border: BORDER, '& .MuiOutlinedInput-notchedOutline': { border: 'none' } } } }}
+                      sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                     />
                   </Grid>
                 )}
@@ -516,10 +610,10 @@ export default function ContentManager() {
             startIcon={<SaveIcon />}
             onClick={handleSave}
             sx={{ 
-              borderRadius: 0, px: 4, py: 1.5, 
+              borderRadius: 2, px: 4, py: 1.5, 
               fontWeight: '900', bgcolor: '#be185d',
-              border: BORDER, boxShadow: '4px 4px 0px #1e293b',
-              '&:hover': { bgcolor: '#9d174d', transform: 'translate(-2px, -2px)', boxShadow: '6px 6px 0px #1e293b' }
+              boxShadow: '0 4px 12px rgba(190, 24, 93, 0.2)',
+              '&:hover': { bgcolor: '#9d174d', transform: 'translateY(-2px)', boxShadow: '0 6px 20px rgba(190, 24, 93, 0.35)' }
             }}
           >
             Commit Changes

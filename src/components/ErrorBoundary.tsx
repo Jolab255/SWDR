@@ -45,8 +45,8 @@ class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      const BORDER = "3px solid #1e293b";
-      const SHADOW = "10px 10px 0px #1e293b";
+      const BORDER = "1px solid #e2e8f0";
+      const SHADOW = "0 10px 30px rgba(0, 0, 0, 0.05)";
 
       return (
         <Box 
@@ -65,7 +65,7 @@ class ErrorBoundary extends Component<Props, State> {
               sx={{ 
                 p: { xs: 4, md: 6 }, 
                 textAlign: 'center', 
-                borderRadius: 0, 
+                borderRadius: 4, 
                 border: BORDER, 
                 boxShadow: SHADOW,
                 bgcolor: 'white'
@@ -77,12 +77,12 @@ class ErrorBoundary extends Component<Props, State> {
                     width: 80, 
                     height: 80, 
                     bgcolor: '#fff1f2', 
+                    borderRadius: '50%',
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center', 
                     color: '#e11d48', 
-                    border: '3px solid #1e293b',
-                    boxShadow: '4px 4px 0px #1e293b'
+                    border: '1px solid #ffe4e6'
                   }}
                 >
                   <ErrorIcon sx={{ fontSize: 48 }} />
@@ -97,7 +97,7 @@ class ErrorBoundary extends Component<Props, State> {
               </Typography>
               
               {this.state.error && (
-                <Box sx={{ mb: 4, p: 2.5, bgcolor: '#fff1f2', border: '2px solid #e11d48', textAlign: 'left', overflow: 'auto', maxHeight: '200px' }}>
+                <Box sx={{ mb: 4, p: 2.5, bgcolor: '#fff1f2', border: '1px solid #fecdd3', borderRadius: 2, textAlign: 'left', overflow: 'auto', maxHeight: '200px' }}>
                   <Typography variant="subtitle2" color="error.main" sx={{ fontWeight: "bold" }} gutterBottom>
                     Technical Error Details:
                   </Typography>

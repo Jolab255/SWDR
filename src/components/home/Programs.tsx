@@ -4,35 +4,32 @@ import {
   Typography,
   Grid,
 } from '@mui/material';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { ToothbrushAndPasteIcon, DentalMirrorIcon, ToothIcon, MobileDentalVanIcon } from '../DentalIcons';
 
 const programs = [
   {
     num: '01',
     title: 'Oral Health Education & Awareness',
     desc: 'We provide tailored education programs to children, caregivers, and communities on proper oral hygiene, prevention of dental diseases, and the importance of regular dental care.',
-    icon: <HealthAndSafetyIcon sx={{ fontSize: '1.6rem' }} />,
+    icon: <ToothbrushAndPasteIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '02',
     title: 'Dental Screening & Consultation',
     desc: 'We conduct outreach screenings and professional consultations to assess oral health conditions, identify urgent needs, and guide patients toward appropriate care.',
-    icon: <MedicalServicesIcon sx={{ fontSize: '1.6rem' }} />,
+    icon: <DentalMirrorIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '03',
     title: 'Free Dental Treatment Services',
     desc: 'We deliver comprehensive, no-cost dental treatments including preventive care, basic restorative procedures, pain management, and referrals for advanced care when needed.',
-    icon: <LocalHospitalIcon sx={{ fontSize: '1.6rem' }} />,
+    icon: <ToothIcon sx={{ fontSize: '1.6rem' }} />,
   },
   {
     num: '04',
     title: 'Community Outreach & Mobile Dental Services',
     desc: 'We reach underserved and remote populations through mobile clinics and field programs, ensuring access to dental care for vulnerable children who cannot visit health facilities.',
-    icon: <DirectionsBusIcon sx={{ fontSize: '1.6rem' }} />,
+    icon: <MobileDentalVanIcon sx={{ fontSize: '1.6rem' }} />,
   },
 ];
 

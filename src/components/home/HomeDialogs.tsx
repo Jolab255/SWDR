@@ -65,7 +65,7 @@ export default function HomeDialogs({
           </DialogTitle>
           <DialogContent sx={{ px: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.6 }}>
-              Register to assist Dr. Rome's team during the <strong>{selectedEvent.title}</strong> on <strong>{selectedEvent.date}</strong>. 
+              Register to assist our clinical team during the <strong>{selectedEvent.title}</strong> on <strong>{selectedEvent.date}</strong>. 
             </Typography>
 
             <Grid container spacing={2.5}>

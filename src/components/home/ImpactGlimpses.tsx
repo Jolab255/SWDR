@@ -19,7 +19,7 @@ interface ImpactGlimpsesProps {
 export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [openGalleryGrid, setOpenGalleryGrid] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [selectedImpact, setSelectedImpact] = useState<ImpactStory | null>(null);
 
   useEffect(() => {
     if (impactStories.length === 0) return;
@@ -62,7 +62,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
         <Box sx={{ 
           position: 'relative', 
           width: '100%', 
-          height: '55vh',
+          height: { xs: '65vh', md: '55vh' },
           overflow: 'hidden',
           borderRadius: 2,
           boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
@@ -76,7 +76,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
               overflow: 'hidden',
               cursor: 'pointer'
             }}
-            onClick={() => setLightboxImage(impactStories[activeSlide]?.image)}
+            onClick={() => setSelectedImpact(impactStories[activeSlide])}
           >
             {impactStories.map((img, idx) => (
               <Box
@@ -103,7 +103,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
               sx={{ 
                 position: 'absolute', 
                 bottom: 0, left: 0, right: 0, 
-                background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
                 color: 'white', 
                 p: { xs: 3, md: 6 },
                 display: 'flex',
@@ -130,6 +130,25 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
                   </Typography>
                 </Box>
               </Box>
+
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  fontSize: { xs: '0.85rem', md: '1.025rem' }, 
+                  lineHeight: 1.6, 
+                  color: '#e2e8f0', 
+                  fontWeight: 500, 
+                  mb: 3, 
+                  maxWidth: '800px',
+                  textAlign: 'justify',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}
+              >
+                {impactStories[activeSlide]?.description}
+              </Typography>
 
               <Button
                 onClick={(e) => {
@@ -170,7 +189,14 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
             
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gridAutoRows: '240px', gap: 3 }}>
               {impactStories.map((story) => (
-                <Box key={story.id} onClick={() => setLightboxImage(story.image)} sx={{ borderRadius: 1, overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'scale(1.02)', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 2, '& .overlay': { opacity: 1 } } }}>
+                <Box 
+                  key={story.id} 
+                  onClick={() => {
+                    setOpenGalleryGrid(false);
+                    setSelectedImpact(story);
+                  }} 
+                  sx={{ borderRadius: 1, overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'scale(1.02)', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 2, '& .overlay': { opacity: 1 } } }}
+                >
                   <Box component="img" src={story.image} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(190, 24, 93, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
                     <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1 }}>{story.title}</Typography>
@@ -182,14 +208,42 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
           </Box>
         </Dialog>
 
-        {/* --- LIGHTBOX --- */}
-        <Dialog open={!!lightboxImage} onClose={() => setLightboxImage(null)} maxWidth="lg" slotProps={{ paper: { sx: { borderRadius: 0, bgcolor: 'transparent', boxShadow: 'none', overflow: 'visible' } } }}>
-          <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <IconButton onClick={() => setLightboxImage(null)} sx={{ position: 'absolute', top: -50, right: 0, color: 'white', bgcolor: 'rgba(0,0,0,0.5)', borderRadius: 0, border: '2px solid white', '&:hover': { bgcolor: '#be185d' } }}>
-              <CloseIcon />
-            </IconButton>
-            {lightboxImage && <Box component="img" src={lightboxImage} sx={{ maxWidth: '100%', maxHeight: '85vh', border: '5px solid white', boxShadow: '0 0 40px rgba(0,0,0,0.5)' }} />}
-          </Box>
+        {/* --- LIGHTBOX & DETAILS --- */}
+        <Dialog 
+          open={!!selectedImpact} 
+          onClose={() => setSelectedImpact(null)} 
+          maxWidth="md" 
+          fullWidth
+          slotProps={{ paper: { sx: { borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 20px 60px rgba(0,0,0,0.15)', overflow: 'hidden' } } }}
+        >
+          {selectedImpact && (
+            <Box>
+              <Box sx={{ position: 'relative', width: '100%', height: { xs: 200, sm: 350 }, overflow: 'hidden' }}>
+                <Box component="img" src={selectedImpact.image} alt={selectedImpact.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <IconButton 
+                  onClick={() => setSelectedImpact(null)} 
+                  sx={{ 
+                    position: 'absolute', top: 16, right: 16, 
+                    color: 'white', bgcolor: 'rgba(0,0,0,0.6)', 
+                    '&:hover': { bgcolor: '#be185d' } 
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+              <Box sx={{ p: { xs: 3, md: 5 } }}>
+                <Typography variant="overline" sx={{ fontWeight: '900', color: '#be185d', letterSpacing: '2px' }}>
+                  📍 {selectedImpact.location} — 📅 {selectedImpact.date}
+                </Typography>
+                <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mt: 1, mb: 3, letterSpacing: '-0.5px' }}>
+                  {selectedImpact.title}
+                </Typography>
+                <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.8, fontSize: '1.05rem', textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                  {selectedImpact.description}
+                </Typography>
+              </Box>
+            </Box>
+          )}
         </Dialog>
       </Container>
     </Box>

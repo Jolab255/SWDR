@@ -5,9 +5,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import GroupsIcon from '@mui/icons-material/Groups';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { ToothIcon, HeartIcon, UsersIcon } from '../DentalIcons';
 import { useNavigate } from 'react-router-dom';
 
 interface MovementProps {
@@ -23,21 +21,21 @@ export default function Movement({ onDonateClick }: MovementProps) {
       desc: 'Support the complete clinical costs of one rural mobile camp. Your funds go directly to purchasing dental materials, truck fuel, and medical supplies.',
       actionText: 'Sponsor a Camp Now',
       action: onDonateClick,
-      icon: <VolunteerActivismIcon />
+      icon: <HeartIcon />
     },
     {
       title: 'Volunteer Your Skills',
       desc: 'Are you a licensed dentist, hygienist, or nurse? Register to join our mobile team on our upcoming rural charity sessions across East Africa.',
       actionText: 'Join the Medical Team',
       action: () => navigate('/'),
-      icon: <GroupsIcon />
+      icon: <UsersIcon />
     },
     {
       title: 'Donate Dental Equipment',
       desc: 'We are always in need of examination chairs, pediatric dental tools, and consumable supplies. Help us equip our mobile units with the best tools.',
       actionText: 'Equipment Donation',
       action: () => navigate('/contact'),
-      icon: <LocalHospitalIcon />
+      icon: <ToothIcon />
     }
   ];
 

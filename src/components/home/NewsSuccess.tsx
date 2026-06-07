@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Container,
@@ -8,8 +9,11 @@ import {
   CardMedia,
   Chip,
   Button,
+  Dialog,
+  IconButton,
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CloseIcon from '@mui/icons-material/Close';
 import type { NewsArticle } from '../../utils/mockData';
 
 interface NewsSuccessProps {
@@ -17,6 +21,8 @@ interface NewsSuccessProps {
 }
 
 export default function NewsSuccess({ news }: NewsSuccessProps) {
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+
   if (news.length === 0) return null;
 
   return (
@@ -55,7 +61,11 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
                   <Typography variant="body2" sx={{ color: '#475569', mb: 3, lineHeight: 1.7, textAlign: 'justify' }}>
                     {article.summary}
                   </Typography>
-                  <Button endIcon={<ArrowForwardIcon />} sx={{ fontWeight: '900', p: 0, color: '#be185d', '&:hover': { bgcolor: 'transparent', color: '#9d174d', pl: 1 } }}>
+                  <Button 
+                    onClick={() => setSelectedArticle(article)}
+                    endIcon={<ArrowForwardIcon />} 
+                    sx={{ fontWeight: '900', p: 0, color: '#be185d', '&:hover': { bgcolor: 'transparent', color: '#9d174d', pl: 1 } }}
+                  >
                     Read Full Story
                   </Button>
                 </CardContent>
@@ -64,6 +74,42 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
           ))}
         </Grid>
       </Container>
+
+      {/* --- NEWS DETAILS DIALOG --- */}
+      <Dialog
+        open={!!selectedArticle}
+        onClose={() => setSelectedArticle(null)}
+        maxWidth="md"
+        fullWidth
+        slotProps={{ paper: { sx: { borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' } } }}
+      >
+        {selectedArticle && (
+          <Box sx={{ p: { xs: 3, md: 5 } }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+              <Typography variant="overline" sx={{ fontWeight: '900', color: '#be185d', letterSpacing: '2px' }}>
+                {selectedArticle.category} — {selectedArticle.date}
+              </Typography>
+              <IconButton onClick={() => setSelectedArticle(null)} sx={{ border: '1px solid #e2e8f0', borderRadius: 1, bgcolor: 'white' }}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+
+            <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', mb: 3, letterSpacing: '-0.5px', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
+              {selectedArticle.title}
+            </Typography>
+
+            <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#be185d', mb: 4 }}>
+              By {selectedArticle.author}
+            </Typography>
+
+            <Box component="img" src={selectedArticle.image} alt={selectedArticle.title} sx={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: 2, mb: 4 }} />
+
+            <Typography variant="body1" sx={{ color: '#334155', lineHeight: 1.8, fontSize: '1.1rem', textAlign: 'justify', whiteSpace: 'pre-line' }}>
+              {selectedArticle.content}
+            </Typography>
+          </Box>
+        )}
+      </Dialog>
     </Box>
   );
 }

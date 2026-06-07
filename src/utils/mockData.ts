@@ -63,7 +63,7 @@ export const INITIAL_EVENTS: ClinicEvent[] = [
     date: '2026-07-02',
     time: '07:30 AM - 06:00 PM',
     location: 'SWDR Dental Clinic HQ, Dar es Salaam',
-    description: 'Led by Dr. Jerome Rome and a dedicated team of visiting maxillofacial surgeons, our quarterly Reconstructive Smile Surgery Camp will take place at our main headquarters clinic in Dar es Salaam. This high-impact surgical camp focuses on providing life-changing cleft lip, cleft palate, and severe congenital reconstructive dental surgeries for 12 vulnerable children selected from remote rural regions across Tanzania. Many of these children suffer from severe social stigma, difficulties eating or speaking, and chronic respiratory issues due to their untreated conditions. Because cleft surgeries cost upwards of $2,000 in private hospitals, most rural families are forced to live without hope. Our clinic covers 100% of the surgical, hospital stay, post-operative therapy, and family travel costs through donor support. During this intensive camp, volunteers will support non-surgical clinical tasks, coordinate patient registration, manage family support lounges, and assist in setting up recovery wards. Medical practitioners can volunteer to assist in post-operative nursing care. 100% of donations raised during this event go directly toward purchasing surgical sutures, anesthesia, antibiotics, and post-op nutritional supplements. Help us restore not just a smile, but a future full of hope and dignity.',
+    description: 'Led by Dr. Melkisedeck Robert and a dedicated team of visiting maxillofacial surgeons, our quarterly Reconstructive Smile Surgery Camp will take place at our main headquarters clinic in Dar es Salaam. This high-impact surgical camp focuses on providing life-changing cleft lip, cleft palate, and severe congenital reconstructive dental surgeries for 12 vulnerable children selected from remote rural regions across Tanzania. Many of these children suffer from severe social stigma, difficulties eating or speaking, and chronic respiratory issues due to their untreated conditions. Because cleft surgeries cost upwards of $2,000 in private hospitals, most rural families are forced to live without hope. Our clinic covers 100% of the surgical, hospital stay, post-operative therapy, and family travel costs through donor support. During this intensive camp, volunteers will support non-surgical clinical tasks, coordinate patient registration, manage family support lounges, and assist in setting up recovery wards. Medical practitioners can volunteer to assist in post-operative nursing care. 100% of donations raised during this event go directly toward purchasing surgical sutures, anesthesia, antibiotics, and post-op nutritional supplements. Help us restore not just a smile, but a future full of hope and dignity.',
     category: 'Surgery',
     image: '/images/surgical_camp.webp',
     slotsTotal: 12,
@@ -99,7 +99,7 @@ export const INITIAL_EVENTS: ClinicEvent[] = [
     date: '2026-07-18',
     time: '09:00 AM - 03:00 PM',
     location: 'Morogoro Town Hall, Morogoro',
-    description: 'Our major educational seminar at the Morogoro Town Hall aims to create sustainable health outcomes by training community leaders, primary school teachers, and parents on the importance of pediatric dental hygiene. In many rural communities, dental decay is misunderstood, and children suffer in silence until infections become severe. This full-day seminar features lectures by Dr. Rome and local public health specialists on nutrition, preventing early childhood caries, and identifying tooth decay before it requires extraction. We will also provide hands-on training to 50 primary school teachers, equipping them with the curriculum and dental kits to run weekly hygiene checks in their classrooms, protecting over 2,000 rural students. Volunteers will assist with participant registration, seminar room setup, distributing health booklets, and coordinating the lunch service. Donations to this seminar are highly impactful: just $50 allows us to fully train and equip a local school teacher, ensuring a whole classroom of children has access to daily hygiene monitoring and early referral programs. Education is the ultimate prevention.',
+    description: 'Our major educational seminar at the Morogoro Town Hall aims to create sustainable health outcomes by training community leaders, primary school teachers, and parents on the importance of pediatric dental hygiene. In many rural communities, dental decay is misunderstood, and children suffer in silence until infections become severe. This full-day seminar features lectures by Dr. Melkisedeck Robert and local public health specialists on nutrition, preventing early childhood caries, and identifying tooth decay before it requires extraction. We will also provide hands-on training to 50 primary school teachers, equipping them with the curriculum and dental kits to run weekly hygiene checks in their classrooms, protecting over 2,000 rural students. Volunteers will assist with participant registration, seminar room setup, distributing health booklets, and coordinating the lunch service. Donations to this seminar are highly impactful: just $50 allows us to fully train and equip a local school teacher, ensuring a whole classroom of children has access to daily hygiene monitoring and early referral programs. Education is the ultimate prevention.',
     category: 'Charity',
     image: '/images/event_community_seminar.webp',
     slotsTotal: 100,
@@ -112,9 +112,9 @@ export const INITIAL_NEWS: NewsArticle[] = [
     id: 'news-1',
     title: 'Restoring Aisha\'s Smile: A Journey of Hope',
     date: '2026-05-20',
-    author: 'Dr. Jerome Rome',
+    author: 'Dr. Melkisedeck Robert',
     summary: 'How a simple 2-hour surgery transformed the life of 8-year-old Aisha, who suffered from severe dental infections that prevented her from going to school.',
-    content: 'Aisha, an energetic 8-year-old from a remote village in Shinyanga, had been suffering from chronic tooth decay and abscesses for over two years. The pain was so intense that she could barely eat and had to drop out of school. Her family, surviving on less than $1.50 a day, could not afford dental care. Thanks to our monthly Charity Program funded by your generous donations, we met Aisha. She was brought to our clinic in Dar es Salaam where Dr. Rome performed successful restorative dental surgery, clearing the infection and rebuilding her teeth. Today, Aisha is back in school, pain-free, and showing off her gorgeous new smile to everyone!',
+    content: 'Aisha, an energetic 8-year-old from a remote village in Shinyanga, had been suffering from chronic tooth decay and abscesses for over two years. The pain was so intense that she could barely eat and had to drop out of school. Her family, surviving on less than $1.50 a day, could not afford dental care. Thanks to our monthly Charity Program funded by your generous donations, we met Aisha. She was brought to our clinic in Dar es Salaam where Dr. Melkisedeck Robert performed successful restorative dental surgery, clearing the infection and rebuilding her teeth. Today, Aisha is back in school, pain-free, and showing off her gorgeous new smile to everyone!',
     category: 'Success Story',
     image: '/images/swdr_happy_children.webp'
   },
@@ -122,7 +122,7 @@ export const INITIAL_NEWS: NewsArticle[] = [
     id: 'news-2',
     title: 'Critical Link Between Children\'s Oral Health & Nutrition',
     date: '2026-05-10',
-    author: 'Dr. Jerome Rome',
+    author: 'Dr. Melkisedeck Robert',
     summary: 'Read our latest pediatric clinical article outlining how dental decay affects physical development and academic attendance in growing children.',
     content: 'Oral health is often overlooked, but it is a critical component of a child\'s overall physical and cognitive development. When children suffer from untreated cavities and chronic dental pain, their ability to chew food properly decreases, leading to nutritional deficiencies and stunted growth. Furthermore, severe toothaches are the leading cause of health-related school absenteeism in low-income areas in East Africa. Our clinic\'s mission is not just cosmetic; it is a fundamental intervention in child health, nutrition, and education. Regular brushing, fluoride applications, and early intervention can prevent over 90% of these cases.',
     category: 'Health Advice',
@@ -162,7 +162,7 @@ export const INITIAL_IMPACT: ImpactStory[] = [
     title: 'Restorative Surgery Success',
     location: 'Dar es Salaam HQ',
     date: '2026-03-12',
-    description: 'Dr. Jerome Rome performing a life-changing restorative dental surgery for a child with severe congenital issues.',
+    description: 'Dr. Melkisedeck Robert performing a life-changing restorative dental surgery for a child with severe congenital issues.',
     image: '/images/restorative_surgery.webp'
   },
   {
@@ -202,29 +202,29 @@ export const INITIAL_IMPACT: ImpactStory[] = [
 export const INITIAL_TEAM: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Dr. Jerome Rome, DDS',
+    name: 'Dr. Melkisedeck Robert, DDS',
     role: 'Founder & Lead Pediatric Dentist',
     tag: 'MUHAS · UCSF Pediatric Specialist',
-    desc: 'With over 12 years of clinical experience, Dr. Rome graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.',
+    desc: 'With over 12 years of clinical experience, Dr. Melkisedeck Robert graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.',
     image: '/images/Dorcas_19.webp',
     socials: { linkedin: '#', instagram: '#' },
   },
   {
     id: 'team-2',
-    name: 'Dr. Sarah Mrosso, DDS',
+    name: 'Dr. Michael, DDS',
     role: 'Charity Coordinator & Orthodontist',
     tag: 'Rural Deployment Lead',
-    desc: 'Dr. Sarah oversees the logistics and clinical execution of all rural charity camps. Her passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.',
-    image: '/images/swdr_hero.webp',
+    desc: 'Dr. Michael oversees the logistics and clinical execution of all rural charity camps. His passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.',
+    image: '/images/MICHAEL.jpg',
     socials: { linkedin: '#', instagram: '#' },
   },
   {
     id: 'team-3',
-    name: 'Sister Neema Lema, RN',
-    role: 'Senior Surgical Nurse',
-    tag: 'OR & Recovery Specialist',
-    desc: 'Sister Neema handles child patient coordination, operating room sanitation, and postoperative recovery care. She is renowned for her comforting presence that keeps kids completely calm.',
-    image: '/images/swdr_happy_children.webp',
+    name: 'Dr. Sylvia, DDS',
+    role: 'Pediatric Dentist & Reconstructive Surgeon',
+    tag: 'Clinical Operations Lead',
+    desc: 'Dr. Sylvia specializes in advanced pediatric dental care and reconstructive surgery. Her gentle approach and comforting presence help children feel safe and at ease during complex procedures.',
+    image: '/images/SYLVIA.jpg',
     socials: { linkedin: '#', instagram: '#' },
   },
 ];
@@ -309,9 +309,57 @@ export const getStoredTeam = (): TeamMember[] => {
     let parsed = JSON.parse(data) as TeamMember[];
     let migrated = false;
     parsed = parsed.map(m => {
-      if (m.id === 'team-1' && m.image !== '/images/Dorcas_19.webp') {
-        migrated = true;
-        return { ...m, image: '/images/Dorcas_19.webp' };
+      if (m.id === 'team-1') {
+        const targetDesc = 'With over 12 years of clinical experience, Dr. Melkisedeck Robert graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.';
+        if (
+          m.name !== 'Dr. Melkisedeck Robert, DDS' ||
+          m.image !== '/images/Dorcas_19.webp' ||
+          m.desc !== targetDesc
+        ) {
+          migrated = true;
+          return {
+            ...m,
+            name: 'Dr. Melkisedeck Robert, DDS',
+            image: '/images/Dorcas_19.webp',
+            desc: targetDesc
+          };
+        }
+      }
+      if (m.id === 'team-2') {
+        const targetDesc = 'Dr. Michael oversees the logistics and clinical execution of all rural charity camps. His passion is bringing modern clinical standards out of Dar es Salaam straight to remote Tanzanian schools.';
+        if (
+          m.name !== 'Dr. Michael, DDS' ||
+          m.image !== '/images/MICHAEL.jpg' ||
+          m.desc !== targetDesc
+        ) {
+          migrated = true;
+          return {
+            ...m,
+            name: 'Dr. Michael, DDS',
+            image: '/images/MICHAEL.jpg',
+            desc: targetDesc
+          };
+        }
+      }
+      if (m.id === 'team-3') {
+        const targetDesc = 'Dr. Sylvia specializes in advanced pediatric dental care and reconstructive surgery. Her gentle approach and comforting presence help children feel safe and at ease during complex procedures.';
+        if (
+          m.name !== 'Dr. Sylvia, DDS' ||
+          m.image !== '/images/SYLVIA.jpg' ||
+          m.desc !== targetDesc ||
+          m.role !== 'Pediatric Dentist & Reconstructive Surgeon' ||
+          m.tag !== 'Clinical Operations Lead'
+        ) {
+          migrated = true;
+          return {
+            ...m,
+            name: 'Dr. Sylvia, DDS',
+            image: '/images/SYLVIA.jpg',
+            role: 'Pediatric Dentist & Reconstructive Surgeon',
+            tag: 'Clinical Operations Lead',
+            desc: targetDesc
+          };
+        }
       }
       return m;
     });

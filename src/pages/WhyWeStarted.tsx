@@ -5,12 +5,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
-import FlagIcon from '@mui/icons-material/Flag';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import GroupsIcon from '@mui/icons-material/Groups';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { ToothIcon, HeartIcon, UsersIcon, FlagIcon, MilestoneIcon } from '../components/DentalIcons';
 import { useNavigate } from 'react-router-dom';
 
 interface WhyWeStartedProps {
@@ -175,7 +170,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
               <Button
                 variant="contained"
                 onClick={onDonateClick}
-                startIcon={<FavoriteIcon />}
+                startIcon={<HeartIcon />}
                 sx={{ 
                   ...neoButtonStyle,
                   bgcolor: '#be185d',
@@ -286,7 +281,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           }}
         >
           <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 8, textTransform: 'uppercase', letterSpacing: '-1px' }}>
-            <TimelineIcon sx={{ fontSize: '3rem', color: '#be185d' }} /> Our Journey So Far
+            <MilestoneIcon sx={{ fontSize: '3rem', color: '#be185d' }} /> Our Journey So Far
           </Typography>
 
           <Box sx={{ position: 'relative', pl: { xs: 4, sm: 8 }, borderLeft: '3px solid #be185d' }}>
@@ -378,21 +373,21 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
                 desc: 'Support the complete clinical costs of one rural mobile camp. Your funds go directly to purchasing dental materials, truck fuel, and medical supplies.',
                 actionText: 'Sponsor a Camp Now',
                 action: onDonateClick,
-                icon: <VolunteerActivismIcon />
+                icon: <HeartIcon />
               },
               {
                 title: 'Volunteer Your Skills',
                 desc: 'Are you a licensed dentist, hygienist, or nurse? Register to join our mobile team on our upcoming rural charity sessions across East Africa.',
                 actionText: 'Join the Medical Team',
                 action: () => navigate('/'),
-                icon: <GroupsIcon />
+                icon: <UsersIcon />
               },
               {
                 title: 'Donate Dental Equipment',
                 desc: 'We are always in need of examination chairs, pediatric dental tools, and consumable supplies. Help us equip our mobile units with the best tools.',
                 actionText: 'Equipment Donation',
                 action: () => navigate('/contact'),
-                icon: <LocalHospitalIcon />
+                icon: <ToothIcon />
               }
             ].map((item, idx) => (
               <Grid size={{ xs: 12, md: 4 }} key={idx}>

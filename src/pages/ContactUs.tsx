@@ -184,7 +184,7 @@ export default function ContactUs() {
                 Send SWDR a Message
               </Typography>
               <Typography variant="body1" sx={{ color: '#475569', fontWeight: 500, lineHeight: 1.7, mb: 5, textAlign: 'justify' }}>
-                Fill out the secure form below. Your request will be filtered and dispatched straight to Dr. Rome's pediatric support desks.
+                Fill out the secure form below. Your request will be filtered and dispatched straight to our pediatric support desks.
               </Typography>
 
               <form onSubmit={handleSubmit}>
@@ -314,7 +314,7 @@ export default function ContactUs() {
             color: '#1e293b'
           }}
         >
-          🎉 Message successfully sent! Dr. Rome's support office will reach out to you within 24 hours.
+          🎉 Message successfully sent! Our support office will reach out to you within 24 hours.
         </Alert>
       </Snackbar>
 
