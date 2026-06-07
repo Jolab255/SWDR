@@ -105,7 +105,16 @@ export default function Footer() {
               />
             </Box>
 
-            <Typography variant="body2" sx={{ color: '#475569', lineHeight: 1.8, mb: 4, maxWidth: 320 }}>
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                color: '#475569', 
+                lineHeight: 1.8, 
+                mb: 4, 
+                maxWidth: { xs: '100%', md: 320 },
+                px: { xs: 1, md: 0 }
+              }}
+            >
               Smile With Dr Rome Dental Clinic is a community-based dental practice in Tanzania - providing
               no-cost oral healthcare services to children with special health needs in Tanzanian communities.
               <Box component="span" sx={{ display: 'block', mt: 1.5, fontWeight: '900', color: '#be185d' }}>
