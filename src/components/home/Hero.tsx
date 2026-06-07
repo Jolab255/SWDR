@@ -21,21 +21,37 @@ export default function Hero({ onDonateClick }: HeroProps) {
         pt: { xs: 4, md: 10 },
         pb: { xs: 5, md: 10 },
         backgroundImage: {
-          xs: 'linear-gradient(180deg, rgba(253, 242, 248, 0.95) 0%, rgba(255, 255, 255, 0.975) 100%), url("/favicon.png")',
-          md: `linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.25) 85%, rgba(255, 255, 255, 0.15) 100%), url("/favicon.png"), url(${heroImg})`
+          xs: 'linear-gradient(180deg, rgba(253, 242, 248, 0.95) 0%, rgba(255, 255, 255, 0.975) 100%)',
+          md: `linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.1) 85%, rgba(255, 255, 255, 0) 100%), url(${heroImg})`
         },
-        backgroundRepeat: { xs: 'no-repeat, repeat', md: 'no-repeat, repeat, no-repeat' },
-        backgroundSize: { xs: 'auto, 120px 120px', md: 'cover, 120px 120px, cover' },
-        backgroundPosition: { xs: 'top left', md: 'center left, top left, center right' },
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: { xs: 'top left', md: 'center right' },
         backgroundAttachment: 'scroll, fixed',
         color: 'text.primary',
         overflow: 'hidden',
         minHeight: { md: 540 },
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        
+        // Faint Watermark Layer
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'url("/favicon.png")',
+          backgroundRepeat: 'repeat',
+          backgroundSize: '120px 120px',
+          opacity: 0.025, // 2.5% opacity - very faint!
+          zIndex: 1,
+          pointerEvents: 'none'
+        }
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
         <Grid container spacing={4} direction={{ xs: 'column-reverse', md: 'row' }} sx={{ alignItems: 'center' }}>
           {/* Left Column: Descriptive Typographic Block */}
           <Grid size={{ xs: 12, md: 7 }}>
