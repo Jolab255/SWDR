@@ -67,9 +67,7 @@ export default function ContentManager() {
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('Dr. Melkisedeck Robert');
-  const [imagePreset, setImagePreset] = useState('upload');
-  const [customImage, setCustomImage] = useState('');
-  const [uploadedImage, setUploadedImage] = useState('');
+  const [image, setImage] = useState('');
   
   // New Fields for Team & Impact
   const [name, setName] = useState('');
@@ -79,8 +77,10 @@ export default function ContentManager() {
   const [instagram, setInstagram] = useState('#');
 
   // Categories
-  const [eventCategory, setEventCategory] = useState<'Charity' | 'Surgery' | 'Fundraiser' | 'Workshop'>('Charity');
-  const [newsCategory, setNewsCategory] = useState<'Success Story' | 'Health Advice' | 'Clinic News'>('Clinic News');
+  const [eventCategory, setEventCategory] = useState<string>('Charity Campaign');
+  const [customEventCategory, setCustomEventCategory] = useState('');
+  const [newsCategory, setNewsCategory] = useState<string>('Clinic News');
+  const [customNewsCategory, setCustomNewsCategory] = useState('');
   
   const [slotsTotal, setSlotsTotal] = useState(100);
   const [slotsRegistered, setSlotsRegistered] = useState(0);
@@ -110,11 +110,11 @@ export default function ContentManager() {
     setSummary('');
     setContent('');
     setAuthor('Dr. Melkisedeck Robert');
-    setImagePreset('upload');
-    setCustomImage('');
-    setUploadedImage('');
-    setEventCategory('Charity');
+    setImage(tabIndex === 3 ? '/images/Dorcas_19.webp' : '/images/swdr_hero.webp');
+    setEventCategory('Charity Campaign');
+    setCustomEventCategory('');
     setNewsCategory('Clinic News');
+    setCustomNewsCategory('');
     setSlotsTotal(100);
     setSlotsRegistered(0);
     setName('');
@@ -156,7 +156,7 @@ export default function ContentManager() {
           ctx?.drawImage(img, 0, 0, width, height);
           
           const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
-          setUploadedImage(dataUrl);
+          setImage(dataUrl);
         };
       };
       reader.readAsDataURL(file);
@@ -177,36 +177,55 @@ export default function ContentManager() {
     // Base fields
     setTitle(item.title || '');
     setDate(item.date || '');
-    
-    const imgUrl = item.image || '';
-    if (imgUrl.startsWith('data:')) {
-      setImagePreset('upload');
-      setUploadedImage(imgUrl);
-      setCustomImage('');
-    } else if (imgUrl.startsWith('/images/')) {
-      setImagePreset(imgUrl);
-      setCustomImage('');
-      setUploadedImage('');
-    } else {
-      setImagePreset('custom');
-      setCustomImage(imgUrl);
-      setUploadedImage('');
-    }
+    setImage(item.image || '');
+
+    const categoriesList = [
+      'Charity Campaign',
+      'Mobile Dental Camp',
+      'Marathon & Fundraising',
+      'Surgical & Restorative Camp',
+      'School Visit & Education',
+      'Oral Hygiene Workshop',
+      'Community Engagement',
+      'Pediatric Screening'
+    ];
+    const newsCategoriesList = ['Success Story', 'Health Advice', 'Clinic News'];
 
     if (tabIndex === 0) {
       const ev = item as ClinicEvent;
       setTime(ev.time);
       setLocation(ev.location);
       setDescription(ev.description);
-      setEventCategory(ev.category);
       setSlotsTotal(ev.slotsTotal);
       setSlotsRegistered(ev.slotsRegistered);
+
+      let cat = ev.category || '';
+      if (cat === 'Charity') cat = 'Charity Campaign';
+      else if (cat === 'Surgery') cat = 'Surgical & Restorative Camp';
+      else if (cat === 'Fundraiser') cat = 'Marathon & Fundraising';
+      else if (cat === 'Workshop') cat = 'Oral Hygiene Workshop';
+
+      if (categoriesList.includes(cat)) {
+        setEventCategory(cat);
+        setCustomEventCategory('');
+      } else {
+        setEventCategory('Other');
+        setCustomEventCategory(cat);
+      }
     } else if (tabIndex === 1) {
       const nw = item as NewsArticle;
       setAuthor(nw.author);
       setSummary(nw.summary);
       setContent(nw.content);
-      setNewsCategory(nw.category);
+
+      let cat = nw.category || '';
+      if (newsCategoriesList.includes(cat)) {
+        setNewsCategory(cat);
+        setCustomNewsCategory('');
+      } else {
+        setNewsCategory('Other');
+        setCustomNewsCategory(cat);
+      }
     } else if (tabIndex === 2) {
       const im = item as ImpactStory;
       setLocation(im.location || '');
@@ -248,22 +267,20 @@ export default function ContentManager() {
   };
 
   const handleSave = () => {
-    const finalImage = imagePreset === 'custom' 
-      ? customImage || '/images/swdr_hero.webp' 
-      : imagePreset === 'upload' 
-        ? uploadedImage || '/images/swdr_hero.webp' 
-        : imagePreset;
+    const finalImage = image || (tabIndex === 3 ? '/images/Dorcas_19.webp' : '/images/swdr_hero.webp');
+    const finalEventCategory = eventCategory === 'Other' ? (customEventCategory || 'Other') : eventCategory;
+    const finalNewsCategory = newsCategory === 'Other' ? (customNewsCategory || 'Other') : newsCategory;
 
     if (tabIndex === 0) {
       const updated = dialogMode === 'add' 
-        ? [{ id: 'evt-' + Date.now(), title, date, time, location, description, category: eventCategory, image: finalImage, slotsTotal, slotsRegistered }, ...events]
-        : events.map(ev => ev.id === editId ? { ...ev, title, date, time, location, description, category: eventCategory, image: finalImage, slotsTotal, slotsRegistered } : ev);
+        ? [{ id: 'evt-' + Date.now(), title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered }, ...events]
+        : events.map(ev => ev.id === editId ? { ...ev, title, date, time, location, description, category: finalEventCategory, image: finalImage, slotsTotal, slotsRegistered } : ev);
       setEvents(updated);
       saveStoredEvents(updated);
     } else if (tabIndex === 1) {
       const updated = dialogMode === 'add'
-        ? [{ id: 'news-' + Date.now(), title, date, author, summary, content, category: newsCategory, image: finalImage }, ...news]
-        : news.map(nw => nw.id === editId ? { ...nw, title, date, author, summary, content, category: newsCategory, image: finalImage } : nw);
+        ? [{ id: 'news-' + Date.now(), title, date, author, summary, content, category: finalNewsCategory, image: finalImage }, ...news]
+        : news.map(nw => nw.id === editId ? { ...nw, title, date, author, summary, content, category: finalNewsCategory, image: finalImage } : nw);
       setNews(updated);
       saveStoredNews(updated);
     } else if (tabIndex === 2) {
@@ -358,6 +375,135 @@ export default function ContentManager() {
       </Box>
     </Grid>
   );
+
+  const renderLivePreview = () => {
+    const previewItem: any = {};
+    
+    if (tabIndex === 0) {
+      previewItem.title = title || 'Event Title Placeholder';
+      previewItem.date = date || 'YYYY-MM-DD';
+      previewItem.category = eventCategory === 'Other' ? (customEventCategory || 'Other') : eventCategory;
+      previewItem.image = image || '/images/swdr_hero.webp';
+      previewItem.description = description || 'This is where your event description will go. Start typing below to see it live!';
+    } else if (tabIndex === 1) {
+      previewItem.title = title || 'Article Title Placeholder';
+      previewItem.date = date || 'YYYY-MM-DD';
+      previewItem.category = newsCategory === 'Other' ? (customNewsCategory || 'Other') : newsCategory;
+      previewItem.image = image || '/images/swdr_hero.webp';
+      previewItem.description = summary || content || 'This is where your article summary or content will go. Start typing below to see it live!';
+    } else if (tabIndex === 2) {
+      previewItem.title = title || 'Impact Glimpse Title';
+      previewItem.date = date || 'YYYY-MM-DD';
+      previewItem.location = location || 'Location';
+      previewItem.category = 'Impact Story';
+      previewItem.image = image || '/images/swdr_hero.webp';
+      previewItem.description = description || 'This is where your impact story description will go. Start typing below to see it live!';
+    } else if (tabIndex === 3) {
+      previewItem.name = name || 'Team Member Name';
+      previewItem.title = name || 'Team Member Name';
+      previewItem.role = role || 'Role / Position';
+      previewItem.tag = tag || 'Specialization Tag';
+      previewItem.category = 'Team Member';
+      previewItem.image = image || '/images/Dorcas_19.webp';
+      previewItem.description = description || 'This is where the team member biography will go. Start typing below to see it live!';
+    }
+
+    return (
+      <Box sx={{ maxWidth: 360, mx: 'auto', width: '100%' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            border: BORDER,
+            borderRadius: 3,
+            bgcolor: 'white',
+            overflow: 'hidden',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)',
+            borderColor: '#be185d',
+            position: 'relative'
+          }}
+        >
+          <Box sx={{ position: 'absolute', top: 12, right: 12, zIndex: 10 }}>
+            <Chip 
+              label="PREVIEW" 
+              size="small" 
+              sx={{ fontWeight: 900, bgcolor: '#be185d', color: 'white', fontSize: '0.65rem' }} 
+            />
+          </Box>
+          <Box 
+            component="img" 
+            src={previewItem.image} 
+            sx={{ height: 160, width: '100%', objectFit: 'cover', borderBottom: BORDER }} 
+          />
+          <Box sx={{ p: 2.5, flexGrow: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5, alignItems: 'center' }}>
+              <Chip 
+                label={previewItem.category} 
+                size="small" 
+                sx={{ fontWeight: '900', borderRadius: 1.5, border: '1px solid #fce7f3', bgcolor: '#fdf2f8', color: '#be185d' }} 
+              />
+              {previewItem.date && (
+                <Typography variant="caption" sx={{ fontWeight: 700, color: '#64748b' }}>
+                  📅 {previewItem.date}
+                </Typography>
+              )}
+            </Box>
+            <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1, color: '#1e293b', minHeight: 40, lineHeight: 1.2 }}>
+              {previewItem.title || previewItem.name}
+            </Typography>
+            
+            {tabIndex === 3 && (
+              <Box sx={{ mb: 1.5 }}>
+                <Typography variant="caption" sx={{ fontWeight: 800, color: '#be185d', display: 'block' }}>
+                  {previewItem.role}
+                </Typography>
+                <Typography variant="caption" sx={{ fontWeight: 600, color: '#64748b' }}>
+                  {previewItem.tag}
+                </Typography>
+              </Box>
+            )}
+
+            {tabIndex === 0 && (
+              <Box sx={{ mb: 1.5, display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                {location && (
+                  <Typography variant="caption" sx={{ fontWeight: 700, color: '#64748b' }}>
+                    📍 {location}
+                  </Typography>
+                )}
+                {time && (
+                  <Typography variant="caption" sx={{ fontWeight: 700, color: '#64748b' }}>
+                    🕒 {time}
+                  </Typography>
+                )}
+              </Box>
+            )}
+
+            {tabIndex === 2 && location && (
+              <Typography variant="caption" sx={{ fontWeight: 700, color: '#64748b', display: 'block', mb: 1.5 }}>
+                📍 {location}
+              </Typography>
+            )}
+
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                color: '#475569', 
+                mb: 2, 
+                maxHeight: 120, 
+                overflowY: 'auto', 
+                textAlign: 'justify',
+                pr: 0.5,
+                '&::-webkit-scrollbar': { width: '4px' },
+                '&::-webkit-scrollbar-thumb': { bgcolor: '#cbd5e1', borderRadius: '4px' }
+              }}
+            >
+              {previewItem.description}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+    );
+  };
 
   return (
     <Box>
@@ -477,7 +623,7 @@ export default function ContentManager() {
       <Dialog 
         open={openDialog} 
         onClose={() => setOpenDialog(false)} 
-        maxWidth="md" 
+        maxWidth="lg" 
         fullWidth 
         scroll="body"
         slotProps={{ paper: { sx: { borderRadius: 3, border: '1px solid #e2e8f0', boxShadow: '0 20px 48px rgba(0, 0, 0, 0.12)' } } }}
@@ -487,261 +633,324 @@ export default function ContentManager() {
         </DialogTitle>
         
         <DialogContent sx={{ p: 4, mt: 2 }}>
-          <Grid container spacing={3}>
-            {/* Title / Name Field */}
-            <Grid size={{ xs: 12, md: (tabIndex === 3 || tabIndex === 1) ? 6 : 12 }}>
-              <TextField
-                fullWidth
-                label={tabIndex === 3 ? "Full Name" : "Title"}
-                value={tabIndex === 3 ? name : title}
-                onChange={(e) => tabIndex === 3 ? setName(e.target.value) : setTitle(e.target.value)}
-                sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-              />
-            </Grid>
+          <Grid container spacing={4}>
+            {/* Left Side: Form Fields */}
+            <Grid size={{ xs: 12, md: 7.5 }}>
+              <Grid container spacing={3}>
+                {/* Title / Name Field */}
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    fullWidth
+                    label={tabIndex === 3 ? "Full Name" : "Title"}
+                    value={tabIndex === 3 ? name : title}
+                    onChange={(e) => tabIndex === 3 ? setName(e.target.value) : setTitle(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
 
-            {/* High Visibility Image / Cover Photo Selector */}
-            <Grid size={{ xs: 12 }}>
-              <Paper variant="outlined" sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}>
-                <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
-                  🖼️ Image / Cover Photo
-                </Typography>
-                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <FormControl fullWidth sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
-                      <InputLabel>Image Option</InputLabel>
-                      <Select
-                        value={imagePreset} label="Image Option" onChange={(e) => setImagePreset(e.target.value)}
-                      >
-                        <MenuItem value="/images/swdr_hero.webp">General Charity Campaign</MenuItem>
-                        <MenuItem value="/images/mobile_clinic.webp">Mobile Dental Camp / Outreach</MenuItem>
-                        <MenuItem value="/images/swdr_happy_children.webp">Marathon & Fundraising</MenuItem>
-                        <MenuItem value="/images/Dorcas_19.webp">Surgical & Restorative Camp</MenuItem>
-                        <MenuItem value="/images/hygiene_campaign.webp">School Visit & Education</MenuItem>
-                        <MenuItem value="/images/why_we_started_dorcas_training.webp">Oral Hygiene Workshop</MenuItem>
-                        <MenuItem value="/images/why_we_started_singisa_school.webp">Community Engagement</MenuItem>
-                        <MenuItem value="/images/surgical_camp.webp">Pediatric Screening</MenuItem>
-                        <MenuItem value="upload">Upload Local Image</MenuItem>
-                        <MenuItem value="custom">Custom URL / Other</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                {/* High Visibility Category / Event Type & Image Selector */}
+                <Grid size={{ xs: 12 }}>
+                  <Paper variant="outlined" sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
+                      🖼️ {tabIndex === 0 ? 'Event Type & Cover Photo' : tabIndex === 1 ? 'News Category & Cover Photo' : 'Cover Photo'}
+                    </Typography>
+                    
+                    <Grid container spacing={2}>
+                      {/* Category Dropdown (Events and News only) */}
+                      {tabIndex === 0 && (
+                        <>
+                          <Grid size={{ xs: 12, md: eventCategory === 'Other' ? 6 : 12 }}>
+                            <FormControl fullWidth sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
+                              <InputLabel>Event Type</InputLabel>
+                              <Select
+                                value={eventCategory} 
+                                label="Event Type" 
+                                onChange={(e) => {
+                                  setEventCategory(e.target.value);
+                                  if (e.target.value !== 'Other') {
+                                    setCustomEventCategory('');
+                                  }
+                                }}
+                              >
+                                <MenuItem value="Charity Campaign">Charity Campaign</MenuItem>
+                                <MenuItem value="Mobile Dental Camp">Mobile Dental Camp</MenuItem>
+                                <MenuItem value="Marathon & Fundraising">Marathon & Fundraising</MenuItem>
+                                <MenuItem value="Surgical & Restorative Camp">Surgical & Restorative Camp</MenuItem>
+                                <MenuItem value="School Visit & Education">School Visit & Education</MenuItem>
+                                <MenuItem value="Oral Hygiene Workshop">Oral Hygiene Workshop</MenuItem>
+                                <MenuItem value="Community Engagement">Community Engagement</MenuItem>
+                                <MenuItem value="Pediatric Screening">Pediatric Screening</MenuItem>
+                                <MenuItem value="Other">Other (Custom Type)</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          {eventCategory === 'Other' && (
+                            <Grid size={{ xs: 12, md: 6 }}>
+                              <TextField
+                                fullWidth 
+                                label="Custom Event Type" 
+                                value={customEventCategory} 
+                                onChange={(e) => setCustomEventCategory(e.target.value)}
+                                sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                              />
+                            </Grid>
+                          )}
+                        </>
+                      )}
 
-                  {imagePreset === 'custom' && (
+                      {tabIndex === 1 && (
+                        <>
+                          <Grid size={{ xs: 12, md: newsCategory === 'Other' ? 6 : 12 }}>
+                            <FormControl fullWidth sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
+                              <InputLabel>News Category</InputLabel>
+                              <Select
+                                value={newsCategory} 
+                                label="News Category" 
+                                onChange={(e) => {
+                                  setNewsCategory(e.target.value);
+                                  if (e.target.value !== 'Other') {
+                                    setCustomNewsCategory('');
+                                  }
+                                }}
+                              >
+                                <MenuItem value="Success Story">Success Story</MenuItem>
+                                <MenuItem value="Health Advice">Health Advice</MenuItem>
+                                <MenuItem value="Clinic News">Clinic News</MenuItem>
+                                <MenuItem value="Other">Other (Custom Category)</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          {newsCategory === 'Other' && (
+                            <Grid size={{ xs: 12, md: 6 }}>
+                              <TextField
+                                fullWidth 
+                                label="Custom News Category" 
+                                value={customNewsCategory} 
+                                onChange={(e) => setCustomNewsCategory(e.target.value)}
+                                sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                              />
+                            </Grid>
+                          )}
+                        </>
+                      )}
+
+                      {/* Always-visible Local Image Uploader */}
+                      <Grid size={{ xs: 12 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+                            <Button
+                              variant="contained"
+                              component="label"
+                              sx={{ 
+                                py: 1.5, px: 3, borderRadius: 2, 
+                                textTransform: 'uppercase', fontWeight: 900, 
+                                bgcolor: '#be185d', '&:hover': { bgcolor: '#9d174d' } 
+                              }}
+                            >
+                              Choose Image from Local Folder
+                              <input
+                                type="file"
+                                accept="image/*"
+                                hidden
+                                onChange={handleFileChange}
+                              />
+                            </Button>
+                            {image ? (
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                                <Box 
+                                  component="img" 
+                                  src={image} 
+                                  sx={{ 
+                                    width: 60, height: 60, objectFit: 'cover', 
+                                    borderRadius: 2, border: '1px solid #cbd5e1',
+                                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
+                                  }} 
+                                />
+                                <Box>
+                                  <Typography variant="caption" sx={{ fontWeight: 800, color: '#1e293b', display: 'block' }}>
+                                    Image Selected
+                                  </Typography>
+                                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                                    {image.startsWith('data:') ? `Local File (${Math.round(image.length / 1024)} KB)` : 'External URL / Default'}
+                                  </Typography>
+                                </Box>
+                              </Box>
+                            ) : (
+                              <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                                No image selected (will use default)
+                              </Typography>
+                            )}
+                          </Box>
+                          <TextField
+                            fullWidth 
+                            label="Or enter Image URL" 
+                            placeholder="https://example.com/image.jpg"
+                            value={image.startsWith('data:') ? '' : image} 
+                            onChange={(e) => setImage(e.target.value)}
+                            sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                          />
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </Grid>
+
+                {/* News Specific Fields - Date / Author */}
+                {tabIndex === 1 && (
+                  <>
                     <Grid size={{ xs: 12, md: 6 }}>
                       <TextField
-                        fullWidth label="Custom Image URL" value={customImage} onChange={(e) => setCustomImage(e.target.value)}
-                        sx={{ bgcolor: 'white', '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                        fullWidth label="Author" value={author} onChange={(e) => setAuthor(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                       />
                     </Grid>
-                  )}
-
-                  {imagePreset === 'upload' && (
                     <Grid size={{ xs: 12, md: 6 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Button
-                          variant="contained"
-                          component="label"
-                          sx={{ py: 1.5, px: 3, borderRadius: 2, textTransform: 'uppercase', fontWeight: 900, bgcolor: '#be185d', '&:hover': { bgcolor: '#9d174d' } }}
-                        >
-                          Choose File
-                          <input
-                            type="file"
-                            accept="image/*"
-                            hidden
-                            onChange={handleFileChange}
-                          />
-                        </Button>
-                        {uploadedImage ? (
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <Box 
-                              component="img" 
-                              src={uploadedImage} 
-                              sx={{ width: 50, height: 50, objectFit: 'cover', borderRadius: 1.5, border: '1px solid #e2e8f0' }} 
-                            />
-                            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
-                              Loaded ({Math.round(uploadedImage.length / 1024)} KB)
-                            </Typography>
-                          </Box>
-                        ) : (
-                          <Typography variant="caption" color="text.secondary">
-                            No file selected
-                          </Typography>
-                        )}
-                      </Box>
+                      <TextField
+                        fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
                     </Grid>
-                  )}
-                </Grid>
-              </Paper>
-            </Grid>
+                  </>
+                )}
 
-            {/* News Specific Fields - Date / Author / Category */}
-            {tabIndex === 1 && (
-              <>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth label="Author" value={author} onChange={(e) => setAuthor(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
-                    slotProps={{ inputLabel: { shrink: true } }}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
-                    <InputLabel>Category</InputLabel>
-                    <Select
-                      value={newsCategory} label="Category" onChange={(e) => setNewsCategory(e.target.value as any)}
-                    >
-                      <MenuItem value="Success Story">Success Story</MenuItem>
-                      <MenuItem value="Health Advice">Health Advice</MenuItem>
-                      <MenuItem value="Clinic News">Clinic News</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-              </>
-            )}
+                {/* Event Specific Fields */}
+                {tabIndex === 0 && (
+                  <>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Time" value={time} onChange={(e) => setTime(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 3 }}>
+                      <TextField
+                        fullWidth label="Total Slots" type="number" value={slotsTotal} onChange={(e) => setSlotsTotal(Number(e.target.value))}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 3 }}>
+                      <TextField
+                        fullWidth label="Registered Slots" type="number" value={slotsRegistered} onChange={(e) => setSlotsRegistered(Number(e.target.value))}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                  </>
+                )}
 
-            {/* Event Specific Fields */}
-            {tabIndex === 0 && (
-              <>
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <TextField
-                    fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
-                    slotProps={{ inputLabel: { shrink: true } }}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <TextField
-                    fullWidth label="Time" value={time} onChange={(e) => setTime(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <FormControl fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
-                    <InputLabel>Category</InputLabel>
-                    <Select
-                      value={eventCategory} label="Category" onChange={(e) => setEventCategory(e.target.value as any)}
-                    >
-                      <MenuItem value="Charity">Charity</MenuItem>
-                      <MenuItem value="Surgery">Surgery</MenuItem>
-                      <MenuItem value="Fundraiser">Fundraiser</MenuItem>
-                      <MenuItem value="Workshop">Workshop</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth label="Total Slots" type="number" value={slotsTotal} onChange={(e) => setSlotsTotal(Number(e.target.value))}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth label="Registered Slots" type="number" value={slotsRegistered} onChange={(e) => setSlotsRegistered(Number(e.target.value))}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-              </>
-            )}
+                {/* Impact Specific Fields */}
+                {tabIndex === 2 && (
+                  <>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                  </>
+                )}
 
-            {/* Impact Specific Fields */}
-            {tabIndex === 2 && (
-              <>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth label="Location" value={location} onChange={(e) => setLocation(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
-                    slotProps={{ inputLabel: { shrink: true } }}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-              </>
-            )}
+                {/* Team Specific Fields */}
+                {tabIndex === 3 && (
+                  <>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth
+                        label="Role / Position"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth
+                        label="Specialization Tag"
+                        placeholder="e.g. MUHAS · UCSF"
+                        value={tag}
+                        onChange={(e) => setTag(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth
+                        label="LinkedIn"
+                        value={linkedin}
+                        onChange={(e) => setLinkedin(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        fullWidth
+                        label="Instagram"
+                        value={instagram}
+                        onChange={(e) => setInstagram(e.target.value)}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Grid>
+                  </>
+                )}
 
-            {/* Team Specific Fields */}
-            {tabIndex === 3 && (
-              <>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth
-                    label="Role / Position"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <TextField
-                    fullWidth
-                    label="Specialization Tag"
-                    placeholder="e.g. MUHAS · UCSF"
-                    value={tag}
-                    onChange={(e) => setTag(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth
-                    label="LinkedIn"
-                    value={linkedin}
-                    onChange={(e) => setLinkedin(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 3 }}>
-                  <TextField
-                    fullWidth
-                    label="Instagram"
-                    value={instagram}
-                    onChange={(e) => setInstagram(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                </Grid>
-              </>
-            )}
+                {/* News Summary Field */}
+                {tabIndex === 1 && (
+                  <Grid size={{ xs: 12 }}>
+                    <TextField
+                      fullWidth multiline rows={2}
+                      label="Short Summary Excerpt"
+                      value={summary}
+                      onChange={(e) => setSummary(e.target.value)}
+                      sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                    />
+                  </Grid>
+                )}
 
-            {/* News Summary Field */}
-            {tabIndex === 1 && (
-              <Grid size={{ xs: 12 }}>
-                <TextField
-                  fullWidth multiline rows={2}
-                  label="Short Summary Excerpt"
-                  value={summary}
-                  onChange={(e) => setSummary(e.target.value)}
-                  sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                />
+                {/* Description / Content */}
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    fullWidth multiline rows={tabIndex === 1 ? 6 : 4}
+                    label={tabIndex === 1 ? "Full Article Content" : "Description"}
+                    value={tabIndex === 1 ? content : description}
+                    onChange={(e) => tabIndex === 1 ? setContent(e.target.value) : setDescription(e.target.value)}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                  />
+                </Grid>
               </Grid>
-            )}
-
-            {/* Description / Content */}
-            <Grid size={{ xs: 12 }}>
-              <TextField
-                fullWidth multiline rows={tabIndex === 1 ? 6 : 4}
-                label={tabIndex === 1 ? "Full Article Content" : "Description"}
-                value={tabIndex === 1 ? content : description}
-                onChange={(e) => tabIndex === 1 ? setContent(e.target.value) : setDescription(e.target.value)}
-                sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-              />
             </Grid>
 
-
+            {/* Right Side: Live Card Preview */}
+            <Grid size={{ xs: 12, md: 4.5 }} sx={{ borderLeft: { md: BORDER }, pl: { md: 4 }, display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ position: 'sticky', top: 24 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: '900', mb: 3, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}>
+                  👁️ Real-time Card Preview
+                </Typography>
+                {renderLivePreview()}
+                <Typography variant="caption" sx={{ display: 'block', mt: 3, color: '#64748b', fontStyle: 'italic', textAlign: 'center' }}>
+                  This card preview updates instantly as you make changes to the form.
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
         </DialogContent>
 
