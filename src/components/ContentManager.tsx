@@ -68,6 +68,7 @@ export default function ContentManager() {
   const [author, setAuthor] = useState('Dr. Melkisedeck Robert');
   const [imagePreset, setImagePreset] = useState('/images/swdr_hero.webp');
   const [customImage, setCustomImage] = useState('');
+  const [uploadedImage, setUploadedImage] = useState('');
   
   // New Fields for Team & Impact
   const [name, setName] = useState('');
@@ -110,6 +111,7 @@ export default function ContentManager() {
     setAuthor('Dr. Melkisedeck Robert');
     setImagePreset('/images/swdr_hero.webp');
     setCustomImage('');
+    setUploadedImage('');
     setEventCategory('Charity');
     setNewsCategory('Clinic News');
     setSlotsTotal(100);
@@ -119,6 +121,45 @@ export default function ContentManager() {
     setTag('');
     setLinkedin('#');
     setInstagram('#');
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 600;
+          const MAX_HEIGHT = 450;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          setUploadedImage(dataUrl);
+        };
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleOpenAdd = () => {
@@ -137,12 +178,18 @@ export default function ContentManager() {
     setDate(item.date || '');
     
     const imgUrl = item.image || '';
-    if (imgUrl.startsWith('/images/')) {
+    if (imgUrl.startsWith('data:')) {
+      setImagePreset('upload');
+      setUploadedImage(imgUrl);
+      setCustomImage('');
+    } else if (imgUrl.startsWith('/images/')) {
       setImagePreset(imgUrl);
       setCustomImage('');
+      setUploadedImage('');
     } else {
       setImagePreset('custom');
       setCustomImage(imgUrl);
+      setUploadedImage('');
     }
 
     if (tabIndex === 0) {
@@ -200,7 +247,11 @@ export default function ContentManager() {
   };
 
   const handleSave = () => {
-    const finalImage = imagePreset === 'custom' ? customImage || '/images/swdr_hero.webp' : imagePreset;
+    const finalImage = imagePreset === 'custom' 
+      ? customImage || '/images/swdr_hero.webp' 
+      : imagePreset === 'upload' 
+        ? uploadedImage || '/images/swdr_hero.webp' 
+        : imagePreset;
 
     if (tabIndex === 0) {
       const updated = dialogMode === 'add' 
@@ -581,6 +632,7 @@ export default function ContentManager() {
                       <MenuItem value="/images/swdr_happy_children.webp">🧒 Children</MenuItem>
                       <MenuItem value="/images/hygiene_campaign.webp">🧼 Hygiene</MenuItem>
                       <MenuItem value="/images/mobile_clinic.webp">🚐 Mobile Clinic</MenuItem>
+                      <MenuItem value="upload">📤 Upload Local Image</MenuItem>
                       <MenuItem value="custom">🌐 Custom URL</MenuItem>
                     </Select>
                   </FormControl>
@@ -591,6 +643,41 @@ export default function ContentManager() {
                       fullWidth label="Custom Image URL" value={customImage} onChange={(e) => setCustomImage(e.target.value)}
                       sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                     />
+                  </Grid>
+                )}
+                {imagePreset === 'upload' && (
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <Button
+                        variant="outlined"
+                        component="label"
+                        sx={{ py: 1.5, borderRadius: 2, textTransform: 'uppercase', fontWeight: 900 }}
+                      >
+                        Choose File
+                        <input
+                          type="file"
+                          accept="image/*"
+                          hidden
+                          onChange={handleFileChange}
+                        />
+                      </Button>
+                      {uploadedImage ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <Box 
+                            component="img" 
+                            src={uploadedImage} 
+                            sx={{ width: 45, height: 45, objectFit: 'cover', borderRadius: 1.5, border: '1px solid #e2e8f0' }} 
+                          />
+                          <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                            Loaded ({Math.round(uploadedImage.length / 1024)} KB)
+                          </Typography>
+                        </Box>
+                      ) : (
+                        <Typography variant="caption" color="text.secondary">
+                          No file selected
+                        </Typography>
+                      )}
+                    </Box>
                   </Grid>
                 )}
               </Grid>
