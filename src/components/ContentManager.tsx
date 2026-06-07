@@ -625,16 +625,16 @@ export default function ContentManager() {
                     <Select
                       value={imagePreset} label="Image Preset" onChange={(e) => setImagePreset(e.target.value)}
                     >
-                      <MenuItem value="/images/swdr_hero.webp">🌅 General Charity Campaign</MenuItem>
-                      <MenuItem value="/images/mobile_clinic.webp">🚐 Mobile Dental Camp / Outreach</MenuItem>
-                      <MenuItem value="/images/swdr_happy_children.webp">🏃 Marathon & Fundraising</MenuItem>
-                      <MenuItem value="/images/Dorcas_19.webp">🏥 Surgical & Restorative Camp</MenuItem>
-                      <MenuItem value="/images/hygiene_campaign.webp">🏫 School Visit & Education</MenuItem>
-                      <MenuItem value="/images/why_we_started_dorcas_training.webp">🧼 Oral Hygiene Workshop</MenuItem>
-                      <MenuItem value="/images/why_we_started_singisa_school.webp">🤝 Community Engagement</MenuItem>
-                      <MenuItem value="/images/surgical_camp.webp">📋 Pediatric Screening</MenuItem>
-                      <MenuItem value="upload">📤 Upload Local Image</MenuItem>
-                      <MenuItem value="custom">🌐 Custom URL / Other</MenuItem>
+                      <MenuItem value="/images/swdr_hero.webp">General Charity Campaign</MenuItem>
+                      <MenuItem value="/images/mobile_clinic.webp">Mobile Dental Camp / Outreach</MenuItem>
+                      <MenuItem value="/images/swdr_happy_children.webp">Marathon & Fundraising</MenuItem>
+                      <MenuItem value="/images/Dorcas_19.webp">Surgical & Restorative Camp</MenuItem>
+                      <MenuItem value="/images/hygiene_campaign.webp">School Visit & Education</MenuItem>
+                      <MenuItem value="/images/why_we_started_dorcas_training.webp">Oral Hygiene Workshop</MenuItem>
+                      <MenuItem value="/images/why_we_started_singisa_school.webp">Community Engagement</MenuItem>
+                      <MenuItem value="/images/surgical_camp.webp">Pediatric Screening</MenuItem>
+                      <MenuItem value="upload">Upload Local Image</MenuItem>
+                      <MenuItem value="custom">Custom URL / Other</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
