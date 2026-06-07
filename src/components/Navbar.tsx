@@ -85,7 +85,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               <Box 
                 sx={{ 
                   height: 38, 
-                  width: '3px', 
+                  width: '1.5px', 
                   bgcolor: '#1e293b', 
                   mx: 1.5, 
                   display: { xs: 'none', sm: 'block' }
@@ -101,7 +101,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
               >
                 <Typography 
                   sx={{ 
-                    fontSize: '0.65rem', 
+                    fontSize: '0.75rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
                     letterSpacing: '0.5px',
@@ -112,7 +112,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 </Typography>
                 <Typography 
                   sx={{ 
-                    fontSize: '0.65rem', 
+                    fontSize: '0.75rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
                     letterSpacing: '0.5px',
@@ -123,7 +123,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 </Typography>
                 <Typography 
                   sx={{ 
-                    fontSize: '0.65rem', 
+                    fontSize: '0.75rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
                     letterSpacing: '0.5px',
@@ -134,7 +134,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 </Typography>
                 <Typography 
                   sx={{ 
-                    fontSize: '0.65rem', 
+                    fontSize: '0.75rem', 
                     fontWeight: 400, 
                     color: '#1e293b', 
                     letterSpacing: '0.5px',
