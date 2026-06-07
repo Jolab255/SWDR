@@ -344,7 +344,7 @@ export default function Footer() {
               {' '}| WhatsApp to{' '}
               <Box 
                 component="a" 
-                href="https://wa.me/255765929374" 
+                href="https://wa.me/255756679947" 
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
