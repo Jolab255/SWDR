@@ -10,7 +10,6 @@ import {
   IconButton,
   InputAdornment,
   CircularProgress,
-  Tooltip,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
