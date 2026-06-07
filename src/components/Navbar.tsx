@@ -82,6 +82,72 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                   objectFit: 'contain'
                 }}
               />
+              <Box 
+                sx={{ 
+                  height: 38, 
+                  width: '1.5px', 
+                  bgcolor: '#be185d', 
+                  mx: 2, 
+                  display: { xs: 'none', sm: 'block' }
+                }} 
+              />
+              <Box 
+                sx={{ 
+                  display: { xs: 'none', sm: 'flex' }, 
+                  flexDirection: 'column', 
+                  justifyContent: 'center',
+                  lineHeight: 1.05
+                }}
+              >
+                <Typography 
+                  sx={{ 
+                    fontSize: '0.55rem', 
+                    fontWeight: 900, 
+                    color: '#be185d', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    lineHeight: 1.1
+                  }}
+                >
+                  A COMMUNITY
+                </Typography>
+                <Typography 
+                  sx={{ 
+                    fontSize: '0.55rem', 
+                    fontWeight: 900, 
+                    color: '#1e293b', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    lineHeight: 1.1
+                  }}
+                >
+                  BASED
+                </Typography>
+                <Typography 
+                  sx={{ 
+                    fontSize: '0.55rem', 
+                    fontWeight: 900, 
+                    color: '#1e293b', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    lineHeight: 1.1
+                  }}
+                >
+                  DENTAL
+                </Typography>
+                <Typography 
+                  sx={{ 
+                    fontSize: '0.55rem', 
+                    fontWeight: 900, 
+                    color: '#1e293b', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    lineHeight: 1.1
+                  }}
+                >
+                  PRACTICE
+                </Typography>
+              </Box>
             </Box>
 
             {/* 2. Elegant Navigation Links (Desktop) */}
