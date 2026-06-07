@@ -119,7 +119,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
             bgcolor: 'rgba(255, 255, 255, 0.9)',
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
+            flexDirection: { xs: 'column-reverse', md: 'row' },
             overflow: 'hidden',
             borderRadius: 2,
           }}
@@ -188,7 +188,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
             sx={{ 
               width: { xs: '100%', md: '30%' }, 
               border: { md: '1px solid #e2e8f0' },
-              borderTop: { xs: '1px solid #e2e8f0', md: 'none' },
+              borderBottom: { xs: '1px solid #e2e8f0', md: 'none' },
               overflow: 'hidden',
               minHeight: { xs: 300, md: 'auto' }
             }}
