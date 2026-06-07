@@ -67,7 +67,7 @@ export default function ContentManager() {
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('Dr. Melkisedeck Robert');
-  const [imagePreset, setImagePreset] = useState('/images/swdr_hero.webp');
+  const [imagePreset, setImagePreset] = useState('upload');
   const [customImage, setCustomImage] = useState('');
   const [uploadedImage, setUploadedImage] = useState('');
   
@@ -110,7 +110,7 @@ export default function ContentManager() {
     setSummary('');
     setContent('');
     setAuthor('Dr. Melkisedeck Robert');
-    setImagePreset('/images/swdr_hero.webp');
+    setImagePreset('upload');
     setCustomImage('');
     setUploadedImage('');
     setEventCategory('Charity');
