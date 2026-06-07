@@ -82,6 +82,9 @@ export default function ContentManager() {
   const [newsCategory, setNewsCategory] = useState<string>('Clinic News');
   const [customNewsCategory, setCustomNewsCategory] = useState('');
   
+  // Impact Story Gallery
+  const [gallery, setGallery] = useState<string[]>([]);
+  
   const [slotsTotal, setSlotsTotal] = useState(100);
   const [slotsRegistered, setSlotsRegistered] = useState(0);
 
@@ -111,6 +114,7 @@ export default function ContentManager() {
     setContent('');
     setAuthor('Dr. Melkisedeck Robert');
     setImage(tabIndex === 3 ? '/images/Dorcas_19.webp' : '/images/swdr_hero.webp');
+    setGallery([]);
     setEventCategory('Charity Campaign');
     setCustomEventCategory('');
     setNewsCategory('Clinic News');
@@ -161,6 +165,59 @@ export default function ContentManager() {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleGalleryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+    
+    const remainingSlots = 10 - gallery.length;
+    if (remainingSlots <= 0) {
+      alert("You can only add up to 10 gallery images.");
+      return;
+    }
+
+    const filesArray = Array.from(files).slice(0, remainingSlots);
+    
+    filesArray.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 600;
+          const MAX_HEIGHT = 450;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          setGallery(prev => [...prev, dataUrl].slice(0, 10));
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeGalleryImage = (idxToRemove: number) => {
+    setGallery(prev => prev.filter((_, idx) => idx !== idxToRemove));
   };
 
   const handleOpenAdd = () => {
@@ -230,6 +287,7 @@ export default function ContentManager() {
       const im = item as ImpactStory;
       setLocation(im.location || '');
       setDescription(im.description);
+      setGallery(im.gallery || []);
     } else if (tabIndex === 3) {
       const tm = item as TeamMember;
       setName(tm.name);
@@ -284,9 +342,15 @@ export default function ContentManager() {
       setNews(updated);
       saveStoredNews(updated);
     } else if (tabIndex === 2) {
+      // Word limit check: description must be max 100 words
+      const wordCount = description.trim().split(/\s+/).filter(Boolean).length;
+      if (wordCount > 100) {
+        alert(`Your quote (msemo) exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it before saving.`);
+        return;
+      }
       const updated = dialogMode === 'add'
-        ? [{ id: 'impact-' + Date.now(), title, location, date, description, image: finalImage }, ...impact]
-        : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage } : im);
+        ? [{ id: 'impact-' + Date.now(), title, location, date, description, image: finalImage, gallery }, ...impact]
+        : impact.map(im => im.id === editId ? { ...im, title, location, date, description, image: finalImage, gallery } : im);
       setImpact(updated);
       saveStoredImpact(updated);
     } else {
@@ -499,6 +563,24 @@ export default function ContentManager() {
             >
               {previewItem.description}
             </Typography>
+
+            {tabIndex === 2 && gallery.length > 0 && (
+              <Box sx={{ mt: 1.5, borderTop: '1px solid #e2e8f0', pt: 1.5 }}>
+                <Typography variant="caption" sx={{ fontWeight: 800, color: '#be185d', display: 'block', mb: 1 }}>
+                  📸 GALLERY PREVIEW ({gallery.length}/10)
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, overflowX: 'auto', pb: 1, '&::-webkit-scrollbar': { height: '3px' }, '&::-webkit-scrollbar-thumb': { bgcolor: '#cbd5e1', borderRadius: '3px' } }}>
+                  {gallery.map((imgUrl, idx) => (
+                    <Box 
+                      key={idx} 
+                      component="img" 
+                      src={imgUrl} 
+                      sx={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 1, border: '1px solid #cbd5e1', flexShrink: 0 }} 
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
@@ -867,6 +949,100 @@ export default function ContentManager() {
                         sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
                       />
                     </Grid>
+
+                    {/* Impact Specific Gallery Uploader */}
+                    <Grid size={{ xs: 12 }}>
+                      <Paper 
+                        variant="outlined" 
+                        sx={{ p: 2.5, borderRadius: 2, bgcolor: '#fdf2f8', border: '1px solid #fce7f3' }}
+                      >
+                        <Typography 
+                          variant="subtitle2" 
+                          sx={{ fontWeight: '900', mb: 2, textTransform: 'uppercase', color: '#be185d', display: 'flex', alignItems: 'center', gap: 1 }}
+                        >
+                          📸 Impact Gallery Images ({gallery.length}/10)
+                        </Typography>
+                        
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: gallery.length > 0 ? 2 : 0 }}>
+                          {gallery.map((imgUrl, idx) => (
+                            <Box 
+                              key={idx} 
+                              sx={{ 
+                                position: 'relative', 
+                                width: 80, 
+                                height: 80, 
+                                borderRadius: 2, 
+                                overflow: 'hidden',
+                                border: '1px solid #cbd5e1',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                                '&:hover .delete-btn': { opacity: 1 }
+                              }}
+                            >
+                              <Box 
+                                component="img" 
+                                src={imgUrl} 
+                                sx={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                              />
+                              <IconButton
+                                className="delete-btn"
+                                size="small"
+                                onClick={() => removeGalleryImage(idx)}
+                                sx={{
+                                  position: 'absolute',
+                                  top: 4, right: 4,
+                                  p: 0.5,
+                                  bgcolor: 'rgba(225, 29, 72, 0.9)',
+                                  color: 'white',
+                                  opacity: 0.8,
+                                  transition: 'opacity 0.2s ease',
+                                  '&:hover': { bgcolor: '#e11d48', opacity: 1 }
+                                }}
+                              >
+                                <DeleteIcon fontSize="small" sx={{ fontSize: '0.85rem' }} />
+                              </IconButton>
+                            </Box>
+                          ))}
+
+                          {gallery.length < 10 && (
+                            <Button
+                              component="label"
+                              variant="outlined"
+                              sx={{
+                                width: 80,
+                                height: 80,
+                                borderRadius: 2,
+                                borderStyle: 'dashed',
+                                borderColor: '#be185d',
+                                color: '#be185d',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                '&:hover': {
+                                  bgcolor: '#fdf2f8',
+                                  borderColor: '#9d174d'
+                                }
+                              }}
+                            >
+                              <AddIcon fontSize="medium" />
+                              <Typography variant="caption" sx={{ fontWeight: 800, fontSize: '0.65rem', mt: 0.5 }}>
+                                ADD
+                              </Typography>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                hidden
+                                onChange={handleGalleryFileChange}
+                              />
+                            </Button>
+                          )}
+                        </Box>
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontWeight: 600 }}>
+                          Upload up to 10 local images to showcase key moments of this impact story.
+                        </Typography>
+                      </Paper>
+                    </Grid>
                   </>
                 )}
 
@@ -930,7 +1106,19 @@ export default function ContentManager() {
                 <Grid size={{ xs: 12 }}>
                   <TextField
                     fullWidth multiline rows={tabIndex === 1 ? 6 : 4}
-                    label={tabIndex === 1 ? "Full Article Content" : "Description"}
+                    label={
+                      tabIndex === 1 
+                        ? "Full Article Content" 
+                        : tabIndex === 2 
+                          ? "Short Catchy Quote / Motto (Msemo - Max 100 words)" 
+                          : "Description"
+                    }
+                    helperText={
+                      tabIndex === 2 
+                        ? `Word Count: ${description.trim().split(/\s+/).filter(Boolean).length}/100 words` 
+                        : ""
+                    }
+                    error={tabIndex === 2 && description.trim().split(/\s+/).filter(Boolean).length > 100}
                     value={tabIndex === 1 ? content : description}
                     onChange={(e) => tabIndex === 1 ? setContent(e.target.value) : setDescription(e.target.value)}
                     sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}

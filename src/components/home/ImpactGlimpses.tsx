@@ -20,6 +20,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [openGalleryGrid, setOpenGalleryGrid] = useState(false);
   const [selectedImpact, setSelectedImpact] = useState<ImpactStory | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
     if (impactStories.length === 0) return;
@@ -177,35 +178,87 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
           fullWidth
           slotProps={{ paper: { sx: { borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' } } }}
         >
-          <Box sx={{ p: { xs: 2, md: 4 } }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
-              <Typography variant="h4" sx={{ fontWeight: '900', textTransform: 'uppercase', fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
-                Charity Moments Gallery
-              </Typography>
-              <IconButton onClick={() => setOpenGalleryGrid(false)} sx={{ border: '1px solid #e2e8f0', borderRadius: 1, bgcolor: 'white' }}>
+          {(() => {
+            const activeStory = impactStories[activeSlide];
+            const galleryImages = activeStory?.gallery && activeStory.gallery.length > 0
+              ? activeStory.gallery
+              : [activeStory?.image || '/images/swdr_hero.webp'];
+              
+            return (
+              <Box sx={{ p: { xs: 2, md: 4 } }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                  <Typography variant="h4" sx={{ fontWeight: '900', textTransform: 'uppercase', fontSize: { xs: '1.5rem', md: '2.125rem' }, color: '#be185d' }}>
+                    {activeStory?.title}
+                  </Typography>
+                  <IconButton onClick={() => setOpenGalleryGrid(false)} sx={{ border: '1px solid #e2e8f0', borderRadius: 1, bgcolor: 'white' }}>
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: '700', color: '#64748b', mb: 4 }}>
+                  📍 {activeStory?.location} — Charity Event Gallery ({galleryImages.length} images)
+                </Typography>
+                
+                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gridAutoRows: '240px', gap: 3 }}>
+                  {galleryImages.map((imgUrl, imgIdx) => (
+                    <Box 
+                      key={imgIdx} 
+                      onClick={() => {
+                        setLightboxImage(imgUrl);
+                      }} 
+                      sx={{ 
+                        borderRadius: 1, 
+                        overflow: 'hidden', 
+                        cursor: 'pointer', 
+                        position: 'relative', 
+                        transition: 'all 0.3s ease', 
+                        '&:hover': { 
+                          transform: 'scale(1.02)', 
+                          boxShadow: '0 8px 24px rgba(0,0,0,0.15)', 
+                          zIndex: 2, 
+                          '& .overlay': { opacity: 1 } 
+                        } 
+                      }}
+                    >
+                      <Box component="img" src={imgUrl} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(190, 24, 93, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
+                        <Typography variant="subtitle2" sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
+                          View Image {imgIdx + 1}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            );
+          })()}
+        </Dialog>
+
+        {/* --- FULLSCREEN IMAGE LIGHTBOX --- */}
+        <Dialog
+          open={!!lightboxImage}
+          onClose={() => setLightboxImage(null)}
+          maxWidth="lg"
+          slotProps={{ paper: { sx: { bgcolor: 'transparent', boxShadow: 'none', position: 'relative', overflow: 'visible' } } }}
+        >
+          {lightboxImage && (
+            <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', p: 1 }}>
+              <Box 
+                component="img" 
+                src={lightboxImage} 
+                sx={{ maxWidth: '100%', maxHeight: '85vh', objectFit: 'contain', borderRadius: 2 }} 
+              />
+              <IconButton 
+                onClick={() => setLightboxImage(null)} 
+                sx={{ 
+                  position: 'absolute', top: 16, right: 16, 
+                  color: 'white', bgcolor: 'rgba(0,0,0,0.6)', 
+                  '&:hover': { bgcolor: '#be185d' } 
+                }}
+              >
                 <CloseIcon />
               </IconButton>
             </Box>
-            
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gridAutoRows: '240px', gap: 3 }}>
-              {impactStories.map((story) => (
-                <Box 
-                  key={story.id} 
-                  onClick={() => {
-                    setOpenGalleryGrid(false);
-                    setSelectedImpact(story);
-                  }} 
-                  sx={{ borderRadius: 1, overflow: 'hidden', cursor: 'pointer', position: 'relative', transition: 'all 0.3s ease', '&:hover': { transform: 'scale(1.02)', boxShadow: '0 8px 24px rgba(0,0,0,0.15)', zIndex: 2, '& .overlay': { opacity: 1 } } }}
-                >
-                  <Box component="img" src={story.image} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(190, 24, 93, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: '900', textTransform: 'uppercase', mb: 1 }}>{story.title}</Typography>
-                    <Typography variant="caption" sx={{ fontWeight: '700' }}>📍 {story.location}</Typography>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
+          )}
         </Dialog>
 
         {/* --- LIGHTBOX & DETAILS --- */}

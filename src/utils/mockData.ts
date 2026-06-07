@@ -29,6 +29,7 @@ export interface ImpactStory {
   date: string;
   description: string;
   image: string;
+  gallery?: string[];
 }
 
 export interface TeamMember {
@@ -146,56 +147,94 @@ export const INITIAL_IMPACT: ImpactStory[] = [
     title: 'Rural Hygiene Campaign',
     location: 'Morogoro Rural',
     date: '2026-05-15',
-    description: 'Our team visited rural primary schools, providing hygiene kits and teaching effective brushing habits to over 500 children.',
-    image: '/images/impact_hygiene_campaign.webp'
+    description: 'Our team visited rural schools, teaching oral health and gifting brushing kits to 500+ pupils.',
+    image: '/images/impact_hygiene_campaign.webp',
+    gallery: [
+      '/images/impact_hygiene_campaign.webp',
+      '/images/mobile_clinic.webp',
+      '/images/impact_caregiver_workshop.webp',
+      '/images/impact_specialized_care.webp',
+      '/images/restorative_surgery.webp'
+    ]
   },
   {
     id: 'impact-2',
     title: 'Mobile Clinic Deployment',
     location: 'Kisarawe District',
     date: '2026-04-20',
-    description: 'The SWDR Mobile Dental Unit reaching remote villages that have never seen a dentist in decades.',
-    image: '/images/mobile_clinic.webp'
+    description: 'Reaching out to isolated villagers who have not seen a dental practitioner in their entire lifetime.',
+    image: '/images/mobile_clinic.webp',
+    gallery: [
+      '/images/mobile_clinic.webp',
+      '/images/impact_team_outreach.webp',
+      '/images/surgical_camp.webp',
+      '/images/restorative_surgery.webp'
+    ]
   },
   {
     id: 'impact-3',
     title: 'Restorative Surgery Success',
     location: 'Dar es Salaam HQ',
     date: '2026-03-12',
-    description: 'Dr. Melkisedeck Robert performing a life-changing restorative dental surgery for a child with severe congenital issues.',
-    image: '/images/restorative_surgery.webp'
+    description: 'Performing life-altering tooth reconstruction for a child overcoming severe congenital problems.',
+    image: '/images/restorative_surgery.webp',
+    gallery: [
+      '/images/restorative_surgery.webp',
+      '/images/impact_specialized_care.webp',
+      '/images/surgical_camp.webp'
+    ]
   },
   {
     id: 'impact-4',
     title: 'Community Surgical Camp',
     location: 'Arusha Outskirts',
     date: '2026-02-05',
-    description: 'Gathering families for our quarterly free surgical camp in the Morogoro region.',
-    image: '/images/surgical_camp.webp'
+    description: 'Families gathered in expectation for our free reconstructive surgical outreach in the north.',
+    image: '/images/surgical_camp.webp',
+    gallery: [
+      '/images/surgical_camp.webp',
+      '/images/mobile_clinic.webp',
+      '/images/impact_team_outreach.webp'
+    ]
   },
   {
     id: 'impact-5',
     title: 'Specialized Care Integration',
     location: 'Dorcas Homecare, Madale',
     date: '2026-03-20',
-    description: 'SWDR team integrating regular specialized dental screenings and mobility assistance for kids with cerebral palsy.',
-    image: '/images/impact_specialized_care.webp'
+    description: 'Integrating dental screening routines and mobility therapy for lovely kids at Dorcas Home.',
+    image: '/images/impact_specialized_care.webp',
+    gallery: [
+      '/images/impact_specialized_care.webp',
+      '/images/impact_hygiene_campaign.webp',
+      '/images/restorative_surgery.webp'
+    ]
   },
   {
     id: 'impact-6',
     title: 'Clinical Outreach Team',
     location: 'Dar es Salaam HQ',
     date: '2026-01-10',
-    description: 'Our clinical and volunteer team collaborating on field deployments to reach underserved communities.',
-    image: '/images/impact_team_outreach.webp'
+    description: 'Our dentists, coordinators, and local volunteers joining forces before launching into the field.',
+    image: '/images/impact_team_outreach.webp',
+    gallery: [
+      '/images/impact_team_outreach.webp',
+      '/images/mobile_clinic.webp',
+      '/images/surgical_camp.webp'
+    ]
   },
   {
     id: 'impact-7',
     title: 'Caregiver Education Workshops',
     location: 'Community Centres',
     date: '2026-04-05',
-    description: 'Empowering mothers and caretakers with specialized oral care knowledge for their families.',
-    image: '/images/impact_caregiver_workshop.webp'
+    description: 'Providing local mothers and primary guardians with foundational child hygiene knowledge.',
+    image: '/images/impact_caregiver_workshop.webp',
+    gallery: [
+      '/images/impact_caregiver_workshop.webp',
+      '/images/impact_hygiene_campaign.webp',
+      '/images/impact_specialized_care.webp'
+    ]
   }
 ];
 
