@@ -339,8 +339,9 @@ export default function Footer() {
                   '&:hover': { textDecoration: 'underline' } 
                 }}
               >
-                Jolab
+                Jolab (Email)
               </Box>
+              {' '}| WhatsApp to{' '}
               <Box 
                 component="a" 
                 href="https://wa.me/255765929374" 
