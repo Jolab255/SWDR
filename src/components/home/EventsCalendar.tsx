@@ -106,7 +106,7 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               No scheduled events found
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 700 }}>
-              Stay tuned! Or use the CMS panel to add new charity activities.
+              Stay tuned! New charity activities and mobile outreach camps will be posted here soon.
             </Typography>
           </Paper>
         ) : (
