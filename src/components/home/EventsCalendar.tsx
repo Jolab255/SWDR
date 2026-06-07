@@ -27,7 +27,17 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const isSm = useMediaQuery(theme.breakpoints.up('sm'));
-  const visibleCards = isMd ? 3 : isSm ? 2 : 1;
+
+  // Calculate visible cards dynamically based on screen size and event counts
+  let visibleCards = 1;
+  if (isMd) {
+    visibleCards = Math.min(3, events.length);
+  } else if (isSm) {
+    visibleCards = Math.min(2, events.length);
+  } else {
+    visibleCards = 1;
+  }
+
   const maxIndex = Math.max(0, events.length - visibleCards);
 
   // Keep carouselIndex in bounds during window resize / responsive adjustments
@@ -144,7 +154,11 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
               }}>
                 {events.map((ev) => (
                   <Box key={ev.id} sx={{ 
-                    flex: { xs: '0 0 100%', sm: '0 0 50%', md: '0 0 33.3333%' },
+                    flex: { 
+                      xs: '0 0 100%', 
+                      sm: `0 0 ${100 / Math.min(2, events.length)}%`, 
+                      md: `0 0 ${100 / Math.min(3, events.length)}%` 
+                    },
                     px: 2, boxSizing: 'border-box'
                   }}>
                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
