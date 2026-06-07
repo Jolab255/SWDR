@@ -9,7 +9,14 @@ import {
   Button,
   Snackbar,
   Alert,
+  SvgIcon,
 } from '@mui/material';
+
+const TikTokIcon = (props: any) => (
+  <SvgIcon {...props} viewBox="0 0 448 512">
+    <path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z"/>
+  </SvgIcon>
+);
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -37,8 +44,9 @@ export default function Footer() {
   ];
 
   const socials = [
-    { icon: <FacebookIcon fontSize="small" />, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: <InstagramIcon fontSize="small" />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <FacebookIcon fontSize="small" />, href: 'https://www.facebook.com/share/1Dfmwv6KYi/?mibextid=wwXIfr', label: 'Facebook' },
+    { icon: <InstagramIcon fontSize="small" />, href: 'https://www.instagram.com/smilewith_dr_rome?igsh=MWJ3a28xZWNnOHQwdw%3D%3D&utm_source=qr', label: 'Instagram' },
+    { icon: <TikTokIcon fontSize="small" />, href: 'https://www.tiktok.com/@smilewith_dr_rome?_r=1&_t=ZS-96zbkazUNY9', label: 'TikTok' },
     { icon: <TwitterIcon fontSize="small" />, href: 'https://twitter.com', label: 'Twitter' },
     { icon: <WhatsAppIcon fontSize="small" />, href: 'https://wa.me/255784766373', label: 'WhatsApp' },
   ];
@@ -101,6 +109,9 @@ export default function Footer() {
               Smile with Doctor Rome Dental Clinic (SWDR) is a professional pediatric dental center and
               charity movement in Tanzania — providing free reconstructive dental surgeries and hygiene
               charities to children in hard environments.
+              <Box component="span" sx={{ display: 'block', mt: 1.5, fontWeight: '900', color: '#be185d' }}>
+                #untileveryonesmiles
+              </Box>
             </Typography>
 
             {/* Social icons — neo-brutalism squares */}
@@ -208,7 +219,7 @@ export default function Footer() {
               {[
                 {
                   label: 'Address',
-                  value: <>SWDR Building, Plot 23,<br />Mwai Kibaki Road, Mikocheni B,<br />Dar es Salaam, Tanzania</>,
+                  value: <>Plot 100, Block A, House 100,<br />Mfaume Street, Mazengo Road,<br />Upanga Magharibi, Ilala CBD,<br />Dar Es Salaam, 11103, Tanzania</>,
                 },
                 {
                   label: 'Phone / WhatsApp',

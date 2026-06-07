@@ -33,10 +33,10 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
   }, []);
 
   const values = [
+    { label: 'Community', body: 'We partner with local schools, ward offices, and volunteer networks to build lasting oral health culture.' },
     { label: 'Compassion', body: 'Every child deserves dignity, pain relief, and a healthy smile — regardless of where they were born.' },
     { label: 'Transparency', body: '100% of donor funds flow directly to clinical materials, travel, and surgical supplies. Zero overhead waste.' },
-    { label: 'Excellence', body: 'We uphold the highest clinical standards whether we are in Dar es Salaam or a remote Morogoro village.' },
-    { label: 'Community', body: 'We partner with local schools, ward offices, and volunteer networks to build lasting oral health culture.' },
+    { label: 'Excellence', body: 'We uphold the highest clinical standards as far as community oral health is concerned.' },
   ];
 
   return (

@@ -206,7 +206,7 @@ export const INITIAL_TEAM: TeamMember[] = [
     role: 'Founder & Lead Pediatric Dentist',
     tag: 'MUHAS · UCSF Pediatric Specialist',
     desc: 'With over 12 years of clinical experience, Dr. Rome graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.',
-    image: '/images/swdr_doctor_rome.webp',
+    image: '/images/Dorcas_19.webp',
     socials: { linkedin: '#', instagram: '#' },
   },
   {
@@ -306,7 +306,19 @@ export const getStoredTeam = (): TeamMember[] => {
       localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));
       return INITIAL_TEAM;
     }
-    return JSON.parse(data);
+    let parsed = JSON.parse(data) as TeamMember[];
+    let migrated = false;
+    parsed = parsed.map(m => {
+      if (m.id === 'team-1' && m.image !== '/images/Dorcas_19.webp') {
+        migrated = true;
+        return { ...m, image: '/images/Dorcas_19.webp' };
+      }
+      return m;
+    });
+    if (migrated) {
+      localStorage.setItem('swdr_team', JSON.stringify(parsed));
+    }
+    return parsed;
   } catch (error) {
     console.error('Failed to parse stored team, resetting data:', error);
     localStorage.setItem('swdr_team', JSON.stringify(INITIAL_TEAM));

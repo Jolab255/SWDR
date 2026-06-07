@@ -33,6 +33,24 @@ export default function Hero({ onDonateClick }: HeroProps) {
           {/* Left Column: Descriptive Typographic Block */}
           <Grid size={{ xs: 12, md: 7 }}>
             <Box sx={{ pr: { md: 4 } }}>
+              <Box
+                sx={{
+                  color: '#be185d',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px',
+                  mb: 2,
+                  display: 'inline-block',
+                  px: 2,
+                  py: 0.6,
+                  borderRadius: 1.5,
+                  bgcolor: '#fdf2f8',
+                  border: '1px solid #fce7f3',
+                  fontSize: '0.85rem'
+                }}
+              >
+                #untileveryonesmiles
+              </Box>
               <Typography 
                 variant="h1" 
                 gutterBottom

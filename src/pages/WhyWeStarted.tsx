@@ -200,8 +200,8 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
           >
             <Box 
               component="img"
-              src="/images/swdr_doctor_rome.webp"
-              alt="Dr Jerome Rome"
+              src="/images/Dr_Melkizedek.webp"
+              alt="Dr Melkizedek Robert"
               loading="lazy"
               sx={{
                 width: '100%',

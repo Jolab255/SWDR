@@ -126,7 +126,7 @@ export default function ContactUs() {
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {[
-                    { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Mikocheni B, Plot 23, Mwai Kibaki Road, Dar es Salaam, Tanzania' },
+                    { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Plot 100, Block A, House 100, Mfaume Street, Mazengo Road, Upanga Magharibi, Ilala CBD, Dar Es Salaam, 11103, Tanzania' },
                     { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 22 270 0981 / +255 784 766 373', link: 'tel:+255222700981' },
                     { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 784 766 373', color: 'success.dark', link: 'https://wa.me/255784766373' },
                     { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smilewithdrrome.org / info@swdrclinic.org', link: 'mailto:donations@smilewithdrrome.org' },

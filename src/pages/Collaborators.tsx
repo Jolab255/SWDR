@@ -45,14 +45,38 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
       link: 'http://www.seruntnutrition.co.tz'
     },
     {
-      name: 'FOFR ME Foundation',
+      name: 'AGENT OF SMILE',
+      tagline: 'Tanzanian Youth Oral Hygiene Ambassadors & Advocacy Network',
+      image: '/images/event_hygiene_workshop.webp',
+      location: 'Tanzania Outreach Hubs',
+      founded: 'Established: Feb 2024',
+      author: 'Led by Youth Health Advocates',
+      mission: 'Agent Of Smile is a community-driven movement focused on spreading daily joy, positivity, and inspiration. As an organization, it has set its eye on the underserved communities - spreading smiles through supportive aids.',
+      collaboration: 'SWDR partners with Agent of Smile to deploy student dental hygiene mentors during school outreaches. Their trained youth ambassadors lead fun, interactive teeth-brushing tutorials, coordinate peer-to-peer training sessions, and help manage the distribution of dental care kits. This peer advocacy makes oral hygiene education engaging and highly effective for children.',
+      ctaText: 'Connect with Ambassadors',
+      link: '#'
+    },
+    {
+      name: 'WALIMWENGU FOUNDATION',
+      tagline: 'Holistic Child Welfare, Nutrition & Education Center',
+      image: '/images/event_community_seminar.webp',
+      location: 'Tanzania',
+      founded: 'Established: Nov 2023',
+      author: 'Founded by Dr. Grace Walimwengu',
+      mission: 'Walimwengu Foundation works to break the cycle of poverty by providing disadvantaged children with healthcare access, micro-nutritional support, and quality primary education resources. The foundation operates community hubs that offer safe study spaces, clean water access, and nutritional porridge programs to combat developmental stunting.',
+      collaboration: 'SWDR partners with Walimwengu Foundation to host mobile dental checkup clinics at their community welfare hubs. We perform comprehensive dental screenings, treat painful abscesses, and work together on nutritional assessments. Since diet directly affects tooth decay, we coordinate with their nutritional staff to limit refined sugars in the meals provided to children at the hubs.',
+      ctaText: 'Visit Welfare Foundation',
+      link: '#'
+    },
+    {
+      name: 'JUST FOR ME FOUNDATION',
       tagline: 'Grassroots Community Health Mobilization',
       image: '/images/mobile_clinic.webp',
       location: 'Coastal & Pwani Districts, Tanzania',
       founded: 'Outreach Operations Partner',
       author: 'Community Liaison Team',
-      mission: 'FOFR ME Foundation operates as a grassroots health advocacy network across coastal regions of Tanzania. They map communities lacking basic medical services, organize rural healthcare camps, coordinate volunteer medical teams, and manage ground logistics with local authorities to ensure safe, legal, and high-impact operations.',
-      collaboration: 'FOFR ME Foundation serves as our lead operational coordinator for mobile dental clinics in underserved regions. Their field officers handle community entry, schedule outreach camps with ward offices, and manage local logistics. This allows our clinical team to immediately set up mobile chairs and begin treating children upon arrival.',
+      mission: 'Just For Me Foundation is a dedicated community-driven non-governmental organization that provides holistic, on-the-ground resources for vulnerable groups in Tanzania. They transform lives by delivering essential aid, mentorship, and empowerment programs, uniting volunteers and donors into a powerful network that addresses the root causes of hardship to the most vulnerable groups.',
+      collaboration: 'JUST FOR ME FOUNDATION serves as our lead operational coordinator for mobile dental clinics in underserved regions. Their field officers handle community entry, schedule outreach camps with ward offices, and manage local logistics. This allows our clinical team to immediately set up mobile chairs and begin treating children upon arrival.',
       ctaText: 'Inquire Partnership',
       link: '#'
     }
