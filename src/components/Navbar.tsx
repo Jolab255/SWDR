@@ -191,6 +191,7 @@ export default function Navbar({ onDonateClick }: NavbarProps) {
                 onClick={onDonateClick}
                 startIcon={<FavoriteIcon />}
                 sx={{
+                  display: { xs: 'none', md: 'inline-flex' },
                   px: { xs: 2, sm: 3 },
                   py: 1.2,
                   borderRadius: 2,

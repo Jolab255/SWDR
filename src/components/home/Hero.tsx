@@ -52,7 +52,7 @@ export default function Hero({ onDonateClick }: HeroProps) {
       }}
     >
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
-        <Grid container spacing={4} direction={{ xs: 'column-reverse', md: 'row' }} sx={{ alignItems: 'center' }}>
+        <Grid container spacing={4} direction={{ xs: 'column-reverse' as any, md: 'row' as any }} sx={{ alignItems: 'center' }}>
           {/* Left Column: Descriptive Typographic Block */}
           <Grid size={{ xs: 12, md: 7 }}>
             <Box sx={{ pr: { md: 4 } }}>
