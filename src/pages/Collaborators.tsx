@@ -48,7 +48,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'AGENT OF SMILE',
       tagline: 'Community Positivity, Mental Health & Inspirational Youth Advocacy',
-      image: '/images/collaborator_agentsofsmile.jpg',
+      image: '/images/agent_of_smile.jpeg',
       location: 'Dar es Salaam & Coastal Regions, Tanzania',
       founded: 'Established: Feb 2024',
       author: 'Founded by Mbarikiwa Mtwa',
@@ -95,7 +95,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     >
       <Helmet>
         <title>Our Collaborators | Smile with Doctor Rome Dental Clinic</title>
-        <meta name="description" content="Discover our partnerships with Agents of Smile, Walimwengu Foundation, Just For Me, and Dorcas Homecare to deliver pediatric dental care in Tanzania." />
+        <meta name="description" content="Discover our partnerships with Agents of Smile, Walimwengu Foundation, Just For Me, and Dorcas Homecare to deliver children's dental care in Tanzania." />
       </Helmet>
       
       {/* HEADER HERO SECTION */}

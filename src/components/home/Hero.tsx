@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Link } from 'react-router-dom';
-import heroImg from '../../assets/hero_img.webp';
+import heroImg from '../../assets/hero_img.png';
 
 interface HeroProps {
   onDonateClick: () => void;

@@ -53,7 +53,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
     >
       <Helmet>
         <title>About Us | Smile with Doctor Rome Dental Clinic</title>
-        <meta name="description" content="Learn about our mission, core values, and meet our founders Sylvia Shilinde, Michael Nyaruga, and lead pediatric dentist Dr. Melkisedeck Robert in Tanzania." />
+        <meta name="description" content="Learn about our mission, core values, and meet our founders Sylvia Shilinde, Michael Nyaruga, and lead children's dentist Dr. Melkisedeck Robert in Tanzania." />
       </Helmet>
       
       {/* ── HERO / INTRO ────────────────────────────────────────────────────── */}

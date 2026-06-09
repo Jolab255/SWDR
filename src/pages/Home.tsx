@@ -118,8 +118,8 @@ export default function Home({ onDonateClick }: HomeProps) {
       }}
     >
       <Helmet>
-        <title>Smile with Doctor Rome | Pediatric Care & Donations Tanzania</title>
-        <meta name="description" content="100% free specialized pediatric dental treatments and cleft lip/palate surgeries for children in Tanzania. Support our mobile camps and donate to save a child's smile." />
+        <title>Smile with Doctor Rome | Children's Dental Care & Donations Tanzania</title>
+        <meta name="description" content="100% free specialized dental treatments for children and cleft lip/palate surgeries in Tanzania. Support our mobile camps and donate to save a child's smile." />
       </Helmet>
       {/* Semi-transparent white overlay to make the repeated favicon look very subtle ("kwa mbali") */}
       <Box 

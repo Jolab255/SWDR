@@ -50,7 +50,7 @@ export default function WhyWeStarted({ onDonateClick }: WhyWeStartedProps) {
     >
       <Helmet>
         <title>Why We Started | Smile with Doctor Rome Dental Clinic</title>
-        <meta name="description" content="Read the backstory of how a volunteer outreach trip by Dr. Melkisedeck Robert inspired a pediatric oral prevention revolution for Tanzanian children." />
+        <meta name="description" content="Read the backstory of how a volunteer outreach trip by Dr. Melkisedeck Robert inspired a children's oral prevention revolution for Tanzanian children." />
       </Helmet>
       
       {/* HEADER SECTION */}
