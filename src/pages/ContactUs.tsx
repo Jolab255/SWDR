@@ -179,7 +179,7 @@ export default function ContactUs() {
                     { icon: <LocationOnIcon />, label: 'Physical Clinic HQ', value: 'Plot 100, Block A, House 100, Mfaume Street, Mazengo Road, Upanga Magharibi, Ilala CBD, Dar Es Salaam, 11103, Tanzania' },
                     { icon: <PhoneIcon />, label: 'Office Call Lines', value: '+255 756 679 947', link: 'tel:+255756679947' },
                     { icon: <WhatsAppIcon />, label: 'Charity Coordinator WhatsApp', value: '+255 756 679 947', color: 'success.dark', link: 'https://wa.me/255756679947' },
-                    { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smilewithdrrome.org / info@swdrclinic.org', link: 'mailto:donations@smilewithdrrome.org' },
+                    { icon: <EmailIcon />, label: 'Charity Email Coordinates', value: 'donations@smilewithdrrome.org', link: 'mailto:donations@smilewithdrrome.org' },
                     { icon: <AccessTimeIcon />, label: 'HQ Operating Hours', value: 'Mon - Fri: 08:00 AM - 05:00 PM | Sat: 09:00 AM - 01:00 PM (Emergency & Charities Only)' },
                   ].map((item, idx) => (
                     <Box key={idx} sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>

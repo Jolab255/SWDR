@@ -50,7 +50,7 @@ $subjects = [
 $subject_label = isset($subjects[$subject_key]) ? $subjects[$subject_key] : "General Inquiry";
 
 // Recipient email
-$to = "info@swdrclinic.org";
+$to = "donations@smilewithdrrome.org";
 $email_subject = "SWDR Contact Form: " . $subject_label . " from " . $name;
 
 // Build the beautiful HTML email template
