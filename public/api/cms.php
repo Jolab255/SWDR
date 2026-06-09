@@ -223,10 +223,10 @@ $initial_data = [
         [
             "id" => "team-1",
             "name" => "Dr. Melkisedeck Robert, DDS",
-            "role" => "Founder & Lead Pediatric Dentist",
-            "tag" => "MUHAS · UCSF Pediatric Specialist",
-            "desc" => "With over 12 years of clinical experience, Dr. Melkisedeck Robert graduated from Muhimbili University of Health and Allied Sciences and holds a Pediatric Dental Specialization from UCSF. He established SWDR to bridge the gap in rural child dental health.",
-            "image" => "/images/Dorcas_19.webp",
+            "role" => "FOUNDER & LEAD DENTIST at SWDR",
+            "tag" => "MUHAS DDS Graduate",
+            "desc" => "Dr. Melkisedeck Robert is a Doctor of Dental Surgery (DDS) graduate from Muhimbili University of Health And Allied Sciences (MUHAS).\n\n“As a digital dentist and a community-concerned personnel, I connect oral health to lifestyle through Education, innovation and Treatment, facilitating primary prevention care and informed-decision making especially among Children with Special Healthcare Needs.”",
+            "image" => "/images/Dr_Melkizedek.webp",
             "socials" => [
                 "linkedin" => "https://www.linkedin.com/in/melkisedeck-robert-479b422a5?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
                 "instagram" => "https://www.instagram.com/dr.rome_smiles?igsh=czdiMTR4ZjNjcHU4&utm_source=qr",
@@ -337,6 +337,20 @@ if (!file_exists(DATA_FILE)) {
                 }
             }
         }
+        
+        // Check if team-1 has old details and update them
+        if (isset($data['team']) && is_array($data['team'])) {
+            foreach ($data['team'] as &$member) {
+                if (isset($member['id']) && $member['id'] === 'team-1' && isset($member['role']) && ($member['role'] === 'Founder & Lead Pediatric Dentist' || $member['image'] === '/images/Dorcas_19.webp')) {
+                    $member['role'] = 'FOUNDER & LEAD DENTIST at SWDR';
+                    $member['tag'] = 'MUHAS DDS Graduate';
+                    $member['desc'] = "Dr. Melkisedeck Robert is a Doctor of Dental Surgery (DDS) graduate from Muhimbili University of Health And Allied Sciences (MUHAS).\n\n“As a digital dentist and a community-concerned personnel, I connect oral health to lifestyle through Education, innovation and Treatment, facilitating primary prevention care and informed-decision making especially among Children with Special Healthcare Needs.”";
+                    $member['image'] = '/images/Dr_Melkizedek.webp';
+                    $updated = true;
+                }
+            }
+        }
+        
         if ($updated) {
             file_put_contents(DATA_FILE, json_encode($data, JSON_PRETTY_PRINT));
         }
