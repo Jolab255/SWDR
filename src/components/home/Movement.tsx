@@ -26,7 +26,7 @@ export default function Movement({ onDonateClick }: MovementProps) {
     {
       title: 'Volunteer Your Skills',
       desc: 'Are you a licensed dentist, hygienist, or nurse? Register to join our mobile team on our upcoming rural charity sessions across East Africa.',
-      actionText: 'Join the Medical Team',
+      actionText: 'Join Our Team',
       action: () => navigate('/'),
       icon: <UsersIcon />
     },
