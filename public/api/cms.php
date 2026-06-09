@@ -310,9 +310,36 @@ if (!file_exists(DATA_FILE)) {
 } else {
     // Migrate to add missing keys (like 'journey') to existing data file
     $data = json_decode(file_get_contents(DATA_FILE), true);
-    if ($data && !isset($data['journey'])) {
-        $data['journey'] = $initial_data['journey'];
-        file_put_contents(DATA_FILE, json_encode($data, JSON_PRETTY_PRINT));
+    if ($data) {
+        $updated = false;
+        if (!isset($data['journey'])) {
+            $data['journey'] = $initial_data['journey'];
+            $updated = true;
+        } else {
+            // Check if existing journey items use old default images and update them
+            $old_defaults = [
+                "journey-1" => "/images/swdr_happy_children.webp",
+                "journey-2" => "/images/surgical_camp.webp",
+                "journey-5" => "/images/swdr_hero.webp",
+                "journey-6" => "/images/restorative_surgery.webp"
+            ];
+            $new_images = [
+                "journey-1" => "/images/just_for_me_charity.jpeg",
+                "journey-2" => "/images/vigwanza.jpeg",
+                "journey-5" => "/images/sifa_village_charity.jpeg",
+                "journey-6" => "/images/jerusalem_charity.jpeg"
+            ];
+            foreach ($data['journey'] as &$item) {
+                $id = isset($item['id']) ? $item['id'] : '';
+                if (!empty($id) && isset($old_defaults[$id]) && isset($item['image']) && $item['image'] === $old_defaults[$id]) {
+                    $item['image'] = $new_images[$id];
+                    $updated = true;
+                }
+            }
+        }
+        if ($updated) {
+            file_put_contents(DATA_FILE, json_encode($data, JSON_PRETTY_PRINT));
+        }
     }
 }
 
