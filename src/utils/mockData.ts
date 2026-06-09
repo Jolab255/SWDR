@@ -287,14 +287,14 @@ export const INITIAL_JOURNEY: JourneyEvent[] = [
     year: '2024',
     title: 'JUST FOR ME CHARITY – MLIMANI CITY',
     desc: 'We collaborated with Just For Me Foundation in December 2024 to organize a one-day charity event which gathered 300+ children with physical impairment and orphans from various centers in and around Dar es Salaam. Services provided: dental screening, oral hygiene instructions through demonstrations, oral health education to caregivers on how to handle the oral health status of these children. Products offered: toothbrushes and toothpastes.',
-    image: '/images/swdr_happy_children.webp'
+    image: '/images/just_for_me_charity.jpeg'
   },
   {
     id: 'journey-2',
     year: '2024',
     title: 'AT VIGWAZA PWANI - MAASAI COMMUNITY',
     desc: 'We collaborated with Kesho Angavu Initiative (KAI) to serve the Masai Community at Vigwaza, a Maasai community in Pwani. This was a 3-days event and we served 150+ children from the Maasai community living in rural areas. We addressed issues pertaining to oral health, screened for dental abnormalities and encouraged proper oral hygiene maintenance.',
-    image: '/images/surgical_camp.webp'
+    image: '/images/vigwanza.jpeg'
   },
   {
     id: 'journey-3',
@@ -315,14 +315,14 @@ export const INITIAL_JOURNEY: JourneyEvent[] = [
     year: '2025',
     title: 'AT SIFA VILLAGE ORPHANAGE CENTER',
     desc: 'We collaborated with Walimwengu Foundation in paying a visit this center for charity purpose. At this community we managed to serve 100+ orphans and 50+ adults. Services offered: oral health education, oral hygiene instructions, dental screening and counselling on matters pertaining oral health.',
-    image: '/images/swdr_hero.webp'
+    image: '/images/sifa_village_charity.jpeg'
   },
   {
     id: 'journey-6',
     year: '2026',
     title: 'AT JERUSALEM CHILDREN’S HOME',
     desc: 'We collaborated with Agents Of Smile Foundation on 21st March, 2026 at Jerusalem Children’s Home in conducting a charity outreach. At this center we served 60+ who are orphans and others abandoned. We did oral hygiene screening, oral health promotion and gave oral hygiene kits.',
-    image: '/images/restorative_surgery.webp'
+    image: '/images/jerusalem_charity.jpeg'
   }
 ];
 

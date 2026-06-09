@@ -24,7 +24,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'Dorcas Homecare Initiatives',
       tagline: 'Cerebral Palsy Care & Rehabilitation Center',
-      image: '/images/collaborator_dorcas_group.webp',
+      image: '/images/dorcas_foundation.jpeg',
       location: 'Madale, Wazo — Dar es Salaam, Tanzania',
       founded: 'Established: Jan 2025',
       author: 'Founded by Rehema Simfukwe',
@@ -60,7 +60,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'WALIMWENGU FOUNDATION',
       tagline: 'Community Child Welfare, Nutrition & Education Coalition',
-      image: '/images/collaborator_walimwengu.jpg',
+      image: '/images/walimwengu_foundation.jpeg',
       location: 'Bunju, Dar es Salaam, Tanzania',
       founded: 'Established: Nov 2023',
       author: 'Community Child Welfare Network',
@@ -72,7 +72,7 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'JUST FOR ME FOUNDATION',
       tagline: 'Grassroots Community Health Mobilization',
-      image: '/images/mobile_clinic.webp',
+      image: '/images/just_for_me_foundation.jpeg',
       location: 'Coastal & Pwani Districts, Tanzania',
       founded: 'Outreach Operations Partner',
       author: 'Community Liaison Team',

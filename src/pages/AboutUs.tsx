@@ -90,7 +90,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
       {/* ── PROFILE STATEMENT ───────────────────────────────────────────────── */}
       <Box 
         sx={{ 
-          py: { xs: 4, md: 6 }, 
+          py: { xs: 6, md: 8 }, 
           borderBottom: '1px solid #e2e8f0', 
           backgroundImage: 'linear-gradient(180deg, rgba(248, 250, 252, 0.97) 0%, rgba(248, 250, 252, 0.97) 100%), url("/favicon.png")',
           backgroundRepeat: 'no-repeat, repeat',
@@ -98,26 +98,48 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
           backgroundAttachment: 'scroll, fixed',
         }}
       >
-        <Container maxWidth="md">
-          <Box sx={{ border: BORDER, boxShadow: SHADOW, bgcolor: 'white', p: { xs: 4, md: 6 }, borderRadius: 2 }}>
-            <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 1.5, fontSize: { xs: '1.6rem', md: '2.1rem' } }}>
-              The Smile Mission
-            </Typography>
-            <Box sx={{ width: 48, height: 4, bgcolor: '#be185d', mb: 3, borderRadius: 2 }} />
-            <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, fontSize: '1.025rem', fontWeight: 500, mb: 4 }}>
-              Smile with Doctor Rome Dental Clinic (SWDR) was founded with a singular and
-              transformative vision: to move paediatric dental care from institutions into the
-              community for easy and quick accessibility. In Tanzania, untreated dental decay causes
-              severe pain, infections, school absenteeism, and malnutrition. SWDR addresses this by
-              delivering mobile dental services that are flexible, accessible, and reach children with
-              special healthcare needs wherever they are.
-            </Typography>
-            <Box>
-              <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<HeartIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)', '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 16px rgba(190, 24, 93,0.4)' } }}>
-                Sponsor a Smile
-              </Button>
-            </Box>
-          </Box>
+        <Container maxWidth="lg">
+          <Grid container spacing={4} sx={{ alignItems: 'center' }}>
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Box sx={{ border: BORDER, boxShadow: SHADOW, bgcolor: 'white', p: { xs: 4, md: 5 }, borderRadius: 2 }}>
+                <Typography variant="h4" sx={{ fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '-1px', mb: 1.5, fontSize: { xs: '1.6rem', md: '2.1rem' } }}>
+                  The Smile Mission
+                </Typography>
+                <Box sx={{ width: 48, height: 4, bgcolor: '#be185d', mb: 3, borderRadius: 2 }} />
+                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, fontSize: '1.025rem', fontWeight: 500, mb: 4 }}>
+                  Smile with Doctor Rome Dental Clinic (SWDR) was founded with a singular and
+                  transformative vision: to move paediatric dental care from institutions into the
+                  community for easy and quick accessibility. In Tanzania, untreated dental decay causes
+                  severe pain, infections, school absenteeism, and malnutrition. SWDR addresses this by
+                  delivering mobile dental services that are flexible, accessible, and reach children with
+                  special healthcare needs wherever they are.
+                </Typography>
+                <Box>
+                  <Button onClick={onDonateClick} variant="contained" color="primary" startIcon={<HeartIcon />} sx={{ px: 5, py: 1.6, borderRadius: 2, fontWeight: '900', boxShadow: '0 2px 8px rgba(190, 24, 93,0.3)', '&:hover': { bgcolor: '#9d174d', boxShadow: '0 4px 16px rgba(190, 24, 93,0.4)' } }}>
+                    Sponsor a Smile
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Box 
+                component="img"
+                src="/images/who_we_are.jpeg"
+                alt="Who We Are - Smile with Dr Rome"
+                loading="lazy"
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: 450,
+                  objectFit: 'cover',
+                  borderRadius: 2,
+                  border: '1px solid #e2e8f0',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                  display: 'block'
+                }}
+              />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
