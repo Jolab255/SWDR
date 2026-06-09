@@ -53,7 +53,7 @@ export default function MissionCTA({ onDonateClick }: MissionCTAProps) {
             mb: 2.5,
           }}
         >
-          Every donation goes directly to clinical supplies, surgical materials, and charity — no overhead, no middlemen.
+          Every donation goes to the community, creating smiles that tell a story.
         </Typography>
 
         {/* Trust Badges - Row */}

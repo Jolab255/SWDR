@@ -382,7 +382,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
               mb: 2.5,
             }}
           >
-            Every donation goes directly to clinical supplies, surgical materials, and charity — no overhead, no middlemen. Join us in bringing smiles to East Africa.
+            Every donation goes to the community, creating smiles that tell a story.
           </Typography>
 
           {/* Trust Badges - Row */}
