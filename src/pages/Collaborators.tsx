@@ -195,7 +195,9 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
                     width: { xs: '100%', md: '45%' },
                     height: { xs: 260, sm: 340, md: 'auto' },
                     minHeight: { md: 450 },
-                    objectFit: 'cover'
+                    objectFit: 'contain',
+                    bgcolor: '#f8fafc',
+                    p: 2
                   }}
                 />
 
