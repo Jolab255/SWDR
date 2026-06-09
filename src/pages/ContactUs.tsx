@@ -26,6 +26,7 @@ export default function ContactUs() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [sending, setSending] = useState(false);
 
   const BORDER = '1px solid #e2e8f0';
   const SHADOW = '0 4px 20px rgba(0,0,0,0.08)';
@@ -46,13 +47,42 @@ export default function ContactUs() {
       return;
     }
 
-    // Simulate API request send
-    setShowSuccess(true);
-    setShowError(false);
-    setName('');
-    setEmail('');
-    setSubject('general');
-    setMessage('');
+    setSending(true);
+    setErrorMsg('');
+
+    fetch('/api/contact.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message
+      })
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok && data.status === 'SUCCESS') {
+          setShowSuccess(true);
+          setShowError(false);
+          setName('');
+          setEmail('');
+          setSubject('general');
+          setMessage('');
+        } else {
+          throw new Error(data.message || 'Something went wrong. Please try again.');
+        }
+      })
+      .catch((err) => {
+        setErrorMsg(err.message || 'Failed to submit form. Please check your connection.');
+        setShowError(true);
+        setShowSuccess(false);
+      })
+      .finally(() => {
+        setSending(false);
+      });
   };
 
   return (
@@ -291,7 +321,8 @@ export default function ContactUs() {
                     <Button
                       type="submit"
                       variant="contained"
-                      endIcon={<SendIcon />}
+                      disabled={sending}
+                      endIcon={sending ? null : <SendIcon />}
                       fullWidth
                       sx={{ 
                         px: 4, py: 2, 
@@ -310,7 +341,7 @@ export default function ContactUs() {
                         },
                       }}
                     >
-                      Send Message
+                      {sending ? 'Sending...' : 'Send Message'}
                     </Button>
                   </Grid>
                 </Grid>
