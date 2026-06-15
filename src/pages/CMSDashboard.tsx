@@ -21,7 +21,7 @@ import ContentManager from '../components/ContentManager';
 const BORDER_COLOR = '#e2e8f0';
 const ACCENT_COLOR = '#be185d';
 const SHADOW = '0 10px 30px rgba(0, 0, 0, 0.05)';
-const SECURE_HASH = '497be1999611f310a4c36a3ac3a5ccaf5853277413ac7c7c659972bea8a32a58'; // SHA-256 of "SmileDrRomeSecure2026!"
+const SECURE_HASH = 'e639ff84de1fa76cef642f6a38c4a6fddefa64d58fc50445f7ab16448da524b7'; // SHA-256 of "rome30011997"
 
 export default function CMSDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

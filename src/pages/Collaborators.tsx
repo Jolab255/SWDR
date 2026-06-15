@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import seruntImg from '../assets/serunt.svg';
 
 interface CollaboratorsProps {
   onDonateClick: () => void;
@@ -36,11 +37,11 @@ export default function Collaborators({ onDonateClick }: CollaboratorsProps) {
     {
       name: 'Serunt Nutrition',
       tagline: 'Clinical Medical Nutrition & Lifestyle Therapy',
-      image: '/images/hygiene_campaign.webp',
+      image: seruntImg,
       location: 'Dar es Salaam, Tanzania',
       founded: 'Medical Nutrition Center',
       author: 'Clinical Dietitian Network',
-      mission: 'Serunt Nutrition is an established medical nutrition organization in Tanzania. They focus on preventing and managing chronic non-communicable diseases (such as juvenile diabetes, childhood obesity, and severe dental caries) by designing evidence-based nutrition guides, school health plans, and localized dietary education programs.',
+      mission: 'Serunt Nutrition is an established medical nutrition firm in Tanzania. They focus on preventing and managing chronic non-communicable diseases (such as juvenile diabetes, childhood obesity, and severe dental caries) by designing evidence-based nutrition guides, school health plans, and localized dietary education programs.',
       collaboration: 'Our collaboration with Serunt Nutrition targets the dietary roots of early childhood tooth decay in rural and coastal communities. By combining dental camps with professional nutritional coaching, we distribute specialized hygiene kits alongside nutrition counseling. This dual-focus program teaches families how to build healthy, low-sugar diets to protect children\'s teeth.',
       ctaText: 'Visit Nutrition Portal',
       link: 'http://www.seruntnutrition.co.tz'

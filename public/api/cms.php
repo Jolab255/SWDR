@@ -24,7 +24,7 @@ if (!function_exists('getallheaders')) {
 // Path to the data file
 define('DATA_FILE', __DIR__ . '/../data/cms_data.json');
 
-// SHA-256 of "SmileDrRomeSecure2026!"
+// SHA-256 of "rome30011997"
 define('SECURE_HASH', '497be1999611f310a4c36a3ac3a5ccaf5853277413ac7c7c659972bea8a32a58');
 
 // Default initial data to initialize the system if the file does not exist
