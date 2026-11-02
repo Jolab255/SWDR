@@ -415,11 +415,13 @@ export const saveStoredEvents = async (events: ClinicEvent[]): Promise<void> => 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authHash
+        'Authorization': authHash,
+        'X-Auth-Token': authHash
       },
       body: JSON.stringify({
         action: 'save_section',
         section: 'events',
+        auth: authHash,
         data: events
       })
     });
@@ -469,11 +471,13 @@ export const saveStoredNews = async (news: NewsArticle[]): Promise<void> => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authHash
+        'Authorization': authHash,
+        'X-Auth-Token': authHash
       },
       body: JSON.stringify({
         action: 'save_section',
         section: 'news',
+        auth: authHash,
         data: news
       })
     });
@@ -523,11 +527,13 @@ export const saveStoredImpact = async (impact: ImpactStory[]): Promise<void> => 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authHash
+        'Authorization': authHash,
+        'X-Auth-Token': authHash
       },
       body: JSON.stringify({
         action: 'save_section',
         section: 'impact',
+        auth: authHash,
         data: impact
       })
     });
@@ -577,11 +583,13 @@ export const saveStoredTeam = async (team: TeamMember[]): Promise<void> => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authHash
+        'Authorization': authHash,
+        'X-Auth-Token': authHash
       },
       body: JSON.stringify({
         action: 'save_section',
         section: 'team',
+        auth: authHash,
         data: team
       })
     });
@@ -678,11 +686,13 @@ export const saveStoredJourney = async (journey: JourneyEvent[]): Promise<void> 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': authHash
+        'Authorization': authHash,
+        'X-Auth-Token': authHash
       },
       body: JSON.stringify({
         action: 'save_section',
         section: 'journey',
+        auth: authHash,
         data: journey
       })
     });

@@ -63,7 +63,18 @@ export default function ContactUs() {
       })
     })
       .then(async (res) => {
-        const data = await res.json();
+        const text = await res.text();
+        if (text.trim().startsWith('<?php')) {
+          throw new Error('PHP script was not executed (returned raw code). Please run a local PHP server or deploy to a PHP-enabled host.');
+        }
+
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error('Invalid server response format.');
+        }
+
         if (res.ok && data.status === 'SUCCESS') {
           setShowSuccess(true);
           setShowError(false);

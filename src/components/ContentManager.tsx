@@ -19,7 +19,8 @@ import {
   Chip,
   Alert,
   Divider,
-  Paper
+  Paper,
+  CircularProgress
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -69,6 +70,8 @@ export default function ContentManager() {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogMode, setDialogMode] = useState<'add' | 'edit'>('add');
   const [editId, setEditId] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [dialogError, setDialogError] = useState('');
 
   // Unified Form Fields
   const [title, setTitle] = useState('');
@@ -307,6 +310,8 @@ export default function ContentManager() {
   const handleOpenAdd = () => {
     setDialogMode('add');
     setEditId(null);
+    setDialogError('');
+    setIsSaving(false);
     resetForm();
     setOpenDialog(true);
   };
@@ -314,6 +319,8 @@ export default function ContentManager() {
   const handleOpenEdit = (item: any) => {
     setDialogMode('edit');
     setEditId(item.id);
+    setDialogError('');
+    setIsSaving(false);
     
     // Base fields
     setTitle(item.title || '');
@@ -424,36 +431,51 @@ export default function ContentManager() {
   };
 
   const handleSave = async () => {
+    setAlertMsg(null);
+    setDialogError('');
+
     // Required fields validations
     if (tabIndex === 0) {
       if (!title.trim() || !date.trim() || !time.trim() || !location.trim() || !description.trim()) {
-        setAlertMsg({ type: 'error', text: 'All event fields (Title, Date, Time, Location, Description) are required.' });
+        const msg = 'All event fields (Title, Date, Time, Location, Description) are required.';
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
     } else if (tabIndex === 1) {
       if (!title.trim() || !date.trim() || !author.trim() || !summary.trim() || !content.trim()) {
-        setAlertMsg({ type: 'error', text: 'All article fields (Title, Date, Author, Summary, Content) are required.' });
+        const msg = 'All article fields (Title, Date, Author, Summary, Content) are required.';
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
     } else if (tabIndex === 2) {
       if (!title.trim() || !date.trim() || !location.trim() || !description.trim()) {
-        setAlertMsg({ type: 'error', text: 'All impact fields (Title, Date, Location, Description) are required.' });
+        const msg = 'All impact fields (Title, Date, Location, Description) are required.';
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
       // Word limit check: description must be max 100 words
       const wordCount = description.trim().split(/\s+/).filter(Boolean).length;
       if (wordCount > 100) {
-        setAlertMsg({ type: 'error', text: `Your quote (msemo) exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it before saving.` });
+        const msg = `Your quote (msemo) exceeds the 100-word limit. Current count: ${wordCount} words. Please shorten it before saving.`;
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
     } else if (tabIndex === 3) {
       if (!name.trim() || !role.trim() || !tag.trim() || !description.trim()) {
-        setAlertMsg({ type: 'error', text: 'All team fields (Full Name, Role, Specialization Tag, Description) are required.' });
+        const msg = 'All team fields (Full Name, Role, Specialization Tag, Description) are required.';
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
     } else if (tabIndex === 4) {
       if (!year.trim() || !title.trim() || !description.trim()) {
-        setAlertMsg({ type: 'error', text: 'All journey fields (Year, Title, Description) are required.' });
+        const msg = 'All journey fields (Year, Title, Description) are required.';
+        setDialogError(msg);
+        setAlertMsg({ type: 'error', text: msg });
         return;
       }
     }
@@ -462,7 +484,7 @@ export default function ContentManager() {
     const finalEventCategory = eventCategory === 'Other' ? (customEventCategory || 'Other') : eventCategory;
     const finalNewsCategory = newsCategory === 'Other' ? (customNewsCategory || 'Other') : newsCategory;
 
-    setAlertMsg(null);
+    setIsSaving(true);
     try {
       if (tabIndex === 0) {
         const updated = dialogMode === 'add' 
@@ -498,9 +520,13 @@ export default function ContentManager() {
 
       setAlertMsg({ type: 'success', text: 'Changes saved successfully!' });
       setOpenDialog(false);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setAlertMsg({ type: 'error', text: 'Failed to save changes to server. Please verify you are connected and authorized.' });
+      const errMsg = err?.message || 'Failed to save changes to server. Please verify you are connected and authorized.';
+      setDialogError(errMsg);
+      setAlertMsg({ type: 'error', text: errMsg });
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -1314,18 +1340,30 @@ export default function ContentManager() {
               </Box>
             </Grid>
           </Grid>
+
+          {dialogError && (
+            <Alert 
+              severity="error" 
+              onClose={() => setDialogError('')}
+              sx={{ mt: 3, borderRadius: 2, fontWeight: 'bold' }}
+            >
+              {dialogError}
+            </Alert>
+          )}
         </DialogContent>
 
         <DialogActions sx={{ p: 3, borderTop: BORDER, bgcolor: '#f8fafc' }}>
           <Button 
             onClick={() => setOpenDialog(false)}
+            disabled={isSaving}
             sx={{ fontWeight: '900', color: '#64748b' }}
           >
             Discard
           </Button>
           <Button
             variant="contained"
-            startIcon={<SaveIcon />}
+            startIcon={isSaving ? <CircularProgress size={18} color="inherit" /> : <SaveIcon />}
+            disabled={isSaving}
             onClick={handleSave}
             sx={{ 
               borderRadius: 2, px: 4, py: 1.5, 
@@ -1334,7 +1372,7 @@ export default function ContentManager() {
               '&:hover': { bgcolor: '#9d174d', transform: 'translateY(-2px)', boxShadow: '0 6px 20px rgba(190, 24, 93, 0.35)' }
             }}
           >
-            Commit Changes
+            {isSaving ? 'Saving...' : 'Commit Changes'}
           </Button>
         </DialogActions>
       </Dialog>

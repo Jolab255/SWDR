@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Auth-Token");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
@@ -24,8 +24,14 @@ if (!function_exists('getallheaders')) {
 // Path to the data file
 define('DATA_FILE', __DIR__ . '/../data/cms_data.json');
 
-// SHA-256 of "rome30011997"
-define('SECURE_HASH', '497be1999611f310a4c36a3ac3a5ccaf5853277413ac7c7c659972bea8a32a58');
+// Valid SHA-256 Hashes:
+// "rome30011997": e639ff84de1fa76cef642f6a38c4a6fddefa64d58fc50445f7ab16448da524b7
+// "SmileDrRomeSecure2026!": 497be1999611f310a4c36a3ac3a5ccaf5853277413ac7c7c659972bea8a32a58
+define('SECURE_HASH', 'e639ff84de1fa76cef642f6a38c4a6fddefa64d58fc50445f7ab16448da524b7');
+$ALLOWED_HASHES = [
+    'e639ff84de1fa76cef642f6a38c4a6fddefa64d58fc50445f7ab16448da524b7',
+    '497be1999611f310a4c36a3ac3a5ccaf5853277413ac7c7c659972bea8a32a58'
+];
 
 // Default initial data to initialize the system if the file does not exist
 $initial_data = [
@@ -315,7 +321,12 @@ if (!file_exists(DATA_FILE)) {
         if (!isset($data['journey'])) {
             $data['journey'] = $initial_data['journey'];
             $updated = true;
-        } else {
+        }
+        if (!isset($data['impact'])) {
+            $data['impact'] = isset($initial_data['impact']) ? $initial_data['impact'] : [];
+            $updated = true;
+        }
+        if (isset($data['journey']) && is_array($data['journey'])) {
             // Check if existing journey items use old default images and update them
             $old_defaults = [
                 "journey-1" => "/images/swdr_happy_children.webp",
@@ -368,7 +379,16 @@ function load_data() {
 
 // Save current data helper function
 function save_data($data) {
-    return file_put_contents(DATA_FILE, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX) !== false;
+    $dir = dirname(DATA_FILE);
+    if (!file_exists($dir)) {
+        @mkdir($dir, 0775, true);
+    }
+    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $res = @file_put_contents(DATA_FILE, $json, LOCK_EX);
+    if ($res === false) {
+        $res = @file_put_contents(DATA_FILE, $json);
+    }
+    return $res !== false;
 }
 
 // 3. Handle operations
@@ -437,23 +457,44 @@ if ($method === 'POST') {
     }
     
     // Auth protected actions: save_section
-    $headers = getallheaders();
     $auth = '';
-    
-    // Check Authorization header (case insensitive check)
-    foreach ($headers as $header_name => $header_val) {
-        if (strtolower($header_name) === 'authorization') {
-            $auth = trim($header_val);
-            break;
+
+    // 1. Check direct JSON payload first (immune to web-server header stripping)
+    if (!empty($input['auth'])) {
+        $auth = trim($input['auth']);
+    } elseif (!empty($input['authToken'])) {
+        $auth = trim($input['authToken']);
+    }
+
+    // 2. Check $_SERVER variables (populated by Apache/Nginx FastCGI/PHP-FPM)
+    if (empty($auth)) {
+        if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            $auth = trim($_SERVER['HTTP_AUTHORIZATION']);
+        } elseif (!empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+            $auth = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+        } elseif (!empty($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+            $auth = trim($_SERVER['HTTP_X_AUTH_TOKEN']);
         }
     }
-    
+
+    // 3. Fallback to getallheaders()
+    if (empty($auth)) {
+        $headers = getallheaders();
+        foreach ($headers as $header_name => $header_val) {
+            $lower = strtolower($header_name);
+            if ($lower === 'authorization' || $lower === 'x-auth-token') {
+                $auth = trim($header_val);
+                break;
+            }
+        }
+    }
+
     // Remove "Bearer " prefix if present
     if (stripos($auth, 'bearer ') === 0) {
         $auth = substr($auth, 7);
     }
-    
-    if ($auth !== SECURE_HASH) {
+
+    if (!in_array($auth, $ALLOWED_HASHES, true)) {
         http_response_code(401);
         echo json_encode(["status" => "ERROR", "message" => "Unauthorized: Invalid token"]);
         exit;
