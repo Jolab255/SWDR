@@ -163,7 +163,7 @@ export default function EventsCalendar({ events, onReadMoreClick }: EventsCalend
                   }}>
                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
                       <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-                        <CardMedia component="img" height="220" image={ev.image} alt={ev.title} loading="lazy" />
+                        <CardMedia component="img" height="220" image={ev.image} alt={ev.title} loading="lazy" sx={{ objectFit: 'cover' }} />
                         {/* Overlay Calendar Date Badge */}
                         <Box sx={{ position: 'absolute', top: 12, left: 12, bgcolor: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(4px)', px: 2, py: 0.75, borderRadius: 1.5, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 52 }}>
                           <Typography variant="caption" sx={{ fontWeight: 800, color: '#be185d', textTransform: 'uppercase', fontSize: '0.7rem', lineHeight: 1 }}>

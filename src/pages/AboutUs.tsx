@@ -131,7 +131,7 @@ export default function AboutUs({ onDonateClick }: AboutUsProps) {
                   width: '100%',
                   height: 'auto',
                   maxHeight: 450,
-                  objectFit: 'cover',
+                  objectFit: 'contain',
                   borderRadius: 2,
                   border: '1px solid #e2e8f0',
                   boxShadow: '0 8px 24px rgba(0,0,0,0.08)',

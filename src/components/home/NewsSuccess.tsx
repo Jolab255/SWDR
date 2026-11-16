@@ -117,7 +117,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
                   px: 2, boxSizing: 'border-box'
                 }}>
                   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', border: '1px solid #e2e8f0', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', borderRadius: 2, '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 12px 32px rgba(0,0,0,0.12)' }, transition: 'all 0.2s ease' }}>
-                    <CardMedia component="img" height="240" image={article.image} alt={article.title} loading="lazy" />
+                    <CardMedia component="img" height="240" image={article.image} alt={article.title} loading="lazy" sx={{ objectFit: 'cover' }} />
                     <CardContent sx={{ p: 4, flexGrow: 1 }}>
                       <Chip label={article.category} size="small" sx={{ fontWeight: '900', borderRadius: 1, border: '1px solid #e2e8f0', bgcolor: 'white', mb: 2 }} />
                       <Typography variant="h5" sx={{ fontWeight: '900', mb: 2, color: '#1e293b', lineHeight: 1.2 }}>
@@ -207,7 +207,7 @@ export default function NewsSuccess({ news }: NewsSuccessProps) {
               By {selectedArticle.author}
             </Typography>
 
-            <Box component="img" src={selectedArticle.image} alt={selectedArticle.title} sx={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: 2, mb: 4 }} />
+            <Box component="img" src={selectedArticle.image} alt={selectedArticle.title} sx={{ width: '100%', maxHeight: '400px', objectFit: 'contain', borderRadius: 2, mb: 4 }} />
 
             <Typography variant="body1" sx={{ color: '#334155', lineHeight: 1.8, fontSize: '1.1rem', textAlign: 'justify', whiteSpace: 'pre-line' }}>
               {selectedArticle.content}

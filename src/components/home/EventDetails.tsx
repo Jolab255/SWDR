@@ -39,7 +39,7 @@ export default function EventDetails({ event, onBack, onDonateClick, onRegisterC
 
         <Paper elevation={0} sx={{ borderRadius: 2, border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', bgcolor: 'white', overflow: 'hidden', mb: 4 }}>
           <Box sx={{ position: 'relative', width: '100%', height: { xs: 250, sm: 400 }, overflow: 'hidden' }}>
-            <Box component="img" src={event.image} alt={event.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Box component="img" src={event.image} alt={event.title} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             <Box sx={{ position: 'absolute', top: 20, right: 20, bgcolor: 'rgba(15, 23, 42, 0.85)', backdropFilter: 'blur(8px)', color: '#ffffff', px: 2.5, py: 1, fontSize: '0.85rem', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
               {event.category}
             </Box>

@@ -219,7 +219,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
                         } 
                       }}
                     >
-                      <Box component="img" src={imgUrl} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Box component="img" src={imgUrl} loading="lazy" sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                       <Box className="overlay" sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, bgcolor: 'rgba(190, 24, 93, 0.85)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3, opacity: 0, transition: 'opacity 0.3s ease', textAlign: 'center' }}>
                         <Typography variant="subtitle2" sx={{ fontWeight: '900', textTransform: 'uppercase' }}>
                           View Image {imgIdx + 1}
@@ -272,7 +272,7 @@ export default function ImpactGlimpses({ impactStories }: ImpactGlimpsesProps) {
           {selectedImpact && (
             <Box>
               <Box sx={{ position: 'relative', width: '100%', height: { xs: 200, sm: 350 }, overflow: 'hidden' }}>
-                <Box component="img" src={selectedImpact.image} alt={selectedImpact.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Box component="img" src={selectedImpact.image} alt={selectedImpact.title} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 <IconButton 
                   onClick={() => setSelectedImpact(null)} 
                   sx={{ 
