@@ -332,30 +332,17 @@ export default function Footer() {
               © {new Date().getFullYear()} SWDR. Developed by{' '}
               <Box 
                 component="a" 
-                href="mailto:yonahmatete@gmail.com" 
-                sx={{ 
-                  color: '#be185d', 
-                  textDecoration: 'none', 
-                  '&:hover': { textDecoration: 'underline' } 
-                }}
-              >
-                Email to Jolab
-              </Box>
-              {' '}| WhatsApp to{' '}
-              <Box 
-                component="a" 
                 href="https://wa.me/255765929374" 
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ 
-                  color: '#25D366', 
-                  display: 'inline-flex', 
-                  alignItems: 'center',
-                  ml: 0.5,
-                  '&:hover': { color: '#128C7E' } 
+                  color: '#be185d', 
+                  textDecoration: 'none', 
+                  fontWeight: 700,
+                  '&:hover': { textDecoration: 'underline' } 
                 }}
               >
-                <WhatsAppIcon sx={{ fontSize: 16 }} />
+                Jolab
               </Box>
             </Typography>
           </Box>
